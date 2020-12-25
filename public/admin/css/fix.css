@@ -1,0 +1,67 @@
+.addnew{
+  padding: 10px;
+  background: #f2f2f2;
+  color: red;
+}
+.addnew:hover{
+	color: #fff;
+	background: #000;
+	text-decoration: none;
+}
+.text-danger{
+	position: relative;
+	top: 5px;
+}
+.sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link{
+	background: #c2acc9 !important;
+}
+.sidebar .nav .nav-item.active > .nav-link{
+	background: #c2acc9 !important;
+}
+.form-group label{
+	font-weight: bold;
+}
+.body-cat{
+	padding-top: 15px;
+}
+ul.cat-con{
+	list-style: none;
+}
+ul.cat-con li{
+	padding: 20px 0;
+	border-top: 1px dashed #ccc;
+}
+ul.cat-con li a{
+	color: #666;
+}
+ul.cat-con li a:hover{
+	text-decoration: none;
+	color: red;
+}
+ul.cat-con li{
+	position: relative;
+	line-height: 0
+}
+.cat-child{
+	position: absolute;
+	left: 0;
+}
+.st-con{
+	position: absolute;
+	right: 0;
+}
+.st-con a{
+	padding: 5px;
+	border-radius: 4px;
+	margin-left: 10px;
+}
+.viewcat{
+	color: #00c689;
+	font-weight: bold;
+}
+ul.cat-con-con li{
+	list-style: none;
+}
+.mgleft-left{
+	margin-left: 60px;
+}
