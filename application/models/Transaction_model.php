@@ -1,4 +1,1 @@
-<?php 
-Class Transaction_model extends MY_Model{
-	var $table = 'transaction';
-}
+<?php Class Transaction_model extends MY_Model{	var $table = 'tran';}

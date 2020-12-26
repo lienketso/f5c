@@ -45,6 +45,19 @@
             </div>
           </li>
 
+          <li class="nav-item <?= ($urlSec=='transaction' ) ? 'active' : '' ?>">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic-tran" aria-expanded="false" aria-controls="ui-basic-tran">
+              <i class="ti-package menu-icon"></i>
+              <span class="menu-title">Đơn hàng </span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse <?= ($urlSec=='product_order') ? 'show' : '' ?>" id="ui-basic-tran">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="<?= admin_url('product_order'); ?>">Đơn hàng sản phẩm </a></li>
+              </ul>
+            </div>
+          </li>
+
           
           <li class="nav-item <?= ($urlSec=='page') ? 'active' : '' ?>">
             <a class="nav-link" href="<?= admin_url('page') ?>" aria-expanded="false">

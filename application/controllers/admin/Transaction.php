@@ -3,6 +3,7 @@ Class Transaction extends MY_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model('transaction_model');
+		$this->load->model('product_order_model');
 	}
 	function index(){
 		//lấy ra tổng số đơn hàng để phân trang
@@ -36,7 +37,7 @@ Class Transaction extends MY_Controller{
 		$config['base_url']    = admin_url('transaction/index');
 		$config['first_url'] = $config['base_url'].'?'.http_build_query($_GET);
 		$config['total_rows']  = $total_row;
-		$config['per_page']    = 5;
+		$config['per_page']    = 20;
 		$config['uri_segment'] = 4;
 		$config['full_tag_open'] = '<ul class="pagination pagination-flat pagination-success">';
 		$config['full_tag_close'] = '</ul>';
@@ -73,11 +74,10 @@ Class Transaction extends MY_Controller{
 		$id = intval($id);
 		$info = $this->transaction_model->get_info($id);
 		$this->data['info'] = $info;
-		$this->load->model('order_model');
 		$this->load->model('product_model');
 		$input = array();
-		$input['where'] = array('transaction_id'=>$info->id);
-		$listorder = $this->order_model->get_list($input);
+		$input['where'] = array('tran_id'=>$info->id);
+		$listorder = $this->product_order_model->get_list($input);
 		$this->data['listorder'] = $listorder;
 		$this->data['temp'] = 'admin/transaction/view';
 		$this->load->view('admin/main',$this->data);
