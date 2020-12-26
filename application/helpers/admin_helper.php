@@ -5,7 +5,7 @@ function admin_url($url){
 
 // image url website
 function product_link($url){
-  return base_url('uploads/public/');
+  return base_url('upload/public/'.$url);
 }
 
 function language_current(){

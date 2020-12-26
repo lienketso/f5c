@@ -128,6 +128,7 @@ Class Product extends MY_Controller{
 				$manufac_id = $this->input->post('manufac_id');	
 				$model = $this->input->post('model');	
 				$image_name = $this->input->post('image_name');	
+				$image_name = str_replace(base_url('upload/public/'),'',$image_name);
 				$site_title = $this->input->post('site_title');	
 				$meta_key = $this->input->post('meta_key');	
 				$meta_desc = $this->input->post('meta_desc');	
@@ -174,7 +175,7 @@ Class Product extends MY_Controller{
 						$data_2 = [
 							'table_id'=>$product_id,
 							'table'=>'product-images',
-							'file_name'=>$img,
+							'file_name'=>str_replace(base_url('upload/public/'),'',$img),
 							'created'=> now()
 						];
 						$this->file_model->create($data_2);
@@ -234,6 +235,8 @@ Class Product extends MY_Controller{
 				$manufac_id = $this->input->post('manufac_id');	
 				$model = $this->input->post('model');	
 				$image_name = $this->input->post('image_name');	
+				$image_name = str_replace(base_url('upload/public/'),'',$image_name);
+
 				$site_title = $this->input->post('site_title');	
 				$meta_key = $this->input->post('meta_key');	
 				$meta_desc = $this->input->post('meta_desc');	
@@ -262,6 +265,26 @@ Class Product extends MY_Controller{
 				);
 				$this->product_model->update($id,$data);
 				
+				$im['where'] = ['table_id'=>$id];
+				$listImgOld = $this->file_model->get_list($im);
+				if(!empty($listImgOld)){
+					$where = "table_id=".$id;
+					$this->file_model->delete_rule($where);
+				}
+				if($image_list && !empty($image_list)){
+					foreach($image_list as $key=>$val){
+						$idata = [
+							'table_id'=>$id,
+							'file_name'=>str_replace(base_url('upload/public/'),'',$val),
+							'table'=>'product-images',
+							'created'=>now()
+
+						];
+						$this->file_model->create($idata);
+					}
+					
+				}
+
 				// tạo nội dung thông báo
 				$this->session->set_flashdata('message', 'Sửa dữ liệu thành công !');
 				//chuyển sang trang danh sách danh mục
@@ -273,6 +296,10 @@ Class Product extends MY_Controller{
 		$ct['order'] = ['name','asc'];
 		$listCountries = $this->countries_model->get_list($ct);
 		$this->data['listCountries'] = $listCountries;
+
+		$at['where'] = ['table_id'=>$id];
+		$imgAttach = $this->file_model->get_list($at);
+		$this->data['imgAttach'] = $imgAttach;
 	
 		$this->data['temp'] = 'admin/product/edit';
 		$this->load->view('admin/main', $this->data);

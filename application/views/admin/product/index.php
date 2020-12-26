@@ -70,7 +70,7 @@ padding: 20px;
 						<td>
 							<input type="checkbox" id="" name="id[]" value="<?php echo $row->id ?>"></td>
 							<td><?php echo $row->name; ?></td>
-							<td class="center"><img src="<?= $row->image_name ?>" width="70"></td>	
+							<td class="center"><img src="<?= product_link($row->image_name) ?>" width="70"></td>	
 							<td><?= $this->product_model->getCategory($row->cat_id) ?></td>
 							<td class="center">
 								<a class="btn btn-sm btn-info" href="<?php echo admin_url('product/edit/'.$row->id); ?>">

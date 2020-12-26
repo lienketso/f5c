@@ -104,7 +104,7 @@ ATTENTION: The trailing slash is required.
 
 $http = 'http://'.$_SERVER['HTTP_HOST'];
 if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
-    $http = 'http://'.$_SERVER['HTTP_HOST'];
+    $http = 'https://'.$_SERVER['HTTP_HOST'];
 }
 
 define("NVCMS_DIR", $http."");
@@ -112,7 +112,7 @@ define("NVCMS_DIR", $http."");
 
 define("NVCMS_URL", "http://".$_SERVER['HTTP_HOST']."");
 
-$baseUrl = NVCMS_URL.'/uploads/';
+$baseUrl = NVCMS_URL.'/upload/';
 
 $enabled = true;
 
@@ -344,11 +344,11 @@ $config['ResourceType'][] = Array(
 
 $config['ResourceType'][] = Array(
 
-		'name' => 'Images',
+		'name' => 'public',
 
-		'url' => $baseUrl . 'images',
+		'url' => $baseUrl . 'public',
 
-		'directory' => $baseDir . 'images',
+		'directory' => $baseDir . 'public',
 
 		'maxSize' => 0,
 
