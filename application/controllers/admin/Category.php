@@ -9,7 +9,7 @@ Class Category extends MY_Controller{
 
 		$this->load->library('pagination');
 		$input = array();
-		$input['where'] = array('parent_id'=>0,'lang_code'=>$this->language);
+		$input['where'] = array('parent_id'=>0);
 		$total_row = $this->category_model->get_total($input);
 		$this->data['total_row'] = $total_row;
 		$config = array();
@@ -143,8 +143,7 @@ Class Category extends MY_Controller{
 					'show_home'=>$show_home,
 					'site_title'=>$site_title,
 					'meta_desc'=>$meta_desc,
-					'meta_key'=>$meta_key,
-					'lang_code'=>$this->language
+					'meta_key'=>$meta_key
 					);
 					$this->category_model->create($data);
 	// tạo nội dung thông báo
@@ -196,8 +195,7 @@ Class Category extends MY_Controller{
 					'show_home'=>$show_home,
 					'site_title'=>$site_title,
 					'meta_desc'=>$meta_desc,
-					'meta_key'=>$meta_key,
-					'lang_code'=>$this->language
+					'meta_key'=>$meta_key
 					);
 			//update category
 			$this->category_model->update($category_id, $data);

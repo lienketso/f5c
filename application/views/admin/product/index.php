@@ -61,7 +61,6 @@ padding: 20px;
 					<th>Tiêu đề</th>
 					<th>Hình ảnh</th>
 					<th>Danh mục</th>
-					<th>Trạng thái</th>
 					<th>Cấu hình</th>
 				</tr>
 			</thead>   
@@ -73,14 +72,6 @@ padding: 20px;
 							<td><?php echo $row->name; ?></td>
 							<td class="center"><img src="<?= $row->image_name ?>" width="70"></td>	
 							<td><?= $this->product_model->getCategory($row->cat_id) ?></td>
-							<td class="center">
-								<?php if($row->status==1): ?>
-									<span class="badge badge-success">Hiển thị</span>
-								<?php endif; ?>
-								<?php if($row->status==0): ?>
-									<span class="badge badge-warning">Tạm ẩn</span>
-								<?php endif; ?>
-							</td>
 							<td class="center">
 								<a class="btn btn-sm btn-info" href="<?php echo admin_url('product/edit/'.$row->id); ?>">
 									<i class="ti-pencil-alt"></i>  

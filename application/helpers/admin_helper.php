@@ -2,6 +2,12 @@
 function admin_url($url){
   return base_url('admin/'.$url);
 }
+
+// image url website
+function product_link($url){
+  return base_url('uploads/public/');
+}
+
 function language_current(){
    $CI =& get_instance();
    $language_current = $CI->session->userdata('language_current');

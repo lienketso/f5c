@@ -1,7 +1,6 @@
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
       
       <ul class="nav">
-        <?php if($accoutname->id==6 || $accoutname->type=='admin'): ?>
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url('admin/home') ?>">
               <i class="mdi mdi-view-quilt menu-icon"></i>
@@ -14,7 +13,7 @@
               <span class="menu-title">Menu</span>
             </a>
           </li>
-          <li class="nav-item <?= ($type=='news') ? 'active' : '' ?>">
+          <li class="nav-item <?= ($urlSec=='news') ? 'active' : '' ?>">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic-post" aria-expanded="false" aria-controls="ui-basic-post">
               <i class="ti-rss menu-icon"></i>
               <span class="menu-title">Bài viết</span>
@@ -83,40 +82,7 @@
               <span class="menu-title">Admin</span>
             </a>
           </li>
-        <?php endif; ?>
 
-        <?php if($accoutname->type=='blog'): ?>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic-post" aria-expanded="false" aria-controls="ui-basic-post">
-              <i class="ti-rss menu-icon"></i>
-              <span class="menu-title">Bài viết</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic-post">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="<?= admin_url('news?type=news'); ?>" >Danh sách bài viết</a></li>
-                <li class="nav-item"> <a class="nav-link" href="<?= admin_url('news/add?type=news'); ?>">Thêm mới</a></li>
-                <li class="nav-item"> <a class="nav-link" href="<?= admin_url('catnews?cat_type=news'); ?>">Danh mục</a></li>
-              </ul>
-            </div>
-          </li>
-        <?php endif; ?>
-        <?php if($accoutname->type=='product'): ?>
-          <li class="nav-item <?= ($urlSec=='product' || $urlSec=='category') ? 'active' : '' ?>">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic-product" aria-expanded="false" aria-controls="ui-basic-product">
-              <i class="ti-package menu-icon"></i>
-              <span class="menu-title">Sản phẩm</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse <?= ($urlSec=='product' || $urlSec=='category') ? 'show' : '' ?>" id="ui-basic-product">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="<?= admin_url('category'); ?>">Danh mục </a></li>
-                <li class="nav-item"> <a class="nav-link" href="<?= admin_url('product'); ?>" >Danh sách sản phẩm</a></li>
-                <li class="nav-item"> <a class="nav-link" href="<?= admin_url('product/add'); ?>" >Thêm mới</a></li>
-              </ul>
-            </div>
-          </li>
-        <?php endif; ?>
 
       </ul>
       

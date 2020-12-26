@@ -11,7 +11,7 @@ Class Manufac extends MY_Controller{
 		$this->load->library('pagination');
 
 		$input = array();
-		$input['where'] = array('lang_code'=>$this->language);
+		$input['where'] = array();
 		$total_row = $this->manufac_model->get_total($input);
 		$this->data['total_row'] = $total_row;
 		$config = array();
@@ -89,8 +89,7 @@ Class Manufac extends MY_Controller{
 					'is_menu' => $is_menu,
 					'site_title'=>$site_title,
 					'meta_desc' => $meta_desc,
-					'meta_key'=> $meta_key,
-					'lang_code'=>$this->language
+					'meta_key'=> $meta_key
 				);
 				$this->manufac_model->create($data);
 
@@ -148,8 +147,7 @@ Class Manufac extends MY_Controller{
 					'is_menu' => $is_menu,
 					'site_title'=>$site_title,
 					'meta_desc' => $meta_desc,
-					'meta_key'=> $meta_key,
-					'lang_code'=>$this->language
+					'meta_key'=> $meta_key
 				);
 				$this->manufac_model->update($id,$data);
 

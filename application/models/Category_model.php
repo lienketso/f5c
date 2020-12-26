@@ -4,7 +4,7 @@ Class Category_model extends MY_Model{
   function optionCategory($id=0, $lever=0,$max=5, $selected,$ids){
     $this->language = language_current();
     $input = array();
-    $input['where'] = array('parent_id'=>$id,'lang_code'=>$this->language);
+    $input['where'] = array('parent_id'=>$id);
     $input['order'] = ['name','asc'];
     $arrMenu = $this->get_list($input);
   if($arrMenu){
@@ -27,7 +27,7 @@ Class Category_model extends MY_Model{
     function optionMenuCategory($id=0, $lever=0,$max=5, $selected,$ids){
     $this->language = language_current();
     $input = array();
-    $input['where'] = array('parent'=>$id,'lang_code'=>$this->language);
+    $input['where'] = array('parent'=>$id);
     $arrMenu = $this->get_list($input);
   if($arrMenu){
     foreach($arrMenu as $row){
@@ -49,7 +49,7 @@ Class Category_model extends MY_Model{
     function checkboxCategory($id=0,$lever=0,$max=5, $checked){
     $this->language = language_current();
     $input = array();
-    $input['where'] = array('parent_id'=>$id,'lang_code'=>$this->language);
+    $input['where'] = array('parent_id'=>$id);
     $input['order'] = ['name','asc'];
     $arrMenu = $this->get_list($input);
     if($arrMenu){
@@ -79,7 +79,7 @@ Class Category_model extends MY_Model{
     function getAllCateLink($id=0){
       $this->language = language_current();
       $input = array();
-      $input['where'] = array('status'=>1,'parent'=>$id,'lang_code'=>$this->language);
+      $input['where'] = array('status'=>1,'parent'=>$id);
       $input['order'] = array('is_order','desc');
       $arr = array();
       $arrListCatNews1 = $this->get_list($input);
@@ -98,7 +98,7 @@ Class Category_model extends MY_Model{
     function getAll(){
       $this->language = language_current();
       $input = array();
-      $input['where'] = array('status'=>1,'parent'=>0,'lang_code'=>$this->language);
+      $input['where'] = array('status'=>1,'parent'=>0);
       $input['order'] = array('is_order','desc');
       $arr = array();
       $arrListCatNews1 = $this->get_list($input);
@@ -196,7 +196,7 @@ Class Category_model extends MY_Model{
   }
   function getCategory($display,$limit){
     $this->language = language_current();
-    $input['where'] = ['status'=>1,'display'=>$display,'lang_code'=>$this->language];
+    $input['where'] = ['status'=>1,'display'=>$display];
     $input['order'] = ['is_order','asc'];
     $input['limit'] = [$limit,0];
     $listCate = $this->get_list($input);
