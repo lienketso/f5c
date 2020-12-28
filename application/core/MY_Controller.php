@@ -56,17 +56,13 @@ Class MY_Controller extends CI_Controller{
 				//$this->output->cache(20);
 				$this->load->helper("image");
 				$this->load->library('simple_html_dom');
-				//tự động tạo sitemap.xml
-				$this->sitemap();
+
 				$this->language = language_current();
 				//ngôn ngữ trên site
 				$this->lang->load("key", $this->language);
 				//load model
 				$this->load->model('site_model');
 				$this->load->model('menu_model');
-				$this->load->model('gallery_model');
-				$this->load->model('news_model');
-				$this->load->model('tags_model');
 				$this->load->model('category_model');
 				$this->load->model('product_model');
 				//load thư viện giỏ hàng tất cả các trang
@@ -76,56 +72,19 @@ Class MY_Controller extends CI_Controller{
 				$this->data = [
 					'menunew'=>$menunew
 				];
-				$listSetting = $this->site_model->get_list();
+				$s['order'] = ['key','asc'];
+				$listSetting = $this->site_model->get_list($s);
 				$arrSetting = [];
 				foreach($listSetting as $key=>$val){
-					$arrSetting[$val->setting_key] = $val->setting_value;
+					$arrSetting[$val->key] = $val->value;
 				}
 				$this->data['arrSetting'] = $arrSetting;
 				//bài viết mới
-				$news['where'] = ['status'=>1,'type'=>'news'];
-				$news['order'] = ['created_at'=>'desc'];
-				$news['limit'] = [6,0];
-				$latestNews = $this->news_model->get_list($news);
-				$this->data['latestNews'] = $latestNews;
-				//category all
-				$this->load->model('catnews_model');
-				$cat['where'] = ['status'=>1];
-				$cat['order'] = ['is_order','asc'];
-				$allCategory = $this->catnews_model->get_list($cat);
-				$this->data['allCategory'] = $allCategory;
-				//danh mục sản phẩm
-				//Danh mục sản phẩm hot
-				$inputs['where'] = ['status'=>1,'display'=>1,'parent'=>0,'lang_code'=>$this->language];
-				$inputs['order'] = ['is_order','asc'];
-				$listCatHot = $this->category_model->get_list($inputs);
-				$this->data['listCatHot'] = $listCatHot;
 				
-				$tag['where'] = ['status'=>1,'lang_code'=>$this->language];
-				$tag['limit'] = [20,0];
-				$listTags = $this->tags_model->get_list($tag);
-				$this->data['listTags'] = $listTags;
-				//slider trang chủ
-				$slider = $this->gallery_model->getGallery(1,2,18);
-				$this->data['slider'] = $slider;
+				$allCategory = $this->category_model->getCategoryAllsub(0);
+				$this->data['allCategory'] = $allCategory;
+				
 
-				$pa['where'] = ['status'=>1,'display'=>2,'type'=>'page','lang_code'=>$this->language];
-				$pa['order'] = ['created_at','asc'];
-				$pageAbout = $this->news_model->get_list($pa);
-				$this->data['pageAbout'] = $pageAbout;
-
-				$ps['where'] = ['status'=>1,'display'=>2];
-				$ps['limit'] = [4,0];
-				$productSidebar = $this->product_model->get_list($ps);
-				$this->data['productSidebar'] = $productSidebar;
-
-				$this->data['total_items'] = $this->cart->total_items();
-				$cartshome = $this->cart->contents();
-				$this->data['cartshome'] = $cartshome;
-				$this->load->model('user_model');
-				$user_login_id = $this->session->userdata('user_login_id');
-				$userLog = $this->user_model->get_info($user_login_id);
-				$this->data['userLog'] = $userLog;
 				$Ishome = '';
 				$this->data['Ishome'] = $Ishome;
 				$lang = $this->language;
@@ -134,93 +93,7 @@ Class MY_Controller extends CI_Controller{
 				//pre($menunew);die;
 		}
 	}
-	//tạo sitemap tự động
-	function sitemap(){
-		$this->load->model('news_catnews_model');
-		$this->load->model('catnews_model');
-		$this->load->library('simple_html_dom');
-		$doc = new DOMDocument('1.0','utf-8');
-		$doc->formatOutput = true;
-		$r = $doc->createElement('urlset');
-		$r->setAttribute('xmlns','http://www.sitemaps.org/schemas/sitemap/0.9');
-		$doc->appendChild($r);
-		$url = $doc->createElement('url');
-		$name = $doc->createElement('loc');
-		$name->appendChild(
-			$doc->createTextNode(base_url())
-		);
-		$url->appendChild($name);
-		$changefreq = $doc->createElement('changefreq');
-		$changefreq->appendChild(
-			$doc->createTextNode('daily')
-		);
-		$url->appendChild($changefreq);
-		$priority = $doc->createElement('priority');
-		$priority->appendChild(
-			$doc->createTextNode('1.00')
-		);
-		$url->appendChild($priority);
-		$r->appendChild($url);
-		//lấy ra bài viết
-		$this->load->model('news_model');
-		$allnews = $this->news_model->get_list();
-		if(!empty($allnews)){
-			foreach($allnews as $row){
-				$where = "news_id=".$row->id;
-				$catnews = $this->news_catnews_model->get_info_rule($where); 
-				if(!empty($catnews)){
-					$cat = $this->catnews_model->get_info($catnews->cat_id);
-					if(!empty($cat)){
-						$catname = $cat->cat_name;
-					}else{
-						$catname = '';
-					}
-				}else{
-					$catname = '';
-				}
-				$url = $doc->createElement('url');
-				$name = $doc->createElement('loc');
-				$name->appendChild(
-					$doc->createTextNode(news_url($catname,$row->slug,$row->id))
-				);
-				$url->appendChild($name);
-				$changefreq = $doc->createElement('changefreq');
-				$changefreq->appendChild(
-					$doc->createTextNode('daily')
-				);
-				$url->appendChild($changefreq);
-				$priority = $doc->createElement('priority');
-				$priority->appendChild(
-					$doc->createTextNode('1.00')
-				);
-				$url->appendChild($priority);
-				$r->appendChild($url);
-			}
-		}
-		$allcatnews = $this->catnews_model->get_list();
-		if(!empty($allcatnews)){
-			foreach($allcatnews  as $row){
-				$url = $doc->createElement('url');
-				$name = $doc->createElement('loc');
-				$name->appendChild(
-					$doc->createTextNode(catnews_url($row->cat_name))
-				);
-				$url->appendChild($name);
-				$changefreq = $doc->createElement('changefreq');
-				$changefreq->appendChild(
-					$doc->createTextNode('daily')
-				);
-				$url->appendChild($changefreq);
-				$priority = $doc->createElement('priority');
-				$priority->appendChild(
-					$doc->createTextNode('1.00')
-				);
-				$url->appendChild($priority);
-				$r->appendChild($url);
-			}
-		}
-		$doc->save('sitemap.xml');
-	}
+
 		//Phân quyền tài khoản
 	private function _check_login(){
 		$controller = $this->uri->rsegment('1');

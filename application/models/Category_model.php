@@ -94,30 +94,11 @@ Class Category_model extends MY_Model{
     }
     return $arr;
   }
-  //get all catnews link
-    function getAll(){
-      $this->language = language_current();
-      $input = array();
-      $input['where'] = array('status'=>1,'parent'=>0);
-      $input['order'] = array('is_order','desc');
-      $arr = array();
-      $arrListCatNews1 = $this->get_list($input);
-      if ($arrListCatNews1){
-      foreach ($arrListCatNews1 as $row){
-        $v1 = array();
-        $v1['id'] = $row->id;
-        $v1['title'] = $row->name;
-        $v1['href'] = base_url('danh-muc/').$row->slug;
-        $v1['subcat'] = $this->getAllCateLink($row->id);
-        $arr[] = $v1;
-      }
-    }
-    return $arr;
-  }
+
   public function getCategoryAllsub($parent=0){
     $input = array();
-    $input['where'] = array('parent'=>$parent);
-    $input['order'] = array('is_order','asc');
+    $input['where'] = array('parent_id'=>$parent);
+    $input['order'] = array('sort_order','asc');
     $arrListCate = $this->get_list($input);
     $arr = array();
     if ($arrListCate){
@@ -125,8 +106,8 @@ Class Category_model extends MY_Model{
         $v1 = array();        
         $v1['name'] = $row->name;
         $v1['id'] = $row->id;
-        $v1['image'] = $row->image;
-        $v1['link'] = base_url($row->cat_name.'-'.$row->id);
+        $v1['image_name'] = $row->image_name;
+        $v1['link'] = base_url($row->friendly_url.'-'.$row->id);
         $subcat = $this->getCategoryAllsub($v1['id']);
         $v1['subcat'] = $subcat;
         $arr[] = $v1;
@@ -202,4 +183,45 @@ Class Category_model extends MY_Model{
     $listCate = $this->get_list($input);
     return $listCate;
   }
+
+  function showCategory($parent_id = 0, $char = '', $stt = 0){
+      $input['order'] = ['sort_order','asc'];
+      $categories = $this->get_list($input);
+      $child = [];
+      foreach($categories as $key=>$item){
+        // Nếu là chuyên mục con thì hiển thị
+        if ($item['parent_id'] == $parent_id)
+        {
+            $child[] = $item;
+            unset($categories[$key]);
+        }
+      }
+     // HIỂN THỊ DANH SÁCH CHUYÊN MỤC CON NẾU CÓ
+      if ($child)
+    {
+        if ($stt == 0){
+            // là cấp 1
+        }
+        else if ($stt == 1){
+            // là cấp 2
+        }
+        else if ($stt == 2){
+            // là cấp 3
+        }
+         
+        echo '<ul>';
+        foreach ($child as $key => $item)
+        {
+            // Hiển thị tiêu đề chuyên mục
+            echo '<li>'.$item['title'];
+            // Tiếp tục đệ quy để tìm chuyên mục con của chuyên mục đang lặp
+            showCategories($categories, $item['id'], $char.'|---', ++$stt);
+            echo '</li>';
+        }
+        echo '</ul>';
+    }
+
+  }
+
+
 }//end model

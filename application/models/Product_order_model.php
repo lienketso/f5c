@@ -1,0 +1,1 @@
+<?phpClass Product_order_model extends MY_Model{	var $table = 'product_order';}

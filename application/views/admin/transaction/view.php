@@ -58,10 +58,7 @@
                     <h4 class="text-right mb-5">Tổng đơn hàng : <?=number_format($info->amount); ?> đ</h4>
                             <hr>
                           </div>
-                          <div class="container-fluid w-100">
-                            <a href="#" class="btn btn-primary float-right mt-4 ml-2"><i class="mdi mdi-printer mr-1"></i>In đơn hàng</a>
-                            <a href="#" class="btn btn-success float-right mt-4"><i class="mdi mdi-telegram mr-1"></i>Send Invoice</a>
-                          </div>
+
                       </div>
                   </div>
               </div>

@@ -78,60 +78,6 @@ Class Home extends MY_Controller{
 		$Ishome = 'home';
 		$this->data['Ishome'] = $Ishome;
 
-		$this->load->model('gallery_model');
-		$this->load->model('catnews_model');
-		$this->load->model('news_model');
-		$this->load->model('postmeta_model');
-		$this->load->model('category_model');
-		$this->load->model('product_model');
-		$this->load->model('product_category_model');
-		$this->load->model('comment_model');
-		$this->load->model('news_catnews_model');
-		//testimonials
-		$listComment = $this->comment_model->getComment(10);
-		$this->data['listComment'] = $listComment;
-		//quảng cáo
-		
-		$dm['where'] = ['status'=>1,'display'=>1,'lang_code'=>$this->language];
-		$dm['order'] = ['is_order','asc'];
-		$dm['limit'] = [10,0];
-		$danhmucSP = $this->category_model->get_list($dm);
-		$this->data['danhmucSP'] = $danhmucSP;
-		//ảnh quảng cáo top
-		$bannerTop = $this->gallery_model->getGallery(1,1,10);
-		$this->data['bannerTop'] = $bannerTop;
-		//banner Category
-		$bannerPartner = $this->gallery_model->getGallery(1,2,20);
-		$this->data['bannerPartner'] = $bannerPartner;
-		//deal hot
-		$is['where'] = ['status'=>1,'display'=>2,'lang_code'=>$this->language];
-		$is['order'] = ['created_at'=>'desc'];
-		$is['limit'] = [10,0];
-		$listProductSlider = $this->product_model->get_list($is);
-		$this->data['listProductSlider'] = $listProductSlider;
-		//danh mục sản phẩm bottom
-		$ib['where'] = ['status'=>1,'lang_code'=>$this->language,'display'=>2];
-		$ib['order'] = ['is_order','asc'];
-		$ib['limit'] = [5,0];
-		$categoryBottom = $this->category_model->get_list($ib);
-		$this->data['categoryBottom'] = $categoryBottom;
-		//danh mục bài viết chân trang
-		$catnewsBottom = $this->catnews_model->getCatNewsbyStatus(1,'news',1,2);
-		$this->data['catnewsBottom'] = $catnewsBottom;
-		//get page type
-		$newsHome = $this->news_model->getNewsbyStatus(1,2,'news',4);
-		$this->data['newsHome'] = $newsHome;
-		//news Hot
-		$about = $this->news_model->getNewsbyStatus(1,2,'news',1);
-		$this->data['about'] = $about;
-		//about 
-
-		$p['where'] = ['status'=>1,'display'=>1,'type'=>'page'];
-		$p['order'] = ['created_at','asc'];
-		$p['limit'] = [3,0];
-		$pageHome = $this->news_model->get_list($p);
-		$this->data['pageHome'] = $pageHome;
-
 		$ip = $_SERVER['REMOTE_ADDR'];
 		//$ip = '113.190.254.188';
 		//$this->getIpGuest($ip);
