@@ -67,9 +67,9 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="<?= admin_url('gallery_group') ?>" aria-expanded="false">
+            <a class="nav-link" href="<?= admin_url('slide') ?>" aria-expanded="false">
               <i class="mdi mdi-image menu-icon"></i>
-              <span class="menu-title">Thư viện ảnh</span>
+              <span class="menu-title">Slide</span>
             </a>
           </li> 
           

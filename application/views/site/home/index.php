@@ -12,7 +12,8 @@
                 <?php if($allCategory && !empty($allCategory)): ?>
                   <?php foreach($allCategory as $row): ?>
                 <li class="menu-lv1 list-group-item ">
-                  <a href="<?= $row['link'] ?>" style="margin-left:2px"> <i class="fa fa-cogs"></i> <?= $row['name']; ?></a>
+                  <a href="<?= $row['link'] ?>" style="margin-left:2px"> 
+                    <i class="fa fa-cogs"></i> <?= $row['name']; ?></a>
                   <?php if(!empty($row['subcat'])): ?>
                   <div class="mega-menu">
                     <div class="img-mega">
@@ -34,12 +35,10 @@
                         
                       </li>
                     <?php endforeach; ?>
-
                     </ul>
                   </div>
                 <?php endif; ?>
                 </li>
-
               <?php endforeach; ?>
             <?php endif; ?>
 
@@ -55,21 +54,13 @@
               
               <!-- slide top -->
               <div class="owl-banner">
+                <?php foreach($slideTop as $row): ?>
                 <div class="item">
-                  <a href="http://f5c.vn/quat-hoi-nuoc" title="quạt hơi nước">
-                    <img alt="" src="http://f5c.vn/upload/public/7eea000912a1c46e43d52466f0b7b6ed.jpg">
+                  <a href="<?= $row->link; ?>" title="<?= $row->name; ?>">
+                    <img alt="<?= $row->name; ?>" src="<?= product_link($row->image_name); ?>">
                   </a>
                 </div>
-                <div class="item">
-                  <a href="http://f5c.vn/quat-thoi-say-tham-3-toc-do-chaobao-cb-900e-p20827.html" title="KM Quạt thổi sấy thảm 3 tốc độ Chaobao CB-900E">
-                    <img alt="" src="http://f5c.vn/upload/public/217ce888fceb380ac43f6b6dcb896d23.jpg">
-                  </a>
-                </div>
-                <div class="item">
-                  <a href="http://f5c.vn/karcher-m134-302.html" title="Khuyến mại karcher">
-                    <img alt="" src="http://f5c.vn/upload/public/159f25cb70d7c9e88fd2282cea7e9792.jpg">
-                  </a>
-                </div>
+              <?php endforeach; ?>
               </div>
               
               <!-- slide san pham -->

@@ -78,6 +78,12 @@ Class Home extends MY_Controller{
 		$Ishome = 'home';
 		$this->data['Ishome'] = $Ishome;
 
+		//slider top
+		$this->load->model('slide_model');
+		$sl['order'] = ['sort_order','asc'];
+		$slideTop = $this->slide_model->get_list($sl);
+		$this->data['slideTop'] = $slideTop;
+
 		$ip = $_SERVER['REMOTE_ADDR'];
 		//$ip = '113.190.254.188';
 		//$this->getIpGuest($ip);

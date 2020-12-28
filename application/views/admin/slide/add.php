@@ -1,89 +1,1 @@
-
-<div id="content" class="span10">
-			<ul class="breadcrumb">
-				<li>
-					<i class="icon-home"></i>
-					<a href="index.html">Home panel</a>
-					<i class="icon-angle-right"></i> 
-				</li>
-				<li>
-					<i class="icon-edit"></i>
-					<a href="#">Thêm slide</a>
-				</li>
-			</ul>
-
-			<div class="row-fluid sortable">
-				<div class="box span12">
-					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon edit"></i><span class="break"></span>Thông tin slide</h2>
-						<div class="box-icon">
-							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
-							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
-							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content">
-						<form class="form-horizontal" method="POST" action="" enctype="multipart/form-data">
-						  <fieldset>
-					
-					
-							<div class="control-group">
-							  <label class="control-label" for="typeahead">Tiêu đề </label>
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" name="name" value="<?php echo set_value('name'); ?>" >
-								<div class="help-block"><?php echo form_error('name'); ?></div>
-							  </div>
-							</div>
-							<div class="control-group">
-							  <label class="control-label" for="">Mô tả ngắn </label>
-							  <div class="controls">
-<textarea class="span6" name="content" style="height: 100px"><?php echo set_value('content'); ?></textarea>
-<div class="help-block"><?php echo form_error('content'); ?></div>
-							  </div>
-							</div>
-			
-
-							<div class="control-group">
-							  <label class="control-label" for="">Ảnh slide</label>
-							  <div class="controls">
-						<input class="" id="image" type="file" name="image" value="<?php echo set_value('image'); ?>">
-							  </div>
-							</div>
-							<div class="control-group">
-							  <label class="control-label" for="typeahead">Link</label>
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" name="link" value="<?php echo set_value('link'); ?>" >
-								<div class="help-block"><?php echo form_error('link'); ?></div>
-							  </div>
-							</div>
-								<div class="control-group">
-							  <label class="control-label" for="typeahead">Thứ tự</label>
-							  <div class="controls">
-								<input type="text" class="span6 typeahead" name="is_order" value="<?php echo set_value('is_order'); ?>" >
-								<div class="help-block"><?php echo form_error('is_order'); ?></div>
-							  </div>
-							</div>
-
-							<div class="control-group">
-							  <label class="control-label" for="">Trạng thái</label>
-							  <div class="controls">
-								<select name="status">
-									<?php echo yes_no(1,0); ?>
-								</select>
-								
-							  </div>
-							</div>          
-
-							<div class="form-actions">
-							  <input type="submit" class="btn btn-primary" value="Lưu thông tin">
-							  <button type="reset" class="btn">Bỏ qua</button>
-							</div>
-						  </fieldset>
-						</form>   
-
-					</div>
-				</div><!--/span-->
-
-			</div><!--/row-->
-
-			</div>
+<nav aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="<?= admin_url('home'); ?>">Trang chính</a></li><li class="breadcrumb-item"><a href="<?= admin_url('slide'); ?>">Thư viện</a></li><li class="breadcrumb-item active" aria-current="page">Thêm mới hình ảnh </li></ol></nav><form class="forms-sample" method="post" action="" enctype="multipart/form-data">	<div class="row"><div class="col-md-8 grid-margin stretch-card"><div class="card"><div class="card-body"><h4 class="card-title">Nhập thông tin để thêm hình ảnh</h4><div class="form-group" style="text-align: right;"><a href="<?= admin_url('slide') ?>" class="btn btn-light"><i class="ti-arrow-left"></i> Quay lại danh sách</a><button type="submit" class="btn btn-primary mr-2"><i class="ti-save"></i> Lưu lại</button></div><div class="form-group"><label for="exampleInputUsername1">Tiêu đề </label><input type="text" name="name" value="<?= set_value('name'); ?>" class="form-control" placeholder="Nhập tiêu đề"><span id="" class="error mt-2 text-danger" for=""><?php echo form_error('name'); ?></span></div><div class="form-group"><label for="exampleInputUsername1">Link</label><input type="text" name="link" value="<?= set_value('link'); ?>" class="form-control" placeholder="Nhập link liên kết"><span id="" class="error mt-2 text-danger" for=""><?php echo form_error('link'); ?></span></div><div class="form-group"><label for="exampleInputUsername1">Thứ tự</label><input type="text" name="sort_order" value="<?= set_value('sort_order'); ?>" class="form-control" placeholder="Thứ tự hiển thị"><span id="" class="error mt-2 text-danger" for=""><?php echo form_error('sort_order'); ?></span></div><button type="submit" class="btn btn-primary mr-2"><i class="ti-save"></i> Lưu lại</button><a href="<?= admin_url('slide') ?>" class="btn btn-light"><i class="ti-arrow-left"></i> Quay lại danh sách</a></div></div></div><div class="col-md-4 grid-margin stretch-card"><div class="card"><div class="card-body"><h4 class="card-title">Tùy chọn khác</h4><div class="form-group"><label>Hình ảnh</label><div class="input-group col-xs-12"><input type="text" name="image_name" value="<?= set_value('image_name'); ?>" id="xFilePath" class="form-control file-upload-info" placeholder="Upload Image"><span class="input-group-append"><button class="file-upload-browse btn btn-primary" id="" onclick="browseServer()" type="button">Chọn ảnh</button></span></div><div class="col-xs-12">	<img src="" id="imgreview" style="width: 100%; padding-top: 10px"></div></div></div></div></div></div></form>
