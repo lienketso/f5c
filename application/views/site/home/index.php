@@ -13,7 +13,7 @@
                   <?php foreach($allCategory as $row): ?>
                 <li class="menu-lv1 list-group-item ">
                   <a href="<?= $row['link'] ?>" style="margin-left:2px"> 
-                    <i class="fa fa-cogs"></i> <?= $row['name']; ?></a>
+                    <i class="fa <?= $row['class_icon'] ?>"></i> <?= $row['name']; ?></a>
                   <?php if(!empty($row['subcat'])): ?>
                   <div class="mega-menu">
                     <div class="img-mega">
@@ -47,9 +47,9 @@
 
             <div class="col-md-9 col-sm-12 no-padding">
               <div class="head-owl-banner clearfix">
-                <a href="https://f5c.vn/thong-tin/ve-cong-ty-f5/i5.html" class="b-link gt-dn">Giới thiệu doanh nghiệp</a>
-                <a href="https://f5c.vn/bai-viet-huong-dan-mua-hang/cn4.html" class="b-link hd-mh">Hướng dẫn mua hàng </a>
-                <a href="https://f5c.vn/khuyen-mai.html" class="b-link km">Khuyến mại</a>
+                <a href="#" class="b-link gt-dn">Giới thiệu doanh nghiệp</a>
+                <a href="#">Hướng dẫn mua hàng </a>
+                <a href="#" class="b-link km">Khuyến mại</a>
               </div>
               
               <!-- slide top -->
@@ -63,138 +63,35 @@
               <?php endforeach; ?>
               </div>
               
-              <!-- slide san pham -->
-              <div class="owl-thumbnail product_feature" style="background: #fff">
-                <div class="item-product">
-                  <a href="https://f5c.vn/may-cat-be-decal-gia-re-ab-1350-p22263.html" title='Máy cắt bế decal giá rẻ AB-1350' class="img">
-                    <img src="https://f5c.vn/upload/public/2bd2c592fcb52ae8675aedf7e9672980_thumb.jpg"></a>
-                    <div class="caption">
-                      <a href="https://f5c.vn/may-cat-be-decal-gia-re-ab-1350-p22263.html" class="name-product">Máy cắt bế decal giá rẻ AB-1350</a>
-                      <div class="price">
-                        <span class="amount">16,500,000 đ</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item-product">
-                    <a href="https://f5c.vn/may-phun-ap-luc-karcher-k2-full-control-car-ps-20-eu-p20250.html" title='Máy phun áp lực Karcher K2 Full Control Car & PS 20 *EU' class="img">
-                      <img src="https://f5c.vn/upload/public/1a3977052a14a6457d331d6aac3ab3fc_thumb.jpg"></a>
-                      <div class="caption">
-                        <a href="https://f5c.vn/may-phun-ap-luc-karcher-k2-full-control-car-ps-20-eu-p20250.html" class="name-product">Máy phun áp lực Karcher K2 Full Control Car & PS 20 *EU</a>
-                        <div class="price">
-                          <span class="amount">3,861,000 đ</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="item-product">
-                      <a href="https://f5c.vn/may-phun-ap-luc-karcher-k5600-p533.html" title='Máy phun áp lực Karcher K5.600' class="img">
-                        <img src="https://f5c.vn/upload/public/2f927f6bbeab80bc17652e5e723c01c6_thumb.jpg"></a>
-                        <div class="caption">
-                          <a href="https://f5c.vn/may-phun-ap-luc-karcher-k5600-p533.html" class="name-product">Máy phun áp lực Karcher K5.600</a>
-                          <div class="price">
-                            <span class="amount">Liên hệ</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="item-product">
-                        <a href="https://f5c.vn/may-phun-rua-cao-ap-karcher-k3450-kap-1601-7560-p2242.html" title='Máy phun rửa cao áp Karcher K3.450 *KAP (1.601-756.0)' class="img">
-                          <img src="https://f5c.vn/upload/public/7b54298f5013d89201a99132161e321b_thumb.jpg"></a>
-                          <div class="caption">
-                            <a href="https://f5c.vn/may-phun-rua-cao-ap-karcher-k3450-kap-1601-7560-p2242.html" class="name-product">Máy phun rửa cao áp Karcher K3.450 *KAP (1.601-756.0)</a>
-                            <div class="price">
-                              <span class="amount">4,851,000 đ</span>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="item-product">
-                          <a href="https://f5c.vn/may-phun-ap-luc-karcher-k4-full-control-1324-0000-p17675.html" title='Máy phun áp lực Karcher K4 Full Control (1.324-000.0)' class="img">
-                            <img src="https://f5c.vn/upload/public/aa651b651de49f513284f528804163e2_thumb.jpg"></a>
-                            <div class="caption">
-                              <a href="https://f5c.vn/may-phun-ap-luc-karcher-k4-full-control-1324-0000-p17675.html" class="name-product">Máy phun áp lực Karcher K4 Full Control (1.324-000.0)</a>
-                              <div class="price">
-                                <span class="amount">6,561,000 đ</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="item-product">
-                            <a href="https://f5c.vn/may-phun-ap-luc-karcher-k5-eu-p1385.html" title='Máy phun áp lực Karcher K5 EU' class="img">
-                              <img src="https://f5c.vn/upload/public/dd89080b30fdb75ff75fea9d14bb99e2_thumb.jpg"></a>
-                              <div class="caption">
-                                <a href="https://f5c.vn/may-phun-ap-luc-karcher-k5-eu-p1385.html" class="name-product">Máy phun áp lực Karcher K5 EU</a>
-                                <div class="price">
-                                  <span class="amount">7,729,000 đ</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="item-product">
-                              <a href="https://f5c.vn/may-phun-ap-luc-karcher-k5-full-control-home-p17291.html" title='Máy phun áp lực Karcher K5 Full Control Home' class="img">
-                                <img src="https://f5c.vn/upload/public/126a4bd67246abfd2981f030b66fbc6e_thumb.jpg"></a>
-                                <div class="caption">
-                                  <a href="https://f5c.vn/may-phun-ap-luc-karcher-k5-full-control-home-p17291.html" class="name-product">Máy phun áp lực Karcher K5 Full Control Home</a>
-                                  <div class="price">
-                                    <span class="amount">Liên hệ</span>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="item-product">
-                                <a href="https://f5c.vn/may-hut-bui-nuoc-karcher-wd-4-premium-1348-1500-p13506.html" title='Máy hút bụi nước Karcher WD 4 Premium (1.348-150.0)' class="img">
-                                  <img src="https://f5c.vn/upload/public/4ea60c31a4f4b1abb5f7fcd8ca7ac456_thumb.jpg"></a>
-                                  <div class="caption">
-                                    <a href="https://f5c.vn/may-hut-bui-nuoc-karcher-wd-4-premium-1348-1500-p13506.html" class="name-product">Máy hút bụi nước Karcher WD 4 Premium (1.348-150.0)</a>
-                                    <div class="price">
-                                      <span class="amount">4,401,000 đ</span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="item-product">
-                                  <a href="https://f5c.vn/may-hut-bui-nuoc-va-thoi-karcher-wd-3-car-1629-8090-p18425.html" title='Máy hút bụi - nước và thổi Karcher WD 3 CAR (1.629-809.0)' class="img">
-                                    <img src="https://f5c.vn/upload/public/10a671c2525bfdee3fbbc086aa18ce05_thumb.jpg"></a>
-                                    <div class="caption">
-                                      <a href="https://f5c.vn/may-hut-bui-nuoc-va-thoi-karcher-wd-3-car-1629-8090-p18425.html" class="name-product">Máy hút bụi - nước và thổi Karcher WD 3 CAR (1.629-809.0)</a>
-                                      <div class="price">
-                                        <span class="amount">3,321,000 đ</span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="item-product">
-                                    <a href="https://f5c.vn/may-lam-sach-bang-hoi-nuoc-nong-karcher-sc-2-easyfix-eu-p20536.html" title='Máy làm sạch bằng hơi nước nóng Karcher SC 2 EasyFix *EU' class="img">
-                                      <img src="https://f5c.vn/upload/public/86fb5c76b69720f98823efa51aabf93c_thumb.jpg"></a>
-                                      <div class="caption">
-                                        <a href="https://f5c.vn/may-lam-sach-bang-hoi-nuoc-nong-karcher-sc-2-easyfix-eu-p20536.html" class="name-product">Máy làm sạch bằng hơi nước nóng Karcher SC 2 EasyFix *EU</a>
-                                        <div class="price">
-                                          <span class="amount">3,591,000 đ</span>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>             
-
-                                </div>
-                                </div>
-                              </div>
+            
+</div>
+  </div>
+ </div>
                               
-                              <div class="col-lg-3">
-                                <div class="clearfix">
-                                  <div class="dropdown login">
-                                    <div id='account_panel'>
-                                      <!-- Thanh vien chua dang nhap -->
-                                      <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#modal-login">
-                                        <span>Đăng nhập </span> <br>Tài khoản &amp; Đơn hàng
-                                        <span class="caret"></span>
-                                      </a>
-                                      
-                                      <!-- end login--->
-                                      <script type="text/javascript">
-                                        (function($)
-                                        {
-                                          $(document).ready(function()
-                                          {
-                                            var main = $('#account_panel');
-                                            
-    // Hien thi form login cho account
-    $('.act_account_login').click(function()
-    {
-      $.colorbox({inline:true, href:'#account_login', opacity:0.75});
-      return false;
-    });
+<div class="col-lg-3">
+<div class="clearfix">
+  <div class="dropdown login">
+    <div id='account_panel'>
+      <!-- Thanh vien chua dang nhap -->
+      <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#modal-login">
+        <span>Đăng nhập </span> <br>Tài khoản &amp; Đơn hàng
+        <span class="caret"></span>
+      </a>
+
+      <!-- end login--->
+      <script type="text/javascript">
+        (function($)
+        {
+          $(document).ready(function()
+          {
+            var main = $('#account_panel');
+
+// Hien thi form login cho account
+$('.act_account_login').click(function()
+{
+$.colorbox({inline:true, href:'#account_login', opacity:0.75});
+return false;
+});
     
     // Form login action
     var login = $('#account_login form');
@@ -347,25 +244,6 @@
                 <div class="col-lg-8 col-md-8">
                   <div><script type="text/javascript" src="https://f5c.vn/public/js/jquery/plupload/plupload.full.js"></script>
                     <script type="text/javascript" src="https://f5c.vn/public/js/jquery/plupload/script.js"></script>
-
-                    <script type="text/javascript">
-                      (function($)
-                      {
-                        $(document).ready(function()
-                        {
-                          $('.upload_single_image').pluploadScript({
-                            mod:        'single_image',
-                            plugin_path:    'https://f5c.vn/public/js/jquery/plupload',
-                            url_upload:     'https://f5c.vn/file/upload.html?mod=single&file_type=image&status=0&table=user&table_id=-1606879920935360935124926631411&resize=0&thumb=1&_security=c83ba6cdcc29eace03d99ca13554c309',
-                            url_get:      'https://f5c.vn/file/get.html?table=user&table_id=-1606879920935360935124926631411&_security=71924efd3bb7d028790ccf3be0cd9420',
-                            url_update:     '',
-                            config_extensions:  'gif,jpg,png,jpeg',
-                            config_max_size:  '3'
-                          });
-                        });
-                      })(jQuery);
-                    </script>
-
 
                     <div class="upload_single_image textC">
                       <div class="upload_complete"></div>
@@ -683,52 +561,43 @@
 </section>
 <!-- Message -->
 
-<script type="text/javascript">
-  (function($)
-  {
-    $(document).ready(function()
-    {
-      var _url = 'https://f5c.vn/product/product_cats';
+<section class="product-nb">
+  <div class="container-ol">
+    <div class="bao-noibat">
+      <h3 class="title-nb">Sản phẩm nổi bật</h3>
+      <div class="list-sp-hot">
+        <div class="container">
+        <div class="row">
 
-      function load_products(t, auto)
-      {
-        var cat_id = t.data('id');
-        var action = t.data('action');
-        if(auto == 0 && t.parent('li').hasClass('active'))
-        {
-          return false;
-        }
-        t.nstUI(
-        {
-          method: "loadAjax",
-          loadAjax:{
-            url: _url,
-            data: 'cat='+cat_id+'&action='+action,
-            field: {load: 'product_cats_'+cat_id+'_load', show: ''},
-            event_complete: function(data)
-            {
-              $("ul#nav-tabs-"+cat_id).find('li').removeClass('active');
-              $("ul#nav-tabs-"+cat_id).find('li.'+action).addClass('active');
-              $('#product_cats_'+cat_id).html(data);
-            }
-          },
-        });
-      }
-      
-      var $cats = $(".tab-sp .nav-tabs li.active a.product_cats");
-    // Form handle
-    $($cats).each(function()
-    {
-      load_products($(this), 1);
-    });
-    // Form filter handle
-    $(".tab-sp .nav-tabs li").find('a.product_cats').on('click',function()
-    {
-      load_products($(this), 0);
-    });
-  });
-  })(jQuery);
-</script>
+          <div class="col-lg-3">
+            <div class="item-sp-hot">
+              <a class="img-sp-hot" href="#"><img src="https://f5c.vn/upload/public/3aea5f80268f863083f044eb4384e2fe.png"></a>
+              <div class="prdLblCampaign">
+                <div class="prdLblCampaignThumb prdLblCampaignNew"><span style="background:linear-gradient(90deg,#FFC300 4.5%,#DD220D 90.3%)"> <img src="https://cdn.tgdd.vn/2020/10/content/icon5-50x50.png"> <small>XẢ KHO GIẢM SỐC</small> </span></div>
+              </div>
+              <h4><a href="#">Tiêu đề sản phẩm</a></h4>
+              <p><span>2.500.000 ₫</span></p>
+            </div>
+          </div>
+
+           <div class="col-lg-3">
+            <div class="item-sp-hot">
+              <a class="img-sp-hot" href="#"><img src="https://f5c.vn/upload/public/3aea5f80268f863083f044eb4384e2fe.png"></a>
+              <div class="prdLblCampaign">
+                <div class="prdLblCampaignThumb prdLblCampaignNew"><span style="background:linear-gradient(90deg,#FFC300 4.5%,#DD220D 90.3%)"> <img src="https://cdn.tgdd.vn/2020/10/content/icon5-50x50.png"> <small>XẢ KHO GIẢM SỐC</small> </span></div>
+              </div>
+              <h4><a href="#">Tiêu đề sản phẩm</a></h4>
+              <p><span>2.500.000 ₫</span></p>
+            </div>
+          </div>
+
+        </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class=" tab-sp" id="cat_49" role="tabpanel">
   <a href="https://f5c.vn/may-thiet-bi-cong-nghiep">

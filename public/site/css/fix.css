@@ -1,0 +1,74 @@
+.bao-noibat{
+	border: 2px solid #F58634;
+}
+.title-nb{
+	background: #F58634;
+	color: #fff;
+	text-align: center;
+	margin: 0;
+	padding: 10px 0;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+.list-sp-hot{
+	padding: 30px 0;
+}
+.prdLblCampaign {
+    margin-bottom: 5px;
+}
+.prdLblCampaignThumb.prdLblCampaignNew {
+    margin-right: 5px;
+}
+.prdLblCampaignThumb.prdLblCampaignNew span {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    color: #fff;
+    border-radius: 50px;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 500;
+    line-height: 16px;
+    width: max-content;
+    padding: 0 8px 0 0;
+}
+.prdLblCampaignThumb.prdLblCampaignNew span img {
+    margin: 0 5px 0 0 !important;
+}
+.prdLblCampaign img {
+    width: auto !important;
+    height: 20px !important;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    max-width: 100%;
+    object-fit: contain;
+}
+.prdLblCampaignThumb.prdLblCampaignNew span small {
+    font-size: 11px;
+    line-height: 16px;
+    margin-top: 2.3px;
+}
+.item-sp-hot{
+	padding-bottom: 30px;
+}
+.img-sp-hot{
+	display: block;
+	padding-bottom: 10px;
+}
+.img-sp-hot img{
+	max-width: 100%;
+}
+.list-sp-hot h4{
+	font-size: 14px;
+	margin: 0;
+	padding: 5px 0;
+}
+.list-sp-hot h4 a{
+	color: #000;
+}
+.item-sp-hot p span{
+	font-weight: bold;
+	color: #d12c1f;
+	font-size: 16px;
+}
