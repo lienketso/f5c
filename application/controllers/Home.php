@@ -91,6 +91,15 @@ Class Home extends MY_Controller{
 		$xn['limit'] = [16,0];
 		$listXemnhieu = $this->product_model->get_list($xn);
 		$this->data['listXemnhieu'] = $listXemnhieu;
+		//Danh mục sản phẩm trang chủ
+		$this->load->model('category_model');
+		$ca = array();
+		$ca['where'] = ['parent_id'=>0,'show_home'=>'1'];
+		$ca['order'] = ['sort_order','asc'];
+		$ca['limit'] = [15,0];
+		$listCatHome = $this->category_model->get_list($ca);
+		$this->data['listCatHome'] = $listCatHome;
+		//pre($listCatHome);die;
 
 		$ip = $_SERVER['REMOTE_ADDR'];
 		//$ip = '113.190.254.188';

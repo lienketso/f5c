@@ -190,7 +190,6 @@ Class Category extends MY_Controller{
 					'friendly_url' => $friendly_url,
 					'info' => $info,
 					'sort_order' => intval($sort_order),
-					'status' => $status,
 					'image_name'=>$image_name,
 					'show_home'=>$show_home,
 					'site_title'=>$site_title,
