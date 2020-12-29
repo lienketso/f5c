@@ -18,8 +18,8 @@ function news_url($cat,$slug,$id){
 function category_url($slug){
     return base_url('category/'.$slug);
 }
-function product_url($slug){
-    return base_url('product/'.$slug);
+function product_url($slug,$id){
+    return base_url($slug.'-p'.$id.'.html');
 }
 function image_url($data){
     return base_url('uploads/'.$data);

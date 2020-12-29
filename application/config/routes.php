@@ -64,14 +64,13 @@ $route['tags/(:any)'] = 'news/tags/$1';
 //trang liên hệ
 $route['lien-he'] = 'home/contact';
 //tìm kiếm
-$route['dia-diem/(:any)'] = 'product/city/$1';
 $route['search'] = 'home/search';
 //sản phẩm
-$route['category/(:any)'] = 'product/category/$1';
-$route['product/(:any)'] = 'product/detail/$1';
+$route['category'] = 'product/category/$1';
+$route['(:any)-p(:num).html'] = 'product/detail/$1';
 //tin tuc
-$route['(:any)-(:num).html'] = 'news/detail/$2';
-$route['(:any)'] = 'news/catnews/$1';
-$route['(:any)/(:num)'] = 'news/catnews/$1/$2';
+// $route['(:any)-(:num).html'] = 'news/detail/$2';
+// $route['(:any)'] = 'news/catnews/$1';
+// $route['(:any)/(:num)'] = 'news/catnews/$1/$2';
 
 

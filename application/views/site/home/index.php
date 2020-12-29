@@ -568,28 +568,20 @@ return false;
       <div class="list-sp-hot">
         <div class="container">
         <div class="row">
-
+          <?php if(!empty($listXemnhieu)): ?>
+            <?php foreach($listXemnhieu as $row): ?>
           <div class="col-lg-3">
             <div class="item-sp-hot">
-              <a class="img-sp-hot" href="#"><img src="https://f5c.vn/upload/public/3aea5f80268f863083f044eb4384e2fe.png"></a>
+              <a class="img-sp-hot" href="<?= product_url(slug($row->name),$row->id) ?>"><img src="<?= product_link($row->image_name); ?>"></a>
               <div class="prdLblCampaign">
-                <div class="prdLblCampaignThumb prdLblCampaignNew"><span style="background:linear-gradient(90deg,#FFC300 4.5%,#DD220D 90.3%)"> <img src="https://cdn.tgdd.vn/2020/10/content/icon5-50x50.png"> <small>XẢ KHO GIẢM SỐC</small> </span></div>
+                <div class="prdLblCampaignThumb prdLblCampaignNew"><span style="background:linear-gradient(90deg,#FFC300 4.5%,#DD220D 90.3%)"> <img src="<?= public_url('site') ?>/img/icon5-50x50.png"> <small>ĐƯỢC QUAN QUÂM NHẤT</small> </span></div>
               </div>
-              <h4><a href="#">Tiêu đề sản phẩm</a></h4>
-              <p><span>2.500.000 ₫</span></p>
+              <h4><a href="<?= product_url(slug($row->name),$row->id) ?>"><?= $row->name; ?></a></h4>
+              <p><span><?= number_format($row->price) ?> ₫</span></p>
             </div>
           </div>
-
-           <div class="col-lg-3">
-            <div class="item-sp-hot">
-              <a class="img-sp-hot" href="#"><img src="https://f5c.vn/upload/public/3aea5f80268f863083f044eb4384e2fe.png"></a>
-              <div class="prdLblCampaign">
-                <div class="prdLblCampaignThumb prdLblCampaignNew"><span style="background:linear-gradient(90deg,#FFC300 4.5%,#DD220D 90.3%)"> <img src="https://cdn.tgdd.vn/2020/10/content/icon5-50x50.png"> <small>XẢ KHO GIẢM SỐC</small> </span></div>
-              </div>
-              <h4><a href="#">Tiêu đề sản phẩm</a></h4>
-              <p><span>2.500.000 ₫</span></p>
-            </div>
-          </div>
+        <?php endforeach; ?>
+      <?php endif; ?>
 
         </div>
         </div>

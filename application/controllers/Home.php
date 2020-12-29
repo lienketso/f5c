@@ -84,6 +84,14 @@ Class Home extends MY_Controller{
 		$slideTop = $this->slide_model->get_list($sl);
 		$this->data['slideTop'] = $slideTop;
 
+		//Sản phẩm được xem nhiều
+		$this->load->model('product_model');
+		//$xn['where'] = ['hide'=>0];
+		$xn['order'] = ['count_view','desc'];
+		$xn['limit'] = [16,0];
+		$listXemnhieu = $this->product_model->get_list($xn);
+		$this->data['listXemnhieu'] = $listXemnhieu;
+
 		$ip = $_SERVER['REMOTE_ADDR'];
 		//$ip = '113.190.254.188';
 		//$this->getIpGuest($ip);
