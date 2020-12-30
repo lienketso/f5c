@@ -78,6 +78,8 @@ Class Home extends MY_Controller{
 		$Ishome = 'home';
 		$this->data['Ishome'] = $Ishome;
 
+		$this->load->model('manufac_model');
+
 		//slider top
 		$this->load->model('slide_model');
 		$sl['order'] = ['sort_order','asc'];
@@ -100,6 +102,19 @@ Class Home extends MY_Controller{
 		$listCatHome = $this->category_model->get_list($ca);
 		$this->data['listCatHome'] = $listCatHome;
 		//pre($listCatHome);die;
+		//Tin tức hot
+		$this->load->model('news_model');
+		$th['where'] = ['feature!='=>0];
+		$th['order'] = ['feature','desc'];
+		$th['limit'] = [3,0];
+		$listTinhot = $this->news_model->get_list($th);
+		$this->data['listTinhot'] = $listTinhot;
+		//Tin tức mới
+		$tm['where'] = [];
+		$tm['order'] = ['created','desc'];
+		$tm['limit'] = [3,0];
+		$listTinmoi = $this->news_model->get_list($tm);
+		$this->data['listTinmoi'] = $listTinmoi;
 
 		$ip = $_SERVER['REMOTE_ADDR'];
 		//$ip = '113.190.254.188';

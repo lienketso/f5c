@@ -6,14 +6,10 @@ function home_url($url=''){
     return base_url($url);
 }
 function catnews_url($slug){
-    return base_url($slug);
+    return base_url($slug.'.html');
 }
-function news_url($cat,$slug,$id){
-    if($cat==''){
-        return base_url($slug.'-'.$id.'.html');
-    }else{
-       return base_url($cat.'/'.$slug.'-'.$id.'.html');   
-   }
+function news_url($slug,$id){
+    return base_url('tin-tuc/'.$slug.'/i'.$id.'.html');
 }
 function category_url($slug){
     return base_url('category/'.$slug);
@@ -24,6 +20,10 @@ function product_url($slug,$id){
 function image_url($data){
     return base_url('uploads/'.$data);
 }
+function manufac_url($slug,$id,$catid){
+  return base_url($slug.'-m'.$id.'-'.$catid.'.html');
+}
+
 function pre($param=''){
     echo "<pre>";
     print_r($param);

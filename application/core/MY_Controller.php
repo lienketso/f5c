@@ -65,6 +65,7 @@ Class MY_Controller extends CI_Controller{
 				$this->load->model('menu_model');
 				$this->load->model('category_model');
 				$this->load->model('product_model');
+				$this->load->model('catnews_model');
 				//load thư viện giỏ hàng tất cả các trang
 				$this->load->library('cart');
 				//menu all page
@@ -83,6 +84,13 @@ Class MY_Controller extends CI_Controller{
 				
 				$allCategory = $this->category_model->getCategoryAllsub(0);
 				$this->data['allCategory'] = $allCategory;
+
+				//Danh mục tin chân trang
+				$dmt['where'] = ['parent_id'=>0];
+				$dmt['order'] = ['sort_order','asc'];
+				$dmt['limit'] = [5,0];
+				$listDanhmuctin = $this->catnews_model->get_list($dmt);
+				$this->data['listDanhmuctin'] = $listDanhmuctin;
 				
 
 				$Ishome = '';

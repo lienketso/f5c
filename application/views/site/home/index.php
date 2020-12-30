@@ -593,54 +593,70 @@ $('.act_account_login').click(function()
 
 <?php foreach($listCatHome as $row): ?>
   <?php 
-      $con['where'] = ['parent_id'=>$row->id,'show_home'=>'1'];
-      $con['limit'] = [5,0];
-      $uid = [$row->id];
+  $con['where'] = ['parent_id'=>$row->id,'show_home'=>'1'];
+  $con['limit'] = [5,0];
+  $uid = [$row->id];
 
-      $listCon = $this->category_model->get_list($con);
-      foreach($listCon as $cc){
-        $uid[] += $cc->id;
-      }
-     
+  $listCon = $this->category_model->get_list($con);
+  foreach($listCon as $cc){
+    $uid[] += $cc->id;
+  }
+
   ?>
   <?php 
-        $p['where_in'] = ['cat_id',$uid];
-        $p['order'] = ['id','desc'];
-        $p['limit'] = [8,0];
-        $itemProduct = $this->product_model->get_list($p);
-      ?>
-<section class="nhom-sp-home">
-  <div class="home-menu">
-    <div class="home-menu-head">
-      <a href="<?= category_url($row->friendly_url) ?>" title="Các Tủ lạnh nổi bật"><?= $row->name; ?></a>
-    </div>
-    <ul class="l home-menu-item">
-      <?php if($listCon): ?>
-      <?php foreach($listCon as $c): ?>
-      <li><a href="<?= category_url($c->friendly_url) ?>" title="<?= $c->name; ?>"><?= $c->name; ?></a>
-      </li>
-    <?php endforeach; ?>
-  <?php endif; ?>
-    </ul>
-  </div>
-
-  <div class="nhom-sp-product">
-    <div class="row-cc">
-      
-      <?php if(!empty($itemProduct)): ?>
-        <?php foreach($itemProduct as $k=>$pro): ?>
-     <div class="col-lg-3 borderlr_<?= $k ?>"  >
-      <div class="item-sp-cat">
-        <a class="img-sp-cat" href="#"><img src="https://f5c.vn/upload/public/6112478aa70a4a8830d5180c15e55592_thumb.png"></a>
-        <h4><a href="#"><?= $pro->name; ?></a></h4>
-        <p><span><?= number_format($pro->price); ?> ₫</span></p>
+  //sản phẩm
+  $p['where_in'] = ['cat_id',$uid];
+  $p['order'] = ['id','desc'];
+  $p['limit'] = [8,0];
+  $itemProduct = $this->product_model->get_list($p);
+  
+  //hãng sản xuất
+  $manufac = unserialize($row->manufac_ids);
+  
+  ?>
+  <section class="nhom-sp-home">
+    <div class="home-menu">
+      <div class="home-menu-head">
+        <a href="<?= category_url($row->friendly_url) ?>" title="Các Tủ lạnh nổi bật"><?= $row->name; ?></a>
       </div>
+      <ul class="l home-menu-item">
+        <?php if($listCon): ?>
+          <?php foreach($listCon as $c): ?>
+            <li><a href="<?= category_url($c->friendly_url) ?>" title="<?= $c->name; ?>"><?= $c->name; ?></a>
+            </li>
+          <?php endforeach; ?>
+        <?php endif; ?>
+      </ul>
     </div>
-  <?php endforeach; ?>
-<?php endif; ?>
 
+    <div class="list-manufac">
+      <ul>
+        <?php if(!empty($manufac)): ?>
+          <?php foreach($manufac as $m): ?>
+            <?php $mInfo = $this->manufac_model->get_info($m); ?>
+        <li><a href="<?= manufac_url(slug($mInfo->name),$m,$row->id) ?>" title="<?= $mInfo->name; ?>"><img src="https://f5c.vn/upload/public/40404fb3627866be7153b438c5b72c76.png" alt="<?= $mInfo->name; ?>"></a></li>
+      <?php endforeach; ?>
+    <?php endif; ?>
+      </ul>
+    </div>
+
+    <div class="nhom-sp-product">
+      <div class="row-cc">
+
+        <?php if(!empty($itemProduct)): ?>
+          <?php foreach($itemProduct as $k=>$pro): ?>
+           <div class="col-lg-3 borderlr_<?= $k ?>"  >
+            <div class="item-sp-cat">
+              <a class="img-sp-cat" href="#"><img src="https://f5c.vn/upload/public/6112478aa70a4a8830d5180c15e55592_thumb.png"></a>
+              <h4><a href="#"><?= $pro->name; ?></a></h4>
+              <p><span><?= ($pro->price==0) ? 'Liên hệ' : number_format($pro->price). '₫'; ?> </span></p>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      <?php endif; ?>
+
+    </div>
   </div>
-</div>
 
 </section>
 <?php endforeach; ?>
@@ -653,101 +669,50 @@ $('.act_account_login').click(function()
       <div class="col-md-6 col-sm-6">
         <div class="panel tin-hot">
           <div class="panel-heading">
-            <a style="color:#fff" href="https://f5c.vn/tin-hot.html">Tin Hot </a>
+            <a style="color:#fff" href="#">Tin Hot </a>
           </div>
           <ul class="list-group">
-
+            <?php if(!empty($listTinhot)): ?>
+            <?php foreach($listTinhot as $row): ?>
             <li class="list-group-item">
               <div class="media">
-                <a class="pull-left" href="http://f5c.vn/tin-tuc/quat-lam-mat-fred-giai-phap-lam-mat-cho-nha-hang-quan-an/i74.html">
-                  <img class="media-object" src="http://f5c.vn/upload/public/81e639e4644d16bd61a53e5573ea659e_thumb.jpg">  
+                <a class="pull-left" href="<?= news_url(slug($row->title),$row->id); ?>">
+                  <img class="media-object" src="<?= product_link($row->image_name) ?>" alt="<?= $row->title; ?>">  
                 </a>
                 <div class="media-body">
-                  <a class="media-heading" href="http://f5c.vn/tin-tuc/quat-lam-mat-fred-giai-phap-lam-mat-cho-nha-hang-quan-an/i74.html">Quạt làm mát Fred - Giải pháp làm mát cho nhà hàng, quán ăn</a>
-                  <p class="media-content">Nhà hàng, quán ăn tại các thành phố thường là nơi tụ tập đông người vào những giờ cao điểm. Vì thế không gian nhà hàng, quán ăn cần cung cấp một hàm lượng oxy lớn và đảm bảo độ thông thoáng của không khí để mang lại sự dễ chịu cho khách hàng. Hơn nữa, một không gian thoáng đãng giúp cho mùi của đồ ăn thức uống bay hơi nhanh hơn và không gây ra sự khó chịu cho khách hàng.</p>
-                  <a class="xem-tiep" href="http://f5c.vn/tin-tuc/quat-lam-mat-fred-giai-phap-lam-mat-cho-nha-hang-quan-an/i74.html">Xem tiếp</a>
+                  <a class="media-heading" href="<?= news_url(slug($row->title),$row->id); ?>"><?= $row->title; ?></a>
+                  <p class="media-content"><?= catchuoi($row->intro,200) ?></p>
+                  <a class="xem-tiep" href="<?= news_url(slug($row->title),$row->id); ?>">Xem tiếp</a>
                 </div>
               </div>
             </li>
-            
-            <li class="list-group-item">
-              <div class="media">
-                <a class="pull-left" href="http://f5c.vn/tin-tuc/quat-lam-mat-fred-giai-phap-lam-mat-cho-sanh-cho/i75.html">
-                  <img class="media-object" src="http://f5c.vn/upload/public/7a5788fc0488f286553c35635cf65b87_thumb.jpg">  
-                </a>
-                <div class="media-body">
-                  <a class="media-heading" href="http://f5c.vn/tin-tuc/quat-lam-mat-fred-giai-phap-lam-mat-cho-sanh-cho/i75.html">QUẠT LÀM MÁT FRED- GIẢI PHÁP LÀM MÁT CHO SẢNH CHỜ</a>
-                  <p class="media-content">Sảnh chờ là nơi có lượng khách ra vào thường xuyên chính vì vậy những nơi này cần có sự quan tâm đặc biệt từ chủ đầu tư. Việc thiết kế thế nào, trang trí ra sao, hay thái độ của nhân viên…đều là bộ mặt của sảnh chờ đối với khách hàng tới đây.</p>
-                  <a class="xem-tiep" href="http://f5c.vn/tin-tuc/quat-lam-mat-fred-giai-phap-lam-mat-cho-sanh-cho/i75.html">Xem tiếp</a>
-                </div>
-              </div>
-            </li>
-            
-            <li class="list-group-item">
-              <div class="media">
-                <a class="pull-left" href="http://f5c.vn/tin-tuc/may-giat-may-say-cong-nghiep-orient/i78.html">
-                  <img class="media-object" src="http://f5c.vn/upload/public/14116e28bfcd0967c0047374b74f079e_thumb.jpg">  
-                </a>
-                <div class="media-body">
-                  <a class="media-heading" href="http://f5c.vn/tin-tuc/may-giat-may-say-cong-nghiep-orient/i78.html">Máy Giặt- Máy Sấy Công Nghiệp Orient</a>
-                  <p class="media-content">Chúng tôi Công ty Cổ Phần Đầu Tư Kim Quy trực thuộc tổng Công Ty Cổ phần Công Nghệ F5 chuyển cung cấp các loại máy giặt công nghiệp, máy sấy công nghiệp, máy là..vv phục vụ nhu cầu giặt là cho Khách sạn, bệnh viện, xưởng giặt là, tiệm giặt là..vv
-                  Hotline: 0934586601</p>
-                  <a class="xem-tiep" href="http://f5c.vn/tin-tuc/may-giat-may-say-cong-nghiep-orient/i78.html">Xem tiếp</a>
-                </div>
-              </div>
-            </li>
-            
-            
+          <?php endforeach; ?>
+        <?php endif; ?>
           </ul>
         </div>
       </div>
       <div class="col-md-6 col-sm-6">
         <div class="panel tin-moi">
           <div class="panel-heading">
-            <a  style="color:#fff" href="https://f5c.vn/tin-tuc.html">Tin Mới</a>
+            <a  style="color:#fff" href="#">Tin Mới</a>
           </div>
           <ul class="list-group">
-
+            <?php if(!empty($listTinmoi)): ?>
+              <?php foreach($listTinmoi as $row): ?>
             <li class="list-group-item">
               <div class="media">
-                <a class="pull-left" href="https://f5c.vn/tin-tuc/thong-bao-lich-nghi-le-quoc-khanh-292020/i108.html">
-                  <img class="media-object" src="https://f5c.vn/upload/public/4b90a5dbaa9aa268c496d22f855dda57_thumb.jpg">  
+                <a class="pull-left" href="<?= news_url(slug($row->title),$row->id) ?>">
+                  <img class="media-object" src="<?= product_link($row->image_name) ?>" alt="<?= $row->title; ?>">  
                 </a>
                 <div class="media-body">
-                  <a class="media-heading" href="https://f5c.vn/tin-tuc/thong-bao-lich-nghi-le-quoc-khanh-292020/i108.html">Thông báo lịch Nghỉ Lễ Quốc Khánh 2/9/2020</a>
-                  <p class="media-content">Công ty Cổ phần công nghệ F5 xin trân trọng thông báo tới Quý khách hàng, Quý đối tác và toàn thể nhân viên công ty F5 lịch nghỉ lễ Quốc khánh 2/9 như sau:</p>
-                  <a class="xem-tiep" href="https://f5c.vn/tin-tuc/thong-bao-lich-nghi-le-quoc-khanh-292020/i108.html">Xem tiếp</a>
+                  <a class="media-heading" href="<?= news_url(slug($row->title),$row->id) ?>"><?= $row->title; ?></a>
+                  <p class="media-content"><?= catchuoi($row->intro,100) ?></p>
+                  <a class="xem-tiep" href="<?= news_url(slug($row->title),$row->id) ?>">Xem tiếp</a>
                 </div>
               </div>
             </li>
-            
-            <li class="list-group-item">
-              <div class="media">
-                <a class="pull-left" href="https://f5c.vn/tin-tuc/khuyen-mai-nhan-ngay-cua-me-105/i107.html">
-                  <img class="media-object" src="https://f5c.vn/upload/public/88bba786ef7e40db8cf7244b1077b1a4_thumb.jpg">  
-                </a>
-                <div class="media-body">
-                  <a class="media-heading" href="https://f5c.vn/tin-tuc/khuyen-mai-nhan-ngay-cua-me-105/i107.html">Khuyến mãi nhân ngày của mẹ 10/5</a>
-                  <p class="media-content">F5c khuyến mãi đặc biệt tri ân &quot;Ngày của mẹ&quot; năm 2020, giảm giá lên đến 20% cho các sản phẩm karcher dưới đây. Thời gian áp dụng từ ngày 8/5/2020 đến ngày 17/05/2020.</p>
-                  <a class="xem-tiep" href="https://f5c.vn/tin-tuc/khuyen-mai-nhan-ngay-cua-me-105/i107.html">Xem tiếp</a>
-                </div>
-              </div>
-            </li>
-            
-            <li class="list-group-item">
-              <div class="media">
-                <a class="pull-left" href="https://f5c.vn/tin-tuc/thong-bao-lich-nghi-le-304-va-15/i106.html">
-                  <img class="media-object" src="https://f5c.vn/upload/public/a4c635a51cda88402296bbbb12e91a9a_thumb.jpg">  
-                </a>
-                <div class="media-body">
-                  <a class="media-heading" href="https://f5c.vn/tin-tuc/thong-bao-lich-nghi-le-304-va-15/i106.html">Thông báo lịch nghỉ lễ 30/4 và 1/5</a>
-                  <p class="media-content">Kính gửi: Quý khách hàng, Quý đối tác!</p>
-                  <a class="xem-tiep" href="https://f5c.vn/tin-tuc/thong-bao-lich-nghi-le-304-va-15/i106.html">Xem tiếp</a>
-                </div>
-              </div>
-            </li>
-            
-            
+          <?php endforeach; ?>
+        <?php endif; ?>            
           </ul>
         </div>
       </div>
@@ -759,13 +724,14 @@ $('.act_account_login').click(function()
         Mạng xã hội 
       </div>
       <div class="panel-body" style="height:250px;overflow: hidden">
-
-
+        <a href="https://facebook.com/f5c.vn" target="_blank">
+          <img src="<?= public_url('site/img/facebook.png') ?>">
+        </a>
       </div>
     </div>
     <div class="panel dang-ky-tin" style="margin-top:-8px">
       <div class="panel-heading">
-        <a href="https://f5c.vn/send_email.html" class="lightbox">Đăng ký Nhận tin khuyến mãi </a>
+        <a href="#" class="lightbox">Đăng ký Nhận tin khuyến mãi </a>
       </div>
     </div>
   </div>
@@ -795,88 +761,32 @@ $('.act_account_login').click(function()
   <div class="owl-sp-xem">
 
   </div>
-</section>             <section class="thong-tin row">
+</section>             
+
+<section class="thong-tin row">
+  <?php foreach($listDanhmuctin as $row): ?>
+    <?php 
+      $s['where'] = ['cat_id'=>$row->id];
+      $s['limit'] = [5,0];
+      $itemNews = $this->news_model->get_list($s);
+    ?>
   <div class="col-lg-3 col-sm-4" style="width:20%">
     <div class="panel">
       <div class="panel-heading">
-        <a style="color:#fff" href="http://f5c.vn/bai-viet-huong-dan-mua-hang/cn4.html" title='Hướng dẫn mua hàng'>
-        Hướng dẫn mua hàng                 </a>  
+        <a style="color:#fff" href="<?= catnews_url($row->friendly_url) ?>" title='<?= $row->name; ?>'>
+        <?= $row->name; ?></a>  
       </div>
+      <?php if(!empty($itemNews)): ?>
       <ul class="list-group">
-        <li><a href="http://f5c.vn/tin-tuc/huong-dan-tim-kiem-san-pham/i13.html">Tư vấn hoặc tìm kiếm sản phẩm</a></li>      
-        <li><a href="http://f5c.vn/tin-tuc/quy-trinh-dat-hang-online/i19.html">Quy trình đặt hàng</a></li>      
-        <li><a href="http://f5c.vn/tin-tuc/phuong-thuc-thanh-toan/i6.html">Phương thức thanh toán</a></li>      
-        <li><a href="http://f5c.vn/tin-tuc/chinh-sach-giao-va-nhan-hang/i16.html">Giao và nhận hàng</a></li>      
-        <li><a href="http://f5c.vn/tin-tuc/tai-sao-chon-mua-hang-online-tai-f5c/i12.html">Tại sao chọn mua hàng Online</a></li>      
-        
+        <?php foreach($itemNews as $n): ?>
+        <li><a href="<?= news_url(slug($n->title),$n->id) ?>"><?= $n->title; ?></a></li>  
+      <?php endforeach; ?>
       </ul>
+    <?php endif; ?>
 
     </div>
   </div>
-  <div class="col-lg-3 col-sm-4" style="width:20%">
-    <div class="panel">
-      <div class="panel-heading">
-        <a style="color:#fff" href="http://f5c.vn/bai-viet-gioi-thieu-ve-f5cvn/cn6.html" title='Giới thiệu F5 Corp'>
-        Giới thiệu F5 Corp                 </a>  
-      </div>
-      <ul class="list-group">
-        <li><a href="http://f5c.vn/tin-tuc/gioi-thieu-cong-ty-cp-cong-nghe-f5/i7.html">Giới thiệu chung</a></li>      
-        <li><a href="#">Bán hàng cùng F5</a></li>      
-        <li><a href="http://f5c.vn/bai-viet-tin-tuc-va-su-kien/cn5.html">Tin khuyến mại mới</a></li>      
-        <li><a href="http://f5c.vn/bai-viet-tuyen-dung-f5-corp-2015/cn2.html">Tuyển dụng</a></li>      
-        
-      </ul>
+<?php endforeach; ?>
 
-    </div>
-  </div>
-  <div class="col-lg-3 col-sm-4" style="width:20%">
-    <div class="panel">
-      <div class="panel-heading">
-        <a style="color:#fff" href="http://f5c.vn/bai-viet-cam-ket/cn1.html" title='Cam Kết'>
-        Cam Kết                </a>  
-      </div>
-      <ul class="list-group">
-        <li><a href="http://f5c.vn/tin-tuc/chinh-sach-bao-hanh-bao-tri-tai-f5c/i17.html">Bảo hành, bảo trì</a></li>      
-        <li><a href="http://f5c.vn/tin-tuc/chinh-sach-bao-mat-thong-tin-khach-hang/i18.html">Bảo mật thông tin</a></li>      
-        <li><a href="http://f5c.vn/tin-tuc/chinh-sach-doi-tra-hang-tai-f5c/i8.html">Đổi trả hàng</a></li>      
-        <li><a href="http://f5c.vn/tin-tuc/bo-phan-cham-soc-khach-hang-tai-f5c/i24.html">Chăm sóc khách hàng</a></li>      
-        
-      </ul>
-
-    </div>
-  </div>
-  <div class="col-lg-3 col-sm-4" style="width:20%">
-    <div class="panel">
-      <div class="panel-heading">
-        <a style="color:#fff" href="http://f5c.vn/bai-viet-phuong-thuc-thanh-toan/cn3.html" title='Phương thức thanh toán'>
-        Phương thức thanh toán                 </a>  
-      </div>
-      <ul class="list-group">
-        <li><a href="http://f5c.vn/tin-tuc/thanh-toan-tra-tien-sau-khi-nhan-hang/i20.html">Thanh toán khi nhận hàng (COD)</a></li>      
-        <li><a href="http://f5c.vn/tin-tuc/thanh-toan-dam-bao-qua-vietcombank-khi-mua-hang-tai-f5/i2.html">Chuyển khoản công ty</a></li>      
-        <li><a href="http://f5c.vn/tin-tuc/chuyen-tien-qua-the-atm-ca-nhan/i21.html">Qua thẻ ATM - Cá nhân</a></li>      
-        <li><a href="http://f5c.vn/tin-tuc/hinh-thuc-thanh-toan-tra-gop-bang-the-tin-dung-la-gi/i23.html">Qua thẻ tín dụng - Ghi nợ</a></li>      
-        <li><a href="http://f5c.vn/tin-tuc/chinh-sach-mua-hang-tra-gop-tai-f5c/i22.html">Mua trả góp</a></li>      
-        
-      </ul>
-
-    </div>
-  </div>
-  <div class="col-lg-3 col-sm-4" style="width:20%">
-    <div class="panel">
-      <div class="panel-heading">
-        <a style="color:#fff" href="http://f5c.vn/bai-viet-chinh-sach-chung/cn7.html" title='Chính sách chung'>
-        Chính sách chung                 </a>  
-      </div>
-      <ul class="list-group">
-        <li><a href="http://f5c.vn/tin-tuc/chinh-sach-doi-tra-hang-tai-f5c/i8.html">Chính sách đổi trả hàng</a></li>      
-        <li><a href="http://f5c.vn/tin-tuc/bao-mat-thong-tin-khach-hang/i11.html">Bảo mật thông tin</a></li>      
-        <li><a href="http://f5c.vn/tin-tuc/chinh-sach-van-chuyen/i9.html">Chính sách vận chuyển</a></li>      
-        <li><a href="http://f5c.vn/tin-tuc/chinh-sach-bao-hanh-bao-tri-tai-f5c/i17.html">Chính sách bảo hành, bảo trì tại F5C</a></li>      
-        
-      </ul>
-
-    </div>
-  </div>
 </section>         
 </div>

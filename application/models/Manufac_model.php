@@ -20,5 +20,12 @@ Class Manufac_model extends MY_Model{
     }
     }
 
+    function getManufacName($id){
+      $manulist = $this->get_info($id);
+      if(!empty($manulist)){
+        return $manulist->name;
+      }
+    }
+
 
 }
