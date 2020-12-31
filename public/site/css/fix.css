@@ -84,7 +84,6 @@ body{
 	font-size: 16px;
 }
 .home-menu {
-    overflow: hidden;
     padding: 10px 0 0 0;
     font-size: 12px;
     margin-bottom: 10px;
@@ -112,9 +111,10 @@ body{
     padding: 13px 2px 12px 10px;
     width: 280px;
 }
+.list-manufac ul{
+    border-bottom: 1px solid #ccc;
+}
 .home-menu .home-menu-item {
-    overflow: hidden;
-    height: 46px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -137,7 +137,7 @@ p{
 	margin: 0 !important;
 }
 .nhom-sp-product{
-	border: 1px solid #ccc;
+	
 }
 .item-sp-cat{
 	width: 100%;
@@ -151,6 +151,18 @@ p{
 
 .row-cc{
 	display: table;
+}
+.borderlr_0{
+    border-left: 1px solid #ccc;
+}
+.borderlr_3, .borderlr_7{
+    border-right: 1px solid #ccc;
+}
+.borderlr_4, .borderlr_5, .borderlr_6, .borderlr_7 {
+    border-bottom: 1px solid #ccc;
+}
+.borderlr_4{
+    border-left: 1px solid #ccc;
 }
 .borderlr_0, .borderlr_1, .borderlr_2{
 	border-right: 1px solid #ccc;
@@ -300,6 +312,12 @@ ul.list-bread li a{
     border: 1px solid #f1f1f1;
     margin-top: 5px;
 }
+.item-parent:hover{
+     border: 1px solid #F58634;
+}
+.item-parent:hover a{
+    color: #F58634;
+}
 .item-parent a{
     color: #000;
 }
@@ -321,4 +339,55 @@ ul.list-bread li a{
 .boauto{
     height: auto;
     overflow: visible;
+}
+.pls-menu {
+    overflow: hidden;
+    background: #f3f3f4;
+    border-bottom: solid 1px #ebadb1;
+    padding: 0;
+    font-size: 14px;
+    margin-top: 10px;
+}
+.pls-menu-head {
+    float: left;
+    position: relative;
+}
+.pls-menu-head a {
+    background: #F58634;
+    text-align: center;
+    float: left;
+    padding: 0 25px 0 30px;
+    color: #ffffff;
+    text-transform: uppercase;
+    line-height: 29px;
+    height: 34px;
+    font-size: 15px;
+    padding-top: 5px;
+}
+.pls-menu-head a:hover {
+    color: #fff;
+    font-weight: bold;
+}
+.pls-menu-head:after {
+    position: absolute;
+    top: 0;
+    right: -16px;
+    width: 0;
+    height: 0;
+    border-bottom: 35px solid #F58634;
+    border-right: 16px solid transparent;
+    content: "";
+}
+.cat-page-list{
+    padding-top: 40px;
+}
+.list-product-page{
+
+}
+.lon{
+    display: inline-flex;
+}
+.lon li{
+    padding: 7px 10px;
+    margin-left: 10px;
 }

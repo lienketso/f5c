@@ -562,7 +562,7 @@ $('.act_account_login').click(function()
 <!-- Message -->
 
 <section class="product-nb">
-  <div class="container-ol">
+  <div class="container">
     <div class="bao-noibat">
       <h3 class="title-nb">Sản phẩm nổi bật</h3>
       <div class="list-sp-hot">
@@ -615,6 +615,7 @@ $('.act_account_login').click(function()
   
   ?>
   <section class="nhom-sp-home">
+    <div class="container">
     <div class="home-menu">
       <div class="home-menu-head">
         <a href="<?= category_url($row->friendly_url) ?>" title="Các Tủ lạnh nổi bật"><?= $row->name; ?></a>
@@ -641,7 +642,7 @@ $('.act_account_login').click(function()
     </div>
 
     <div class="nhom-sp-product">
-      <div class="row-cc">
+      <div class="rowss">
 
         <?php if(!empty($itemProduct)): ?>
           <?php foreach($itemProduct as $k=>$pro): ?>
@@ -656,6 +657,7 @@ $('.act_account_login').click(function()
       <?php endif; ?>
     </div>
   </div>
+</div>
 </section>
 <?php endforeach; ?>
 
