@@ -185,44 +185,6 @@ Class Category_model extends MY_Model{
     return $listCate;
   }
 
-  function showCategory($parent_id = 0, $char = '', $stt = 0){
-      $input['order'] = ['sort_order','asc'];
-      $categories = $this->get_list($input);
-      $child = [];
-      foreach($categories as $key=>$item){
-        // Nếu là chuyên mục con thì hiển thị
-        if ($item['parent_id'] == $parent_id)
-        {
-            $child[] = $item;
-            unset($categories[$key]);
-        }
-      }
-     // HIỂN THỊ DANH SÁCH CHUYÊN MỤC CON NẾU CÓ
-      if ($child)
-    {
-        if ($stt == 0){
-            // là cấp 1
-        }
-        else if ($stt == 1){
-            // là cấp 2
-        }
-        else if ($stt == 2){
-            // là cấp 3
-        }
-         
-        echo '<ul>';
-        foreach ($child as $key => $item)
-        {
-            // Hiển thị tiêu đề chuyên mục
-            echo '<li>'.$item['title'];
-            // Tiếp tục đệ quy để tìm chuyên mục con của chuyên mục đang lặp
-            showCategories($categories, $item['id'], $char.'|---', ++$stt);
-            echo '</li>';
-        }
-        echo '</ul>';
-    }
-
-  }
 
 
 }//end model
