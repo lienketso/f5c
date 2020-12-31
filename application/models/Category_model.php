@@ -108,7 +108,7 @@ Class Category_model extends MY_Model{
         $v1['id'] = $row->id;
         $v1['image_name'] = $row->image_name;
         $v1['class_icon'] = $row->class_icon;
-        $v1['link'] = base_url($row->friendly_url.'-'.$row->id);
+        $v1['link'] = category_url($row->friendly_url);
         $subcat = $this->getCategoryAllsub($v1['id']);
         $v1['subcat'] = $subcat;
         $arr[] = $v1;

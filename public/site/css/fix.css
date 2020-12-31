@@ -1,6 +1,14 @@
 body{
 
 }
+@media(min-width: 768px){
+    .parem-ul{
+        display: block;
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+    }
+}
 .bao-noibat{
 	border: 2px solid #F58634;
 }
@@ -179,4 +187,138 @@ p{
 	display: inline-block;
 	padding-right: 10px;
 	padding-bottom: 5px;
+}
+
+.mega-dropdown {
+  position: static !important;
+}
+.mega-dropdown-menu {
+    padding: 20px 0px;
+    width: 100%;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+.mega-dropdown-menu > li > ul {
+  padding: 0;
+  margin: 0;
+}
+.mega-dropdown-menu > li > ul > li {
+  list-style: none;
+}
+.mega-dropdown-menu > li > ul > li > a {
+  display: block;
+  color: #222;
+  padding: 3px 5px;
+  font-size: 12px;
+}
+.mega-dropdown-menu > li ul > li > a:hover,
+.mega-dropdown-menu > li ul > li > a:focus {
+  text-decoration: none;
+}
+.mega-dropdown-menu .dropdown-header {
+  font-size: 18px;
+  color: #ff3546;
+  padding: 5px 60px 5px 5px;
+  line-height: 30px;
+}
+
+.carousel-control {
+  width: 30px;
+  height: 30px;
+  top: -35px;
+
+}
+.left.carousel-control {
+  right: 30px;
+  left: inherit;
+}
+.carousel-control .glyphicon-chevron-left, 
+.carousel-control .glyphicon-chevron-right {
+  font-size: 12px;
+  background-color: #fff;
+  line-height: 30px;
+  text-shadow: none;
+  color: #333;
+  border: 1px solid #ddd;
+}
+.navboot{
+    display: block;
+    background: #fff;
+    height: 52px;
+    box-shadow: 0 0 4px 0 rgba(0,0,0,.2);
+    position: relative;
+    border-bottom: 1px solid #dfdfdf;
+}
+.navboot .navbar{
+    border: 0 !important;
+}
+.navboot .navbar-collapse{
+    padding: 0 !important;
+}
+.navboot .dropdown-menu .dropdown-header{
+    padding: 0 !important;
+    font-weight: bold;
+    font-size: 14px;
+    color: #000;
+    text-transform: uppercase;
+}
+.line {
+    float: left;
+    width: 13px;
+    overflow: hidden;
+    position: relative;
+    top: 3px;
+    margin-right: 10px;
+    z-index: 12;
+}
+.line i {
+    display: block;
+    margin: 2px 0;
+    height: 2px;
+    width: 20px;
+    background: #333;
+    border-radius: 4px;
+}
+.breadcrum-f{
+    padding: 20px 0;
+}
+ul.list-bread li{
+    display: inline;
+    padding-right: 10px;
+}
+ul.list-bread li a{
+    color: 
+}
+.item-parent{
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    margin: 0;
+    border-radius: unset;
+    height: 120px;
+    border: 1px solid #f1f1f1;
+    margin-top: 5px;
+}
+.item-parent a{
+    color: #000;
+}
+.item-parent a img{
+    width: 50px;
+    height: 50px;
+}
+.item-parent a h3{
+    font-size: 13px;
+    padding: 10px 0;
+    margin: 0;
+}
+#xemthem{
+    padding-left: 8px;
+    font-size: 12px;
+    color: #3daef7;
+    cursor: pointer;
+}
+.boauto{
+    height: auto;
+    overflow: visible;
 }

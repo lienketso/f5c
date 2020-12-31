@@ -109,7 +109,32 @@
       padding-top: 50px;
     }
   }
- </style>        
+ </style>  
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".dropdown").hover(            
+        function() {
+            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
+            $(this).toggleClass('open');        
+        },
+        function() {
+            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
+            $(this).toggleClass('open');       
+        }
+    );
+
+    //------------
+    $('.xemthem').on('click',function(e){
+        e.preventDefault();
+        let _this = $(e.currentTarget);
+        let uid = _this.attr('data-uid');
+        $('#'+uid).addClass('boauto');
+    });
+
+});
+</script>
+
 </body>
 
 </html>

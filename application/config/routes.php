@@ -66,7 +66,7 @@ $route['lien-he'] = 'home/contact';
 //tìm kiếm
 $route['search'] = 'home/search';
 //sản phẩm
-$route['category'] = 'product/category/$1';
+$route['(:any)'] = 'product/category/$1';
 $route['(:any)-p(:num).html'] = 'product/detail/$1';
 //tin tuc
 // $route['(:any)-(:num).html'] = 'news/detail/$2';

@@ -648,20 +648,16 @@ $('.act_account_login').click(function()
            <div class="col-lg-3 borderlr_<?= $k ?>"  >
             <div class="item-sp-cat">
               <a class="img-sp-cat" href="#"><img src="https://f5c.vn/upload/public/6112478aa70a4a8830d5180c15e55592_thumb.png"></a>
-              <h4><a href="#"><?= $pro->name; ?></a></h4>
+              <h4><a href=""><?= $pro->name; ?></a></h4>
               <p><span><?= ($pro->price==0) ? 'Liên hệ' : number_format($pro->price). '₫'; ?> </span></p>
             </div>
           </div>
         <?php endforeach; ?>
       <?php endif; ?>
-
     </div>
   </div>
-
 </section>
 <?php endforeach; ?>
-
-
 
 <section class="row">
   <div class="col-md-9 col-sm-9">

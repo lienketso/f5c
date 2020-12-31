@@ -12,7 +12,7 @@ function news_url($slug,$id){
     return base_url('tin-tuc/'.$slug.'/i'.$id.'.html');
 }
 function category_url($slug){
-    return base_url('category/'.$slug);
+    return base_url($slug);
 }
 function product_url($slug,$id){
     return base_url($slug.'-p'.$id.'.html');

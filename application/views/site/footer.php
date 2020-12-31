@@ -112,8 +112,8 @@
 <script type="text/javascript" src="<?= public_url('site/lib') ?>/layout/js/main.js"></script>
 
 <!-- end layout -->
-<script type="text/javascript" src="public/js/jquery/colorbox/jquery.colorbox.js"></script>
-<link rel="stylesheet" type="text/css" href="public/js/jquery/colorbox/colorbox.css" media="screen" />
+<script type="text/javascript" src="<?= public_url('site') ?>/js/jquery/colorbox/jquery.colorbox.js"></script>
+<link rel="stylesheet" type="text/css" href="<?= public_url('site') ?>/js/jquery/colorbox/colorbox.css" media="screen" />
 <script type="text/javascript">
   $(function() {
     $(".slide_show").colorbox({rel:'slide_show', slideshow:true});

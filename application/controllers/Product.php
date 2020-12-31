@@ -70,23 +70,23 @@ Class Product extends MY_Controller{
 	function category(){
 		//lấy ra id của danh mục
 		$slug = $this->uri->rsegment(3);
-		$where = 'slug="'.$slug.'"';
+		$where = 'friendly_url="'.$slug.'"';
 		$category = $this->category_model->get_info_rule($where);
 		$this->data['category'] = $category;
 		$input = array();
 		//lấy ra danh sách sản phẩm trong danh mục
 		
-		if($category->parent==0){
+		if($category->parent_id==0){
 			$ids = [$category->id];
-			$s['where'] = ['parent'=>$category->id];
+			$s['where'] = ['parent_id'=>$category->id];
 			$chill = $this->category_model->get_list($s);
 			foreach($chill as $d){
 				$ids[] += $d->id;
 			}
-			$input['where'] = ['status'=>1];
-			$input['where_in'] = ['category_id',$ids];
+			$input['where'] = ['hide'=>0];
+			$input['where_in'] = ['cat_id',$ids];
 		}else{
-			$input['where'] = ['status'=>1,'category_id'=>$category->id];
+			$input['where'] = ['cat_id'=>$category->id];
 		}
 		
 		$total_row = $this->product_model->get_total($input);
@@ -94,7 +94,7 @@ Class Product extends MY_Controller{
 		$this->data['total_row'] = $total_row;
 		$this->load->library('pagination');
 		$config = array();
-		$config['base_url'] = base_url('category/'.$category->slug);
+		$config['base_url'] = base_url($category->friendly_url);
 		$config['total_rows']  = $total_row;
 		$config['per_page']    = 12;
 		$config['uri_segment'] = 2;
@@ -131,33 +131,6 @@ Class Product extends MY_Controller{
 
 		//pre($list);die;
 
-		//get catemeta
-		$this->load->model('category_meta_model');
-		$meta['where'] = ['category_id'=>$category->id];
-		$listCatmeta = $this->category_meta_model->get_list($meta);
-		$arrMeta = [];
-		foreach($listCatmeta as $key=>$val){
-			$arrMeta[$val->meta_key] = $val->meta_value;
-		}
-        //input to header
-		$this->data['meta_title'] = $arrMeta['meta_title'];
-		$this->data['meta_keyword'] = $arrMeta['meta_keyword'];
-		$this->data['meta_description'] = $arrMeta['meta_description'];
-		$this->data['og_title'] = $arrMeta['og_title'];
-		$this->data['og_image'] = $arrMeta['og_image'];
-		$this->data['og_description'] = $arrMeta['og_description'];
-		$this->data['index_link'] = $arrMeta['index_link'];
-		$this->data['follow_link'] = $arrMeta['follow_link'];
-		$this->data['breadcrumb'] = $arrMeta['breadcrumb'];
-		$this->data['canonical'] = $arrMeta['canonical'];
-		$this->data['urlhttp'] = base_url('danh-muc/'.$category->slug);
-		//category all
-		$in['where'] = ['status'=>1,'lang_code'=>$this->language,'type'=>$category->type];
-		$in['order'] = ['is_order','asc'];
-		$categoryType = $this->category_model->get_list($in);
-		$this->data['categoryType'] = $categoryType;
-		$bannerDm = $this->gallery_model->getGallery(1,4,2);
-		$this->data['bannerDm'] = $bannerDm;
 		//hiển thị ra view
 		$this->data['temp'] = "site/product/category";
 		$this->load->view('site/layout',$this->data);
