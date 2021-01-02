@@ -56,16 +56,14 @@ $route['translate_uri_dashes'] = FALSE;
 // $2 chinh laf bien :num (category_id)
 //tags
 
-
-$route['tags/(:any)'] = 'news/tags/$1';
-//trang liên hệ
-$route['lien-he'] = 'home/contact';
-//tìm kiếm
-$route['search'] = 'home/search';
+$route['(:any)-m(:num)-(:num).html'] = 'manufac/index/$2/$3';
+$route['(:any)-m(:num)-(:num).html/(:num)'] = 'manufac/index/$2/$3/$4';
 //sản phẩm
 $route['(:any)-p(:num).html'] = 'product/detail/$2';
 $route['(:any)'] = 'product/category/$1';
 $route['(:any)/(:num)'] = 'product/category/$1/$2';
+
+
 
 //tin tuc
 // $route['(:any)-(:num).html'] = 'news/detail/$2';

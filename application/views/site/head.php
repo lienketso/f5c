@@ -44,3 +44,4 @@
 <script type="text/javascript" src="<?= public_url('site/lib') ?>/layout/raty/jquery.raty.min.js"></script>
 
 <!--End raty -->
+<!-- Java Script ================================================== -->

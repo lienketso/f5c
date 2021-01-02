@@ -85,7 +85,7 @@
             <?php foreach($productP as $k=>$p): ?>
               <div class="col-lg-3 borderlr_<?= $k ?>">
                 <div class="item-sp-cat">
-                  <a class="img-sp-cat" href="<?= product_url(slug($p->name),$p->id) ?>"><img src="https://f5c.vn/upload/public/6112478aa70a4a8830d5180c15e55592_thumb.png"></a>
+                  <a class="img-sp-cat" href="<?= product_url(slug($p->name),$p->id) ?>"><img src="<?= $p->image_name; ?>" alt="<?= $p->name ?>"></a>
                   <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= $p->name; ?></a></h4>
                   <p><span><?= ($p->price==0) ? 'Liên hệ' : number_format($p->price). '₫'; ?> </span></p>
                 </div>
@@ -109,7 +109,7 @@
               <?php foreach($list as $k=>$p): ?>
                 <div class="col-lg-3 ">
                   <div class="item-sp-cat">
-                    <a class="img-sp-cat" href="<?= product_url(slug($p->name),$p->id) ?>"><img src="https://f5c.vn/upload/public/6112478aa70a4a8830d5180c15e55592_thumb.png"></a>
+                    <a class="img-sp-cat" href="<?= product_url(slug($p->name),$p->id) ?>"><img src="<?= $p->image_name; ?>" alt="<?= $p->name; ?>"></a>
                     <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= $p->name; ?></a></h4>
                     <p><span><?= ($p->price==0) ? 'Liên hệ' : number_format($p->price). '₫'; ?> </span></p>
                   </div>
@@ -127,7 +127,7 @@
                 <div class="list-fac">
                   <?php if(!empty($listHang)): ?>
                     <?php foreach($listHang as $hang): ?>
-                  <a href="<?= manufac_url(slug($hang->name),$category->id,$hang->id) ?>"><?php if($hang->image_name!=''): ?><img src="https://cdn.mediamart.vn/ProductBrand/electrolux-F127U2.png"><?php else: ?>
+                  <a href="<?= manufac_url(slug($hang->name),$category->id,$hang->id) ?>"><?php if($hang->image_name!=''): ?><img src="<?= $hang->image_name; ?>"><?php else: ?>
                   <?= $hang->name; ?><?php endif; ?>
                 </a>
                 <?php endforeach; ?>

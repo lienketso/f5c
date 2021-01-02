@@ -588,3 +588,7 @@ ul.list-bread li a{
     margin-bottom: 5px;
     text-transform: uppercase;
 }
+.chinhno{
+    background: #f5f5f5;
+    border: 0 !important;
+}
