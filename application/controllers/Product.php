@@ -148,6 +148,7 @@ Class Product extends MY_Controller{
 	}
 	function detail(){
 		$this->load->model('manufac_model');
+		$this->load->model('file_model');
 
 		$id = $this->uri->rsegment(3);
 		$info = $this->product_model->get_info($id);
@@ -160,6 +161,12 @@ Class Product extends MY_Controller{
 		//get catemeta
 		$categoryName = $this->category_model->get_info($info->cat_id);
 		$this->data['categoryName'] = $categoryName;
+
+		//ảnh đính kèm
+		$w['where'] = ['table_id'=>$info->id,'table'=>'product'];
+		$w['order'] = ['id','desc'];
+		$listAttach = $this->file_model->get_list($w);
+		$this->data['listAttach'] = $listAttach;
 
 		$re['where'] = ['cat_id'=>$info->cat_id,'id!='=>$info->id];
 		$re['limit'] = [4,0];

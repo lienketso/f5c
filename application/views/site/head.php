@@ -37,20 +37,10 @@
 <link rel="stylesheet" type="text/css" href="<?= public_url('site/lib') ?>/layout/css/responsive.css">
 <link rel="stylesheet" type="text/css" href="<?= public_url('site/lib') ?>/layout/css/css.css">
 <link rel="stylesheet" type="text/css" href="<?= public_url('site/lib') ?>/layout/css/f5pro.css">
+<link rel="stylesheet" type="text/css" href="<?= public_url('site/css') ?>/flexslider.css">
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <!-- raty -->
 <script type="text/javascript" src="<?= public_url('site/lib') ?>/layout/raty/jquery.raty.min.js"></script>
-<script type="text/javascript">
-  $(function() {
-    $.fn.raty.defaults.path = '/site/layout/raty/img';
-    $('.raty').raty({
-      score: function() {
-        return $(this).attr('data-score');
-      },
-      readOnly  : true,
-    });
-  });
-</script>
-<style>.raty img{width:16px;height:16px; !important;}</style>
+
 <!--End raty -->
