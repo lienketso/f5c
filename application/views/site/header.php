@@ -14,7 +14,7 @@
         <div class="col-md-9">
           <div class="row">
             <div class="col-md-3 col-sm-3 no-padding-right">
-              <a href="https://f5c.vn/" class="logo" rel="nofollow">
+              <a href="<?= base_url() ?>" class="logo" rel="nofollow">
                 <img src="https://f5c.vn/upload/public/bf9cec94a52f7beb1d5a66d07d416da4.png" style="  ">
               </a>
             </div>

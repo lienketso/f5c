@@ -186,7 +186,7 @@
     </div>
     <!-- END SECTION SHOP -->
 
-    <?php $this->load->view('site/blocks/block_right'); ?>
+
 
   </div>
 <!-- END MAIN CONTENT -->

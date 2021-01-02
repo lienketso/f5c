@@ -22,7 +22,7 @@ Class Cart extends MY_Controller{
 		$data['qty'] = $qty;
 		// $data['scores'] = $product->scores;
 		$data['name'] = $product->name;
-		$data['image'] = $product->image;
+		$data['image_name'] = $product->image_name;
 		$data['price'] = $product->price;
 		$this->cart->insert($data);
 		//chuyển sang trang danh sách giỏ hàng
@@ -42,11 +42,6 @@ Class Cart extends MY_Controller{
 		$total_items = $this->cart->total_items();
 		$this->data['total_items'] = $total_items;
 		$this->data['carts'] = $carts;
-
-		$in['where'] = ['status'=>1,'lang_code'=>$this->language];
-		$in['order'] = ['is_order','asc'];
-		$categoryAll = $this->category_model->get_list($in);
-		$this->data['categoryAll'] = $categoryAll;
 
 		$this->data['temp'] = 'site/cart/index';
 		$this->load->view('site/layout',$this->data);

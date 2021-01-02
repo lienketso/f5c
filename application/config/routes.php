@@ -56,8 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 // $2 chinh laf bien :num (category_id)
 //tags
 
-//router uu tien
-$route['about-us'] = 'news/about';
+
 $route['tags/(:any)'] = 'news/tags/$1';
 //trang liên hệ
 $route['lien-he'] = 'home/contact';
