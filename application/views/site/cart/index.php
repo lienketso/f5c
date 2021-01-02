@@ -1,4 +1,4 @@
-
+<?php $this->load->view('site/blocks/block_menu') ?>
 <!-- START SECTION BREADCRUMB -->
 <div class="breadcrumb_section bg_gray page-title-mini">
   <div class="container"><!-- STRART CONTAINER -->
