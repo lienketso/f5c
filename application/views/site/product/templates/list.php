@@ -121,7 +121,21 @@
             </div>
           </div>
           <div class="col-lg-3">
-            sidebar lọc
+            <div class="filter-right">
+              <div class="filter-fac">
+                <h3 class="title-filter">Hãng sản xuất</h3>
+                <div class="list-fac">
+                  <?php if(!empty($listHang)): ?>
+                    <?php foreach($listHang as $hang): ?>
+                  <a href="<?= manufac_url(slug($hang->name),$category->id,$hang->id) ?>"><?php if($hang->image_name!=''): ?><img src="https://cdn.mediamart.vn/ProductBrand/electrolux-F127U2.png"><?php else: ?>
+                  <?= $hang->name; ?><?php endif; ?>
+                </a>
+                <?php endforeach; ?>
+              <?php endif; ?>
+
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

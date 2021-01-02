@@ -521,3 +521,59 @@ ul.list-bread li a{
 .support-list ul li a{
     font-weight: bold;
 }
+.thong-tin-sp{
+    padding: 20px;
+}
+.sidebar-pro{
+    padding-top: 20px;
+}
+.widget-cunghang{
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+.widget-cunghang h4{
+    background: #F58634;
+    color: #fff;
+    padding: 10px;
+    font-weight: bold;
+}
+.img-cunghang{
+    padding-bottom: 10px;
+}
+.title-cunghang{
+    font-weight: bold;
+}
+.price-cunghang{
+    font-weight: bold;
+    color: #F58634;
+}
+.list-cunghang{
+    border-bottom: 1px dashed #ccc;
+    padding: 5px 0;
+}
+.list-cunghang:last-child{
+    border-bottom: 0;
+}
+.title-filter{
+    font-size: 18px;
+    color: #fff;
+    background: #F58634;
+    font-weight: bold;
+    margin: 0;
+    padding: 10px;
+}
+.list-fac{
+    padding-top: 10px;
+    text-align: center;
+}
+.list-fac a{
+    width: 45%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 5px;
+    padding: 10px;
+    display: inline-block;
+    margin-top: 10px;
+    height: 45px;
+    line-height: 25px;
+}

@@ -68,6 +68,7 @@ Class Product extends MY_Controller{
 		$this->load->view('site/layout',$this->data);
 	}
 	function category(){
+		$this->load->model('manufac_model');
 		//lấy ra id của danh mục
 		$slug = $this->uri->rsegment(3);
 		$where = 'friendly_url="'.$slug.'"';
@@ -128,7 +129,14 @@ Class Product extends MY_Controller{
 		$this->data['view'] = $view;
 		$list = $this->product_model->get_list($input);
 		$this->data['list'] = $list;
-
+		//list hãng sản xuất theo danh mục
+		$hangsx = unserialize($category->manufac_ids);
+		$listHang = [];
+		foreach($hangsx as $h){
+			$listHang[] = $this->manufac_model->get_info($h);
+		}
+	
+		$this->data['listHang'] = $listHang;
 		//pre($list);die;
 
 		//hiển thị ra view
@@ -153,6 +161,14 @@ Class Product extends MY_Controller{
 		$re['where'] = ['cat_id'=>$info->cat_id,'id!='=>$info->id];
 		$re['limit'] = [4,0];
 		$listRelate = $this->product_model->get_list($re);
+
+		//sản phẩm cùng hãng
+		$ch['where'] = ['manufac_id'=>$info->manufac_id,'id!='=>$info->id];
+		$ch['limit'] = [6,0];
+		$listCH = $this->product_model->get_list($ch);
+		$this->data['listCH'] = $listCH;
+
+
 		$this->data['listRelate'] = $listRelate;
 		$this->data['temp'] = "site/product/detail";
 		$this->load->view("site/layout", $this->data);

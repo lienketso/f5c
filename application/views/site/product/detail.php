@@ -75,7 +75,11 @@
                       <?= $info->content; ?>
                     </div>
                   </div>
-                  <div role="tabpanel" class="tab-pane" id="tab">...</div>
+                  <div role="tabpanel" class="tab-pane" id="tab">
+                    <div class="thong-tin-sp">
+                      <?= $info->options_cat; ?>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -104,6 +108,26 @@
             <?php endforeach; ?>
 
           </div>
+
+          <div class="sidebar-pro">
+            <div class="widget-cunghang">
+              <h4>Sản phẩm cùng hãng</h4>
+              <?php foreach($listCH as $row): ?>
+              <div class="list-cunghang">
+                <div class="img-cunghang">
+                  <a href="<?= product_url(slug($row->name),$row->id) ?>"><img src="https://f5c.vn/upload/public/1161c04cd5feb4fe1d514261d936e9b2.jpg" align="cùng hãng"></a>
+                </div>
+                <div class="info-cunghang">
+                  <p class="title-cunghang"><a href="<?= product_url(slug($row->name),$row->id) ?>"><?= $row->name; ?></a></p>
+                  <p class="price-cunghang"><?= ($row->price==0) ? 'Liên hệ' : number_format($row->price).' đ' ?></p>
+                </div>
+              </div>
+            <?php endforeach; ?>
+
+    
+            </div>
+          </div>
+
         </div>
 
       </div>

@@ -178,7 +178,7 @@
     <div class="container">
     <div class="home-menu">
       <div class="home-menu-head">
-        <a href="<?= category_url($row->friendly_url) ?>" title="Các Tủ lạnh nổi bật"><?= $row->name; ?></a>
+        <a href="<?= category_url($row->friendly_url) ?>" title="<?= $row->name ?>"><i class="fa <?= $row->class_icon ?>"></i> <?= $row->name; ?></a>
       </div>
       <ul class="l home-menu-item">
         <?php if($listCon): ?>
@@ -208,8 +208,8 @@
           <?php foreach($itemProduct as $k=>$pro): ?>
            <div class="col-lg-3 borderlr_<?= $k ?>"  >
             <div class="item-sp-cat">
-              <a class="img-sp-cat" href="#"><img src="https://f5c.vn/upload/public/6112478aa70a4a8830d5180c15e55592_thumb.png"></a>
-              <h4><a href=""><?= $pro->name; ?></a></h4>
+              <a class="img-sp-cat" href="<?= product_url(slug($pro->name),$pro->id) ?>"><img src="https://f5c.vn/upload/public/6112478aa70a4a8830d5180c15e55592_thumb.png"></a>
+              <h4><a href="<?= product_url(slug($pro->name),$pro->id) ?>"><?= $pro->name; ?></a></h4>
               <p><span><?= ($pro->price==0) ? 'Liên hệ' : number_format($pro->price). '₫'; ?> </span></p>
             </div>
           </div>
