@@ -65,6 +65,7 @@ $route['search'] = 'home/search';
 //sản phẩm
 $route['(:any)-p(:num).html'] = 'product/detail/$2';
 $route['(:any)'] = 'product/category/$1';
+$route['(:any)/(:num)'] = 'product/category/$1/$2';
 
 //tin tuc
 // $route['(:any)-(:num).html'] = 'news/detail/$2';

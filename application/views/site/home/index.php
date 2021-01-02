@@ -1,8 +1,8 @@
  <div class="on-top-fixed"></div>
 
- <div class="container">
-  <section class="row">
-    <section class="row">
+  <section class="cdmmm">
+    <section class="container">
+      <div class="row">
       <div class="col-lg-9">
         <div class="row">
           <!-- danh muc san pham -->
@@ -116,8 +116,8 @@
   </div>
 </div>
 </div>
+</div>
 </section>
-
 </section>
 <!-- Message -->
 
@@ -132,12 +132,12 @@
               <?php foreach($listXemnhieu as $row): ?>
                 <div class="col-lg-3">
                   <div class="item-sp-hot">
-                    <a class="img-sp-hot" href="<?= product_url(slug($row->name),$row->id) ?>"><img src="https://f5c.vn/upload/public/6112478aa70a4a8830d5180c15e55592_thumb.png"></a>
+                    <a class="img-sp-hot" href="<?= product_url(slug($row->name),$row->id) ?>"><img src="<?= product_link($row->image_name); ?>"></a>
                     <div class="prdLblCampaign">
                       <div class="prdLblCampaignThumb prdLblCampaignNew"><span style="background:linear-gradient(90deg,#FFC300 4.5%,#DD220D 90.3%)"> <img src="<?= public_url('site') ?>/img/icon5-50x50.png"> <small>ĐƯỢC QUAN QUÂM NHẤT</small> </span></div>
                     </div>
                     <h4><a href="<?= product_url(slug($row->name),$row->id) ?>"><?= $row->name; ?></a></h4>
-                    <p><span><?= number_format($row->price) ?> ₫</span></p>
+                    <p><span><?= ($row->price==0) ? 'Liên hệ' : number_format($row->price). '₫' ?> </span></p>
                   </div>
                 </div>
               <?php endforeach; ?>
@@ -195,7 +195,14 @@
         <?php if(!empty($manufac)): ?>
           <?php foreach($manufac as $m): ?>
             <?php $mInfo = $this->manufac_model->get_info($m); ?>
-        <li><a href="<?= manufac_url(slug($mInfo->name),$m,$row->id) ?>" title="<?= $mInfo->name; ?>"><img src="https://f5c.vn/upload/public/40404fb3627866be7153b438c5b72c76.png" alt="<?= $mInfo->name; ?>"></a></li>
+        <li><a href="<?= manufac_url(slug($mInfo->name),$m,$row->id) ?>" title="<?= $mInfo->name; ?>">
+          <?php if($mInfo->image_name!=''): ?>
+          <img src="<?= $mInfo->image_name; ?>" alt="<?= $mInfo->name; ?>">
+          <?php else: ?>
+            <span><?= $mInfo->name; ?></span>
+          <?php endif; ?>
+        </a>
+      </li>
       <?php endforeach; ?>
     <?php endif; ?>
       </ul>
@@ -208,7 +215,7 @@
           <?php foreach($itemProduct as $k=>$pro): ?>
            <div class="col-lg-3 borderlr_<?= $k ?>"  >
             <div class="item-sp-cat">
-              <a class="img-sp-cat" href="<?= product_url(slug($pro->name),$pro->id) ?>"><img src="https://f5c.vn/upload/public/6112478aa70a4a8830d5180c15e55592_thumb.png"></a>
+              <a class="img-sp-cat" href="<?= product_url(slug($pro->name),$pro->id) ?>"><img src="<?= product_link($pro->image_name) ?>" alt="<?= $pro->name; ?>"></a>
               <h4><a href="<?= product_url(slug($pro->name),$pro->id) ?>"><?= $pro->name; ?></a></h4>
               <p><span><?= ($pro->price==0) ? 'Liên hệ' : number_format($pro->price). '₫'; ?> </span></p>
             </div>
@@ -221,7 +228,9 @@
 </section>
 <?php endforeach; ?>
 
-<section class="row">
+<section class="row-cdm">
+  <div class="container">
+    <div class="row">
   <div class="col-md-9 col-sm-9">
     <div class="row">
       <div class="col-md-6 col-sm-6">
@@ -293,6 +302,8 @@
       </div>
     </div>
   </div>
+</div>
+</div>
 </section>           
 <style>
   .sp-da-xem .product-img, #detai-so-sanh .product-img{
@@ -310,18 +321,11 @@
   }
   
 </style>  
+           
 
-<!-- san pham da xem -->
-<section class="sp-da-xem">
-  <div class="heading">
-    <span>Sản phẩm bạn đã xem </span>
-  </div>
-  <div class="owl-sp-xem">
-
-  </div>
-</section>             
-
-<section class="thong-tin row">
+<section class="thong-tin">
+  <div class="container">
+    <div class="row">
   <?php foreach($listDanhmuctin as $row): ?>
     <?php 
       $s['where'] = ['cat_id'=>$row->id];
@@ -345,6 +349,6 @@
     </div>
   </div>
 <?php endforeach; ?>
-
-</section>         
 </div>
+</div>
+</section>         

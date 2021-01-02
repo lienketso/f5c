@@ -136,9 +136,7 @@ body{
     color: red;
     text-decoration: underline;
 }
-p{
-	margin: 0 !important;
-}
+
 .nhom-sp-product{
 	
 }
@@ -576,4 +574,17 @@ ul.list-bread li a{
     margin-top: 10px;
     height: 45px;
     line-height: 25px;
+}
+.pagination li a.current{
+    background: #F58634;
+    color: #fff;
+}
+.hotline-header-fix{
+    color: red;
+    font-size: 12px;
+    font-weight: 700;
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
 }

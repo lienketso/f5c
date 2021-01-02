@@ -114,9 +114,9 @@ Class Product extends MY_Controller{
 		$config['next_link'] = '<i class="fa fa-chevron-right" aria-hidden="true"></i>';
 		$config['next_tag_open'] = '<li>';
 		$config['next_tag_close'] = '</li>';
-		$config['prev_link'] = 'Quay lại';
-		$config['prev_tag_open'] = '';
-		$config['prev_tag_close'] = '';
+		$config['prev_link'] = '<i class="fa fa-chevron-left" aria-hidden="true"></i>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
 		$config['attributes'] = array('class' => 'page-numbers');
 		$segment = $this->uri->segment(2);
 		$segment = intval($segment);
@@ -132,11 +132,14 @@ Class Product extends MY_Controller{
 		//list hãng sản xuất theo danh mục
 		$hangsx = unserialize($category->manufac_ids);
 		$listHang = [];
+		if(!empty($hangsx)){
 		foreach($hangsx as $h){
 			$listHang[] = $this->manufac_model->get_info($h);
 		}
-	
+		}
+		
 		$this->data['listHang'] = $listHang;
+		
 		//pre($list);die;
 
 		//hiển thị ra view

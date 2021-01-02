@@ -29,7 +29,7 @@
           <div class="col-lg-2 col-xs-3">
             <div class="item-parent">
               <a href="<?= category_url($c->friendly_url) ?>">
-                <img src="https://cdn.tgdd.vn/Category/5205/Binh,-ly-giu-nhiet-l-13-02-2020.png" alt="">
+                <img src="<?= product_link($c->image_name) ?>" alt="<?= $c->name; ?>">
                 <h3><?= $c->name; ?></h3>
               </a>
             </div>
