@@ -24,6 +24,8 @@ Class Manufac_model extends MY_Model{
       $manulist = $this->get_info($id);
       if(!empty($manulist)){
         return $manulist->name;
+      }else{
+        echo 'Chưa rõ';
       }
     }
 

@@ -66,6 +66,8 @@ Class MY_Controller extends CI_Controller{
 				$this->load->model('category_model');
 				$this->load->model('product_model');
 				$this->load->model('catnews_model');
+				$this->load->model('support_model');
+				$this->load->model('support_group_model');
 				//load thư viện giỏ hàng tất cả các trang
 				$this->load->library('cart');
 				//menu all page
@@ -91,6 +93,11 @@ Class MY_Controller extends CI_Controller{
 				$dmt['limit'] = [5,0];
 				$listDanhmuctin = $this->catnews_model->get_list($dmt);
 				$this->data['listDanhmuctin'] = $listDanhmuctin;
+				//support all page
+				$sp['where'] = [''];
+				$sp['order'] = ['sort_order','asc'];
+				$GroupSupport = $this->support_group_model->get_list($sp);
+				$this->data['GroupSupport'] = $GroupSupport;
 				
 
 				$Ishome = '';

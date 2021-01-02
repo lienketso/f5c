@@ -96,23 +96,23 @@ Class Product extends MY_Controller{
 		$config = array();
 		$config['base_url'] = base_url($category->friendly_url);
 		$config['total_rows']  = $total_row;
-		$config['per_page']    = 12;
+		$config['per_page']    = 20;
 		$config['uri_segment'] = 2;
-		$config['full_tag_open'] = '<div class="pagination">';
-		$config['full_tag_close'] = '</div>';
-		$config['num_tag_open'] = '';
-		$config['num_tag_close'] = '';
+		$config['full_tag_open'] = '<ul class="pagination">';
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
 		$config['first_link'] = '<i class="fa fa-chevron-left" aria-hidden="true"></i>';
 		$config['last_link'] = ' <i class="fa fa-chevron-left" aria-hidden="true"></i>';
-		$config['last_tag_open'] = '';
-		$config['last_tag_close'] = '';
-		$config['first_tag_open'] = '';
-		$config['first_tag_close'] = '';
-		$config['cur_tag_open'] = '<a class="page-numbers current" href="#">';
-		$config['cur_tag_close'] = '</a>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li><a class="page-numbers current" href="#">';
+		$config['cur_tag_close'] = '</a></li>';
 		$config['next_link'] = '<i class="fa fa-chevron-right" aria-hidden="true"></i>';
-		$config['next_tag_open'] = '';
-		$config['next_tag_close'] = '';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
 		$config['prev_link'] = 'Quay lại';
 		$config['prev_tag_open'] = '';
 		$config['prev_tag_close'] = '';
@@ -136,46 +136,21 @@ Class Product extends MY_Controller{
 		$this->load->view('site/layout',$this->data);
 	}
 	function detail(){
-		$slug = $this->uri->rsegment(3);
-		$where = 'slug="'.$slug.'"';
-		$info = $this->product_model->get_info_rule($where);
+		$this->load->model('manufac_model');
+
+		$id = $this->uri->rsegment(3);
+		$info = $this->product_model->get_info($id);
 		$this->data['info'] = $info;
-		$image_list = @json_decode($info->image_list);
-		$this->data['image_list'] = $image_list;
 		//cập nhật lượt xem sản phẩm
 		$datas = array();
-		$datas['view'] = $info->view + 1;
+		$datas['count_view'] = $info->count_view + 1;
 		$this->product_model->update($info->id,$datas);
 		//sản phẩm liên quan
 		//get catemeta
-		$this->load->model('productmeta_model');
-		$meta['where'] = ['product_id'=>$info->id];
-		$listCatmeta = $this->productmeta_model->get_list($meta);
-		$arrMeta = [];
-		foreach($listCatmeta as $key=>$val){
-			$arrMeta[$val->meta_key] = $val->meta_value;
-		}
-		$catInfo = $this->category_model->get_info($info->category_id);
-		$this->data['catInfo'] = $catInfo;
+		$categoryName = $this->category_model->get_info($info->cat_id);
+		$this->data['categoryName'] = $categoryName;
 
-        //category all
-		$in['where'] = ['status'=>1,'lang_code'=>$this->language];
-		$in['order'] = ['is_order','asc'];
-		$categoryAll = $this->category_model->get_list($in);
-		$this->data['categoryAll'] = $categoryAll;
-        //input to header
-		$this->data['meta_title'] = $arrMeta['meta_title'];
-		$this->data['meta_keyword'] = $arrMeta['meta_keyword'];
-		$this->data['meta_description'] = $arrMeta['meta_description'];
-		$this->data['og_title'] = $arrMeta['og_title'];
-		$this->data['og_image'] = $arrMeta['og_image'];
-		$this->data['og_description'] = $arrMeta['og_description'];
-		$this->data['index_link'] = $arrMeta['index_link'];
-		$this->data['follow_link'] = $arrMeta['follow_link'];
-		$this->data['breadcrumb'] = $arrMeta['breadcrumb'];
-		$this->data['canonical'] = $arrMeta['canonical'];
-
-		$re['where'] = ['category_id'=>$info->category_id,'id!='=>$info->id];
+		$re['where'] = ['cat_id'=>$info->cat_id,'id!='=>$info->id];
 		$re['limit'] = [4,0];
 		$listRelate = $this->product_model->get_list($re);
 		$this->data['listRelate'] = $listRelate;

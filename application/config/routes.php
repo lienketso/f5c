@@ -58,16 +58,15 @@ $route['translate_uri_dashes'] = FALSE;
 
 //router uu tien
 $route['about-us'] = 'news/about';
-$route['san-pham'] = 'product/all';
-$route['san-pham/(:num)'] = 'product/all/$1';
 $route['tags/(:any)'] = 'news/tags/$1';
 //trang liên hệ
 $route['lien-he'] = 'home/contact';
 //tìm kiếm
 $route['search'] = 'home/search';
 //sản phẩm
+$route['(:any)-p(:num).html'] = 'product/detail/$2';
 $route['(:any)'] = 'product/category/$1';
-$route['(:any)-p(:num).html'] = 'product/detail/$1';
+
 //tin tuc
 // $route['(:any)-(:num).html'] = 'news/detail/$2';
 // $route['(:any)'] = 'news/catnews/$1';
