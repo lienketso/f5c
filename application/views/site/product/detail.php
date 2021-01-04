@@ -148,7 +148,7 @@
                 <?php foreach($listCH as $row): ?>
                   <div class="list-cunghang">
                     <div class="img-cunghang">
-                      <a href="<?= product_url(slug($row->name),$row->id) ?>"><img src="https://f5c.vn/upload/public/1161c04cd5feb4fe1d514261d936e9b2.jpg" align="cùng hãng"></a>
+                      <a href="<?= product_url(slug($row->name),$row->id) ?>"><img src="<?= $row->image_name; ?>" align="<?= $row->name; ?>"></a>
                     </div>
                     <div class="info-cunghang">
                       <p class="title-cunghang"><a href="<?= product_url(slug($row->name),$row->id) ?>"><?= $row->name; ?></a></p>

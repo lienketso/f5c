@@ -5,8 +5,8 @@ function public_url($url=''){
 function home_url($url=''){
     return base_url($url);
 }
-function catnews_url($slug){
-    return base_url($slug.'.html');
+function catnews_url($slug,$id){
+    return base_url('bai-viet-'.$slug.'/cn'.$id.'.html');
 }
 function news_url($slug,$id){
     return base_url('tin-tuc/'.$slug.'/i'.$id.'.html');
