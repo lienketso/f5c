@@ -335,7 +335,7 @@
   <div class="col-lg-3 col-sm-4" style="width:20%">
     <div class="panel">
       <div class="panel-heading">
-        <a style="color:#fff" href="<?= catnews_url($row->friendly_url) ?>" title='<?= $row->name; ?>'>
+        <a style="color:#fff" href="<?= catnews_url($row->friendly_url,$row->id) ?>" title='<?= $row->name; ?>'>
         <?= $row->name; ?></a>  
       </div>
       <?php if(!empty($itemNews)): ?>

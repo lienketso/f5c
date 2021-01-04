@@ -72,6 +72,20 @@
               <span class="menu-title">Slide</span>
             </a>
           </li> 
+
+          <li class="nav-item <?= ($urlSec=='ads_banner') ? 'active' : '' ?>">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic-banner" aria-expanded="false" aria-controls="ui-basic-banner">
+              <i class="ti-settings menu-icon"></i>
+              <span class="menu-title">Quảng cáo</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse <?= ($urlSec=='ads_banner') ? 'show' : '' ?>" id="ui-basic-banner">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="<?= admin_url('ads_location'); ?>" >Vị trí quảng cáo</a></li>
+                 <li class="nav-item"> <a class="nav-link" href="<?= admin_url('ads_banner'); ?>">Banner quảng cáo</a></li> 
+              </ul>
+            </div>
+          </li>
           
           
           <li class="nav-item <?= ($urlSec=='site_setting') ? 'active' : '' ?>">

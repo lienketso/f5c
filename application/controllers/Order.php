@@ -142,16 +142,7 @@ Class Order extends MY_Controller{
 		}
 		//echo $donhang;die;
 		$this->data['total_amount'] = $total_amount;
-		//nếu thành viên đăng nhập thì lấy thông tin thành viên
-		$this->load->model('user_model');
-		$user = '';
-		if($user_id = $this->session->userdata('company_id_login')) {
-			$user_id = $this->session->userdata('company_id_login');
-			$user = $this->member_company_model->get_info($user_id);
-		}else{
-			$user_id = 0;
-		}
-		$this->data['user'] = $user;
+
 		if($this->input->post()){
 			$this->form_validation->set_rules('name','Họ tên','required|min_length[2]');
 			$this->form_validation->set_rules('address','Địa chỉ','required|min_length[6]');

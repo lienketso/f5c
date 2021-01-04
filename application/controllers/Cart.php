@@ -31,6 +31,41 @@ Class Cart extends MY_Controller{
 		$this->load->view('site/layout',$this->data);
 	}
 	//hien thi danh sach gio hang
+
+		public function sendemail($subject,$data){
+		$this->load->library('email');
+	
+		$config['protocol'] = 'smtp';
+		$config['smtp_host'] = 'smtp.gmail.com';
+		$config['smtp_user'] = 'vtvlks2016@gmail.com';
+		$config['smtp_pass'] = '';
+		$config['smtp_port'] = 587;
+		$config['smtp_crypto'] = 'tls';
+		$config['charset'] = 'utf-8';
+		$config['mailtype'] = 'html';
+		$config['wordwrap'] = TRUE;
+		$headers = 'MIME-Version: 1.0' . "\r\n" . 'Content-type: text/html; charset=UTF-8' . "\r\n";
+		$headers .= "From: f5c@gmail.com\r\nReply-To: f5c@gmail.com";
+		$this->email->initialize($config);
+		// $this->email->set_header($headers);
+		$this->email->set_newline("\r\n");
+		$from_email = "f5c@gmail.com";
+		$to_email = 'info@f5pro.vn';
+        //Load email library
+		$this->email->from($from_email, 'F5C');
+		$this->email->to($to_email);
+		$this->email->subject($subject);
+		$this->email->message($data);
+        //Send mail
+		if($this->email->send()){
+			$this->session->set_flashdata("email_sent","Congragulation Email Send Successfully.");
+		}
+		else{
+			echo $this->email->print_debugger();die;
+			$this->session->set_flashdata("email_sent","You have encountered an error");
+		}
+	}
+
 	function index(){
 
 		$message = $this->session->flashdata('message');
@@ -58,6 +93,7 @@ Class Cart extends MY_Controller{
 			if($this->form_validation->run()){
 				$contact = array(
 					'name'=>$this->input->post('fullname'),
+					'email'=>'',
 					'phone'=>$this->input->post('phone'),
 					'nhanhang'=>$this->input->post('optorder'),
 					'city'=>$this->input->post('slThanhPho'),
@@ -65,6 +101,13 @@ Class Cart extends MY_Controller{
 					'address'=>$this->input->post('slAddress'),
 					'yeucau'=>$this->input->post('yeucau')
 				);
+				
+				$name = $this->input->post('fullname');
+				$phone = $this->input->post('phone');
+				$hinhtuctt = $this->input->post('optPayment');
+				$address = $this->input->post('slAddress');
+				$content = $this->input->post('yeucau');
+
 				$contact = serialize($contact);
 				$data = [
 					'payment'=>$this->input->post('optPayment'),
@@ -75,6 +118,8 @@ Class Cart extends MY_Controller{
 				$trans = $this->transaction_model->create($data);
 				$transid = $this->db->insert_id();
 				$this->load->model('product_order_model');
+
+				$donhang = '';
 				foreach($carts as $row){
 				$order = array(
 					'tran_id' => $transid,
@@ -85,8 +130,45 @@ Class Cart extends MY_Controller{
 					'status'=>0
 				);
 				$this->product_order_model->create($order);
-
+				
+				$sanpham = $this->product_model->get_info($row['id']);
+				$donhang .= '<tr><td style="border-bottom:1px solid #000">'.$sanpham->name.'</td><td style="border-bottom:1px solid #000">'.$row['qty'].'</td><td style="border-bottom:1px solid #000">'.number_format($row['price']).'</td><td style="border-bottom:1px solid #000">'.number_format(nhan($row['qty'],$row['price'])).'</td></tr>';
 			}
+			
+					//gửi email
+			$body = '<html><body>';
+			$body .='<table cellpadding="2">';
+			$body .= '<tr><td>Bạn nhận được đơn hàng từ website <span style="font-weight:bold;">'.base_url().'</span></td><tr>';			
+			$body .= '<tr><td>Một khách hàng đã đặt hàng tại website/td><tr>';
+			$ngaydat = now();
+			$body .= '<tr><td>Ngày đặt: <span style="font-weight:bold;">'.Date("d-m-Y",$ngaydat).' Lúc '.Date("H:s a",$ngaydat).'</span></td><tr>';
+			$body .= '<tr><td><span style="font-weight:bold;">Thông tin đơn hàng</span></td><tr>';	
+			$body .= "<tr><td>
+				<table style='border:1px solid #000'>
+					<tr>
+						<td>Tên sản phẩm</td>
+						<td>Số lượng</td>
+						<td>Giá</td>
+						<td>Thành tiền</td>
+					</tr>".$donhang."
+					<tr style='font-weight:bold'>
+						<td >Tổng tiền</td>
+						<td>".number_format($this->cart->total())." đ</td>
+					</tr>
+				</table>
+			</td></tr>";
+			$body .= '<tr><td>Hình thức thanh toán : <span style="font-weight:bold;">'.$hinhtuctt.'</span> </td><tr>';
+			$body .= '<tr><td>Tên khách hàng : <span style="font-weight:bold;">'.$name.'</span> </td><tr>';
+			$body .= '<tr><td>Số điện thoại : <span style="font-weight:bold;">'.$phone.'</span> </td><tr>';
+			$body .= '<tr><td>Địa chỉ : <span style="font-weight:bold;">'.$address.'</span> </td><tr>';
+			$body .= '<tr><td>Nội dung : <span style="font-weight:bold;">'.$content.'</span> </td><tr>';
+			$body .= '<tr><td>Trân trọng !,</td><tr>';	
+			$body .= '<tr><td>Ban quản trị '.base_url().'</td><tr>';	
+			$body .= '<tr><td>--------------------------------------------------------------------</td><tr>';
+			$body .= "</table>";	
+			$body .= "</body></html>";
+
+			$this->sendemail('Đơn hàng từ f5c.vn',$body);
 			$this->cart->destroy();
 			redirect(base_url('order/order_success'));
 			}

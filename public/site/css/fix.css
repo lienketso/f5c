@@ -9,6 +9,11 @@ body{
         overflow: hidden;
     }
 }
+@media(max-width: 767px){
+    .hotline-header-fix{
+        display: none;
+    }
+}
 .bao-noibat{
 	border: 2px solid #F58634;
 }
