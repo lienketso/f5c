@@ -28,6 +28,10 @@ Class Cart extends MY_Controller{
 		//chuyển sang trang danh sách giỏ hàng
 		redirect(base_url('cart/index'));
 	}
+	function store(){
+		$this->data['temp'] = 'site/cart/store';
+		$this->load->view('site/layout',$this->data);
+	}
 	//hien thi danh sach gio hang
 	function index(){
 
