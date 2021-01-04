@@ -3,18 +3,16 @@ Class Cart extends MY_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model('cart_model');
+		$this->load->model('transaction_model');
 	}
 	function add(){
 		//gọi tới thư viện cart
 		//lấy ra sản phẩm muốn thêm vào giỏ
 		$this->load->model('product_model');
-		$id = $this->input->get('id');
+		$id = $this->uri->rsegment(3);
 		$product = $this->product_model->get_info($id);
 		//số lượng sản phẩm
-		$qty = $this->input->get('qty');
-		if(!isset($qty)){
-			$qty = 1;
-		}
+		$qty = 1;
 		$price = $product->price;
 		//thông tin sản phẩm
 		$data = array();
@@ -47,6 +45,53 @@ Class Cart extends MY_Controller{
 		$this->data['total_items'] = $total_items;
 		$this->data['carts'] = $carts;
 
+		$this->load->model('city_model');
+		$ct['where'] = [];
+		$ct['order'] = ['id','asc'];
+		$listCity = $this->city_model->get_list($ct);
+		$this->data['listCity'] = $listCity;
+
+		if($this->input->post()){
+			$this->form_validation->set_rules('fullname','Họ tên','required|min_length[2]');
+			$this->form_validation->set_rules('slAddress','Địa chỉ','required|min_length[6]');
+			$this->form_validation->set_rules('phone','Số điện thoại','required');
+			if($this->form_validation->run()){
+				$contact = array(
+					'name'=>$this->input->post('fullname'),
+					'phone'=>$this->input->post('phone'),
+					'nhanhang'=>$this->input->post('optorder'),
+					'city'=>$this->input->post('slThanhPho'),
+					'district'=>$this->input->post('slQuan'),
+					'address'=>$this->input->post('slAddress'),
+					'yeucau'=>$this->input->post('yeucau')
+				);
+				$contact = serialize($contact);
+				$data = [
+					'payment'=>$this->input->post('optPayment'),
+					'amount'=> $this->cart->total(),
+					'contact'=>$contact,
+					'created'=>now()
+				];
+				$trans = $this->transaction_model->create($data);
+				$transid = $this->db->insert_id();
+				$this->load->model('product_order_model');
+				foreach($carts as $row){
+				$order = array(
+					'tran_id' => $transid,
+					'product_id' => $row['id'],
+					'quantity' => $row['qty'],
+					'price' => $row['price'],
+					'amount' => $row['subtotal'],
+					'status'=>0
+				);
+				$this->product_order_model->create($order);
+
+			}
+			$this->cart->destroy();
+			redirect(base_url('order/order_success'));
+			}
+		}
+
 		$this->data['temp'] = 'site/cart/index';
 		$this->load->view('site/layout',$this->data);
 	}
@@ -65,6 +110,19 @@ Class Cart extends MY_Controller{
 		$this->session->set_flashdata('message', 'Cập nhật đơn hàng thành công !');
 		redirect(base_url('cart/index'));
 	}
+
+	function updateOnecart(){
+		$data = array(
+               'rowid'   => $this->input->post('rowid'),
+               'qty'     => $this->input->post('qty'),
+        );
+        // Update the cart with the new information
+        $this->cart->update($data);
+        $total = $this->cart->total();
+        echo number_format($total);
+        die;
+	}
+
 	function del(){
 		$id = $this->uri->rsegment(3);
 		$id = intval($id);
@@ -140,6 +198,19 @@ Class Cart extends MY_Controller{
 
 		echo 'Đặt hàng thành công ! Plusmart sẽ liên hệ sớm nhất';die;
 		
+	}
+
+	function getDistrict(){
+		$cityid = $this->input->post('cityid');
+		$this->load->model('district_model');
+		$input['where'] = ['city_id'=>$cityid];
+		$input['order'] = ['name','asc'];
+		$listDistrict = $this->district_model->get_list($input);
+		foreach($listDistrict as $row){
+			echo '<option value="'.$row->id.'">'.$row->name.'</option>';
+		}
+		die;
+
 	}
 
 
