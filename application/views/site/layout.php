@@ -193,10 +193,139 @@
         input.val(0);        
       }    
     });    
-
-
-    
   });
+</script>
+
+<script type="text/javascript">
+$(function() {
+    //search
+    var main = $('#box_search');
+    main.find('#text-search').keyup(function(event){
+       // alert(event.which);
+     if(event.which == 16 || event.which == 37 || event.which == 38 || event.which == 39 || event.which == 40 || event.which == 32)
+     {
+         return false;
+     }
+       search_auto();
+    });
+    main.find('[name="cat"]').change(function(){
+      search_auto();
+    });
+    function search_auto()
+    {
+    var key = main.find('#text-search').val();
+    var cat = main.find('[name="cat"]').val();
+    if(key != '')
+    {
+      $(this).nstUI(
+        $.ajax({
+    type: "GET",
+    url: '<?= base_url('home/search_ajax') ?>',
+    data:'term='+key+'&cat='+cat,
+    beforeSend: function(){
+      
+    },
+    success: function(data){
+       $("#content_search").html(data);  
+       $("#divSuggestion").css({'display':'block'});
+    }
+    })     
+    )}
+    else
+    {
+      $("#content_search").html('<center><strong>Bạn cần nhập từ khóa tìm kiềm...</strong></center>');
+    }
+    }
+    /*
+    $( ".form-search" ).mouseleave(function() {
+      $("#divSuggestion").css({'display':'none'});
+    });
+    */
+  
+  $(".box_search").mouseleave(function(e){
+    $("#divSuggestion").css({'display':'none'});
+  });
+  
+    
+    $('form#box_search').submit(function(){
+       var $selected = $('.sp-goi-y').find('a.item-sp-search.selected');
+       $href = jQuery.trim($selected.attr('href'));
+     if($href)
+     {
+       window.location = $href;
+       return false;
+     }
+    });
+
+    //raty
+  jQuery(document.body).on('click', '.top_search',function()
+    {
+    var key = $(this).text();
+    key = jQuery.trim(key);
+    if(key != '')
+    {
+      $('#text-search').val(key);
+      $('form#box_search').submit();
+    } 
+    });
+  
+    $(document).on('keydown', 'body' ,function(event){
+      if(event.which == 40)
+     {
+        var $selected = $('.sp-goi-y').find('a.item-sp-search.selected');
+        $text = jQuery.trim($selected.find('.name-sp-search').text());
+        if(!$text)
+        {
+        $selected = $('.sp-goi-y a.item-sp-search:first');
+        }else{
+        $selected.removeClass('selected');
+        $selected = $selected.next('a.item-sp-search');
+        }
+        
+      $selected.addClass('selected');
+      $text = jQuery.trim($selected.find('.name-sp-search').text());
+      if(!$text)
+        {
+        $selected = $('.sp-goi-y a.item-sp-search:first');
+          $selected.addClass('selected');
+        }
+          $text = jQuery.trim($selected.find('.name-sp-search').text());
+        
+        if($text)
+        {
+         //$('#text-search').val($text);
+        }
+        return false;
+        
+     }else if(event.which == 38)
+     {
+        var $selected = $('.sp-goi-y').find('a.item-sp-search.selected');
+        $text = jQuery.trim($selected.find('.name-sp-search').text());
+        if(!$text)
+        {
+        $selected = $('.sp-goi-y').find('a.item-sp-search:last-child');
+        }else{
+        $selected.removeClass('selected');
+        $selected = $selected.prev('a.item-sp-search');
+        }
+        
+      $selected.addClass('selected');
+      $text = jQuery.trim($selected.find('.name-sp-search').text());
+        if(!$text)
+        {
+          $selected = $('.sp-goi-y').find('a.item-sp-search:last-child');
+            $selected.addClass('selected');
+        }
+          $text = jQuery.trim($selected.find('.name-sp-search').text());
+          
+        if($text)
+        {
+         //$('#text-search').val($text);
+        }
+        return false;
+     }
+    });
+});
 </script>
 
 </body>

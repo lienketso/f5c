@@ -129,22 +129,23 @@ Class Home extends MY_Controller{
 		$a_json = array();
 		$a_json_row = array();
 		$this->load->model('product_model');
-		if(isset($_GET['productname'])){
-			$result = $this->product_model->search($_GET['productname']);
+		$term = $this->input->get('term');
+		$cat = $this->input->get('cat');
+		if(isset($_GET['term'])){
+			$result = $this->product_model->search_product($term);
 			if(count($result>0)){
 				foreach($result as $pr){
-					$a_json_row['id'] = $pr->id;
-					$a_json_row['slug'] = $pr->cat_name;
-					$a_json_row['value'] = $pr->name;
-					$a_json_row['label'] = $pr->name;
-					$a_json_row['price'] = number_format($pr->price);
-					$a_json_row['discount'] = number_format($pr->discount);
-					$a_json_row['img'] = base_url('uploads/product/'.$pr->image);
-					array_push($a_json, $a_json_row);
-				//echo json_encode($arr_result);
+					echo '<a class="list-group-item item-sp-search clearfix" title="'.$pr->name.'" href="'.product_url(slug($pr->name),$pr->id).'">
+	            	<img class="img-sp-search" alt="'.$pr->name.'" src="'.product_link($pr->image_name).'">
+	            	<div class="caption">
+	            		<span class="name-sp-search">'.$pr->name.'</span>
+	            		<div class="price">
+	            			<span class="amount">'.number_format($pr->price).' đ<span></span></span>
+	            		</div>
+	            	</div>
+	            </a>';
 				}
-				echo json_encode($a_json);
-				flush();
+				die;
 			}
 		}
 	}

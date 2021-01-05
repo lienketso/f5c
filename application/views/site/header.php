@@ -28,7 +28,7 @@
 </style>
 
 <div class="box_search" style="position:relative"> 
-  <form action="https://f5c.vn/search.html" method='get' id="box_search">
+  <form action="<?= base_url('home/search') ?>" method='get' id="box_search">
     <div class="input-group form-search">
       <div class="input-group-btn" style="position:relative">
         <select name="cat" class="form-control" style="padding-left:17px;background:url('<?= public_url('site/lib') ?>/layout/img/icon/1.png') no-repeat 130px center">
@@ -43,7 +43,7 @@
       <span class="input-group-btn">
         <button class="btn btn-search" type="submit"><i class="fa fa-search"></i> Tìm Kiếm</button>
       </span>
-      <div id="divSuggestion" class="suggestion" style='display:none;'>
+      <div id="divSuggestion" class="suggestion">
         <div id="search_load" class="form_load"></div>  
         <div class="box-goi-y-search">
           <div id='content_search'></div>
