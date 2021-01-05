@@ -63,7 +63,7 @@ $config['modules_locations'] = array(
 
 $http = 'http://'.$_SERVER['HTTP_HOST'];
 if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
-    $http = 'http://'.$_SERVER['HTTP_HOST'];
+    $http = 'https://'.$_SERVER['HTTP_HOST'];
 }
 
 define("DOMAIN_URL", $http."/f5c");

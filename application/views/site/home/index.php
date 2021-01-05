@@ -63,6 +63,10 @@
                 <?php endforeach; ?>
               </div>
               
+              <div class="ads_banner_bottom">
+                <a href="#"><img src="https://cdn.tgdd.vn/qcao/04_01_2021_01_05_59_kachi.png" alt=""></a>
+                <a href="#"><img src="https://cdn.tgdd.vn/qcao/04_01_2021_01_05_59_kachi.png" alt=""></a>
+              </div>
 
             </div>
           </div>
@@ -100,20 +104,18 @@
 </div>      
 </div>
 <a class="mini-cart" href="https://f5c.vn/gio-hang.html"><span class="img-cart"></span>
-  (<b class='session_red load_cart' _url='https://f5c.vn/cart/load_cart.html'></b>)
+  (<b class='session_red load_cart'><?= $cart_items; ?></b>)
   <br>Giỏ hàng</a>
 </div>
 <!-- dau gia -->
 <div class="dau-gia" style="max-width:265px">
 
-  <div class="title">
-    <a href="https://f5c.vn/dau-gia.html" style="color:#fff">
-      Đấu giá ngược
-    </a>
+  <div class="list_ads_head">
+    <a href="#"><img src="https://cdn.tgdd.vn/2020/11/banner/26064-260x64.png" alt=""></a>
+    <a href="#"><img src="https://cdn.tgdd.vn/2020/11/banner/26064-260x64.png" alt=""></a>
+    <a href="#"><img src="https://cdn.tgdd.vn/2020/11/banner/26064-260x64.png" alt=""></a>
   </div>
-  <div class="owl-dau-gia">
-
-  </div>
+ 
 </div>
 </div>
 </div>

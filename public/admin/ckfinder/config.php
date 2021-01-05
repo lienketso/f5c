@@ -110,7 +110,7 @@ if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 define("NVCMS_DIR", $http."");
 
 
-define("NVCMS_URL", "http://".$_SERVER['HTTP_HOST']."");
+define("NVCMS_URL", $http."");
 
 $baseUrl = NVCMS_URL.'/upload/';
 

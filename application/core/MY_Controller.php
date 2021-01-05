@@ -99,6 +99,8 @@ Class MY_Controller extends CI_Controller{
 				$GroupSupport = $this->support_group_model->get_list($sp);
 				$this->data['GroupSupport'] = $GroupSupport;
 				
+				$cart_items = $this->cart->total_items();
+				$this->data['cart_items'] = $cart_items;
 
 				$Ishome = '';
 				$this->data['Ishome'] = $Ishome;
