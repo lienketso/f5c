@@ -31,21 +31,11 @@
   <form action="https://f5c.vn/search.html" method='get' id="box_search">
     <div class="input-group form-search">
       <div class="input-group-btn" style="position:relative">
-        <select name="cat" class="form-control" style="padding-left:17px;background:url('https://f5c.vn/<?= public_url('site/lib') ?>/layout/img/icon/1.png') no-repeat 130px center">
+        <select name="cat" class="form-control" style="padding-left:17px;background:url('<?= public_url('site/lib') ?>/layout/img/icon/1.png') no-repeat 130px center">
           <option class="selected">Tất cả sản phẩm</option>
-          <option value="49" >Máy - Thiết bị công nghiệp</option>
-          <option value="10" >Máy vệ sinh công nghiệp</option>
-          <option value="51" >Thiết bị siêu thị - cửa hàng</option>
-          <option value="3" >Thiết bị văn phòng</option>
-          <option value="9" >Thiết bị bếp công nghiệp</option>
-          <option value="7" >Điện máy - Gia dụng</option>
-          <option value="1" >Tin học, viễn thông</option>
-          <option value="510" >Máy nông nghiệp</option>
-          <option value="2" >Thiết bị số</option>
-          <option value="64" >Thiết bị an ninh</option>
-          <option value="450" >Thiết bị y tế</option>
-          <option value="688" >Hàng thanh lý - Giảm giá</option>
-          <option value="732" >Thiết bị Nhà hàng - Khách sạn</option>
+          <?php foreach($categoryParent as $row): ?>
+          <option value="<?= $row->id ?>" ><?= $row->name; ?></option>
+          <?php endforeach; ?>
         </select>
         
       </div>

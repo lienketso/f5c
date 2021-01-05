@@ -87,6 +87,11 @@ Class MY_Controller extends CI_Controller{
 				$allCategory = $this->category_model->getCategoryAllsub(0);
 				$this->data['allCategory'] = $allCategory;
 
+				$c['where'] = ['parent_id'=>0];
+				$c['order'] = ['sort_order','asc'];
+				$categoryParent = $this->category_model->get_list($c);
+				$this->data['categoryParent'] = $categoryParent;
+
 				//Danh mục tin chân trang
 				$dmt['where'] = ['parent_id'=>0];
 				$dmt['order'] = ['sort_order','asc'];
