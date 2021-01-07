@@ -28,6 +28,10 @@ body{
         min-height: 46px;
         display: block;
     }
+    .info-dathang{
+        width: 50%;
+        margin: 0 auto;
+    }
 }
 @media(max-width: 767px){
     .hotline-header-fix{
@@ -666,4 +670,27 @@ ul.list-bread li a{
 .text-tb{
     padding-bottom: 10px;
     padding-top: 10px;
+}
+.title_order{
+    background: #F58634;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    padding: 10px;
+}
+.list_order{
+    width: 100%;
+    border: 1px solid #ccc;
+}
+.list_order tr td{
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+.thongtin_succes{
+    padding: 30px 0;
+}
+.tt_them{
+    padding-top: 15px;
 }

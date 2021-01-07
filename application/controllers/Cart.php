@@ -32,14 +32,21 @@ Class Cart extends MY_Controller{
 	}
 	//hien thi danh sach gio hang
 
-		public function sendemail($subject,$data){
+	public function sendemail($subject,$data){
 		$this->load->library('email');
-	
-		$config['protocol'] = 'smtp';
-		$config['smtp_host'] = 'smtp.gmail.com';
-		$config['smtp_user'] = 'vtvlks2016@gmail.com';
-		$config['smtp_pass'] = '';
-		$config['smtp_port'] = 587;
+		
+		$ss['order'] = ['key','asc'];
+		$listOption = $this->site_model->get_list($ss);
+		$arrOption = [];
+		foreach($listOption as $key=>$val){
+			$arrOption[$val->key] = $val->value;
+		}
+
+		$config['protocol'] = $arrOption['smtp_protocol'];
+		$config['smtp_host'] = $arrOption['smtp_host'];
+		$config['smtp_user'] = $arrOption['smtp_user'];
+		$config['smtp_pass'] = $arrOption['smtp_pass'];
+		$config['smtp_port'] = $arrOption['smtp_port'];
 		$config['smtp_crypto'] = 'tls';
 		$config['charset'] = 'utf-8';
 		$config['mailtype'] = 'html';
@@ -50,7 +57,7 @@ Class Cart extends MY_Controller{
 		// $this->email->set_header($headers);
 		$this->email->set_newline("\r\n");
 		$from_email = "f5c@gmail.com";
-		$to_email = 'info@f5pro.vn';
+		$to_email = $arrOption['email_nhantin'];
         //Load email library
 		$this->email->from($from_email, 'F5C');
 		$this->email->to($to_email);
@@ -121,56 +128,56 @@ Class Cart extends MY_Controller{
 
 				$donhang = '';
 				foreach($carts as $row){
-				$order = array(
-					'tran_id' => $transid,
-					'product_id' => $row['id'],
-					'quantity' => $row['qty'],
-					'price' => $row['price'],
-					'amount' => $row['subtotal'],
-					'status'=>0
-				);
-				$this->product_order_model->create($order);
-				
-				$sanpham = $this->product_model->get_info($row['id']);
-				$donhang .= '<tr><td style="border-bottom:1px solid #000">'.$sanpham->name.'</td><td style="border-bottom:1px solid #000">'.$row['qty'].'</td><td style="border-bottom:1px solid #000">'.number_format($row['price']).'</td><td style="border-bottom:1px solid #000">'.number_format(nhan($row['qty'],$row['price'])).'</td></tr>';
-			}
-			
-					//gửi email
-			$body = '<html><body>';
-			$body .='<table cellpadding="2">';
-			$body .= '<tr><td>Bạn nhận được đơn hàng từ website <span style="font-weight:bold;">'.base_url().'</span></td><tr>';			
-			$body .= '<tr><td>Một khách hàng đã đặt hàng tại website/td><tr>';
-			$ngaydat = now();
-			$body .= '<tr><td>Ngày đặt: <span style="font-weight:bold;">'.Date("d-m-Y",$ngaydat).' Lúc '.Date("H:s a",$ngaydat).'</span></td><tr>';
-			$body .= '<tr><td><span style="font-weight:bold;">Thông tin đơn hàng</span></td><tr>';	
-			$body .= "<tr><td>
-				<table style='border:1px solid #000'>
-					<tr>
-						<td>Tên sản phẩm</td>
-						<td>Số lượng</td>
-						<td>Giá</td>
-						<td>Thành tiền</td>
-					</tr>".$donhang."
-					<tr style='font-weight:bold'>
-						<td >Tổng tiền</td>
-						<td>".number_format($this->cart->total())." đ</td>
-					</tr>
-				</table>
-			</td></tr>";
-			$body .= '<tr><td>Hình thức thanh toán : <span style="font-weight:bold;">'.$hinhtuctt.'</span> </td><tr>';
-			$body .= '<tr><td>Tên khách hàng : <span style="font-weight:bold;">'.$name.'</span> </td><tr>';
-			$body .= '<tr><td>Số điện thoại : <span style="font-weight:bold;">'.$phone.'</span> </td><tr>';
-			$body .= '<tr><td>Địa chỉ : <span style="font-weight:bold;">'.$address.'</span> </td><tr>';
-			$body .= '<tr><td>Nội dung : <span style="font-weight:bold;">'.$content.'</span> </td><tr>';
-			$body .= '<tr><td>Trân trọng !,</td><tr>';	
-			$body .= '<tr><td>Ban quản trị '.base_url().'</td><tr>';	
-			$body .= '<tr><td>--------------------------------------------------------------------</td><tr>';
-			$body .= "</table>";	
-			$body .= "</body></html>";
+					$order = array(
+						'tran_id' => $transid,
+						'product_id' => $row['id'],
+						'quantity' => $row['qty'],
+						'price' => $row['price'],
+						'amount' => $row['subtotal'],
+						'status'=>0
+					);
+					$this->product_order_model->create($order);
 
-			$this->sendemail('Đơn hàng từ f5c.vn',$body);
-			$this->cart->destroy();
-			redirect(base_url('order/order_success'));
+					$sanpham = $this->product_model->get_info($row['id']);
+					$donhang .= '<tr><td style="border-bottom:1px solid #000">'.$sanpham->name.'</td><td style="border-bottom:1px solid #000">'.$row['qty'].'</td><td style="border-bottom:1px solid #000">'.number_format($row['price']).'</td><td style="border-bottom:1px solid #000">'.number_format(nhan($row['qty'],$row['price'])).'</td></tr>';
+				}
+
+					//gửi email
+				$body = '<html><body>';
+				$body .='<table cellpadding="2">';
+				$body .= '<tr><td>Bạn nhận được đơn hàng từ website <span style="font-weight:bold;">'.base_url().'</span></td><tr>';			
+				$body .= '<tr><td>Một khách hàng đã đặt hàng tại website/td><tr>';
+				$ngaydat = now();
+				$body .= '<tr><td>Ngày đặt: <span style="font-weight:bold;">'.Date("d-m-Y",$ngaydat).' Lúc '.Date("H:s a",$ngaydat).'</span></td><tr>';
+				$body .= '<tr><td><span style="font-weight:bold;">Thông tin đơn hàng</span></td><tr>';	
+				$body .= "<tr><td>
+				<table style='border:1px solid #000'>
+				<tr>
+				<td>Tên sản phẩm</td>
+				<td>Số lượng</td>
+				<td>Giá</td>
+				<td>Thành tiền</td>
+				</tr>".$donhang."
+				<tr style='font-weight:bold'>
+				<td >Tổng tiền</td>
+				<td>".number_format($this->cart->total())." đ</td>
+				</tr>
+				</table>
+				</td></tr>";
+				$body .= '<tr><td>Hình thức thanh toán : <span style="font-weight:bold;">'.$hinhtuctt.'</span> </td><tr>';
+				$body .= '<tr><td>Tên khách hàng : <span style="font-weight:bold;">'.$name.'</span> </td><tr>';
+				$body .= '<tr><td>Số điện thoại : <span style="font-weight:bold;">'.$phone.'</span> </td><tr>';
+				$body .= '<tr><td>Địa chỉ : <span style="font-weight:bold;">'.$address.'</span> </td><tr>';
+				$body .= '<tr><td>Nội dung : <span style="font-weight:bold;">'.$content.'</span> </td><tr>';
+				$body .= '<tr><td>Trân trọng !,</td><tr>';	
+				$body .= '<tr><td>Ban quản trị '.base_url().'</td><tr>';	
+				$body .= '<tr><td>--------------------------------------------------------------------</td><tr>';
+				$body .= "</table>";	
+				$body .= "</body></html>";
+
+				$this->cart->destroy();
+				$this->sendemail('Đơn hàng từ f5c.vn',$body);
+				redirect(base_url('order/order_success?tranid='.$transid));
 			}
 		}
 
@@ -195,14 +202,14 @@ Class Cart extends MY_Controller{
 
 	function updateOnecart(){
 		$data = array(
-               'rowid'   => $this->input->post('rowid'),
-               'qty'     => $this->input->post('qty'),
-        );
+			'rowid'   => $this->input->post('rowid'),
+			'qty'     => $this->input->post('qty'),
+		);
         // Update the cart with the new information
-        $this->cart->update($data);
-        $total = $this->cart->total();
-        echo number_format($total);
-        die;
+		$this->cart->update($data);
+		$total = $this->cart->total();
+		echo number_format($total);
+		die;
 	}
 
 	function del(){
@@ -214,11 +221,11 @@ Class Cart extends MY_Controller{
 			foreach($carts as $key=>$row){
 				if($row['id'] == $id){
 			//tổng số lượng mỗi sản phẩm
-			$total_qty = $this->input->post('qty_'.$row['id']);
-			$data = array();
-			$data['rowid'] = $key;
-			$data['qty'] = 0;
-			$this->cart->update($data);
+					$total_qty = $this->input->post('qty_'.$row['id']);
+					$data = array();
+					$data['rowid'] = $key;
+					$data['qty'] = 0;
+					$this->cart->update($data);
 				}
 			}
 		}else{
@@ -266,15 +273,15 @@ Class Cart extends MY_Controller{
 		$transaction_id = $this->db->insert_id();
 		$carts = $this->cart->contents();
 		foreach($carts as $row){
-				$order = array(
-					'transaction_id' => $transaction_id,
-					'product_id' => $row['id'],
-					'qty' => $row['qty'],
-					'amount' => $row['subtotal'],
-					'status' => 0
-				);
-				$this->order_model->create($order);
-			}
+			$order = array(
+				'transaction_id' => $transaction_id,
+				'product_id' => $row['id'],
+				'qty' => $row['qty'],
+				'amount' => $row['subtotal'],
+				'status' => 0
+			);
+			$this->order_model->create($order);
+		}
 
 		$this->cart->destroy();
 

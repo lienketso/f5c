@@ -1,4 +1,1 @@
-<?php
-Class District_model extends MY_Model{
-	var $table = 'district';
-}
+<?phpClass District_model extends MY_Model{	var $table = 'district';	function getDistrict($id){    $city = $this->get_info($id);    if(!empty($city)){      echo $city->name;    }else{      echo 'Chưa rõ';    }  }}

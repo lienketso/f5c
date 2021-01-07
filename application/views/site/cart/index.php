@@ -337,7 +337,7 @@ Xóa</a>
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <label class="radio-inline"><input type="radio" value="chuyenkhoan" name="optPayment"
+            <label class="radio-inline"><input type="radio" value="bank_tranfer" name="optPayment"
                     id="ckChuyenKhoan">Chuyển
                 khoản</label>
 

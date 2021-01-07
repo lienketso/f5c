@@ -267,6 +267,22 @@ Class Order extends MY_Controller{
 	$this->load->view('site/layout',$this->data);
 }
 function order_success(){
+	$this->load->model('transaction_model');
+	$this->load->model('product_order_model');
+	$this->load->model('city_model');
+	$this->load->model('district_model');
+
+	$tranid = $this->input->get('tranid');
+	if($tranid){
+		$transaction = $this->transaction_model->get_info($tranid);
+		$this->data['transaction'] = $transaction;
+		$input['where'] = ['tran_id'=>$tranid];
+		$order = $this->product_order_model->get_list($input);
+		$this->data['order'] = $order;
+	}else{
+		redirect('404');
+	}
+
 	$this->data['temp'] = 'site/order/order_success';
 	$this->load->view('site/layout',$this->data);
 }
