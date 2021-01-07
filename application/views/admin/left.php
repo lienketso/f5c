@@ -97,7 +97,6 @@
             <div class="collapse <?= ($urlSec=='site_setting') ? 'show' : '' ?>" id="ui-basic-setting">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="<?= admin_url('site_setting'); ?>" >Cấu hình chung</a></li>
-                 <li class="nav-item"> <a class="nav-link" href="<?= admin_url('site_setting/home'); ?>">Giới thiệu trang chủ</a></li> 
                 <li class="nav-item"> <a class="nav-link" href="<?= admin_url('site_setting/mail'); ?>">Email config</a></li>
               </ul>
             </div>
