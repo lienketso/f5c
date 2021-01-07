@@ -17,6 +17,17 @@ body{
         width: 50%;
         margin: 0 auto;
     }
+    .img-sp-cat img{
+        height: 200px;
+    }
+    .img-sp-hot img{
+        height: 170px;
+    }
+    
+    .home-menu .home-menu-item{
+        min-height: 46px;
+        display: block;
+    }
 }
 @media(max-width: 767px){
     .hotline-header-fix{
@@ -611,7 +622,7 @@ ul.list-bread li a{
     padding: 10px;
     display: inline-block;
     margin-top: 10px;
-    height: 45px;
+    min-height: 45px;
     line-height: 25px;
 }
 .pagination li a.current{

@@ -29,7 +29,7 @@
           <div class="col-lg-2 col-xs-3">
             <div class="item-parent">
               <a href="<?= category_url($c->friendly_url) ?>">
-                <img src="<?= product_link($c->image_name) ?>" alt="<?= $c->name; ?>">
+                <img src="<?= url_tam($c->image_name) ?>" alt="<?= $c->name; ?>">
                 <h3><?= $c->name; ?></h3>
               </a>
             </div>
@@ -85,7 +85,7 @@
             <?php foreach($productP as $k=>$p): ?>
               <div class="col-lg-3 borderlr_<?= $k ?>">
                 <div class="item-sp-cat">
-                  <a class="img-sp-cat" href="<?= product_url(slug($p->name),$p->id) ?>"><img src="<?= $p->image_name; ?>" alt="<?= $p->name ?>"></a>
+                  <a class="img-sp-cat" href="<?= product_url(slug($p->name),$p->id) ?>"><img src="<?= url_tam($p->image_name); ?>" alt="<?= $p->name ?>"></a>
                   <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= $p->name; ?></a></h4>
                   <p><span><?= ($p->price==0) ? 'Liên hệ' : number_format($p->price). '₫'; ?> </span></p>
                 </div>
@@ -109,7 +109,7 @@
               <?php foreach($list as $k=>$p): ?>
                 <div class="col-lg-3 ">
                   <div class="item-sp-cat">
-                    <a class="img-sp-cat" href="<?= product_url(slug($p->name),$p->id) ?>"><img src="<?= $p->image_name; ?>" alt="<?= $p->name; ?>"></a>
+                    <a class="img-sp-cat" href="<?= product_url(slug($p->name),$p->id) ?>"><img src="<?= url_tam($p->image_name); ?>" alt="<?= $p->name; ?>"></a>
                     <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= $p->name; ?></a></h4>
                     <p><span><?= ($p->price==0) ? 'Liên hệ' : number_format($p->price). '₫'; ?> </span></p>
                   </div>
@@ -127,7 +127,7 @@
                 <div class="list-fac">
                   <?php if(!empty($listHang)): ?>
                     <?php foreach($listHang as $hang): ?>
-                  <a href="<?= manufac_url(slug($hang->name),$category->id,$hang->id) ?>"><?php if($hang->image_name!=''): ?><img src="<?= $hang->image_name; ?>"><?php else: ?>
+                  <a href="<?= manufac_url(slug($hang->name),$category->id,$hang->id) ?>"><?php if($hang->image_name!=''): ?><img src="<?= url_tam($hang->image_name); ?>"><?php else: ?>
                   <?= $hang->name; ?><?php endif; ?>
                 </a>
                 <?php endforeach; ?>

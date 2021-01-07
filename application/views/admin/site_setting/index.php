@@ -19,11 +19,14 @@
 						<input type="text" name="site_title" value="<?= $this->site_model->getSettingMeta('site_title'); ?>" class="form-control" placeholder="Nhập tiêu đề">
 					</div>
 					<div class="form-group">
+						<label for="">Hotline header</label>
+						<input type="text" name="site_hotline_top" value="<?= $this->site_model->getSettingMeta('site_hotline_top'); ?>" class="form-control" id="" placeholder="Số hotline trên thanh trên cùng">
+					</div>
+					<div class="form-group">
 						<label for="">Hotline</label>
 						<input type="text" name="site_hotline" value="<?= $this->site_model->getSettingMeta('site_hotline'); ?>" class="form-control" id="" placeholder="Số hotline">
 					</div>
-				
-				
+
 					<div class="form-group">
 						<label for="">Email</label>
 						<input type="text" name="site_email" value="<?= $this->site_model->getSettingMeta('site_email'); ?>" class="form-control" id="" placeholder="Địa chỉ email">

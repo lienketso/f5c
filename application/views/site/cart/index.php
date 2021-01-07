@@ -185,8 +185,8 @@ Mua thêm sản phẩm khác</a>
 <li class="media">
 <div class="media-left">
 <a href="<?= product_url(slug($product->name),$product->id) ?>" target="_blank">
-<img data-src="<?= product_link($product->image_name) ?>"
-src="<?= product_link($product->image_name) ?>"
+<img data-src="<?= url_tam($product->image_name) ?>"
+src="<?= url_tam($product->image_name) ?>"
 alt="<?= $product->name; ?>" loading="lazy"
 class=" ls-is-cached lazyloaded"></a>
 <div class="remove-product">

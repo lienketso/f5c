@@ -1,4 +1,7 @@
 <?php
+function url_tam($url=''){
+  return 'https://f5c.vn/upload/public/'.$url;
+}
 function public_url($url=''){
     return base_url('public/'.$url);
 }

@@ -18,7 +18,8 @@
               <?php foreach($list as $k=>$p): ?>
                 <div class="col-lg-3 ">
                   <div class="item-sp-cat">
-                    <a class="img-sp-cat" href="<?= product_url(slug($p->name),$p->id) ?>"><img src="<?= $p->image_name ?>" alt="<?= $p->name; ?>"></a>
+                    <a class="img-sp-cat" href="<?= product_url(slug($p->name),$p->id) ?>">
+                      <img src="<?= url_tam($p->image_name) ?>" alt="<?= $p->name; ?>"></a>
                     <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= $p->name; ?></a></h4>
                     <p><span><?= ($p->price==0) ? 'Liên hệ' : number_format($p->price). '₫'; ?> </span></p>
                   </div>
@@ -36,7 +37,7 @@
                 <div class="list-fac">
                   <?php if(!empty($listHang)): ?>
                     <?php foreach($listHang as $hang): ?>
-                  <a <?= ($infoFac->id==$hang->id) ? 'class="chinhno"' : ''; ?> href="<?= manufac_url(slug($hang->name),$InfoCat->id,$hang->id) ?>"><?php if($hang->image_name!=''): ?><img src="<?= $hang->image_name; ?>"><?php else: ?>
+                  <a <?= ($infoFac->id==$hang->id) ? 'class="chinhno"' : ''; ?> href="<?= manufac_url(slug($hang->name),$hang->id,$InfoCat->id) ?>"><?php if($hang->image_name!=''): ?><img src="<?= url_tam($hang->image_name); ?>" alt="<?= $hang->name ?>"><?php else: ?>
                   <?= $hang->name; ?><?php endif; ?>
                 </a>
                 <?php endforeach; ?>
