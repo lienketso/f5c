@@ -13,11 +13,37 @@ body{
         display: flex;
         overflow: hidden;
     }
+    .block-contact-us{
+        width: 50%;
+        margin: 0 auto;
+    }
 }
 @media(max-width: 767px){
     .hotline-header-fix{
         display: none;
     }
+}
+.btn-inline{
+    padding: 10px;
+    border: 0;
+    color: #fff;
+    background: #F58634;
+    width: 100%;
+}
+.block-title{
+    font-weight: bold;
+    font-size: 24px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+.block-content h4{
+    font-size: 14px;
+    color: red;
+}
+.alert_err{
+    font-size: 13px;
+    color: red;
+    padding-top: 5px;
 }
 .ads_banner_bottom{
     padding-top: 10px;
@@ -617,4 +643,16 @@ ul.list-bread li a{
 }
 .fixed .hotline-header-fix{
     display: none !important;
+}
+.section.info-order .tab-content{
+    padding-top: 15px;
+}
+.alert-err{
+    color: red;
+    font-style: 12px;
+    padding-top: 5px;
+}
+.text-tb{
+    padding-bottom: 10px;
+    padding-top: 10px;
 }

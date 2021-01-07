@@ -28,7 +28,7 @@ class Site_setting extends MY_Controller{
 				// $this->site_model->insertBacth($data);
 				// redirect(admin_url('site_setting'));
 				//update all record
-				if($this->site_model->updateBatch($data,'ey')){
+				if($this->site_model->updateBatch($data,'key')){
 					$this->session->set_flashdata('message', 'Bạn vừa sửa dữ liệu !');
 					redirect(admin_url('site_setting'));
 				}else{

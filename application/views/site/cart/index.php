@@ -272,8 +272,9 @@ Xóa</a>
 <div class="tab-content">
 
     <div id="home" class="tab-pane fade in active">
-        <div class="col-md-12">Chọn địa chỉ để biết thời gian nhận hàng và phí vận chuyển
-            (nếu có)</div>
+        <div class="col-md-12">
+            <div class="text-tb">Chọn địa chỉ để biết thời gian nhận hàng và phí vận chuyển (nếu có)</div>
+        </div>
         <div class="col-md-6">
             <div class="form-group">
                 <select id="changeCity" data-link="<?= base_url('cart/getDistrict') ?>" class="select2 form-control" name="slThanhPho">
@@ -303,11 +304,7 @@ Xóa</a>
     </div>
     <div id="shop" class="tab-pane fade">
         <div class="col-md-12">
-            Giỏ hàng đang có sản phẩm không hỗ trợ nhận hàng tại siêu thị
-            <br />
-            Máy giặt Samsung Inverter 9.5 kg WW95J42G0BX/SV <br />
-            Máy giặt Toshiba Inverter 9.5 Kg TW-BK105S3V(SK) <br />
-            Vui lòng chọn giao tận nơi để đặt hàng
+          <div class="text-tb"> <?= $arrSetting['site_company'] ?></div>
         </div>
 
     </div>
@@ -349,12 +346,7 @@ Xóa</a>
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-body">
-                Tên tài khoản: <b>NGUYỄN VĂN A</b>
-                <br />
-                Tài khoản: <b>0003434585</b>
-                <br />
-                Chi nhánh: <b>Đông Đô</b>
-                <br />
+               <?= $arrSetting['site_bank'] ?>
             </div>
         </div>
     </div>

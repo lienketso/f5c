@@ -72,7 +72,7 @@
             <div class="dropdown login">
               <div id='account_panel'>
                 <!-- Thanh vien chua dang nhap -->
-                <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#modal-login">
+                <a href="<?= base_url('user/login.html') ?>" class="dropdown-toggle">
                   <span>Đăng nhập </span> <br>Tài khoản &amp; Đơn hàng
                   <span class="caret"></span>
                 </a>
@@ -98,7 +98,7 @@
   <!-- Thanh vien da dang nhap -->
 </div>      
 </div>
-<a class="mini-cart" href="https://f5c.vn/gio-hang.html"><span class="img-cart"></span>
+<a class="mini-cart" href="<?= base_url('gio-hang.html') ?>"><span class="img-cart"></span>
   (<b class='session_red load_cart'><?= $cart_items; ?></b>)
   <br>Giỏ hàng</a>
 </div>

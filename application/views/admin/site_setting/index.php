@@ -45,6 +45,18 @@
 							<textarea name="site_footer" class="makeMeRichTextarea" id="edtone"><?= $this->site_model->getSettingMeta('site_footer'); ?></textarea>
 						</div>
 					</div>
+					<div class="form-group">
+						<label for="">Thông tin tài khoản ngân hàng</label>	
+						<div id="">
+							<textarea name="site_bank" class="makeMeRichTextarea" id="edtbank"><?= $this->site_model->getSettingMeta('site_bank'); ?></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="">Thông tin cửa hàng / công ty</label>	
+						<div id="">
+							<textarea name="site_company" class="makeMeRichTextarea" id="edtcompany"><?= $this->site_model->getSettingMeta('site_company'); ?></textarea>
+						</div>
+					</div>
 
 					<div class="form-group">
 						<label for="">Copyright</label>

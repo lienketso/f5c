@@ -54,7 +54,11 @@ $route['translate_uri_dashes'] = FALSE;
 //$route['([a-zA-Z0-9]+[a-zA-Z\_0-9\.-]*)\/$']
 //rewrite danh muc việc làm
 // $2 chinh laf bien :num (category_id)
-//tags
+//giỏ hàng
+$route['gio-hang.html'] = 'cart/index';
+$route['user/login.html'] = 'user/login';
+$route['user/register.html'] = 'user/register';
+
 //tin tức
 $route['tin-tuc.html'] = 'news/all';
 $route['tin-tuc.html/(:num)'] = 'news/all/$1';
