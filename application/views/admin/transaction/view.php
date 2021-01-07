@@ -17,7 +17,7 @@
                             </div>
                             <div class="col-lg-4 pr-0">
                               <p class="mt-5 mb-2 text-right"><b>Địa chỉ nhận hàng</b></p>
-                              <p class="text-right"></p>
+                              <p class="text-right"><?= (isset($customer['address'])) ? $customer['address'] : ''; ?>, <?= (isset($customer['district'])) ? $this->district_model->getDistrict($customer['district']) : ''; ?>, <?= (isset($customer['city'])) ? $this->city_model->getCity($customer['city']) : ''; ?></p>
                             </div>
                           </div>
                           <div class="container-fluid d-flex justify-content-between">
