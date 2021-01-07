@@ -85,6 +85,13 @@ Class Manufac extends MY_Controller{
 		}
 		$this->data['listHang'] = $listHang;
 
+		$this->data['title'] = $InfoCat->name;
+		$this->data['meta_desc'] = $InfoCat->meta_desc;
+		$this->data['meta_keyword'] = $InfoCat->meta_key;
+		$this->data['og_title'] = $InfoCat->name;
+		$this->data['og_image'] = product_link($InfoCat->image_name);
+		$this->data['urlhttp'] = category_url(slug($InfoCat->name),$InfoCat->id);
+
 		$this->data['temp'] = "site/manufac/index";
 		$this->load->view('site/layout',$this->data);
 	}

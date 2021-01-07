@@ -55,6 +55,14 @@ Class News extends MY_Controller{
 		$list = $this->news_model->get_list($input);
 		$this->data['list'] = $list;
 
+		$this->data['title'] = 'Tất cả tin tức';
+		$this->data['meta_desc'] = 'Danh sách tin tức';
+		$this->data['meta_keyword'] = 'tin tức, tin tức f5c';
+		$this->data['og_title'] = 'Tất cả tin tức';
+		$this->data['og_image'] = '';
+		$this->data['urlhttp'] = base_url('tin-tuc.html');
+
+
 
 		$this->data['temp'] = 'site/news/all';
 		$this->load->view('site/layout',$this->data);
@@ -117,6 +125,13 @@ Class News extends MY_Controller{
 
 		$list = $this->news_model->get_list($input);
 		$this->data['list'] = $list;
+
+		$this->data['title'] = $category->name;
+		$this->data['meta_desc'] = $category->meta_desc;
+		$this->data['meta_keyword'] = $category->meta_key;
+		$this->data['og_title'] = $category->name;
+		$this->data['og_image'] = product_link($category->image_name);
+		$this->data['urlhttp'] = catnews_url(slug($category->name),$category->id);
 	
 		$this->data['temp'] = 'site/news/catnews';
 		$this->load->view('site/layout',$this->data);
@@ -159,6 +174,13 @@ Class News extends MY_Controller{
 		$ca['order'] = ['sort_order','asc'];
 		$allCatnews = $this->catnews_model->get_list($ca);
 		$this->data['allCatnews'] = $allCatnews;
+
+		$this->data['title'] = $info->title;
+		$this->data['meta_desc'] = $info->meta_desc;
+		$this->data['meta_keyword'] = $info->meta_key;
+		$this->data['og_title'] = $info->title;
+		$this->data['og_image'] = product_link($info->image_name);
+		$this->data['urlhttp'] = news_url(slug($info->title),$info->id);
 
 		$this->data['temp'] = 'site/news/detail';
 		$this->load->view('site/layout',$this->data);

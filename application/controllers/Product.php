@@ -142,6 +142,13 @@ Class Product extends MY_Controller{
 		
 		//pre($list);die;
 
+		$this->data['title'] = $category->name;
+		$this->data['meta_desc'] = $category->meta_desc;
+		$this->data['meta_keyword'] = $category->meta_key;
+		$this->data['og_title'] = $category->name;
+		$this->data['og_image'] = product_link($category->image_name);
+		$this->data['urlhttp'] = category_url(slug($category->name),$category->id);
+
 		//hiển thị ra view
 		$this->data['temp'] = "site/product/category";
 		$this->load->view('site/layout',$this->data);
@@ -177,6 +184,13 @@ Class Product extends MY_Controller{
 		$ch['limit'] = [6,0];
 		$listCH = $this->product_model->get_list($ch);
 		$this->data['listCH'] = $listCH;
+
+		$this->data['title'] = $info->name;
+		$this->data['meta_desc'] = $info->meta_desc;
+		$this->data['meta_keyword'] = $info->meta_key;
+		$this->data['og_title'] = $info->name;
+		$this->data['og_image'] = product_link($info->image_name);
+		$this->data['urlhttp'] = product_url(slug($info->name),$info->id);
 
 
 		$this->data['listRelate'] = $listRelate;
