@@ -141,6 +141,13 @@ Class Product extends MY_Controller{
 		}
 		
 		$this->data['listHang'] = $listHang;
+
+		//list xem nhiều
+		$xn['where'] = ['cat_id'=>$category->id];
+		$xn['order'] = ['count_view','desc'];
+		$xn['limit'] = [6,0];
+		$listXN = $this->product_model->get_list($xn);
+		$this->data['listXN'] = $listXN;
 		
 		//pre($list);die;
 

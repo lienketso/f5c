@@ -62,7 +62,7 @@ Class MY_Controller extends CI_Controller{
 				$this->lang->load("key", $this->language);
 				//load model
 				$this->load->model('site_model');
-				$this->load->model('menu_model');
+				$this->load->model('news_model');
 				$this->load->model('category_model');
 				$this->load->model('product_model');
 				$this->load->model('catnews_model');
@@ -71,10 +71,7 @@ Class MY_Controller extends CI_Controller{
 				//load thư viện giỏ hàng tất cả các trang
 				$this->load->library('cart');
 				//menu all page
-				$menunew = $this->menu_model->getAllMenuLink();
-				$this->data = [
-					'menunew'=>$menunew
-				];
+		
 				$s['order'] = ['key','asc'];
 				$listSetting = $this->site_model->get_list($s);
 				$arrSetting = [];

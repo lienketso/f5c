@@ -24,7 +24,7 @@ body{
         height: 170px;
     }
     .img-sp-cat-page img{
-        max-width: 80%;
+        max-width: 100%;
     }
 
     .home-menu .home-menu-item{
@@ -429,7 +429,7 @@ ul.list-bread li a{
     color: #ffffff;
     text-transform: uppercase;
     line-height: 29px;
-    height: 34px;
+    height: 35px;
     font-size: 15px;
     padding-top: 5px;
 }
@@ -717,9 +717,29 @@ ul.list-bread li a{
 }
 .img-sp-cat-page{
     display: block;
-    height: 235px;
+    height: 220px;
     overflow: hidden;
+    text-align: center;
 }
 #frmSort{
     display: inline-flex;
+}
+.item-sp-cao{
+    width: 100%;
+    height: 320px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+.item-sp-cao h4{
+    font-size: 14px;
+    line-height: 20px;
+}
+.item-sp-cao p span{
+    font-size: 16px;
+    font-weight: bold;
+    color: red;
+}
+.thong-tin{
+    padding-top: 30px;
 }

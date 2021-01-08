@@ -110,6 +110,7 @@
                 Xếp theo
                 <form method="get" id="frmSort">
                 <select class="orderby fillter_checkbox sort_order" name="sort_order">
+                  <option value="">Mặc định</option>
                   <option value="asc" <?= ($sort_order=='asc') ? 'selected' : '' ?> > Giá từ thấp tới cao</option>
                   <option value="desc" <?= ($sort_order=='desc') ? 'selected' : '' ?> > Giá từ cao tới thấp</option>
                 </select>
@@ -120,7 +121,7 @@
             <div class="row">
               <?php foreach($list as $k=>$p): ?>
                 <div class="col-lg-3 col-xs-6">
-                  <div class="item-sp-cat">
+                  <div class="item-sp-cao page-cat">
                     <a class="img-sp-cat-page" href="<?= product_url(slug($p->name),$p->id) ?>"><img src="<?= url_tam($p->image_name); ?>" alt="<?= $p->name; ?>"></a>
                     <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= $p->name; ?></a></h4>
                     <p><span><?= ($p->price==0) ? 'Liên hệ' : number_format($p->price). '₫'; ?> </span></p>
@@ -148,6 +149,35 @@
             </div>
           </div>
         </div>
+
+          <div class="box-sidebar">
+       <div class="panel sp-xem-nhieu">
+        <div class="panel-heading">
+          Sản phẩm nhiều lượt xem
+        </div>
+        <ul class="list-group">
+          <?php foreach($listXN as $row): ?>
+          <li class="list-group-item">
+            <div class="item-product">
+              <div class="product-img">
+                <a href="<?= product_url(slug($row->name),$row->id) ?>" title="<?= $row->name; ?>">
+                 <img src="<?= url_tam($row->image_name); ?>" alt="<?= $row->name; ?>">
+               </a>
+             </div>
+             <div class="caption">
+              <a class="name-product" href="<?= product_url(slug($row->name),$row->id) ?>" title="<?= $row->name; ?>"><?= $row->name; ?></a>
+              <div class="price">
+                <span class="amount"><?= ($row->price==0) ? 'Liên hệ' : number_format($row->price).'đ'; ?> </span>
+              </div>
+            </div>
+          </div>
+        </li>
+      <?php endforeach; ?>
+</ul>
+</div>
+
+</div>
+
       </div>
     </div>
   </div>

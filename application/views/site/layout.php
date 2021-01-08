@@ -15,11 +15,42 @@
 
   <div id="main">
     <?php $this->load->view($temp,$this->data); ?>
+
+    
+    <section class="thong-tin">
+  <div class="container">
+    <div class="row">
+  <?php foreach($listDanhmuctin as $row): ?>
+    <?php 
+      $s['where'] = ['cat_id'=>$row->id];
+      $s['limit'] = [5,0];
+      $itemNews = $this->news_model->get_list($s);
+    ?>
+  <div class="col-lg-3 col-sm-4" style="width:20%">
+    <div class="panel">
+      <div class="panel-heading">
+        <a style="color:#fff" href="<?= catnews_url($row->friendly_url,$row->id) ?>" title='<?= $row->name; ?>'>
+        <?= $row->name; ?></a>  
+      </div>
+      <?php if(!empty($itemNews)): ?>
+      <ul class="list-group">
+        <?php foreach($itemNews as $n): ?>
+        <li><a href="<?= news_url(slug($n->title),$n->id) ?>"><?= $n->title; ?></a></li>  
+      <?php endforeach; ?>
+      </ul>
+    <?php endif; ?>
+
+    </div>
+  </div>
+<?php endforeach; ?>
+</div>
+</div>
+</section>   
+    
   </div>
 
   <div id="footer">
     <?php $this->load->view('site/footer'); ?>
-
   </div>
 
 
