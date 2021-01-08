@@ -6,23 +6,23 @@
     <div class="container">
       <ul class="list-inline text-right">
         <li>
-          <a href="http://f5c.vn/bai-viet-huong-dan-mua-hang/cn4.html" title="Hướng dẫn mua hàng">
+          <a href="<?= base_url() ?>bai-viet-huong-dan-mua-hang/cn4.html" title="Hướng dẫn mua hàng">
           Hướng dẫn mua hàng  </a>
         </li>
         <li>
-          <a href="http://f5c.vn/bai-viet-gioi-thieu-ve-f5cvn/cn6.html" title="Giới thiệu F5 Corp">
+          <a href="<?= base_url() ?>bai-viet-gioi-thieu-ve-f5cvn/cn6.html" title="Giới thiệu F5 Corp">
           Giới thiệu F5 Corp  </a>
         </li>
         <li>
-          <a href="http://f5c.vn/bai-viet-cam-ket/cn1.html" title="Cam Kết">
+          <a href="<?= base_url() ?>bai-viet-cam-ket/cn1.html" title="Cam Kết">
           Cam Kết </a>
         </li>
         <li>
-          <a href="http://f5c.vn/bai-viet-phuong-thuc-thanh-toan/cn3.html" title="Phương thức thanh toán">
+          <a href="<?= base_url() ?>bai-viet-phuong-thuc-thanh-toan/cn3.html" title="Phương thức thanh toán">
           Phương thức thanh toán  </a>
         </li>
         <li>
-          <a href="http://f5c.vn/bai-viet-chinh-sach-chung/cn7.html" title="Chính sách chung">
+          <a href="<?= base_url() ?>bai-viet-chinh-sach-chung/cn7.html" title="Chính sách chung">
           Chính sách chung  </a>
         </li>
       </ul>

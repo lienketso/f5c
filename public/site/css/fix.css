@@ -32,10 +32,22 @@ body{
         width: 50%;
         margin: 0 auto;
     }
+    .list-sp-hot h4{
+        height: 40px;
+    }
 }
 @media(max-width: 767px){
     .hotline-header-fix{
         display: none;
+    }
+    .img-sp-hot img{
+        height: 130px;
+    }
+    .img-sp-cat img{
+        
+    }
+    .list-sp-hot h4{
+        height: 85px;
     }
 }
 .btn-inline{
@@ -129,7 +141,6 @@ body{
 	margin: 0;
 	padding: 5px 0;
     line-height: 22px;
-    height: 40px;
     margin-bottom: 10px;
 }
 .list-sp-hot h4 a{

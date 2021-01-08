@@ -16,7 +16,7 @@
           <div class="col-lg-9">
             <div class="row">
               <?php foreach($list as $k=>$p): ?>
-                <div class="col-lg-3 ">
+                <div class="col-lg-3 col-xs-6">
                   <div class="item-sp-cat">
                     <a class="img-sp-cat" href="<?= product_url(slug($p->name),$p->id) ?>">
                       <img src="<?= url_tam($p->image_name) ?>" alt="<?= $p->name; ?>"></a>

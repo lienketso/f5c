@@ -127,7 +127,7 @@
           <div class="row">
             <?php if(!empty($listXemnhieu)): ?>
               <?php foreach($listXemnhieu as $row): ?>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-xs-6">
                   <div class="item-sp-hot">
                     <a class="img-sp-hot" href="<?= product_url(slug($row->name),$row->id) ?>"><img src="<?= url_tam($row->image_name); ?>"></a>
                     <div class="prdLblCampaign">
@@ -216,7 +216,7 @@
 
         <?php if(!empty($itemProduct)): ?>
           <?php foreach($itemProduct as $k=>$pro): ?>
-           <div class="col-lg-3 borderlr_<?= $k ?>"  >
+           <div class="col-lg-3 col-xs-6 borderlr_<?= $k ?>"  >
             <div class="item-sp-cat">
               <a class="img-sp-cat" href="<?= product_url(slug($pro->name),$pro->id) ?>"><img src="<?= url_tam($pro->image_name); ?>" alt="<?= $pro->name; ?>"></a>
               <h4><a href="<?= product_url(slug($pro->name),$pro->id) ?>"><?= $pro->name; ?></a></h4>
