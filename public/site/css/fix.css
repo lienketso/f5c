@@ -720,3 +720,6 @@ ul.list-bread li a{
     height: 235px;
     overflow: hidden;
 }
+#frmSort{
+    display: inline-flex;
+}

@@ -108,10 +108,12 @@
             <div class="result clearfix">
               <div class="orderby pull-right">
                 Xếp theo
+                <form method="get" id="frmSort">
                 <select class="orderby fillter_checkbox sort_order" name="sort_order">
-                  <option value="7"> Giá từ thấp tới cao</option>
-                  <option value="8"> Giá từ cao tới thấp</option>
+                  <option value="asc" <?= ($sort_order=='asc') ? 'selected' : '' ?> > Giá từ thấp tới cao</option>
+                  <option value="desc" <?= ($sort_order=='desc') ? 'selected' : '' ?> > Giá từ cao tới thấp</option>
                 </select>
+                </form>
               </div>
 
             </div>

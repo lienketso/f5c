@@ -129,6 +129,11 @@
     });             
    });
 
+    //dành cho sort
+    $('.sort_order').on('change', function(e){
+      $('#frmSort').submit();
+    })
+
   });
 </script>
 

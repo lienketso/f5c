@@ -74,9 +74,11 @@ Class Product extends MY_Controller{
 		$where = 'friendly_url="'.$slug.'"';
 		$category = $this->category_model->get_info_rule($where);
 		$this->data['category'] = $category;
+		$sort_order = 'asc';
+		$sort_order = $this->input->get('sort_order');
 		$input = array();
 		//lấy ra danh sách sản phẩm trong danh mục
-		
+		$this->data['sort_order'] = $sort_order;
 		if($category->parent_id==0){
 			$ids = [$category->id];
 			$s['where'] = ['parent_id'=>$category->id];
@@ -121,12 +123,12 @@ Class Product extends MY_Controller{
 		$segment = $this->uri->segment(2);
 		$segment = intval($segment);
 		$this->pagination->initialize($config);
-		
+		if($sort_order){
+			$input['order'] = ['price',$sort_order];
+		}
 		$input["limit"] = array($config['per_page'], $segment);
 		//$listMulti = $this->product_category_model->get_list($input);
-		$view = '';
-		$view = $this->input->get('view');
-		$this->data['view'] = $view;
+
 		$list = $this->product_model->get_list($input);
 		$this->data['list'] = $list;
 		//list hãng sản xuất theo danh mục
