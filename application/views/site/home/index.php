@@ -59,8 +59,8 @@
               </div>
               
               <div class="ads_banner_bottom">
-                <a href="#"><img src="https://cdn.tgdd.vn/qcao/04_01_2021_01_05_59_kachi.png" alt=""></a>
-                <a href="#"><img src="https://cdn.tgdd.vn/qcao/04_01_2021_01_05_59_kachi.png" alt=""></a>
+                <a class="ads_two" href="#" style="background-image:url('https://cdn.tgdd.vn/qcao/04_01_2021_01_05_59_kachi.png')"></a>
+                <a class="ads_two" href="#" style="background-image:url('https://cdn.tgdd.vn/qcao/04_01_2021_01_05_59_kachi.png')"></a>
               </div>
 
             </div>
