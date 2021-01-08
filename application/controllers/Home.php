@@ -53,7 +53,7 @@ Class Home extends MY_Controller{
 		$config['mailtype'] = 'html';
 		$config['wordwrap'] = TRUE;
 		$headers = 'MIME-Version: 1.0' . "\r\n" . 'Content-type: text/html; charset=UTF-8' . "\r\n";
-		$headers .= "From: admin@lienketso.vn\r\nReply-To: vccgroup@gmail.com";
+		$headers .= "From: admin@lienketso.vn\r\nReply-To: info@f5c.vn";
 		$this->email->initialize($config);
 		$this->email->set_header($headers);
 		$this->email->set_newline("\r\n");

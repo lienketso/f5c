@@ -18,7 +18,7 @@
               <?php foreach($list as $k=>$p): ?>
                 <div class="col-lg-3 col-xs-6">
                   <div class="item-sp-cat">
-                    <a class="img-sp-cat" href="<?= product_url(slug($p->name),$p->id) ?>">
+                    <a class="img-sp-cat-page" href="<?= product_url(slug($p->name),$p->id) ?>">
                       <img src="<?= url_tam($p->image_name) ?>" alt="<?= $p->name; ?>"></a>
                     <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= $p->name; ?></a></h4>
                     <p><span><?= ($p->price==0) ? 'Liên hệ' : number_format($p->price). '₫'; ?> </span></p>

@@ -23,7 +23,10 @@ body{
     .img-sp-hot img{
         height: 170px;
     }
-    
+    .img-sp-cat-page img{
+        max-width: 80%;
+    }
+
     .home-menu .home-menu-item{
         min-height: 46px;
         display: block;
@@ -708,4 +711,12 @@ ul.list-bread li a{
 .txt_ketqua span{
     font-weight: bold;
     color: #F58634;
+}
+.result .orderby select{
+    border: 0;
+}
+.img-sp-cat-page{
+    display: block;
+    height: 235px;
+    overflow: hidden;
 }

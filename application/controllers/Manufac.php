@@ -31,10 +31,10 @@ Class Manufac extends MY_Controller{
 					$ids[] += $ba->id;
 				}
 			}
-			$input['where'] = ['hide'=>'0'];
+			$input['where'] = ['hide'=>'0','manufac_id'=>$facid];
 			$input['where_in'] = ['cat_id',$ids];
 		}else{
-			$input['where'] = ['cat_id'=>$catid];
+			$input['where'] = ['cat_id'=>$catid,'manufac_id'=>$facid];
 		}
 	
 		$total_row = $this->product_model->get_total($input);
