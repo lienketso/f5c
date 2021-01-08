@@ -19,7 +19,7 @@
               </a>
             </div>
             <div class="col-md-9 col-sm-9 no-padding">
-              <p class="hotline-header-fix"><?= $arrSetting['site_hotline_top']; ?></p>
+              <p class="hotline-header-fix"><?= $this->site_model->getSettingMeta('site_hotline_top'); ?></p>
 
 <style>
   .box-goi-y-search a.selected{background-color:#ccc;}

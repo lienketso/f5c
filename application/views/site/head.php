@@ -1,11 +1,11 @@
 <!-- Basic Page Needs
   ================================================== -->
-  <title><?= (isset($title)) ? $title : $arrSetting['site_title']; ?></title>
+  <title><?= (isset($title)) ? $title : $this->site_model->getSettingMeta('site_title'); ?></title>
   
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="title" content="<?= (isset($title)) ? $title : $arrSetting['site_title']; ?>" />
-  <meta name="description" content="<?= (isset($meta_desc)) ? $meta_desc : $arrSetting['meta_desc']; ?>" />
-  <meta name="keywords" content="<?= (isset($meta_keyword)) ? $meta_keyword : $arrSetting['meta_keyword']; ?>" />
+  <meta name="title" content="<?= (isset($title)) ? $title : $this->site_model->getSettingMeta('site_title'); ?>" />
+  <meta name="description" content="<?= (isset($meta_desc)) ? $meta_desc : $this->site_model->getSettingMeta('meta_desc'); ?>" />
+  <meta name="keywords" content="<?= (isset($meta_keyword)) ? $meta_keyword : $this->site_model->getSettingMeta('meta_keyword'); ?>" />
   <meta name="robots" content="index, follow" />
   
   <link hreflang="vi-vn" href="#" rel="alternate">

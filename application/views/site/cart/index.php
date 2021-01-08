@@ -304,7 +304,7 @@ Xóa</a>
     </div>
     <div id="shop" class="tab-pane fade">
         <div class="col-md-12">
-          <div class="text-tb"> <?= $arrSetting['site_company'] ?></div>
+          <div class="text-tb">  <?= $this->site_model->getSettingMeta('site_company'); ?></div>
         </div>
 
     </div>
@@ -346,7 +346,7 @@ Xóa</a>
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-body">
-               <?= $arrSetting['site_bank'] ?>
+            <?= $this->site_model->getSettingMeta('site_bank'); ?>
             </div>
         </div>
     </div>
