@@ -27,11 +27,11 @@
 </style>
 
 <div class="box_search" style="position:relative"> 
-  <form action="<?= base_url('home/search') ?>" method='get' id="box_search">
+  <form action="<?= base_url('search.html') ?>" method='get' id="box_search">
     <div class="input-group form-search">
       <div class="input-group-btn" style="position:relative">
         <select name="cat" class="form-control" style="padding-left:17px;background:url('<?= public_url('site/lib') ?>/layout/img/icon/1.png') no-repeat 130px center">
-          <option class="selected">Tất cả sản phẩm</option>
+          <option class="selected" value="0">Tất cả sản phẩm</option>
           <?php foreach($categoryParent as $row): ?>
           <option value="<?= $row->id ?>" ><?= $row->name; ?></option>
           <?php endforeach; ?>

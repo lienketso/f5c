@@ -149,27 +149,52 @@ Class Home extends MY_Controller{
 			}
 		}
 	}
+
 	function search(){
 		$this->load->model('product_model');
 
-		$q = $this->input->get('q');
+		$cat = $this->input->get('cat');
+		$text_search = $this->input->get('text-search');
 		
-		$this->data['q'] = $q;
+		$this->data['text_search'] = $text_search;
 		$input = array();
-		$input['where'] = ['status'=>1];
-		if($q){
-			$input['like'] = ['name',$q];
+		$input['where'] = ['hide'=>'0'];
+		$input2['where'] = ['hide'=>'0'];
+		if($text_search){
+			$input['like'] = ['name',$text_search];
+			$input2['like'] = ['name',$text_search];
+		}
+		if($cat && $cat>0){
+			$arrId = [];
+			$c['where'] = ['parent_id'=>$cat];
+			$listCat = $this->category_model->get_list($c);
+			foreach($listCat as $chai){
+				array_push($arrId,$chai->id);
+				$cc['where'] = ['parent_id'=>$chai->id];
+				$listCatBa = $this->category_model->get_list($cc);
+				if(!empty($listCatBa) && count($listCatBa)>0){
+					foreach($listCatBa as $catba){
+						array_push($arrId,$catba->id);
+					}
+				}
+			}
+			
+			$input['where_in'] = ['cat_id',$arrId];
+			$input2['where_in'] = ['cat_id',$arrId];
 		}
 		
 		$lists = $this->product_model->get_list($input);
 		$numrows = count($lists);
+		$this->data['numrows'] = $numrows;
+		$this->data['text_search'] = $text_search;
+
 		$this->load->library('pagination');
 		$config = array();
 		if (count($_GET) > 0) $config['suffix'] = '?' . http_build_query($_GET, '', "&");
-		$config['base_url']    = base_url('search');
+		$config['base_url']    = base_url('search.html');
 		$config['first_url'] = $config['base_url'].'?'.http_build_query($_GET);
 		$config['total_rows']  = $numrows;
-		$config['per_page']    = 10;
+		$config['per_page']    = 20;
 		$config['uri_segment'] = 2;
 		$config['full_tag_open'] = '<ul class="pagination">';
 		$config['full_tag_close'] = '</ul>';
@@ -195,18 +220,20 @@ Class Home extends MY_Controller{
 		$segment = intval($segment);
 		$input["limit"] = array($config['per_page'], $segment);
 
-		$view = '';
-		$view = $this->input->get('view');
-		$this->data['view'] = $view;
-
 		$list = $this->product_model->get_list($input);
 		$this->data['numrows'] = $numrows;
-		$this->data['list'] = $list;
-
- 
+		$this->data['list'] = $list; 
 
   		$nowUrl = http_build_query($_GET, '', "&");
   		$this->data['nowUrl'] = $nowUrl;
+
+  		//sản phẩm xem nhiều theo kết quả tìm kiếm
+  		$input2['order'] = ['count_view','desc'];
+  		$input2['limit'] = [7,0];
+  		$listXN = $this->product_model->get_list($input2);
+  		$this->data['listXN'] = $listXN;
+
+
 
 		$this->data['temp'] = 'site/home/search';
 		$this->load->view('site/layout', $this->data);

@@ -44,7 +44,7 @@ body{
         height: 130px;
     }
     .img-sp-cat img{
-        
+
     }
     .list-sp-hot h4{
         height: 85px;
@@ -704,4 +704,8 @@ ul.list-bread li a{
 }
 .tt_them{
     padding-top: 15px;
+}
+.txt_ketqua span{
+    font-weight: bold;
+    color: #F58634;
 }

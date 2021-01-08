@@ -55,5 +55,25 @@ Class Product_model extends MY_Model{
 		}else{
 			echo 'No data';
 		}
-	}	
+	}
+
+	//lấy ra tất cả nhóm con
+
+	function fetch_recursive($src_arr, $currentid, $parentfound = false, $cats = array())
+		{
+    foreach($src_arr as $row)
+    {
+        if((!$parentfound && $row->id == $currentid) || $row->id == $currentid)
+        {
+            $rowdata = array();
+            foreach($row as $k => $v)
+                $rowdata[$k] = $v;
+            $cats[] = $rowdata;
+            if($row->parent_id== $currentid)
+                $cats = array_merge($cats, fetch_recursive($src_arr, $row->id, true));
+        }
+    }
+    return $cats;
+	}
+
 }

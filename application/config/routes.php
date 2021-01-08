@@ -58,6 +58,8 @@ $route['translate_uri_dashes'] = FALSE;
 $route['gio-hang.html'] = 'cart/index';
 $route['user/login.html'] = 'user/login';
 $route['user/register.html'] = 'user/register';
+$route['search.html'] = 'home/search';
+$route['search.html/(:num)'] = 'home/search/$1';
 
 //tin tức
 $route['tin-tuc.html'] = 'news/all';
