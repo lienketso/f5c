@@ -740,6 +740,24 @@ ul.list-bread li a{
     font-weight: bold;
     color: red;
 }
+.noborder{
+    border: 0 !important;
+}
 .thong-tin{
     padding-top: 30px;
+}
+.flex-prev{
+    background-image: url('../img/prev.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.flex-next{
+    background-image: url('../img/next.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.sl-thumb li{
+    border: 1px solid #ccc;
 }

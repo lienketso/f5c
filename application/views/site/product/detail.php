@@ -29,12 +29,12 @@
                   <div id="slider" class="flexslider">
                     <ul class="slides">
                       <li>
-                        <img src="<?= $info->image_name; ?>" alt="<?= $info->name; ?>" />
+                        <img src="<?= url_tam($info->image_name); ?>" alt="<?= $info->name; ?>" />
                       </li>
                       <?php if(!empty($listAttach)): ?>
                         <?php foreach($listAttach as $a): ?>
                       <li>
-                        <img src="<?= product_link($a->file_name); ?>" alt="<?= $info->name; ?>" />
+                        <img src="<?= url_tam($a->file_name); ?>" alt="<?= $info->name; ?>" />
                       </li>
                     <?php endforeach; ?>
                   <?php endif; ?>
@@ -42,16 +42,16 @@
                       <!-- items mirrored twice, total of 12 -->
                     </ul>
                   </div>
-                  <div id="carouselh" class="flexslider">
-                    <ul class="slides">
+                  <div id="carouselh" class="flexslider noborder">
+                    <ul class="slides sl-thumb">
                       <li>
-                        <img src="<?= product_link($info->image_name); ?>" alt="thumbnail <?= $info->name; ?>" />
+                        <img src="<?= url_tam($info->image_name); ?>" alt="thumbnail <?= $info->name; ?>" />
                       </li>
 
                       <?php if(!empty($listAttach)): ?>
                         <?php foreach($listAttach as $a): ?>
                       <li>
-                        <img src="<?= product_link($a->file_name); ?>" alt="<?= $info->name; ?>" />
+                        <img src="<?= url_tam($a->file_name); ?>" alt="<?= $info->name; ?>" />
                       </li>
                     <?php endforeach; ?>
                   <?php endif; ?>
@@ -148,7 +148,7 @@
                 <?php foreach($listCH as $row): ?>
                   <div class="list-cunghang">
                     <div class="img-cunghang">
-                      <a href="<?= product_url(slug($row->name),$row->id) ?>"><img src="<?= $row->image_name; ?>" align="<?= $row->name; ?>"></a>
+                      <a href="<?= product_url(slug($row->name),$row->id) ?>"><img src="<?= url_tam($row->image_name); ?>" align="<?= $row->name; ?>"></a>
                     </div>
                     <div class="info-cunghang">
                       <p class="title-cunghang"><a href="<?= product_url(slug($row->name),$row->id) ?>"><?= $row->name; ?></a></p>
