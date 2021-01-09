@@ -40,7 +40,11 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <!-- raty -->
-<script type="text/javascript" src="<?= public_url('site/lib') ?>/layout/raty/jquery.raty.min.js"></script>
+<script type="text/javascript" src="<?= public_url('site/lib') ?>/layout/raty/jquery.raty.min.js">
+</script>
 
+<script type="text/javascript">
+  var base_url = 'https://f5c.vn/';
+</script>
 <!--End raty -->
 <!-- Java Script ================================================== -->

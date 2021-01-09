@@ -23,7 +23,7 @@ Class Transaction extends MY_Controller{
 			$input['like'] = ['name',$name];
 			}
 			if($start || $enddate){
-			$input['where'] = " created_at BETWEEN CAST('".$startdate."' AS DATE) AND CAST('".$enddate."' AS DATE)";	
+			$input['where'] = " created BETWEEN CAST('".$startdate."' AS DATE) AND CAST('".$enddate."' AS DATE)";	
 			}
 		}
 		$this->data['name'] = $name;

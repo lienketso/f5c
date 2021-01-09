@@ -65,10 +65,8 @@
       <div class="rowss">
       <?php 
           
-
           $pr['where'] = ['hide'=>'0'];
           $pr['where_in'] = ['cat_id',$conId];
-          
           $pr['limit'] = [8,0];
           $productP = $this->product_model->get_list($pr);
       ?>
