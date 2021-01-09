@@ -61,6 +61,8 @@ $route['user/register.html'] = 'user/register';
 $route['search.html'] = 'home/search';
 $route['search.html/(:num)'] = 'home/search/$1';
 
+$route['thong-tin/(:any)/i(:num).html'] = 'page/view/$2';
+
 //tin tức
 $route['tin-tuc.html'] = 'news/all';
 $route['tin-tuc.html/(:num)'] = 'news/all/$1';
