@@ -12,7 +12,7 @@ Class Product extends MY_Controller{
 		//Tạo thông báo 
 		$this->load->library('pagination');
 		$input = array();
-	
+		$input['where'] = [];
 		//lấy ra tổng tất cả các sản phẩm
 		$total_row = $this->product_model->get_total($input);
 		$this->data['total_row'] = $total_row;
@@ -48,7 +48,7 @@ Class Product extends MY_Controller{
 		$input["limit"] = array($config['per_page'], $segment);
 		//kiểm tra xem có lọc sản phẩm không, thêm điều kiện
 		$name = $this->input->get('name');
-		$category_id = $this->input->get('cat_id');
+		$category_id = $this->input->get('category_id');
 		if($name){
 			$input['like'] = array('name', $name);
 		}

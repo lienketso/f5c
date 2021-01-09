@@ -89,17 +89,9 @@
 <th>
 
 <input type="checkbox" name="allbox" id="allbox" onclick="return check_all();" ></th>
-
 <th>Tên người dùng</th>
-
 <th>Email</th>
-
-<th>Điện thoại</th>
-
-<th>Tình trạng</th>
-
 <th>Cấu hình</th>
-
 </tr>
 
 </thead>   
@@ -107,61 +99,26 @@
 <tbody class="list_item">
 
 <?php foreach($list as $row) : ?>
-
 <tr class="row_<?php echo $row->id; ?>">
-
 <td>
-
 <input type="checkbox" id="" name="id[]" value="<?php echo $row->id ?>"></td>
-
 <td><?= $row->username; ?></td>
 <td><?= $row->name; ?></td>
 <td class="center">
-
-<?php if($row->status==1): ?>
-
-<span class="badge badge-success">Đang sử dụng</span>
-
-<?php endif; ?>
-
-<?php if($row->status==0): ?>
-
-<span class="badge badge-warning">Tạm khóa</span>
-
-<?php endif; ?>
-
-</td>
-
-
-
-<td class="center">
-
 <a class="btn btn-sm btn-info" href="<?php echo admin_url('user/edit/'.$row->id); ?>">
-
 <i class="ti-pencil-alt"></i>  
-
 </a>
 
 <a class="btn btn-sm btn-danger" href="<?php echo admin_url('user/del/'.$row->id); ?>" onclick="return check_del();">
-
 <i class="ti-trash"></i>  
-
 </a>
-
-
-
 </td>
-
 </tr>
-
 <?php endforeach; ?>
 
 </tbody>
-
 </table>  
-
 </div>
-
 </form>
 
 <div class="card">
