@@ -40,7 +40,7 @@
       $cba['order'] = ['sort_order','asc'];
       $cba['limit'] = [5,0];
       $listCapba = $this->category_model->get_list($cba);
-      $conId = [];
+      $conId = [$c->id];
   ?>
 <section class="cat-page-list">
   <div class="container">
@@ -65,13 +65,10 @@
       <div class="rowss">
       <?php 
           
-          if(!empty($conId)){
+
           $pr['where'] = ['hide'=>'0'];
           $pr['where_in'] = ['cat_id',$conId];
-          }else{
-            $pr['where'] = ['hide'=>'0','cat_id'=>$c->id];
-          }
-
+          
           $pr['limit'] = [8,0];
           $productP = $this->product_model->get_list($pr);
       ?>
