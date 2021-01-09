@@ -146,7 +146,7 @@ Class Cart extends MY_Controller{
 				$body = '<html><body>';
 				$body .='<table cellpadding="2">';
 				$body .= '<tr><td>Bạn nhận được đơn hàng từ website <span style="font-weight:bold;">'.base_url().'</span></td><tr>';			
-				$body .= '<tr><td>Một khách hàng đã đặt hàng tại website/td><tr>';
+				$body .= '<tr><td>Một khách hàng đã đặt hàng tại website</td><tr>';
 				$ngaydat = now();
 				$body .= '<tr><td>Ngày đặt: <span style="font-weight:bold;">'.Date("d-m-Y",$ngaydat).' Lúc '.Date("H:s a",$ngaydat).'</span></td><tr>';
 				$body .= '<tr><td><span style="font-weight:bold;">Thông tin đơn hàng</span></td><tr>';	
@@ -159,7 +159,7 @@ Class Cart extends MY_Controller{
 				<td>Thành tiền</td>
 				</tr>".$donhang."
 				<tr style='font-weight:bold'>
-				<td >Tổng tiền</td>
+				<td colspan='2'>Tổng tiền</td>
 				<td>".number_format($this->cart->total())." đ</td>
 				</tr>
 				</table>
