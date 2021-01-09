@@ -46,6 +46,17 @@
 </div>
 </div>
 </section>   
+
+<section class="list_keyword">
+  <div class="container">
+    <h3 class="keyword_home_title">Từ khóa tìm kiếm nhiều</h3>
+    <div class="keyword_search">
+      <?php foreach($listSearch as $row): ?>
+      <a title="Xem sản phẩm với từ khóa" href="<?= base_url('search.html?cat=0&text-search='.$row->keyword) ?>"><?= $row->keyword; ?> ( <?= $row->total ?> )</a>
+    <?php endforeach ?>
+    </div>
+  </div>
+</section>
     
   </div>
 

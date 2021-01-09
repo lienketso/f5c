@@ -100,6 +100,13 @@ Class MY_Controller extends CI_Controller{
 				$sp['order'] = ['sort_order','asc'];
 				$GroupSupport = $this->support_group_model->get_list($sp);
 				$this->data['GroupSupport'] = $GroupSupport;
+				//search keyword total
+				$se['where'] = [];
+				$se['order'] = ['total','desc'];
+				$se['limit'] = [20,0];
+				$this->load->model('search_model');
+				$listSearch = $this->search_model->get_list($se);
+				$this->data['listSearch'] = $listSearch;
 				
 				$cart_items = $this->cart->total_items();
 				$this->data['cart_items'] = $cart_items;

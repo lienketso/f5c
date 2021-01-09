@@ -768,3 +768,24 @@ ul.list-bread li a{
 .sl-thumb li{
     border: 1px solid #ccc;
 }
+.keyword_search{
+    padding-bottom: 10px;
+}
+.keyword_search a{
+    display: block;
+    border: 1px solid #007bff;
+    color: #007bff;
+    padding: 10px;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+.keyword_search a:hover{
+    border: 1px solid #007bff;
+}
+.keyword_home_title{
+    font-size: 18px;
+    color: #007bff;
+    font-weight: bold;
+}
