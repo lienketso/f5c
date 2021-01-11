@@ -52,7 +52,7 @@
                 <?php foreach($slideTop as $row): ?>
                   <div class="item">
                     <a href="<?= $row->link; ?>" title="<?= $row->name; ?>">
-                      <img alt="<?= $row->name; ?>" src="<?= product_link($row->image_name); ?>">
+                      <img alt="<?= $row->name; ?>" src="<?= url_tam($row->image_name); ?>">
                     </a>
                   </div>
                 <?php endforeach; ?>
