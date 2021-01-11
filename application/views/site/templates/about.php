@@ -1,42 +1,68 @@
-<section class="page-head">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <ul class="breadcrumb">
-            <li><a href="<?= base_url() ?>"><?= ($lang=='vn') ? 'Trang chủ' : 'Home' ?></a></li>
-            <li><?= $info->title; ?></li>
-          </ul>
-          <h1><?= ($lang=='vn') ? 'Trang tin' : 'Page'; ?></h1>  
-        </div>
-      </div>
-    </div>
-  </section>
+<?php $this->load->view('site/blocks/block_menu'); ?>
+<div class="breadcrum-f">
+  <div class="container">
+    <ul class="list-bread">
+      <li><a href="<?= base_url() ?>">Trang chủ <span>›</span></a></li>
+      <li><span> <?= $info->title; ?></span></li>
+    </ul>
+  </div>
+</div>
 
-  <section class="blog-list">
-    <div class="blog-content">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8">
-            <div class="blog-post text-page">
-              <h1><?= $info->title ?></h1>
-              <?= $info->content ?>
-              <div class="social-small">
-                <strong>Share:</strong>
-                <a href="https://twitter.com/intent/tweet?text=<?= $info->title ?>+?= news_url('',$info->slug,$info->id); ?>" class="fa fa-twitter"></a>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=<?= news_url('',$info->slug,$info->id); ?>" class="fa fa-facebook"></a>
-                <a href="http://www.linkedin.com/shareArticle?mini=true&url=<?= news_url('',$info->slug,$info->id); ?>" class="fa fa-instagram"></a>
-<!--                 <a href="#" class="fa fa-google-plus"></a>
-                <a href="#" class="fa fa-pinterest"></a> -->
-              </div>
-          
+<section class="sidebar-news">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-3 sidebar">
+        <div class="box-sidebar">
+          <div class="panel tu-van-tieu-dung">
+            <div class="panel-heading">
+              Danh mục bài viết
+            </div>
+            <div class="list-group">
+              <?php foreach($listDanhmuctin as $row): ?>
+                <a class="list-group-item" href="<?= catnews_url(slug($row->name),$row->id); ?>">
+                  <i class="fa fa-angle-double-right">&nbsp;&nbsp;</i> <?= $row->name; ?> 
+                </a>
+              <?php endforeach; ?>
             </div>
           </div>
-          <div class="col-md-4">
-            <?php $this->load->view('site/blocks/block_right'); ?>
-          </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <?php $this->load->view('site/blocks/block_contact'); ?>
+      <div class="col-md-9 col-sm-9 main-right">
+        <section class="sp-da-xem">
+
+          <div class="box-itemt">
+            <div class="clear"></div>
+            <h1 class="left"><?= $info->title; ?></h1>
+            <div class="clear"></div>
+
+            <div class="left timestamp">
+              <span class="ml5">Lượt xem: <?= $info->count_view; ?></span>
+            </div>
+            <div class="clear pb10"></div>
+
+            <?= $info->content; ?>
+  
+            <div class="clear pb10"></div>
+
+      </div>
+      <div class="clear"></div>
+      <div class="heading">
+        <span>Bài viết liên quan</span>
+      </div>
+      <ul>
+        <?php foreach($tinlienquan as $row): ?>
+        <li style="float:none;padding:10px ;border-bottom:1px solid #f0f0f0">
+          <a href="<?= base_url('thong-tin/'.slug($row->title).'i'.$row->id.'.html') ?>" title="<?= $row->title; ?>">
+            <?= $row->title; ?>         
+          </a>
+          <div class="clear"></div>
+        </li>
+        <?php endforeach; ?>
+      </ul>
+
+</section>
+</div>
+</div>
+</div>
+</section>

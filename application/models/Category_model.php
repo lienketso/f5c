@@ -99,6 +99,7 @@ Class Category_model extends MY_Model{
     $input = array();
     $input['where'] = array('parent_id'=>$parent);
     $input['order'] = array('sort_order','asc');
+    $input['limit'] = [13,0];
     $arrListCate = $this->get_list($input);
     $arr = array();
     if ($arrListCate){

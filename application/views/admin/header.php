@@ -51,22 +51,7 @@
             <?php endforeach; ?>
             </div>
           </li>
-          <li class="nav-item nav-lang dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="langDropdown">
-              <span class="nav-lang-name"> <?= ($lang=='vn') ? 'Tiếng Việt' : 'English'; ?> </span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="langDropdown">
-              <a href="<?= admin_url('home/lang/vn'); ?>" class="dropdown-item">
-                <i class="mdi mdi-settings text-primary"></i>
-                Tiếng việt
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="<?php echo admin_url('home/lang/en'); ?>" class="dropdown-item">
-                <i class="mdi mdi-settings text-primary"></i>
-                English
-              </a>
-            </div>
-          </li>
+   
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
               <img src="<?= public_url();?>/admin/images/faces/face5.jpg" alt="profile"/>

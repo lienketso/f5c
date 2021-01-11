@@ -62,7 +62,7 @@ Class MY_Controller extends CI_Controller{
 				$this->lang->load("key", $this->language);
 				//load model
 				$this->load->model('site_model');
-				$this->load->model('menu_model');
+				$this->load->model('news_model');
 				$this->load->model('category_model');
 				$this->load->model('product_model');
 				$this->load->model('catnews_model');
@@ -71,10 +71,7 @@ Class MY_Controller extends CI_Controller{
 				//load thư viện giỏ hàng tất cả các trang
 				$this->load->library('cart');
 				//menu all page
-				$menunew = $this->menu_model->getAllMenuLink();
-				$this->data = [
-					'menunew'=>$menunew
-				];
+		
 				$s['order'] = ['key','asc'];
 				$listSetting = $this->site_model->get_list($s);
 				$arrSetting = [];
@@ -87,6 +84,11 @@ Class MY_Controller extends CI_Controller{
 				$allCategory = $this->category_model->getCategoryAllsub(0);
 				$this->data['allCategory'] = $allCategory;
 
+				$c['where'] = ['parent_id'=>0];
+				$c['order'] = ['sort_order','asc'];
+				$categoryParent = $this->category_model->get_list($c);
+				$this->data['categoryParent'] = $categoryParent;
+
 				//Danh mục tin chân trang
 				$dmt['where'] = ['parent_id'=>0];
 				$dmt['order'] = ['sort_order','asc'];
@@ -98,7 +100,16 @@ Class MY_Controller extends CI_Controller{
 				$sp['order'] = ['sort_order','asc'];
 				$GroupSupport = $this->support_group_model->get_list($sp);
 				$this->data['GroupSupport'] = $GroupSupport;
+				//search keyword total
+				$se['where'] = [];
+				$se['order'] = ['total','desc'];
+				$se['limit'] = [20,0];
+				$this->load->model('search_model');
+				$listSearch = $this->search_model->get_list($se);
+				$this->data['listSearch'] = $listSearch;
 				
+				$cart_items = $this->cart->total_items();
+				$this->data['cart_items'] = $cart_items;
 
 				$Ishome = '';
 				$this->data['Ishome'] = $Ishome;

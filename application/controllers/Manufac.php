@@ -31,10 +31,10 @@ Class Manufac extends MY_Controller{
 					$ids[] += $ba->id;
 				}
 			}
-			$input['where'] = ['hide'=>'0'];
+			$input['where'] = ['hide'=>'0','manufac_id'=>$facid];
 			$input['where_in'] = ['cat_id',$ids];
 		}else{
-			$input['where'] = ['cat_id'=>$catid];
+			$input['where'] = ['cat_id'=>$catid,'manufac_id'=>$facid];
 		}
 	
 		$total_row = $this->product_model->get_total($input);
@@ -84,6 +84,13 @@ Class Manufac extends MY_Controller{
 		}
 		}
 		$this->data['listHang'] = $listHang;
+
+		$this->data['title'] = $InfoCat->name;
+		$this->data['meta_desc'] = $InfoCat->meta_desc;
+		$this->data['meta_keyword'] = $InfoCat->meta_key;
+		$this->data['og_title'] = $InfoCat->name;
+		$this->data['og_image'] = product_link($InfoCat->image_name);
+		$this->data['urlhttp'] = category_url(slug($InfoCat->name),$InfoCat->id);
 
 		$this->data['temp'] = "site/manufac/index";
 		$this->load->view('site/layout',$this->data);

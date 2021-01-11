@@ -51,7 +51,6 @@
 <input type="checkbox" name="allbox" id="allbox" onclick="return check_all();" ></th>
 <th>Tiêu đề</th>
 <th>Hình ảnh</th>
-<th>Trạng thái</th>
 <th>Lượt xem</th>
 <th>Ngày tạo</th>
 <th>Cấu hình</th>
@@ -70,14 +69,7 @@
 <img src="<?= public_url('site/img/noimage.png'); ?>" width="70">
 <?php endif; ?>
 </td>	
-<td class="center">
-<?php if($row->status==1): ?>
-<span class="badge badge-success">Hiển thị</span>
-<?php endif; ?>
-<?php if($row->status==0): ?>
-<span class="badge badge-warning">Tạm ẩn</span>
-<?php endif; ?>
-</td>
+
 <td><span style="font-weight: bold;"><?= $row->count_view; ?></span></td>
 <td class="center"><?php echo int_to_date($row->created); ?></td>
 <td class="center">

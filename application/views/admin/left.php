@@ -7,12 +7,12 @@
               <span class="menu-title">Trang chính</span>
             </a>
           </li>
-          <li class="nav-item <?= ($urlSec=='menu') ? 'active' : '' ?>">
+          <!-- <li class="nav-item <?= ($urlSec=='menu') ? 'active' : '' ?>">
             <a class="nav-link" href="<?php echo admin_url('menu'); ?>">
               <i class="mdi mdi-airplay menu-icon"></i>
               <span class="menu-title">Menu</span>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item <?= ($urlSec=='news') ? 'active' : '' ?>">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic-post" aria-expanded="false" aria-controls="ui-basic-post">
               <i class="ti-rss menu-icon"></i>
@@ -72,7 +72,20 @@
               <span class="menu-title">Slide</span>
             </a>
           </li> 
-          
+
+          <li class="nav-item <?= ($urlSec=='ads_banner') ? 'active' : '' ?>">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic-banner" aria-expanded="false" aria-controls="ui-basic-banner">
+              <i class="ti-settings menu-icon"></i>
+              <span class="menu-title">Quảng cáo</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse <?= ($urlSec=='ads_banner') ? 'show' : '' ?>" id="ui-basic-banner">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="<?= admin_url('ads_location'); ?>" >Vị trí quảng cáo</a></li>
+                 <li class="nav-item"> <a class="nav-link" href="<?= admin_url('ads_banner'); ?>">Banner quảng cáo</a></li> 
+              </ul>
+            </div>
+          </li>
           
           <li class="nav-item <?= ($urlSec=='site_setting') ? 'active' : '' ?>">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic-setting" aria-expanded="false" aria-controls="ui-basic-setting">
@@ -83,7 +96,6 @@
             <div class="collapse <?= ($urlSec=='site_setting') ? 'show' : '' ?>" id="ui-basic-setting">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="<?= admin_url('site_setting'); ?>" >Cấu hình chung</a></li>
-                 <li class="nav-item"> <a class="nav-link" href="<?= admin_url('site_setting/home'); ?>">Giới thiệu trang chủ</a></li> 
                 <li class="nav-item"> <a class="nav-link" href="<?= admin_url('site_setting/mail'); ?>">Email config</a></li>
               </ul>
             </div>

@@ -42,20 +42,19 @@
             </ul>       
           </li>
 
-          <li><a href="#">Store locator</a></li>
+          <li><a href="<?= base_url() ?>thong-tin/ve-cong-ty-f5/i5.html">Giới thiệu về doanh nghiệp</a></li>
+          <li><a href="<?= base_url() ?>bai-viet-huong-dan-mua-hang/cn4.html">Hướng dẫn mua hàng</a></li>
+
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My account <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tài khoản <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li class="divider"></li>
-              <li><a href="#">Separated link</a></li>
+              <li><a href="<?= base_url('user/register.html') ?>">Đăng ký</a></li>
+              <li><a href="<?= base_url('user/login.html') ?>">Đăng nhập</a></li>
             </ul>
           </li>
-          <li><a href="#">My cart (0) items</a></li>
+          <li><a href="<?= base_url('gio-hang.html') ?>">Giỏ hàng (<?= $cart_items; ?>) </a></li>
         </ul>
       </div><!-- /.nav-collapse -->
     </nav>

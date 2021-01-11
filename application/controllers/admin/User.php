@@ -96,19 +96,11 @@ Class User extends MY_Controller{
 				$name = $this->input->post('name');
 				$username = $this->input->post('username');
 				$password = $this->input->post('password');
-				$address = $this->input->post('address');
-				$phone = $this->input->post('phone');
-				$email = $this->input->post('email');
-				$image = $this->input->post('image');
 				$type = $this->input->post('type');
 				$data = array(
 					'name'=> $name,
 					'username' => $username,
 					'password' => md5($password),
-					'address' => $address,
-					'phone' => $phone,
-					'email'=>$email,
-					'image'=>$image,
 					'type'=>$type
 					);
 				$permission = $this->input->post('permission');
@@ -155,18 +147,11 @@ Class User extends MY_Controller{
 			if($this->form_validation->run()){
 				$name = $this->input->post('name');
 				$username = $this->input->post('username');
-				$address = $this->input->post('address');
-				$phone = $this->input->post('phone');
-				$email = $this->input->post('email');
-				$image = $this->input->post('image');
 				$type = $this->input->post('type');
+
 				$data = array(
 					'name'=> $name,
 					'username' => $username,
-					'address' => $address,
-					'phone' => $phone,
-					'email'=>$email,
-					'image'=>$image,
 					'type'=>$type
 					);
 				$permission = $this->input->post('permission');
@@ -189,6 +174,7 @@ Class User extends MY_Controller{
 		$this->config->load('permission',true);
 		$config_permission = $this->config->item('permission');
 		$this->data['config_permission'] = $config_permission;
+
 		//load view
 		$this->data['temp'] = 'admin/user/edit';	
 		$this->load->view('admin/main', $this->data);
@@ -198,7 +184,7 @@ Class User extends MY_Controller{
 		$admin_id = intval($admin_id);
 		//lấy thông tin quản trị viên
 		$info = $this->admin_model->get_info($admin_id);
-		if($admin_id==6){
+		if($admin_id==1){
 			$this->session->set_flashdata('message', 'Bạn không thể xóa admin mặc định !');
 			$this->session->set_flashdata('alert','error');
 			redirect(admin_url('user'));

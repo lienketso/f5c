@@ -6,7 +6,7 @@ padding: 20px;
 <div id="content" class="span10">
 <nav aria-label="breadcrumb">
 <ol class="breadcrumb">
-<li class="breadcrumb-item"><a href="<?= base_url('admin') ?>">Trang chính</a></li>
+<li class="breadcrumb-item"><a href="<?= admin_url('home') ?>">Trang chính</a></li>
 <li class="breadcrumb-item active" aria-current="page">Danh sách sản phẩm</li>
 </ol>
 </nav>

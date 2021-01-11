@@ -142,16 +142,7 @@ Class Order extends MY_Controller{
 		}
 		//echo $donhang;die;
 		$this->data['total_amount'] = $total_amount;
-		//nếu thành viên đăng nhập thì lấy thông tin thành viên
-		$this->load->model('user_model');
-		$user = '';
-		if($user_id = $this->session->userdata('company_id_login')) {
-			$user_id = $this->session->userdata('company_id_login');
-			$user = $this->member_company_model->get_info($user_id);
-		}else{
-			$user_id = 0;
-		}
-		$this->data['user'] = $user;
+
 		if($this->input->post()){
 			$this->form_validation->set_rules('name','Họ tên','required|min_length[2]');
 			$this->form_validation->set_rules('address','Địa chỉ','required|min_length[6]');
@@ -276,6 +267,22 @@ Class Order extends MY_Controller{
 	$this->load->view('site/layout',$this->data);
 }
 function order_success(){
+	$this->load->model('transaction_model');
+	$this->load->model('product_order_model');
+	$this->load->model('city_model');
+	$this->load->model('district_model');
+
+	$tranid = $this->input->get('tranid');
+	if($tranid){
+		$transaction = $this->transaction_model->get_info($tranid);
+		$this->data['transaction'] = $transaction;
+		$input['where'] = ['tran_id'=>$tranid];
+		$order = $this->product_order_model->get_list($input);
+		$this->data['order'] = $order;
+	}else{
+		redirect('404');
+	}
+
 	$this->data['temp'] = 'site/order/order_success';
 	$this->load->view('site/layout',$this->data);
 }

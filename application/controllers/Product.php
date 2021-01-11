@@ -74,9 +74,11 @@ Class Product extends MY_Controller{
 		$where = 'friendly_url="'.$slug.'"';
 		$category = $this->category_model->get_info_rule($where);
 		$this->data['category'] = $category;
+		$sort_order = 'asc';
+		$sort_order = $this->input->get('sort_order');
 		$input = array();
 		//lấy ra danh sách sản phẩm trong danh mục
-		
+		$this->data['sort_order'] = $sort_order;
 		if($category->parent_id==0){
 			$ids = [$category->id];
 			$s['where'] = ['parent_id'=>$category->id];
@@ -121,12 +123,12 @@ Class Product extends MY_Controller{
 		$segment = $this->uri->segment(2);
 		$segment = intval($segment);
 		$this->pagination->initialize($config);
-		
+		if($sort_order){
+			$input['order'] = ['price',$sort_order];
+		}
 		$input["limit"] = array($config['per_page'], $segment);
 		//$listMulti = $this->product_category_model->get_list($input);
-		$view = '';
-		$view = $this->input->get('view');
-		$this->data['view'] = $view;
+
 		$list = $this->product_model->get_list($input);
 		$this->data['list'] = $list;
 		//list hãng sản xuất theo danh mục
@@ -139,8 +141,22 @@ Class Product extends MY_Controller{
 		}
 		
 		$this->data['listHang'] = $listHang;
+
+		//list xem nhiều
+		$xn['where'] = ['cat_id'=>$category->id];
+		$xn['order'] = ['count_view','desc'];
+		$xn['limit'] = [6,0];
+		$listXN = $this->product_model->get_list($xn);
+		$this->data['listXN'] = $listXN;
 		
 		//pre($list);die;
+
+		$this->data['title'] = $category->name;
+		$this->data['meta_desc'] = $category->meta_desc;
+		$this->data['meta_keyword'] = $category->meta_key;
+		$this->data['og_title'] = $category->name;
+		$this->data['og_image'] = product_link($category->image_name);
+		$this->data['urlhttp'] = category_url(slug($category->name),$category->id);
 
 		//hiển thị ra view
 		$this->data['temp'] = "site/product/category";
@@ -177,6 +193,13 @@ Class Product extends MY_Controller{
 		$ch['limit'] = [6,0];
 		$listCH = $this->product_model->get_list($ch);
 		$this->data['listCH'] = $listCH;
+
+		$this->data['title'] = $info->name;
+		$this->data['meta_desc'] = $info->meta_desc;
+		$this->data['meta_keyword'] = $info->meta_key;
+		$this->data['og_title'] = $info->name;
+		$this->data['og_image'] = product_link($info->image_name);
+		$this->data['urlhttp'] = product_url(slug($info->name),$info->id);
 
 
 		$this->data['listRelate'] = $listRelate;

@@ -21,6 +21,12 @@ function language_current(){
 function input_format_date($date=''){
   return date_format(new DateTime($date),'Y-m-d h:i:s');
 }
+function input_date($date){
+  return date_format(new DateTime($date),'d-m-Y');
+}
+function changeIntTodate($int){
+  return date("d-m-Y", $int);
+}
 function datenow(){
   return date_format(new DateTime(),'d/m/Y');
 }

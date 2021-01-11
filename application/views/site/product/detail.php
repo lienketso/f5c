@@ -42,8 +42,8 @@
                       <!-- items mirrored twice, total of 12 -->
                     </ul>
                   </div>
-                  <div id="carouselh" class="flexslider">
-                    <ul class="slides">
+                  <div id="carouselh" class="flexslider noborder">
+                    <ul class="slides sl-thumb">
                       <li>
                         <img src="<?= url_tam($info->image_name); ?>" alt="thumbnail <?= $info->name; ?>" />
                       </li>
@@ -105,7 +105,7 @@
                   <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="home">
                       <div class="thong-tin-sp">
-                        <?= $info->content; ?>
+                        <?= str_replace('{base_url}','https://f5c.vn/',$info->content); ?>
                       </div>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="tab">
@@ -148,7 +148,7 @@
                 <?php foreach($listCH as $row): ?>
                   <div class="list-cunghang">
                     <div class="img-cunghang">
-                      <a href="<?= product_url(slug($row->name),$row->id) ?>"><img src="<?= url_tam($row->image_name) ?>" align="<?= $row->name; ?>"></a>
+                      <a href="<?= product_url(slug($row->name),$row->id) ?>"><img src="<?= url_tam($row->image_name); ?>" align="<?= $row->name; ?>"></a>
                     </div>
                     <div class="info-cunghang">
                       <p class="title-cunghang"><a href="<?= product_url(slug($row->name),$row->id) ?>"><?= $row->name; ?></a></p>

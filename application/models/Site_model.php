@@ -26,7 +26,7 @@ Class Site_model extends MY_Model{
 
         if (!empty($setting)) {
 
-           return $setting->setting_value;
+           return $setting->value;
 
         }
 

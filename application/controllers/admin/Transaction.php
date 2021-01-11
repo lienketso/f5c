@@ -23,7 +23,7 @@ Class Transaction extends MY_Controller{
 			$input['like'] = ['name',$name];
 			}
 			if($start || $enddate){
-			$input['where'] = " created_at BETWEEN CAST('".$startdate."' AS DATE) AND CAST('".$enddate."' AS DATE)";	
+			$input['where'] = " created BETWEEN CAST('".$startdate."' AS DATE) AND CAST('".$enddate."' AS DATE)";	
 			}
 		}
 		$this->data['name'] = $name;
@@ -70,6 +70,9 @@ Class Transaction extends MY_Controller{
 		$this->load->view('admin/main',$this->data);
 	}
 	function view(){
+		$this->load->model('city_model');
+		$this->load->model('district_model');
+
 		$id = $this->uri->rsegment(3);
 		$id = intval($id);
 		$info = $this->transaction_model->get_info($id);

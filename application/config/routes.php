@@ -54,7 +54,21 @@ $route['translate_uri_dashes'] = FALSE;
 //$route['([a-zA-Z0-9]+[a-zA-Z\_0-9\.-]*)\/$']
 //rewrite danh muc việc làm
 // $2 chinh laf bien :num (category_id)
-//tags
+//giỏ hàng
+$route['gio-hang.html'] = 'cart/index';
+$route['user/login.html'] = 'user/login';
+$route['user/register.html'] = 'user/register';
+$route['search.html'] = 'home/search';
+$route['search.html/(:num)'] = 'home/search/$1';
+
+$route['thong-tin/(:any)/i(:num).html'] = 'page/view/$2';
+
+//tin tức
+$route['tin-tuc.html'] = 'news/all';
+$route['tin-tuc.html/(:num)'] = 'news/all/$1';
+$route['bai-viet-(:any)/cn(:num).html'] = 'news/catnews/$2';
+$route['bai-viet-(:any)/cn(:num).html/(:num)'] = 'news/catnews/$2/$3';
+$route['tin-tuc/(:any)/i(:num).html'] = 'news/detail/$2';
 
 $route['(:any)-m(:num)-(:num).html'] = 'manufac/index/$2/$3';
 $route['(:any)-m(:num)-(:num).html/(:num)'] = 'manufac/index/$2/$3/$4';
@@ -62,12 +76,5 @@ $route['(:any)-m(:num)-(:num).html/(:num)'] = 'manufac/index/$2/$3/$4';
 $route['(:any)-p(:num).html'] = 'product/detail/$2';
 $route['(:any)'] = 'product/category/$1';
 $route['(:any)/(:num)'] = 'product/category/$1/$2';
-
-
-
-//tin tuc
-// $route['(:any)-(:num).html'] = 'news/detail/$2';
-// $route['(:any)'] = 'news/catnews/$1';
-// $route['(:any)/(:num)'] = 'news/catnews/$1/$2';
 
 
