@@ -79,7 +79,7 @@
                              <?php foreach($slideTop as $row): ?>
                              <div class="item">
                                  <a href="<?= $row->link; ?>" title="<?= $row->name; ?>">
-                                     <img alt="<?= $row->name; ?>" src="<?= product_link($row->image_name); ?>">
+                                     <img alt="<?= $row->name; ?>" src="<?= url_tam($row->image_name); ?>">
                                  </a>
                              </div>
                              <?php endforeach; ?>
@@ -160,7 +160,7 @@
                          <div class="col-lg-3">
                              <div class="item-sp-hot">
                                  <a class="img-sp-hot" href="<?= product_url(slug($row->name),$row->id) ?>"><img
-                                         src="<?= product_link($row->image_name); ?>"></a>
+                                         src="<?= url_tam($row->image_name); ?>"></a>
                                  <div class="prdLblCampaign">
                                      <div class="prdLblCampaignThumb prdLblCampaignNew"><span
                                              style="background:linear-gradient(90deg,#FFC300 4.5%,#DD220D 90.3%)"> <img
@@ -230,7 +230,7 @@
                  <?php $mInfo = $this->manufac_model->get_info($m); ?>
                  <li><a href="<?= manufac_url(slug($mInfo->name),$m,$row->id) ?>" title="<?= $mInfo->name; ?>">
                          <?php if($mInfo->image_name!=''): ?>
-                         <img src="<?= $mInfo->image_name; ?>" alt="<?= $mInfo->name; ?>">
+                         <img src="<?= url_tam($mInfo->image_name); ?>" alt="<?= $mInfo->name; ?>">
                          <?php else: ?>
                          <span><?= $mInfo->name; ?></span>
                          <?php endif; ?>
@@ -249,7 +249,7 @@
                  <div class="col-lg-3 borderlr_<?= $k ?>">
                      <div class="item-sp-cat">
                          <a class="img-sp-cat" href="<?= product_url(slug($pro->name),$pro->id) ?>"><img
-                                 src="<?= product_link($pro->image_name) ?>" alt="<?= $pro->name; ?>"></a>
+                                 src="<?= url_tam($pro->image_name) ?>" alt="<?= $pro->name; ?>"></a>
                          <h4><a href="<?= product_url(slug($pro->name),$pro->id) ?>"><?= $pro->name; ?></a></h4>
                          <p><span><?= ($pro->price==0) ? 'Liên hệ' : number_format($pro->price). '₫'; ?> </span></p>
                      </div>
@@ -278,7 +278,7 @@
                                  <li class="list-group-item">
                                      <div class="media">
                                          <a class="pull-left" href="<?= news_url(slug($row->title),$row->id); ?>">
-                                             <img class="media-object" src="<?= product_link($row->image_name) ?>"
+                                             <img class="media-object" src="<?= url_tam($row->image_name) ?>"
                                                  alt="<?= $row->title; ?>">
                                          </a>
                                          <div class="media-body">
@@ -306,7 +306,7 @@
                                  <li class="list-group-item">
                                      <div class="media">
                                          <a class="pull-left" href="<?= news_url(slug($row->title),$row->id) ?>">
-                                             <img class="media-object" src="<?= product_link($row->image_name) ?>"
+                                             <img class="media-object" src="<?= url_tam($row->image_name) ?>"
                                                  alt="<?= $row->title; ?>">
                                          </a>
                                          <div class="media-body">

@@ -22,7 +22,7 @@
       <div class="col-lg-2 col-xs-3">
         <div class="item-parent">
           <a href="<?= category_url($c->friendly_url) ?>">
-            <img src="https://cdn.tgdd.vn/Category/5205/Binh,-ly-giu-nhiet-l-13-02-2020.png" alt="">
+            <img src="<?= url_tam($c->image_name) ?>" alt="<?= $c->name; ?>">
             <h3><?= $c->name; ?></h3>
           </a>
         </div>
@@ -78,7 +78,7 @@
       <?php foreach($productP as $k=>$p): ?>
       <div class="col-lg-3 borderlr_<?= $k ?>">
             <div class="item-sp-cat">
-              <a class="img-sp-cat" href="<?= product_url(slug($p->name),$p->id) ?>"><img src="https://f5c.vn/upload/public/6112478aa70a4a8830d5180c15e55592_thumb.png"></a>
+              <a class="img-sp-cat" href="<?= product_url(slug($p->name),$p->id) ?>"><img src="<?= url_tam($p->image_name) ?>"></a>
               <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= $p->name; ?></a></h4>
               <p><span><?= ($p->price==0) ? 'Liên hệ' : number_format($p->price). '₫'; ?> </span></p>
             </div>
