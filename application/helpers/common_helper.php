@@ -2,6 +2,9 @@
 function url_tam($url=''){
     return 'https://f5c.vn/upload/public/'.$url;
 }
+function url_sosanh($url='',$id){
+    return base_url('so-sanh-'.$url.'/'.$id.'.html');
+}
 function public_url($url=''){
     return base_url('public/'.$url);
 }

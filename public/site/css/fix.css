@@ -789,3 +789,11 @@ ul.list-bread li a{
     color: #007bff;
     font-weight: bold;
 }
+.page-cat p{
+    position: relative;
+}
+.page-cat a.compare_btn{
+    position: absolute;
+    right: 0;
+    font-weight: bold;
+}
