@@ -121,6 +121,7 @@
 
             <div class="row">
               <div class="col-lg-12">
+                <div class="box_sosanh">
                 <h4 class="title_sosanh">So sánh với các sản phẩm tương tự</h4>
                 <div class="row-ss">
                   <?php foreach($listSosanh as $row): ?>
@@ -138,12 +139,18 @@
                         </ul>
                         <p class="price_tuong_tu"><?= number_format($row->price) ?> đ</p>
                       </div>
+                      <div class="tooltiptext">
+                        <?= $row->options_cat; ?>
+                      </div>
                     </div>
+
                   </div>
                 <?php endforeach; ?>
 
                 </div>
               </div>
+              </div>
+
             </div>
 
           </div>

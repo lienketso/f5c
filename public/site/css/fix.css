@@ -829,8 +829,29 @@ ul.list_option li span{
 }
 .list_sp_tuong_tu{
     height: 370px;
+    position: relative;
+    display: inline-block;
+}
+.tooltiptext{
+  visibility: hidden;
+  width: 500px;
+  background-color: #fff;
+  color: #333;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 0;
+}
+.list_sp_tuong_tu:hover .tooltiptext {
+  visibility: visible;
 }
 .img_tuong_tu{
     height: 220px;
     overflow: hidden;
+}
+.box_sosanh{
+    padding-top: 20px;
 }
