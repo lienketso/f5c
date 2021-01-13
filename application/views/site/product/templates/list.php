@@ -124,7 +124,7 @@
                   <div class="item-sp-cao page-cat">
                     <a class="img-sp-cat-page" href="<?= product_url(slug($p->name),$p->id) ?>"><img src="<?= url_tam($p->image_name); ?>" alt="<?= $p->name; ?>"></a>
                     <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= $p->name; ?></a></h4>
-                    <p><span><?= ($p->price==0) ? 'Liên hệ' : number_format($p->price). '₫'; ?> </span> <a class="compare_btn" href="<?= url_sosanh(slug($p->name),$p->id); ?>"><img src="<?= public_url('site/img/compare.png') ?>"> So sánh</a></p>
+                    <p><span><?= ($p->price==0) ? 'Liên hệ' : number_format($p->price). '₫'; ?> </span> </p>
 
                   </div>
                 </div>

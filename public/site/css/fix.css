@@ -27,6 +27,10 @@ body{
     .img-sp-cat img{
         height: 200px;
     }
+    .img-sp-hot{
+        height: 170px;
+        overflow: hidden;
+    }
     .img-sp-hot img{
         height: 170px;
     }
@@ -854,4 +858,15 @@ ul.list_option li span{
 }
 .box_sosanh{
     padding-top: 20px;
+}
+
+/* [2] Transition property for smooth transformation of images */
+.img-sp-hot img{
+  transition: transform 1.5s ease;
+  height: 100%;
+}
+
+/* [3] Finally, transforming the image when container gets hovered */
+.img-sp-hot:hover img {
+  transform: scale(1.5);
 }

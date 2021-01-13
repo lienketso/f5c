@@ -1,3 +1,4 @@
+
 <?php $this->load->view('site/blocks/block_menu'); ?>
 <section class="breadcrum-f5">
   <div class="container">
@@ -28,12 +29,12 @@
                 <!-- Place somewhere in the <body> of your page -->
                   <div id="slider" class="flexslider">
                     <ul class="slides">
-                      <li>
+                      <li class="ex1">
                         <img src="<?= url_tam($info->image_name); ?>" alt="<?= $info->name; ?>" />
                       </li>
                       <?php if(!empty($listAttach)): ?>
                         <?php foreach($listAttach as $a): ?>
-                      <li>
+                      <li class="ex1">
                         <img src="<?= url_tam($a->file_name); ?>" alt="<?= $info->name; ?>" />
                       </li>
                     <?php endforeach; ?>
