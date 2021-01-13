@@ -1,9 +1,9 @@
 <div id="content" class="span10">
 <nav aria-label="breadcrumb">
 <ol class="breadcrumb">
-<li class="breadcrumb-item"><a href="<?= base_url('admin') ?>">Trang chính</a></li>
+<li class="breadcrumb-item"><a href="<?= base_url('admin/home') ?>">Trang chính</a></li>
 
-<li class="breadcrumb-item active" aria-current="page">Danh banner</li>
+<li class="breadcrumb-item active" aria-current="page">Danh sách banner</li>
 </ol>
 </nav>
 <?php if(isset($message)) { $this->load->view('admin/message', $this->data); } ?>
@@ -15,7 +15,9 @@
 <form name="theForm" id="theForm" action="" method="post">
 	<input type="hidden" name="btnOnclick" value="">
 <div class="" style="text-align: right;padding-bottom: 10px">
+<?php if($gid): ?>
 <a href="<?php echo admin_url('ads_banner/add?location='.$gid); ?>" class="btn btn-small btn-success"><i class="ti-write"></i> Thêm mới</a>
+<?php endif; ?>
 <button class="btn btn-small btn-danger" onclick="return xacnhanDelete();"><i class="ti-trash"></i> Xóa tùy chọn</button>
 </div>
 <div class="table-responsive">

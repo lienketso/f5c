@@ -116,6 +116,20 @@ Class Home extends MY_Controller{
 		$listTinmoi = $this->news_model->get_list($tm);
 		$this->data['listTinmoi'] = $listTinmoi;
 
+		$this->load->model('ads_banner_model');
+		//banner dưới slider
+		$bn['where'] = ['ads_location_id'=>3];
+		$bn['order'] = ['sort_order','asc'];
+		$bn['limit'] = [2,0];
+		$bannerTop = $this->ads_banner_model->get_list($bn);
+		$this->data['bannerTop'] = $bannerTop;
+		//banner bên phải slide
+		$ps['where'] = ['ads_location_id'=>12];
+		$ps['order'] = ['sort_order','asc'];
+		$ps['limit'] = [3,0];
+		$bannerRight = $this->ads_banner_model->get_list($ps);
+		$this->data['bannerRight'] = $bannerRight;
+
 		$ip = $_SERVER['REMOTE_ADDR'];
 		//$ip = '113.190.254.188';
 		//$this->getIpGuest($ip);

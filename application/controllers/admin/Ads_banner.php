@@ -10,7 +10,13 @@ Class Ads_banner extends MY_Controller{
 		$gid = $this->input->get('location');
 		$this->data['gid'] = $gid;
 		$input = array();
-		$input['where'] = array('ads_location_id'=>$gid);
+		if($gid){
+			$input['where'] = array('ads_location_id'=>$gid);
+		}else{
+			$input['where'] = [];
+		}
+
+
 		$this->load->library('pagination');
 		$total_row = $this->ads_banner_model->get_total($input);
 		$this->data['total_row'] = $total_row;

@@ -46,7 +46,6 @@
             </div>
 
             <div class="col-md-9 col-sm-12 no-padding">
-
               <!-- slide top -->
               <div class="owl-banner">
                 <?php foreach($slideTop as $row): ?>
@@ -59,8 +58,11 @@
               </div>
               
               <div class="ads_banner_bottom">
-                <a class="ads_two" href="#" style="background-image:url('https://cdn.tgdd.vn/qcao/04_01_2021_01_05_59_kachi.png')"></a>
-                <a class="ads_two" href="#" style="background-image:url('https://cdn.tgdd.vn/qcao/04_01_2021_01_05_59_kachi.png')"></a>
+                <?php foreach($bannerTop as $row): ?>
+                <a class="ads_two" target="_blank" href="<?= $row->url; ?>" style="background-image:url('<?= url_tam($row->image_name); ?>')"></a>
+              <?php endforeach; ?>
+
+              
               </div>
 
             </div>
@@ -106,9 +108,9 @@
 <div class="dau-gia" style="max-width:265px">
 
   <div class="list_ads_head">
-    <a href="#"><img src="https://cdn.tgdd.vn/2020/11/banner/26064-260x64.png" alt=""></a>
-    <a href="#"><img src="https://cdn.tgdd.vn/2020/11/banner/26064-260x64.png" alt=""></a>
-    <a href="#"><img src="https://cdn.tgdd.vn/2020/11/banner/26064-260x64.png" alt=""></a>
+    <?php foreach($bannerRight as $row): ?>
+    <a target="_blank" href="<?= $row->url; ?>"><img src="<?= url_tam($row->image_name); ?>" alt="banner khuyến mại f5c"></a>
+    <?php endforeach; ?>
   </div>
  
 </div>
