@@ -47,7 +47,7 @@
 
           <li class="nav-item <?= ($urlSec=='transaction' ) ? 'active' : '' ?>">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic-tran" aria-expanded="false" aria-controls="ui-basic-tran">
-              <i class="ti-package menu-icon"></i>
+              <i class="ti-money menu-icon"></i>
               <span class="menu-title">Đơn hàng </span>
               <i class="menu-arrow"></i>
             </a>
@@ -75,7 +75,7 @@
 
           <li class="nav-item <?= ($urlSec=='ads_banner') ? 'active' : '' ?>">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic-banner" aria-expanded="false" aria-controls="ui-basic-banner">
-              <i class="ti-settings menu-icon"></i>
+              <i class="ti-instagram menu-icon"></i>
               <span class="menu-title">Quảng cáo</span>
               <i class="menu-arrow"></i>
             </a>
@@ -89,7 +89,7 @@
 
           <li class="nav-item <?= ($urlSec=='support') ? 'active' : '' ?>">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic-support" aria-expanded="false" aria-controls="ui-basic-support">
-              <i class="ti-rss menu-icon"></i>
+              <i class="ti-headphone-alt menu-icon"></i>
               <span class="menu-title">Hỗ trợ</span>
               <i class="menu-arrow"></i>
             </a>
@@ -116,7 +116,12 @@
               </ul>
             </div>
           </li>
-
+          <li class="nav-item <?= ($urlSec=='customer') ? 'active' : '' ?>">
+            <a class="nav-link" href="<?= admin_url('customer') ?>" >
+              <i class="ti-face-smile menu-icon"></i>
+              <span class="menu-title">Khách hàng</span>
+            </a>
+          </li>
           <li class="nav-item <?= ($urlSec=='user') ? 'active' : '' ?>">
             <a class="nav-link" href="<?= admin_url('user') ?>" >
               <i class="mdi mdi-account menu-icon"></i>
