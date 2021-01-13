@@ -6,11 +6,11 @@
 <div class="card">
 <div class="card-body text-center">
 <div class="text-primary mb-4">
-<i class="mdi mdi-account-multiple mdi-36px"></i>
-<p class="font-weight-medium mt-2">Đang online</p>
+<i class="ti-pie-chart mdi-36px"></i>
+<p class="font-weight-medium mt-2">Doanh thu</p>
 </div>
-<h1 class="font-weight-light">2</h1>
-<p class="text-muted mb-0">Người dùng đang online</p>
+<h1 class="font-weight-light"><?= number_format($totalAmount) ?></h1>
+<p class="text-muted mb-0">Doanh thu online đã bán</p>
 </div>
 </div>
 </div>

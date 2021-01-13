@@ -28,6 +28,13 @@ Class MY_Model extends CI_Model{
 		$query = $this->db->get($this->table);
 		return $query->num_fields();
 	}
+	//lấy ra tổng của cột
+	function get_sum_amount($where=''){
+		$this->db->select_sum('amount','total');
+		$this->db->where($where);
+		$query = $this->db->get($this->table)->row();
+		return $query->total;
+	}
 	//lấy thông tin dữ liệu trong bảng
 	function get_catname($catname){
 		if(!$catname){

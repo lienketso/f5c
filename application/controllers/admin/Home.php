@@ -32,6 +32,12 @@ Class Home extends MY_Controller {
 		$allNews = $this->news_model->get_total();
 		$this->data['allNews'] = $allNews;
 
+		$this->load->model('transaction_model');
+		$where = "status='1'";
+		$totalAmount = $this->transaction_model->get_sum_amount($where);
+		$this->data['totalAmount'] = $totalAmount;
+		//echo $totalAmount;
+
 
 		$this->data["temp"] = 'admin/home/index';
 		$this->load->view('admin/main',$this->data);
