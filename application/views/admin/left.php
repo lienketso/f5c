@@ -86,6 +86,22 @@
               </ul>
             </div>
           </li>
+
+          <li class="nav-item <?= ($urlSec=='support') ? 'active' : '' ?>">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic-support" aria-expanded="false" aria-controls="ui-basic-support">
+              <i class="ti-rss menu-icon"></i>
+              <span class="menu-title">Hỗ trợ</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse <?= ($urlSec=='support') ? 'show' : '' ?>" id="ui-basic-support">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="<?= admin_url('support_group'); ?>">Nhóm hỗ trợ</a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?= admin_url('support'); ?>" >Danh sách thành viên</a></li>
+                <li class="nav-item "> <a class="nav-link" href="<?= admin_url('support/add'); ?>">Thêm mới</a></li>
+                
+              </ul>
+            </div>
+          </li>
           
           <li class="nav-item <?= ($urlSec=='site_setting') ? 'active' : '' ?>">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic-setting" aria-expanded="false" aria-controls="ui-basic-setting">
