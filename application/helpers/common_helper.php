@@ -53,6 +53,9 @@ function date_to_int($tr)
 function phantram($a,$b){
     return round(($a-$b) / $b * 100, 0, PHP_ROUND_HALF_UP); 
 }
+function cong($a,$b){
+  return $a+$b;
+}
 function tru($a,$b){
     return $a-$b;
 }

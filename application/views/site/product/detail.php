@@ -118,6 +118,34 @@
               </div>
 
             </div>
+
+            <div class="row">
+              <div class="col-lg-12">
+                <h4 class="title_sosanh">So sánh với các sản phẩm tương tự</h4>
+                <div class="row-ss">
+                  <?php foreach($listSosanh as $row): ?>
+                  <div class="col-lg-3 border_ok">
+                    <div class="list_sp_tuong_tu">
+                      <div class="img_tuong_tu">
+                        <a href="<?= product_link(slug($row->name),$row->id) ?>" target="_blank"><img src="<?= url_tam($row->image_name); ?>"></a>
+                      </div>
+                      <div class="info_tuong_tu">
+                        <h3><a href="<?= product_link(slug($row->name),$row->id) ?>" target="_blank"><?= catchuoi($row->name,43); ?></a></h3>
+                        <ul class="list_option">
+                          <li>Hãng sản xuất : <span><?= $this->manufac_model->getManufacName($row->manufac_id) ?></span></li>
+                          <li>Xuất xứ : <span><?= $row->model; ?></span></li>
+                          <li>Bảo hành : <span><?= $row->warranty ?> tháng</span></li>
+                        </ul>
+                        <p class="price_tuong_tu"><?= number_format($row->price) ?> đ</p>
+                      </div>
+                    </div>
+                  </div>
+                <?php endforeach; ?>
+
+                </div>
+              </div>
+            </div>
+
           </div>
 
           <div class="col-lg-3">

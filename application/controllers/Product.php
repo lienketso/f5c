@@ -194,6 +194,16 @@ Class Product extends MY_Controller{
 		$listCH = $this->product_model->get_list($ch);
 		$this->data['listCH'] = $listCH;
 
+		//so sánh sản phẩm
+		$startprice = tru($info->price,1000000);
+		$endprice = cong($info->price,1000000);
+		$ss['where'] = ['price>='=>$startprice,'price<='=>$endprice,'id!='=>$info->id,'cat_id'=>$info->cat_id];
+		$ss['order'] = ['price','asc'];
+		$ss['limit'] = [8,0];
+		$listSosanh = $this->product_model->get_list($ss);
+		$this->data['listSosanh'] = $listSosanh;
+		//pre($listSosanh);die;
+
 		$this->data['title'] = $info->name;
 		$this->data['meta_desc'] = $info->meta_desc;
 		$this->data['meta_keyword'] = $info->meta_key;

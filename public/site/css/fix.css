@@ -797,3 +797,40 @@ ul.list-bread li a{
     right: 0;
     font-weight: bold;
 }
+.title_sosanh{
+    text-transform: uppercase;
+    color: #00aeef;
+    font-weight: bold;
+    
+}
+.info_tuong_tu h3{
+    font-size: 14px;
+    text-transform: uppercase;
+    margin:0;
+    padding-top: 10px;
+    line-height: 18px;
+}
+.info_tuong_tu h3 a{
+    color: #0072bc;
+}
+.price_tuong_tu{
+    font-weight: bold;
+    color: #e3007b;
+    font-size: 18px;
+}
+ul.list_option{
+    padding: 5px 0;
+}
+ul.list_option li span{
+    font-weight: bold;
+}
+.border_ok{
+    border: 1px solid #ccc;
+}
+.list_sp_tuong_tu{
+    height: 370px;
+}
+.img_tuong_tu{
+    height: 220px;
+    overflow: hidden;
+}
