@@ -19,7 +19,7 @@
           <div class="col-md-8">
             <div class="blog-post text-page">
               <h1><?= $info->title ?></h1>
-              <?= $info->content ?>
+              <?= str_replace('{base_url}',base_url(),$info->content); ?>
               <div class="social-small">
                 <strong>Share:</strong>
                 <a href="https://twitter.com/intent/tweet?text=<?= $info->title ?>+?= news_url('',$info->slug,$info->id); ?>" class="fa fa-twitter"></a>

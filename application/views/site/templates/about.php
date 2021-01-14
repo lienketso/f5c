@@ -53,7 +53,7 @@
       <ul>
         <?php foreach($tinlienquan as $row): ?>
         <li style="float:none;padding:10px ;border-bottom:1px solid #f0f0f0">
-          <a href="<?= base_url('thong-tin/'.slug($row->title).'i'.$row->id.'.html') ?>" title="<?= $row->title; ?>">
+          <a href="<?= base_url('thong-tin/'.slug($row->title).'/i'.$row->id.'.html') ?>" title="<?= $row->title; ?>">
             <?= $row->title; ?>         
           </a>
           <div class="clear"></div>

@@ -42,7 +42,7 @@
 						</div>
 						<div class="clear pb10"></div>
 
-						<?= $info->content; ?>
+						<?= str_replace('{base_url}',base_url(),$info->content); ?>
 	
 						<div class="clear pb10"></div>
 
