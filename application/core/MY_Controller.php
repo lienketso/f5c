@@ -42,6 +42,13 @@ Class MY_Controller extends CI_Controller{
 				$listView = $this->news_model->get_list($where);
 				$this->data['listView'] = $listView;
 
+				$this->load->model('transaction_model');
+				$dh['where'] = [];
+				$dh['order'] = ['id','desc'];
+				$dh['limit'] = [5,0];
+				$donhangMoi = $this->transaction_model->get_list($dh);
+				$this->data['donhangMoi'] = $donhangMoi;
+
 				//Danh mục sản phẩm hot
 
 				$lang = $this->language;
@@ -71,7 +78,7 @@ Class MY_Controller extends CI_Controller{
 				//load thư viện giỏ hàng tất cả các trang
 				$this->load->library('cart');
 				//menu all page
-		
+
 				$s['order'] = ['key','asc'];
 				$listSetting = $this->site_model->get_list($s);
 				$arrSetting = [];

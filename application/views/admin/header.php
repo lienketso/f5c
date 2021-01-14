@@ -28,23 +28,23 @@
               <span class="count"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-              <a class="dropdown-item" href="<?= admin_url('contact') ?>">
-                <p class="mb-0 font-weight-normal float-left">Bạn có <span style="color:red; font-weight: bold;"><?= $total_contact; ?></span> liên hệ chưa xem
+              <a class="dropdown-item" href="<?= admin_url('transaction') ?>">
+                <p class="mb-0 font-weight-normal float-left">Đơn hàng mới nhất
                 </p>
                 <span class="badge badge-pill badge-warning float-right">Xem tất cả</span>
               </a>
               <div class="dropdown-divider"></div>
-              <?php foreach($listContact as $c): ?>
-              <a class="dropdown-item preview-item" href="<?= admin_url('contact/view/'.$c->id); ?>">
+              <?php foreach($donhangMoi as $c): ?>
+              <a class="dropdown-item preview-item" href="<?= admin_url('transaction/view/'.$c->id); ?>">
                 <div class="preview-thumbnail">
                   <div class="preview-icon bg-info">
                     <i class="mdi mdi-account-box mx-0"></i>
                   </div>
                 </div>
                 <div class="preview-item-content">
-                  <h6 class="preview-subject font-weight-medium"><?= $c->title; ?></h6>
+                  <h6 class="preview-subject font-weight-medium">Đơn hàng DHF<?= $c->id; ?></h6>
                   <p class="font-weight-light small-text mb-0">
-                    <?= showdate_vn($c->created_at); ?>
+                    <?= int_to_date($c->created); ?>
                   </p>
                 </div>
               </a>
