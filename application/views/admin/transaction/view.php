@@ -46,7 +46,7 @@
                                       <td class="text-left"><?= $i++; ?></td>
                                       <td class="text-left"><?= $product->name; ?></td>
                                       <td><?php echo $row->quantity; ?></td>
-                                      <td><?= number_format($product->price); ?> đ</td>
+                                      <td><?= number_format($row->price); ?> đ</td>
                                       <td><?= number_format($row->amount); ?></td>
                                     </tr>
                                 <?php endforeach; ?>
