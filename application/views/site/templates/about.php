@@ -37,11 +37,11 @@
             <div class="clear"></div>
 
             <div class="left timestamp">
-              <span class="ml5">Lượt xem: <?= $info->count_view; ?></span>
+              <span class="ml5"></span>
             </div>
             <div class="clear pb10"></div>
 
-            <?= $info->content; ?>
+            <?= str_replace('{base_url}',base_url(),$info->content); ?>
   
             <div class="clear pb10"></div>
 

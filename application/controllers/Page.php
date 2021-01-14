@@ -12,7 +12,7 @@ Class Page extends MY_Controller{
 		$id = $this->uri->rsegment(3);
 		//$catname = $this->uri->segment(2);
 		//$where = 'slug="'.$catname.'"';
-		$info = $this->news_model->get_info($id);
+		$info = $this->page_model->get_info($id);
 		if(!$info){
 			show_404();
 		}
@@ -29,7 +29,7 @@ Class Page extends MY_Controller{
 		$this->data['meta_keyword'] = $info->meta_key;
 		$this->data['meta_description'] = $info->meta_desc;
 		$this->data['og_title'] = $info->title;
-		$this->data['og_image'] = $info->image_name;
+		$this->data['og_image'] = '';
 		$this->data['og_description'] =$info->meta_desc;
 		$this->data['index_link'] = 'index';
 		$this->data['follow_link'] = 'follow';
