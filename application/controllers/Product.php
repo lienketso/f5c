@@ -105,8 +105,8 @@ Class Product extends MY_Controller{
 		$config['full_tag_close'] = '</ul>';
 		$config['num_tag_open'] = '<li>';
 		$config['num_tag_close'] = '</li>';
-		$config['first_link'] = '<i class="fa fa-chevron-left" aria-hidden="true"></i>';
-		$config['last_link'] = ' <i class="fa fa-chevron-left" aria-hidden="true"></i>';
+		$config['first_link'] = 'Trang đầu';
+		$config['last_link'] = ' Trang cuối';
 		$config['last_tag_open'] = '<li>';
 		$config['last_tag_close'] = '</li>';
 		$config['first_tag_open'] = '<li>';

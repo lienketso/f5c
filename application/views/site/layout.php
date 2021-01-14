@@ -47,7 +47,7 @@
 </div>
 </section>   
 
-<section class="list_keyword">
+<!-- <section class="list_keyword">
   <div class="container">
     <h3 class="keyword_home_title">Từ khóa tìm kiếm nhiều</h3>
     <div class="keyword_search">
@@ -57,40 +57,20 @@
     </div>
   </div>
 </section>
-    
+     -->
   </div>
 
   <div id="footer">
     <?php $this->load->view('site/footer'); ?>
   </div>
 
-
-  <!-- ===icon categori di chuyá»ƒn theo cĂ¡c táº§ng bĂªn trĂ¡i-->
-  <div id="icon-categori" style="">
-    <ul>
-      <li class="icon-categori icon-categori-"><a href="#cat_49" title="Máy - Thiết bị công nghiệp"><i class="fa fa-cogs"></i></a></li>
-      <li class="icon-categori icon-categori-"><a href="#cat_10" title="Máy vệ sinh công nghiệp"><i class="fa fa-industry"></i></a></li>
-      <li class="icon-categori icon-categori-"><a href="#cat_51" title="Thiết bị siêu thị - cửa hàng"><i class="fa fa-barcode"></i></a></li>
-      <li class="icon-categori icon-categori-"><a href="#cat_3" title="Thiết bị văn phòng"><i class="fa  fa-print"></i></a></li>
-      <li class="icon-categori icon-categori-tang6"><a href="#cat_9" title="Thiết bị bếp công nghiệp"><i class="fa fa-fire"></i></a></li>
-      <li class="icon-categori icon-categori-"><a href="#cat_7" title="Điện máy - Gia dụng"><i class="fa fa-television"></i></a></li>
-      <li class="icon-categori icon-categori-"><a href="#cat_1" title="Tin học, viễn thông"><i class="fa fa-desktop"></i></a></li>
-      <li class="icon-categori icon-categori-"><a href="#cat_510" title="Máy nông nghiệp"><i class="fa fa-gavel"></i></a></li>
-      <li class="icon-categori icon-categori-"><a href="#cat_2" title="Thiết bị số"><i class="fa fa-camera"></i></a></li>
-      <li class="icon-categori icon-categori-"><a href="#cat_64" title="Thiết bị an ninh"><i class="fa fa-shield"></i></a></li>
-      <li class="icon-categori icon-categori-fa-heartbeat"><a href="#cat_450" title="Thiết bị y tế"><i class="fa fa-heartbeat"></i></a></li>
-      <li class="icon-categori icon-categori-"><a href="#cat_688" title="Hàng thanh lý - Giảm giá"><i class="fa fa-opencart"></i></a></li>
-      <li class="icon-categori icon-categori-"><a href="#cat_732" title="Thiết bị Nhà hàng - Khách sạn"><i class="fa "></i></a></li>
-    </ul>
-  </div>
-
   <!-- ===facebook, google + fixed bĂªn pháº£i -->
-  <div id="share-fix">
+ <!--  <div id="share-fix">
     <div class="share-icon share-google"><a target="_blank" href="https://plus.google.com/u/1/+F5CORP/posts">&nbsp;</a></div>
     <div class="share-icon share-sky"><a  href="skype:f5pro">&nbsp;</a></div>
     <div class="share-icon share-twi"><a  target="_blank"href="https://twitter.com/F5Corp">&nbsp;</a></div>
   </div>
-
+ -->
 
   <style>
   /*style chi cho trang home*/

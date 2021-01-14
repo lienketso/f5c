@@ -77,7 +77,9 @@
                   </div>
                   <ul>
                     <li>Hãng sản xuất : <span><?= $this->manufac_model->getManufacName($info->manufac_id) ?></span></li>
+                    <?php if($info->model!=''): ?>
                     <li>Xuất xứ : <span><?= $info->model; ?></span></li>
+                    <?php endif; ?>
                     <li>Bảo hành : <span><?= $info->warranty; ?> tháng</span></li>
                     <li>Trạng thái : <span>Còn hàng</span></li>
                     <li>VAT : <span><?= ($info->vat==0) ? 'Đã bao gồm 10% VAT' : 'Chưa bao gồm VAT' ?></span></li>
@@ -100,6 +102,9 @@
                     <li role="presentation">
                       <a href="#tab" aria-controls="tab" role="tab" data-toggle="tab">Thông số kỹ thuật</a>
                     </li>
+                    <li role="presentation">
+                      <a href="#phukien" aria-controls="phukien" role="tab" data-toggle="tab">Phụ kiện</a>
+                    </li>
                   </ul>
 
                   <!-- Tab panes -->
@@ -112,6 +117,11 @@
                     <div role="tabpanel" class="tab-pane" id="tab">
                       <div class="thong-tin-sp">
                         <?= $info->options_cat; ?>
+                      </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="phukien">
+                      <div class="thong-tin-sp">
+                        Đang cập nhật....
                       </div>
                     </div>
                   </div>
@@ -139,6 +149,7 @@
                         <ul class="list_option">
                           <li>Hãng sản xuất : <span><?= $this->manufac_model->getManufacName($row->manufac_id) ?></span></li>
                           <li>Xuất xứ : <span><?= $row->model; ?></span></li>
+
                           <li>Bảo hành : <span><?= $row->warranty ?> tháng</span></li>
                         </ul>
                         <p class="price_tuong_tu"><?= ($row->price==0) ? 'Liên hệ' : number_format($row->price).' đ' ?></p>
@@ -164,14 +175,14 @@
                 <?php 
                 $ls['where'] = ['group_id'=>$row->id];
                 $ls['order'] = ['sort_order','asc'];
-                $ls['limit'] = [3,0];
+                $ls['limit'] = [1,0];
                 $listSP = $this->support_model->get_list($ls);
                 ?>
                 <div class="support-list">
                   <h4><?= $row->name; ?></h4>
                   <ul>
                     <?php foreach($listSP as $item): ?>
-                      <li><a href="tel:<?= $item->phone; ?>"><img src="<?= public_url('site/img/phone.png') ?>"> <span><?= $item->phone; ?></span></a> - <a style="font-size: 11px;" href="mailto:<?= $item->gmail; ?>"><?= $item->gmail; ?></a></li>
+                      <li><a href="tel:<?= $item->phone; ?>"><img src="<?= public_url('site/img/phone.png') ?>"> <span><?= $item->phone; ?></span></a> - <a style="font-size: 11px;" href="mailto:info@f5pro.vn">info@f5pro.vn</a></li>
                     <?php endforeach; ?>
                   </ul>
                 </div>

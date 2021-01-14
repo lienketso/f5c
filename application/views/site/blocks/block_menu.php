@@ -42,8 +42,8 @@
             </ul>       
           </li>
 
-          <li><a href="<?= base_url() ?>thong-tin/ve-cong-ty-f5/i5.html">Giới thiệu về doanh nghiệp</a></li>
-          <li><a href="<?= base_url() ?>bai-viet-huong-dan-mua-hang/cn4.html">Hướng dẫn mua hàng</a></li>
+         <!--  <li><a href="<?= base_url() ?>thong-tin/ve-cong-ty-f5/i5.html">Giới thiệu về doanh nghiệp</a></li>
+          <li><a href="<?= base_url() ?>bai-viet-huong-dan-mua-hang/cn4.html">Hướng dẫn mua hàng</a></li> -->
 
         </ul>
         <ul class="nav navbar-nav navbar-right">
