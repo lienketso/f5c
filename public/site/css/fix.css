@@ -63,6 +63,22 @@ body{
     .list-sp-hot h4{
         height: 85px;
     }
+    .navbar-header{
+        background: #F58634;
+    }
+    .navbar-inverse .navbar-toggle{
+        border-color: #fff !important;
+    }
+    .navboot .navbar{
+        background: #F58634;
+        color: #fff;
+        padding: 0 20px;
+        z-index: 999;
+    }
+    .navbar .navbar-nav > li > a{
+        color: #fff !important;
+        padding: 15px 20px !important;
+    }
 }
 .btn-inline{
     padding: 10px;
