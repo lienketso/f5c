@@ -865,7 +865,7 @@ ul.list_option li span{
   z-index: 1;
   top: 0;
 }
-.list_sp_tuong_tu:hover .tooltiptext {
+.img_tuong_tu:hover .tooltiptext {
   visibility: visible;
 }
 .img_tuong_tu{
