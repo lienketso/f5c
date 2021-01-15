@@ -37,8 +37,13 @@
 <span id="" class="error mt-2 text-danger" for=""><?php echo form_error('email'); ?></span>
 </div>
 <div class="form-group">
-<label for="">Skype</label>
-<input type="text" name="skype" value="<?= $info->skype; ?>" class="form-control" placeholder="Nick skype">
+<label for="">Số zalo</label>
+<input type="text" name="yahoo" value="<?= $info->yahoo; ?>" class="form-control" placeholder="Nhập số điện thoại sử dụng zalo">
+<span id="" class="error mt-2 text-danger" for=""><?php echo form_error('yahoo'); ?></span>
+</div>
+<div class="form-group">
+<label for="">Nick facebook</label>
+<input type="text" name="skype" value="<?= $info->skype; ?>" class="form-control" placeholder="Nhập tên nick facebook">
 <span id="" class="error mt-2 text-danger" for=""><?php echo form_error('skype'); ?></span>
 </div>
 <button type="submit" class="btn btn-primary mr-2"><i class="ti-save"></i> Lưu lại</button>

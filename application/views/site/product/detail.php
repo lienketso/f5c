@@ -182,7 +182,13 @@
                   <h4><?= $row->name; ?></h4>
                   <ul>
                     <?php foreach($listSP as $item): ?>
-                      <li><a href="tel:<?= $item->phone; ?>"><img src="<?= public_url('site/img/phone.png') ?>"> <span><?= $item->phone; ?></span></a> - <a style="font-size: 11px;" href="mailto:info@f5pro.vn">info@f5pro.vn</a></li>
+                      <li><a href="tel:<?= $item->phone; ?>">
+                        <img src="<?= public_url('site/img/phone.png') ?>"> <span><?= $item->phone; ?></span></a> - <a style="font-size: 11px;" href="mailto:info@f5pro.vn">info@f5pro.vn</a>
+                        <div class="chat_support">
+                          <a target="_blank" href="https://zalo.me/<?= trim($item->yahoo) ?>" title="Click để chat với zalo"><img src="<?= public_url('site/img/logo-zalo.jpg') ?>"></a>
+                          <a href="http://m.me/<?= $item->skype; ?>" target="_blank" title="Click để chat với messenger"><img src="<?= public_url('site/img/fbicon.png') ?>"></a>
+                        </div>
+                      </li>
                     <?php endforeach; ?>
                   </ul>
                 </div>
