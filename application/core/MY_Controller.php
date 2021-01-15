@@ -68,6 +68,7 @@ Class MY_Controller extends CI_Controller{
 				//ngôn ngữ trên site
 				$this->lang->load("key", $this->language);
 				//load model
+				$this->load->model('menu_model');
 				$this->load->model('site_model');
 				$this->load->model('news_model');
 				$this->load->model('category_model');
@@ -78,6 +79,11 @@ Class MY_Controller extends CI_Controller{
 				//load thư viện giỏ hàng tất cả các trang
 				$this->load->library('cart');
 				//menu all page
+				$mn['where'] = ['parent_id'=>0,'location'=>3];
+				$mn['order'] = ['sort_order','asc'];
+				$mn['limit'] = [5,0];
+				$menuPage = $this->menu_model->get_list($mn);
+				$this->data['menuPage'] = $menuPage;
 
 				$s['order'] = ['key','asc'];
 				$listSetting = $this->site_model->get_list($s);

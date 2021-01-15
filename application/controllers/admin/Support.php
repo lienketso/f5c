@@ -64,6 +64,7 @@ Class Support extends MY_Controller{
 				$mobile = $this->input->post('mobile');
 				$email = $this->input->post('email');
 				$skype = $this->input->post('skype');
+				$yahoo = $this->input->post('yahoo');
 				$sort_order = $this->input->post('sort_order');
 				$group_id = $this->input->post('group_id');
 
@@ -73,6 +74,7 @@ Class Support extends MY_Controller{
 					'mobile'=>$mobile,
 					'gmail'=>$email,
 					'skype'=>$skype,
+					'yahoo'=>$yahoo,
 					'sort_order'=>$sort_order,
 					'group_id'=>$group_id,
 					);
@@ -110,6 +112,7 @@ Class Support extends MY_Controller{
 				$mobile = $this->input->post('mobile');
 				$email = $this->input->post('email');
 				$skype = $this->input->post('skype');
+				$yahoo = $this->input->post('yahoo');
 				$sort_order = $this->input->post('sort_order');
 				$group_id = $this->input->post('group_id');
 				$data = array(
@@ -118,6 +121,7 @@ Class Support extends MY_Controller{
 					'mobile'=>$mobile,
 					'gmail'=>$email,
 					'skype'=>$skype,
+					'yahoo'=>$yahoo,
 					'sort_order'=>$sort_order,
 					'group_id'=>$group_id,
 					);

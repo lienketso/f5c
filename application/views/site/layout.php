@@ -20,22 +20,22 @@
     <section class="thong-tin">
   <div class="container">
     <div class="row">
-  <?php foreach($listDanhmuctin as $row): ?>
+  <?php foreach($menuPage as $row): ?>
     <?php 
-      $s['where'] = ['cat_id'=>$row->id];
+      $s['where'] = ['parent_id'=>$row->id];
       $s['limit'] = [5,0];
-      $itemNews = $this->news_model->get_list($s);
+      $itemNews = $this->menu_model->get_list($s);
     ?>
   <div class="col-lg-3 col-sm-4" style="width:20%">
     <div class="panel">
       <div class="panel-heading">
-        <a style="color:#fff" href="<?= catnews_url($row->friendly_url,$row->id) ?>" title='<?= $row->name; ?>'>
-        <?= $row->name; ?></a>  
+        <a style="color:#fff" href="<?= str_replace('{base_url}','https://f5c.vn/',$row->url) ?>" title='<?= $row->title; ?>'>
+        <?= $row->title; ?></a>  
       </div>
       <?php if(!empty($itemNews)): ?>
       <ul class="list-group">
         <?php foreach($itemNews as $n): ?>
-        <li><a href="<?= news_url(slug($n->title),$n->id) ?>"><?= $n->title; ?></a></li>  
+        <li><a href="<?= str_replace('{base_url}','https://f5c.vn/',$n->url) ?>"><?= $n->title; ?></a></li>  
       <?php endforeach; ?>
       </ul>
     <?php endif; ?>
