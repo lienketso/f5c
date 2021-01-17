@@ -6,7 +6,7 @@
       <div class="col-lg-9">
         <div class="row">
           <!-- danh muc san pham -->
-          <div class="col-md-3 col-sm-12 no-padding-right danh-muc">
+          <div class="col-md-3 col-sm-12 no-padding-right danh-muc no-mobile">
             <ul class="list-group">
               <li class="menu-lv1 list-group-item title">DANH SÁCH SẢN PHẨM</li>
               <?php if($allCategory && !empty($allCategory)): ?>
@@ -70,8 +70,8 @@
         </div>
 
         <div class="col-lg-3">
-          <div class="clearfix">
-            <div class="dropdown login">
+          <div class="clearfix no-mobile">
+            <div class="dropdown login ">
               <div id='account_panel'>
                 <!-- Thanh vien chua dang nhap -->
                 <a href="<?= base_url('user/login.html') ?>" class="dropdown-toggle">

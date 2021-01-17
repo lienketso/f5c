@@ -23,6 +23,7 @@
 
 <link rel="stylesheet" href="<?= public_url('site/lib') ?>/css/css.css" type="text/css" />
 <link rel="stylesheet" href="<?= public_url('site') ?>/css/fix.css" type="text/css" />
+<link rel="stylesheet" href="<?= public_url('site') ?>/css/slide-nav.css" type="text/css" />
 
 <script type="text/javascript" src="<?= public_url('site') ?>/js/jquery/jquery11.2/jquery.min.js"></script>
 <script type="text/javascript" src="<?= public_url('site') ?>/js/jquery/jquery11.2/jquery-ui.min.js"></script>

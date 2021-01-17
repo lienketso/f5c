@@ -49,8 +49,16 @@ body{
     .list-sp-hot h4{
         height: 40px;
     }
+    .no-desktop{
+        display: none !important;
+    }
 }
+
 @media(max-width: 767px){
+
+    .no-mobile{
+        display: none !important;
+    }
     .hotline-header-fix{
         display: none;
     }
@@ -78,6 +86,68 @@ body{
     .navbar .navbar-nav > li > a{
         color: #fff !important;
         padding: 15px 20px !important;
+    }
+    .header-mobile{
+       
+    }
+    .head_top_mb{
+        background: #F58634;
+        padding: 5px 0;
+    }
+    .info_header_mb{
+        position: relative;
+    }
+    .logo-mobile{
+        position: relative;
+        left: 0;
+    }
+    .cart_login{
+        position: absolute;
+        right: 0;
+        top: 10px;
+    }
+    .cart_mb{
+        padding-right: 15px;
+    }
+    .login_mb{
+        color: #fff;
+        font-size: 16px;
+    }
+    .nav_search_mb{
+        padding: 10px 0;
+    }
+    .ok_mb_sn{
+        position: relative;
+    }
+    .form_search_mb{
+        position: relative;
+        left:0;
+        width: 85%;
+    }
+    .nav_mb{
+        position: absolute;
+        right: 0;
+        top: -1px;
+    }
+    .txt_search_mb{
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+    .form_sm_r{
+        position: relative;
+    }
+    .btn_s_mb{
+        position: absolute;
+        right: 5px;
+        top: 10px;
+        background: none;
+        border: none;
+    }
+    .icon_mb_nav{
+        background: #2eb2f5;
+        padding: 4px 10px;
+        color: #fff;
     }
 }
 .btn-inline{

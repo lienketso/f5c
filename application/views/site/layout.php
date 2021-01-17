@@ -9,8 +9,57 @@
   <?php $this->load->view('site/head'); ?>
 </head>
 <body>
-  <div id="header">
+  <div id="header" class="no-mobile">
     <?php $this->load->view('site/header'); ?>
+  </div>
+
+  <div class="header-mobile no-desktop">
+
+    <div class="head_top_mb">
+      <div class="container">
+        <div class="info_header_mb">
+          <div class="logo-mobile">
+            <a href="<?= base_url() ?>"><img src="<?= public_url('site/img/logo.png') ?>" alt="Logo f5c mobile"></a>
+          </div>
+          <div class="cart_login">
+            <a class="cart_mb" href="<?= base_url('gio-hang.html') ?>"><img src="<?= public_url('site/img/cart.png') ?>"></a>
+            <a class="login_mb" href="<?= base_url('user/login') ?>"><img src="<?= public_url('site/img/user.png') ?>"> Đăng nhập</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav_search_mb">
+      <div class="container">
+        <div class="ok_mb_sn">
+        <div class="form_search_mb">
+          <form method="get" action="<?= base_url('search.html') ?>">
+            <div class="form_sm_r">
+            <input class="txt_search_mb" type="text" name="text-search" value="Tìm kiếm theo từ khóa">
+            <button class="btn_s_mb" type="submit"><img src="<?= public_url('site/img/search.png') ?>"></button>
+            </div>
+          </form>
+        </div>
+        <div class="nav_mb">
+
+          <div id="mySidenav" class="sidenav">
+            <a style="border-bottom: 0;" href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+             <?php if($allCategory && !empty($allCategory)): ?>
+              <?php foreach($allCategory as $row): ?>
+            <a href="<?= $row['link'] ?>"><i class="fa <?= $row['class_icon'] ?>"></i> <?= $row['name']; ?></a>
+          <?php endforeach; ?>
+        <?php endif; ?>
+          </div>
+
+          <span class="icon_mb_nav" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+        </div>
+      </div>  
+
+      </div>
+    </div>
+
+
   </div>
 
   <div id="main">
@@ -18,34 +67,34 @@
 
     
     <section class="thong-tin">
-  <div class="container">
-    <div class="row">
-  <?php foreach($menuPage as $row): ?>
-    <?php 
-      $s['where'] = ['parent_id'=>$row->id];
-      $s['limit'] = [5,0];
-      $itemNews = $this->menu_model->get_list($s);
-    ?>
-  <div class="col-lg-3 col-sm-4" style="width:20%">
-    <div class="panel">
-      <div class="panel-heading">
-        <a style="color:#fff" href="<?= str_replace('{base_url}','https://f5c.vn/',$row->url) ?>" title='<?= $row->title; ?>'>
-        <?= $row->title; ?></a>  
-      </div>
-      <?php if(!empty($itemNews)): ?>
-      <ul class="list-group">
-        <?php foreach($itemNews as $n): ?>
-        <li><a href="<?= str_replace('{base_url}','https://f5c.vn/',$n->url) ?>"><?= $n->title; ?></a></li>  
-      <?php endforeach; ?>
-      </ul>
-    <?php endif; ?>
+      <div class="container">
+        <div class="row">
+          <?php foreach($menuPage as $row): ?>
+            <?php 
+            $s['where'] = ['parent_id'=>$row->id];
+            $s['limit'] = [5,0];
+            $itemNews = $this->menu_model->get_list($s);
+            ?>
+            <div class="col-lg-3 col-sm-4" style="width:20%">
+              <div class="panel">
+                <div class="panel-heading">
+                  <a style="color:#fff" href="<?= str_replace('{base_url}','https://f5c.vn/',$row->url) ?>" title='<?= $row->title; ?>'>
+                    <?= $row->title; ?></a>  
+                  </div>
+                  <?php if(!empty($itemNews)): ?>
+                    <ul class="list-group">
+                      <?php foreach($itemNews as $n): ?>
+                        <li><a href="<?= str_replace('{base_url}','https://f5c.vn/',$n->url) ?>"><?= $n->title; ?></a></li>  
+                      <?php endforeach; ?>
+                    </ul>
+                  <?php endif; ?>
 
-    </div>
-  </div>
-<?php endforeach; ?>
-</div>
-</div>
-</section>   
+                </div>
+              </div>
+            <?php endforeach; ?>
+          </div>
+        </div>
+      </section>   
 
 <!-- <section class="list_keyword">
   <div class="container">
@@ -57,68 +106,68 @@
     </div>
   </div>
 </section>
-     -->
-  </div>
+-->
+</div>
 
-  <div id="footer">
-    <?php $this->load->view('site/footer'); ?>
-  </div>
+<div id="footer">
+  <?php $this->load->view('site/footer'); ?>
+</div>
 
-  <!-- ===facebook, google + fixed bĂªn pháº£i -->
+<!-- ===facebook, google + fixed bĂªn pháº£i -->
  <!--  <div id="share-fix">
     <div class="share-icon share-google"><a target="_blank" href="https://plus.google.com/u/1/+F5CORP/posts">&nbsp;</a></div>
     <div class="share-icon share-sky"><a  href="skype:f5pro">&nbsp;</a></div>
     <div class="share-icon share-twi"><a  target="_blank"href="https://twitter.com/F5Corp">&nbsp;</a></div>
   </div>
- -->
+-->
 
-  <style>
-  /*style chi cho trang home*/
-  @media(max-width: 480px){
-    .dropdown.login{
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      padding: 5px;
-      margin: 0;
-      z-index: 999;
-      background-color: #F58634;
-      color: #fff;
-      background-position: left 5px center;
-    }
-    .dropdown.login a.dropdown-toggle{
-      color: #fff;
-      margin-left: 37px;
-      display: inline-block;
-    }
-    .dropdown.login .caret{
-      display: none;
-    }
-    .mini-cart{
-      position: fixed;
-      top: 0;
-      right: 10px;
-      z-index: 9999;
-      color: #fff;
-      padding: 5px;
-      margin: 0;
-      border-right: none;
-    }
-    .dang-ky{
-      display: none;
-    }
-    .header-top{
-      padding-top: 50px;
-    }
+<style>
+/*style chi cho trang home*/
+@media(max-width: 480px){
+  .dropdown.login{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 5px;
+    margin: 0;
+    z-index: 999;
+    background-color: #F58634;
+    color: #fff;
+    background-position: left 5px center;
   }
+  .dropdown.login a.dropdown-toggle{
+    color: #fff;
+    margin-left: 37px;
+    display: inline-block;
+  }
+  .dropdown.login .caret{
+    display: none;
+  }
+  .mini-cart{
+    position: fixed;
+    top: 0;
+    right: 10px;
+    z-index: 9999;
+    color: #fff;
+    padding: 5px;
+    margin: 0;
+    border-right: none;
+  }
+  .dang-ky{
+    display: none;
+  }
+  .header-top{
+    padding-top: 50px;
+  }
+}
 </style>  
 <script src='<?= public_url('site/js') ?>/jquery.zoom.js'></script>
-  <script>
-    $(document).ready(function(){
-      $('.ex1').zoom();
-    });
-  </script>
+<script>
+  $(document).ready(function(){
+    $('.ex1').zoom();
+  });
+</script>
 <script type="text/javascript">
   $(document).ready(function(){
     $(".dropdown").hover(            
@@ -229,135 +278,145 @@
 </script>
 
 <script type="text/javascript">
-$(function() {
+  $(function() {
     //search
     var main = $('#box_search');
     main.find('#text-search').keyup(function(event){
        // alert(event.which);
-     if(event.which == 16 || event.which == 37 || event.which == 38 || event.which == 39 || event.which == 40 || event.which == 32)
-     {
+       if(event.which == 16 || event.which == 37 || event.which == 38 || event.which == 39 || event.which == 40 || event.which == 32)
+       {
          return false;
-     }
+       }
        search_auto();
-    });
+     });
     main.find('[name="cat"]').change(function(){
       search_auto();
     });
     function search_auto()
     {
-    var key = main.find('#text-search').val();
-    var cat = main.find('[name="cat"]').val();
-    if(key != '')
-    {
-      $(this).nstUI(
-        $.ajax({
-    type: "GET",
-    url: '<?= base_url('home/search_ajax') ?>',
-    data:'term='+key+'&cat='+cat,
-    beforeSend: function(){
-      
-    },
-    success: function(data){
-       $("#content_search").html(data);  
-       $("#divSuggestion").css({'display':'block'});
-    }
-    })     
-    )}
-    else
-    {
-      $("#content_search").html('<center><strong>Bạn cần nhập từ khóa tìm kiềm...</strong></center>');
-    }
-    }
+      var key = main.find('#text-search').val();
+      var cat = main.find('[name="cat"]').val();
+      if(key != '')
+      {
+        $(this).nstUI(
+          $.ajax({
+            type: "GET",
+            url: '<?= base_url('home/search_ajax') ?>',
+            data:'term='+key+'&cat='+cat,
+            beforeSend: function(){
+
+            },
+            success: function(data){
+             $("#content_search").html(data);  
+             $("#divSuggestion").css({'display':'block'});
+           }
+         })     
+          )}
+        else
+        {
+          $("#content_search").html('<center><strong>Bạn cần nhập từ khóa tìm kiềm...</strong></center>');
+        }
+      }
     /*
     $( ".form-search" ).mouseleave(function() {
       $("#divSuggestion").css({'display':'none'});
     });
     */
-  
-  $(".box_search").mouseleave(function(e){
-    $("#divSuggestion").css({'display':'none'});
-  });
-  
+
+    $(".box_search").mouseleave(function(e){
+      $("#divSuggestion").css({'display':'none'});
+    });
+
     
     $('form#box_search').submit(function(){
-       var $selected = $('.sp-goi-y').find('a.item-sp-search.selected');
-       $href = jQuery.trim($selected.attr('href'));
+     var $selected = $('.sp-goi-y').find('a.item-sp-search.selected');
+     $href = jQuery.trim($selected.attr('href'));
      if($href)
      {
        window.location = $href;
        return false;
      }
-    });
+   });
 
     //raty
-  jQuery(document.body).on('click', '.top_search',function()
+    jQuery(document.body).on('click', '.top_search',function()
     {
-    var key = $(this).text();
-    key = jQuery.trim(key);
-    if(key != '')
-    {
-      $('#text-search').val(key);
-      $('form#box_search').submit();
-    } 
+      var key = $(this).text();
+      key = jQuery.trim(key);
+      if(key != '')
+      {
+        $('#text-search').val(key);
+        $('form#box_search').submit();
+      } 
     });
-  
+
     $(document).on('keydown', 'body' ,function(event){
       if(event.which == 40)
-     {
+      {
         var $selected = $('.sp-goi-y').find('a.item-sp-search.selected');
         $text = jQuery.trim($selected.find('.name-sp-search').text());
         if(!$text)
         {
-        $selected = $('.sp-goi-y a.item-sp-search:first');
+          $selected = $('.sp-goi-y a.item-sp-search:first');
         }else{
-        $selected.removeClass('selected');
-        $selected = $selected.next('a.item-sp-search');
+          $selected.removeClass('selected');
+          $selected = $selected.next('a.item-sp-search');
         }
         
+        $selected.addClass('selected');
+        $text = jQuery.trim($selected.find('.name-sp-search').text());
+        if(!$text)
+        {
+          $selected = $('.sp-goi-y a.item-sp-search:first');
+          $selected.addClass('selected');
+        }
+        $text = jQuery.trim($selected.find('.name-sp-search').text());
+        
+        if($text)
+        {
+         //$('#text-search').val($text);
+       }
+       return false;
+
+     }else if(event.which == 38)
+     {
+      var $selected = $('.sp-goi-y').find('a.item-sp-search.selected');
+      $text = jQuery.trim($selected.find('.name-sp-search').text());
+      if(!$text)
+      {
+        $selected = $('.sp-goi-y').find('a.item-sp-search:last-child');
+      }else{
+        $selected.removeClass('selected');
+        $selected = $selected.prev('a.item-sp-search');
+      }
+
       $selected.addClass('selected');
       $text = jQuery.trim($selected.find('.name-sp-search').text());
       if(!$text)
-        {
-        $selected = $('.sp-goi-y a.item-sp-search:first');
-          $selected.addClass('selected');
-        }
-          $text = jQuery.trim($selected.find('.name-sp-search').text());
-        
-        if($text)
-        {
-         //$('#text-search').val($text);
-        }
-        return false;
-        
-     }else if(event.which == 38)
-     {
-        var $selected = $('.sp-goi-y').find('a.item-sp-search.selected');
-        $text = jQuery.trim($selected.find('.name-sp-search').text());
-        if(!$text)
-        {
+      {
         $selected = $('.sp-goi-y').find('a.item-sp-search:last-child');
-        }else{
-        $selected.removeClass('selected');
-        $selected = $selected.prev('a.item-sp-search');
-        }
-        
-      $selected.addClass('selected');
+        $selected.addClass('selected');
+      }
       $text = jQuery.trim($selected.find('.name-sp-search').text());
-        if(!$text)
-        {
-          $selected = $('.sp-goi-y').find('a.item-sp-search:last-child');
-            $selected.addClass('selected');
-        }
-          $text = jQuery.trim($selected.find('.name-sp-search').text());
-          
-        if($text)
-        {
+
+      if($text)
+      {
          //$('#text-search').val($text);
-        }
-        return false;
+       }
+       return false;
      }
-    });
-});
+   });
+  });
+</script>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
 </script>
 
 </body>
