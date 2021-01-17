@@ -92,7 +92,7 @@
 
               </div>
 
-              <div class="col-lg-12">
+              <div class="col-lg-12 margin-mb">
                 <div role="tabpanel">
                   <!-- Nav tabs -->
                   <ul class="nav nav-tabs" role="tablist">

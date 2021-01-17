@@ -2,6 +2,9 @@ body{
 
 }
 @media(min-width: 768px){
+    .img-sp-cat{
+        height: 230px;
+    }
     .parem-ul{
         display: block;
         width: 100%;
@@ -55,7 +58,12 @@ body{
 }
 
 @media(max-width: 767px){
-
+    .margin-mb{
+        margin-top: 70px;
+    }
+    .img-sp-cat{
+        height: 200px;
+    }
     .no-mobile{
         display: none !important;
     }
@@ -313,7 +321,6 @@ body{
     text-align: center;
     padding: 10px 0;
     display: block;
-    height: 230px;
     overflow: hidden;
 }
 

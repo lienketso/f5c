@@ -19,7 +19,7 @@
       ?>
       <?php if(!empty($listChild)): ?>
         <?php foreach($listChild as $c): ?>
-      <div class="col-lg-2 col-xs-3">
+      <div class="col-lg-2 col-xs-4">
         <div class="item-parent">
           <a href="<?= category_url($c->friendly_url) ?>">
             <img src="<?= url_tam($c->image_name) ?>" alt="<?= $c->name; ?>">
@@ -76,7 +76,7 @@
       <div class="col-lg-3 col-xs-6 borderlr_<?= $k ?>">
             <div class="item-sp-cat">
               <a class="img-sp-cat" href="<?= product_url(slug($p->name),$p->id) ?>"><img src="<?= url_tam($p->image_name) ?>"></a>
-              <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= $p->name; ?></a></h4>
+              <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= catchuoi($p->name,60); ?></a></h4>
               <p><span><?= ($p->price==0) ? 'Liên hệ' : number_format($p->price). '₫'; ?> </span></p>
             </div>
       </div>

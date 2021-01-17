@@ -1,4 +1,4 @@
-<div class="navboot">
+<div class="navboot no-mobile">
   <div class="container">
     <nav class="navbar navbar-inverse">
       <div class="navbar-header">

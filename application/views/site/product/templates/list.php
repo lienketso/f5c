@@ -26,7 +26,7 @@
       ?>
       <?php if(!empty($listChild)): ?>
         <?php foreach($listChild as $c): ?>
-          <div class="col-lg-2 col-xs-3">
+          <div class="col-lg-2 col-xs-4">
             <div class="item-parent">
               <a href="<?= category_url($c->friendly_url) ?>">
                 <img src="<?= url_tam($c->image_name) ?>" alt="<?= $c->name; ?>">
