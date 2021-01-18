@@ -826,6 +826,12 @@ ul.list-bread li a{
     height: 200px;
     overflow: hidden;
     text-align: center;
+    position: relative;
+}
+.img-sp-cat-page img{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 #frmSort{
     display: inline-flex;
