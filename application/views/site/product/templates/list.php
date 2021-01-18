@@ -86,7 +86,7 @@
               <div class="col-lg-3 col-xs-6 borderlr_<?= $k ?>">
                 <div class="item-sp-cat">
                   <a class="img-sp-cat" href="<?= product_url(slug($p->name),$p->id) ?>"><img src="<?= url_tam($p->image_name); ?>" alt="<?= $p->name ?>"></a>
-                  <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= $p->name; ?></a></h4>
+                  <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= catchuoi($p->name,75); ?></a></h4>
                   <p><span><?= ($p->price==0) ? 'Liên hệ' : number_format($p->price). '₫'; ?> </span></p>
                 </div>
               </div>
@@ -123,7 +123,7 @@
                 <div class="col-lg-3 col-xs-6">
                   <div class="item-sp-cao page-cat">
                     <a class="img-sp-cat-page" href="<?= product_url(slug($p->name),$p->id) ?>"><img src="<?= url_tam($p->image_name); ?>" alt="<?= $p->name; ?>"></a>
-                    <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= $p->name; ?></a></h4>
+                    <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= catchuoi($p->name,50); ?></a></h4>
                     <p><span><?= ($p->price==0) ? 'Liên hệ' : number_format($p->price). '₫'; ?> </span> </p>
 
                   </div>

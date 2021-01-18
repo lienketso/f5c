@@ -140,11 +140,13 @@
                     <div class="list_sp_tuong_tu">
                       <div class="img_tuong_tu">
                         <a href="<?= product_url(slug($row->name),$row->id) ?>" target="_blank"><img src="<?= url_tam($row->image_name); ?>"></a>
+                        
+                      </div>
+
+                      <div class="info_tuong_tu">
                         <div class="tooltiptext">
                         <?= $row->options_cat; ?>
-                      </div>
-                      </div>
-                      <div class="info_tuong_tu">
+                        </div>
                         <h3><a href="<?= product_url(slug($row->name),$row->id) ?>" target="_blank"><?= catchuoi($row->name,43); ?></a></h3>
                         <ul class="list_option">
                           <li>Hãng sản xuất : <span><?= $this->manufac_model->getManufacName($row->manufac_id) ?></span></li>

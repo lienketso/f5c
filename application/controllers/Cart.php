@@ -19,7 +19,7 @@ Class Cart extends MY_Controller{
 		$data['id'] = $product->id;
 		$data['qty'] = $qty;
 		// $data['scores'] = $product->scores;
-		$data['name'] = $product->name;
+		$data['name'] = url_title($product->name);
 		$data['image_name'] = $product->image_name;
 		$data['price'] = $product->price;
 		$this->cart->insert($data);

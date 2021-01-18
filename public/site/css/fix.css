@@ -823,7 +823,7 @@ ul.list-bread li a{
 }
 .img-sp-cat-page{
     display: block;
-    height: 220px;
+    height: 200px;
     overflow: hidden;
     text-align: center;
 }
@@ -932,7 +932,7 @@ ul.list_option li span{
     display: inline-block;
 }
 .tooltiptext{
-  visibility: hidden;
+  display: none;
   width: 500px;
   background-color: #fff;
   color: #333;
@@ -944,12 +944,18 @@ ul.list_option li span{
   z-index: 1;
   top: 0;
 }
-.img_tuong_tu:hover .tooltiptext {
-  visibility: visible;
+.info_tuong_tu:hover .tooltiptext {
+  display: block;
 }
 .img_tuong_tu{
     height: 220px;
     overflow: hidden;
+    position: relative;
+}
+.img_tuong_tu a img{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 .box_sosanh{
     padding-top: 20px;

@@ -248,19 +248,19 @@ Xóa</a>
     </div>
     <div class="col-md-6 ">
         <div class="form-group">
-            <input type="text" name="fullname" class="form-control" placeholder="Họ và tên *">
+            <input type="text" name="fullname" value="<?= set_value('fullname') ?>" class="form-control" placeholder="Họ và tên *">
             <div class="alert-err"><?= form_error('fullname') ?></div>
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <input type="text" name="phone" class="form-control" placeholder="Số điện thoại *">
+            <input type="text" name="phone" value="<?= set_value('phone') ?>" class="form-control" placeholder="Số điện thoại *">
              <div class="alert-err"><?= form_error('phone') ?></div>
         </div>
     </div>
     <div class="col-md-12">
             <div class="form-group">
-                <input type="text" name="slEmail" class="form-control" placeholder="Email">
+                <input type="text" name="slEmail" value="<?= set_value('slEmail') ?>" class="form-control" placeholder="Email">
                 <div class="alert-err"><?= form_error('slEmail') ?></div>
             </div>
         </div>
@@ -303,7 +303,7 @@ Xóa</a>
 
         <div class="col-md-12">
             <div class="form-group">
-                <input type="text" name="slAddress" class="form-control" placeholder="Địa chỉ chi tiết *">
+                <input type="text" name="slAddress" value="<?= set_value('slAddress') ?>" class="form-control" placeholder="Địa chỉ chi tiết *">
                 <div class="alert-err"><?= form_error('slAddress') ?></div>
             </div>
         </div>
@@ -316,7 +316,7 @@ Xóa</a>
     </div>
 </div>
 <div class="form-group">
-    <input type="text" name="yeucau" class="form-control" placeholder="Yêu cầu khác (không bắt buộc)">
+    <input type="text" name="yeucau" value="<?= set_value('yeucau') ?>" class="form-control" placeholder="Yêu cầu khác (không bắt buộc)">
 </div>
 <!-- <div class="form-group">
     <div class="checkbox">
