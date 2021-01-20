@@ -100,7 +100,7 @@ Class Cart extends MY_Controller{
 			if($this->form_validation->run()){
 				$contact = array(
 					'name'=>$this->input->post('fullname'),
-					'email'=>'',
+					'email'=>$this->input->post('slEmail'),
 					'phone'=>$this->input->post('phone'),
 					'nhanhang'=>$this->input->post('optorder'),
 					'city'=>$this->input->post('slThanhPho'),
