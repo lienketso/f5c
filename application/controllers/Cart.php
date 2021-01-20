@@ -56,7 +56,7 @@ Class Cart extends MY_Controller{
 		$this->email->initialize($config);
 		// $this->email->set_header($headers);
 		$this->email->set_newline("\r\n");
-		$from_email = "f5c@gmail.com";
+		$from_email = "thanhan1507@gmail.com";
 		$to_email = $arrOption['email_nhantin'];
         //Load email library
 		$this->email->from($from_email, 'F5C');
