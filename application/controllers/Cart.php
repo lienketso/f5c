@@ -88,6 +88,8 @@ Class Cart extends MY_Controller{
 		$this->data['carts'] = $carts;
 
 		$this->load->model('city_model');
+		$this->load->model('district_model');
+
 		$ct['where'] = [];
 		$ct['order'] = ['id','asc'];
 		$listCity = $this->city_model->get_list($ct);
@@ -117,8 +119,20 @@ Class Cart extends MY_Controller{
 				$name = $this->input->post('fullname');
 				$phone = $this->input->post('phone');
 				$hinhtuctt = $this->input->post('optPayment');
+				if($hinhtuctt=='home'){
+					$htthanhtoan = 'Thanh toán tại nhà';
+				}else{
+					$htthanhtoan = 'Chuyển khoản';
+				}
+				$city = $this->input->post('slThanhPho');
+				$thanhpho = $this->city_model->getCity($city);
+				$district = $this->input->post('slQuan');
+				$quan = $this->district_model->getDistrict($district);
+
 				$address = $this->input->post('slAddress');
 				$content = $this->input->post('yeucau');
+
+				$diachinhan = $address.','.$quan.','.$thanhpho;
 
 				$contact = serialize($contact);
 				$data = [
@@ -170,10 +184,10 @@ Class Cart extends MY_Controller{
 				</tr>
 				</table>
 				</td></tr>";
-				$body .= '<tr><td>Hình thức thanh toán : <span style="font-weight:bold;">'.$hinhtuctt.'</span> </td><tr>';
+				$body .= '<tr><td>Hình thức thanh toán : <span style="font-weight:bold;">'.$htthanhtoan.'</span> </td><tr>';
 				$body .= '<tr><td>Tên khách hàng : <span style="font-weight:bold;">'.$name.'</span> </td><tr>';
 				$body .= '<tr><td>Số điện thoại : <span style="font-weight:bold;">'.$phone.'</span> </td><tr>';
-				$body .= '<tr><td>Địa chỉ : <span style="font-weight:bold;">'.$address.'</span> </td><tr>';
+				$body .= '<tr><td>Địa chỉ : <span style="font-weight:bold;">'.$diachinhan.'</span> </td><tr>';
 				$body .= '<tr><td>Nội dung : <span style="font-weight:bold;">'.$content.'</span> </td><tr>';
 				$body .= '<tr><td>Trân trọng !,</td><tr>';	
 				$body .= '<tr><td>Ban quản trị '.base_url().'</td><tr>';	
