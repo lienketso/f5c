@@ -109,6 +109,11 @@ Class Cart extends MY_Controller{
 					'yeucau'=>$this->input->post('yeucau')
 				);
 				
+				if(!empty($userLogin)){
+					$user = $userLogin->id;
+				}else{
+					$user = 0;
+				}
 				$name = $this->input->post('fullname');
 				$phone = $this->input->post('phone');
 				$hinhtuctt = $this->input->post('optPayment');
@@ -120,6 +125,7 @@ Class Cart extends MY_Controller{
 					'payment'=>$this->input->post('optPayment'),
 					'amount'=> $this->cart->total(),
 					'contact'=>$contact,
+					'user_id'=>$user,
 					'created'=>now()
 				];
 				$trans = $this->transaction_model->create($data);
