@@ -73,11 +73,15 @@
           <div class="clearfix no-mobile">
             <div class="dropdown login ">
               <div id='account_panel'>
+                <?php if(empty($userLogin)): ?>
                 <!-- Thanh vien chua dang nhap -->
                 <a href="<?= base_url('user/login.html') ?>" class="dropdown-toggle">
                   <span>Đăng nhập </span> <br>Tài khoản &amp; Đơn hàng
                   <span class="caret"></span>
                 </a>
+                <?php else: ?>
+                  <a href="<?= base_url('user/index') ?>"><?= $userLogin->name; ?></a>
+                <?php endif; ?>
 
 
 <style>

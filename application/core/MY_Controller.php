@@ -124,6 +124,12 @@ Class MY_Controller extends CI_Controller{
 				$cart_items = $this->cart->total_items();
 				$this->data['cart_items'] = $cart_items;
 
+				//userLogin
+				$this->load->model('user_model');
+				$user_id_login = $this->session->userdata('user_id_login');
+				$userLogin = $this->user_model->get_info($user_id_login);
+				$this->data['userLogin'] = $userLogin;
+
 				$Ishome = '';
 				$this->data['Ishome'] = $Ishome;
 				$lang = $this->language;

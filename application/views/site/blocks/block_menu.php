@@ -47,6 +47,7 @@
 
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          <?php if(empty($userLogin)): ?>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tài khoản <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
@@ -54,7 +55,11 @@
               <li><a href="<?= base_url('user/login.html') ?>">Đăng nhập</a></li>
             </ul>
           </li>
-          <li><a href="<?= base_url('gio-hang.html') ?>">Giỏ hàng (<?= $cart_items; ?>) </a></li>
+          <?php else: ?>
+            <li><a href="<?= base_url('user/index') ?>"><i class="fa fa-user"></i> <?= $userLogin->name; ?></a></li>
+          <?php endif; ?>
+
+          <li><a href="<?= base_url('gio-hang.html') ?>"><i class="fa fa-shopping-cart"></i> Giỏ hàng (<?= $cart_items; ?>) </a></li>
         </ul>
       </div><!-- /.nav-collapse -->
     </nav>

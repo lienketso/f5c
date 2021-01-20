@@ -985,3 +985,35 @@ ul.list_option li span{
 .chat_support a{
     padding-right: 10px;
 }
+.list_donhang table{
+    width: 100%;
+    border: 1px solid #ccc;
+}
+.list_donhang table tr th{
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+.list_donhang table tr td{
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+.list_donhang table tr td:first-child{
+    text-align: center;
+}
+.list_donhang table tr td:last-child{
+    text-align: center;
+    font-weight: bold;
+}
+.list_pro_u{
+    display: flex;
+    border-bottom: 1px dotted #ccc;
+    padding: 5px 0;
+}
+.list_pro_u:last-child{
+    border-bottom: 0;
+}
+.list_pro_u span{
+    padding-right: 20px;
+}
