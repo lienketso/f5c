@@ -18,7 +18,7 @@
                             <div class="col-lg-4 pr-0">
                               <p class="mt-5 mb-2 text-right"><b>Địa chỉ nhận hàng</b></p>
                               <p class="text-right">
-                                <?= $customer->['address']; ?> , <?= $this->district_model->getDistrict($customer['district']) ?> , <?= $this->city_model->getCity($customer['city']) ?>
+                                <?= $customer['address']; ?> , <?= $this->district_model->getDistrict($customer['district']) ?> , <?= $this->city_model->getCity($customer['city']) ?>
                               </p>
                             </div>
                           </div>
