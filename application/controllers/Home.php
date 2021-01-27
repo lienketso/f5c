@@ -77,9 +77,7 @@ Class Home extends MY_Controller{
 
 		$Ishome = 'home';
 		$this->data['Ishome'] = $Ishome;
-
 		$this->load->model('manufac_model');
-
 		//slider top
 		$this->load->model('slide_model');
 		$sl['order'] = ['sort_order','asc'];

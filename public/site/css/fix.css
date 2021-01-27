@@ -2,6 +2,9 @@ body{
 
 }
 @media(min-width: 768px){
+    .cdmmm{
+        padding-top: 10px;
+    }
     .img-sp-cat{
         height: 230px;
     }
@@ -767,7 +770,7 @@ ul.list-bread li a{
     border: 0 !important;
 }
 .list_ads_head{
-    padding-top: 20px;
+    
 }
 .list_ads_head a{
     padding-bottom: 10px;

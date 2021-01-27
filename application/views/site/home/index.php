@@ -2,11 +2,11 @@
 
   <section class="cdmmm">
     <section class="container">
-      <div class="row">
+      <div class="rowsss">
       <div class="col-lg-9">
         <div class="row">
           <!-- danh muc san pham -->
-          <div class="col-md-3 col-sm-12 no-padding-right danh-muc no-mobile">
+<!--           <div class="col-md-3 col-sm-12 no-padding-right danh-muc no-mobile">
             <ul class="list-group">
               <li class="menu-lv1 list-group-item title">DANH SÁCH SẢN PHẨM</li>
               <?php if($allCategory && !empty($allCategory)): ?>
@@ -43,9 +43,9 @@
                 <?php endif; ?>
 
               </ul>
-            </div>
+            </div> -->
 
-            <div class="col-md-9 col-sm-12 no-padding">
+            <div class="col-md-12 col-sm-12 no-padding">
               <!-- slide top -->
               <div class="owl-banner">
                 <?php foreach($slideTop as $row): ?>
@@ -57,24 +57,21 @@
                 <?php endforeach; ?>
               </div>
               
-              <div class="ads_banner_bottom">
+              <!-- <div class="ads_banner_bottom">
                 <?php foreach($bannerTop as $row): ?>
                 <a class="ads_two" target="_blank" href="<?= $row->url; ?>" style="background-image:url('<?= url_tam($row->image_name); ?>')"></a>
               <?php endforeach; ?>
-
-              
-              </div>
+              </div> -->
 
             </div>
           </div>
         </div>
 
         <div class="col-lg-3">
-          <div class="clearfix no-mobile">
+<!--           <div class="clearfix no-mobile">
             <div class="dropdown login ">
               <div id='account_panel'>
                 <?php if(empty($userLogin)): ?>
-                <!-- Thanh vien chua dang nhap -->
                 <a href="<?= base_url('user/login.html') ?>" class="dropdown-toggle">
                   <span>Đăng nhập </span> <br>Tài khoản &amp; Đơn hàng
                   <span class="caret"></span>
@@ -101,13 +98,12 @@
   }
 </style>
   
-  <!-- Thanh vien da dang nhap -->
 </div>      
 </div>
 <a class="mini-cart" href="<?= base_url('gio-hang.html') ?>"><span class="img-cart"></span>
   (<b class='session_red load_cart'><?= $cart_items; ?></b>)
   <br>Giỏ hàng</a>
-</div>
+</div> -->
 <!-- dau gia -->
 <div class="dau-gia" style="max-width:265px">
 

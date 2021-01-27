@@ -59,3 +59,5 @@
 </div>
 </div>
 </div>
+
+<?php $this->load->view('site/blocks/block_menu') ?>

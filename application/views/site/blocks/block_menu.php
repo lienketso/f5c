@@ -15,7 +15,7 @@
           <li class="dropdown mega-dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <div class="line"><i></i><i></i><i></i></div>
-               Danh mục <span class="caret"></span></a>        
+               Danh mục sản phẩm <span class="caret"></span></a>        
             <ul class="dropdown-menu mega-dropdown-menu">
               <?php if($allCategory && !empty($allCategory)): ?>
                 <?php foreach($allCategory as $k=>$row): ?>
