@@ -148,7 +148,7 @@ Class Home extends MY_Controller{
 			if(count($result>0)){
 				foreach($result as $pr){
 					echo '<a class="list-group-item item-sp-search clearfix" title="'.$pr->name.'" href="'.product_url(slug($pr->name),$pr->id).'">
-	            	<img class="img-sp-search" alt="'.$pr->name.'" src="'.product_link($pr->image_name).'">
+	            	<img class="img-sp-search" alt="'.$pr->name.'" src="'.url_tam($pr->image_name).'">
 	            	<div class="caption">
 	            		<span class="name-sp-search">'.$pr->name.'</span>
 	            		<div class="price">
