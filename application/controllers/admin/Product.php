@@ -300,7 +300,20 @@ Class Product extends MY_Controller{
 		$at['where'] = ['table_id'=>$id];
 		$imgAttach = $this->file_model->get_list($at);
 		$this->data['imgAttach'] = $imgAttach;
-	
+		
+		// sản phẩm kèm theo
+		
+		$kemtheo = unserialize($info->products);
+		$list_kemtheo = [];
+		if(!empty($kemtheo)){
+			foreach($kemtheo as $kem){
+				$pro = $this->product_model->get_info($kem);
+				$list_kemtheo[] = $pro;
+			}
+		}
+		
+		$this->data['list_kemtheo'] = $list_kemtheo;
+
 		$this->data['temp'] = 'admin/product/edit';
 		$this->load->view('admin/main', $this->data);
 	}

@@ -61,6 +61,15 @@
 						<input type="text" name="tags" value="<?= set_value('tags'); ?>" class="form-control" placeholder="Nhập từ khóa cách nhau bởi dấu ,">
 						<span id="" class="error mt-2 text-danger" for=""><?php echo form_error('tags'); ?></span>
 					</div>
+					<div class="form-group">
+						<label for="">Phụ kiện kèm theo</label>
+						<select class="js-example-basic-multiple form-control" name="products[]" multiple="multiple">
+							<?php foreach($list_kemtheo as $row): ?>
+							<option value="<?= $row->id ?>" selected><?= $row->name; ?></option>
+							<?php endforeach; ?>
+						</select>
+						<span id="" class="error mt-2 text-danger" for=""><?php echo form_error('products'); ?></span>
+					</div>
 					<p class="card-description">
 						<code><i class="ti-settings"></i> Cấu hình Seo (Rich Snippet)</code> 
 						<button type="button" id="onset" class="btn btn-primary btn-sm"><i class="ti-eye"></i> Hiện cấu hình</button>

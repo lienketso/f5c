@@ -205,5 +205,12 @@ $('.makeMeRichTextarea').each( function () {
           on.hide();
         });
 </script>
+<link href="<?= public_url('admin/vendors/select2') ?>/select2.min.css" rel="stylesheet" />
+<script src="<?= public_url('admin/vendors/select2') ?>/select2.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+</script>
 </body>
 </html>

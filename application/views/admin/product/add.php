@@ -48,7 +48,7 @@
 						<label for="">Thông số</label>
 						<textarea name="options_cat" class="makeMeRichTextarea" id="metadesc" placeholder="Thông số" onkeyup="keyupMeta()" rows="4"><?= set_value('options_cat'); ?></textarea>
 					</div>
-	
+					
 					<div class="form-group">
 						<label for="">Nội dung sản phẩm</label>	
 						<div id="">
@@ -60,6 +60,15 @@
 						<label for="">Tags</label>
 						<input type="text" name="tags" value="<?= set_value('tags'); ?>" class="form-control" placeholder="Nhập từ khóa cách nhau bởi dấu ,">
 						<span id="" class="error mt-2 text-danger" for=""><?php echo form_error('tags'); ?></span>
+					</div>
+					<div class="form-group">
+						<label for="">Phụ kiện kèm theo</label>
+						<select class="js-example-basic-multiple" name="states[]" multiple="multiple">
+							<option value="AL">Alabama</option>
+							...
+							<option value="WY">Wyoming</option>
+						</select>
+						<span id="" class="error mt-2 text-danger" for=""><?php echo form_error('products'); ?></span>
 					</div>
 					<p class="card-description">
 						<code><i class="ti-settings"></i> Cấu hình Seo (Rich Snippet)</code> 
