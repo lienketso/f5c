@@ -1020,3 +1020,85 @@ ul.list_option li span{
 .list_pro_u span{
     padding-right: 20px;
 }
+.sticky_compare{
+    display: block;
+    width: 100%;
+    max-width: 1170px;
+    margin: auto;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background: #fff;
+    border: 1px solid #4a90e2;
+    box-shadow: 0 -1px 4px 1px rgb(0 0 0 / 20%);
+}
+.list_compare{
+    display: flex;
+    padding: 10px 0;
+    position: relative;
+}
+.info_compare h4{
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 22px;
+}
+.del_compare{
+    position: absolute;
+    right: 0;
+    top: 5px;
+    font-weight: bold;
+    width: 15px;
+    height: 15px;
+    color: #fff;
+    background: red;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 13px;
+    cursor: pointer;
+}
+.btn_sosanh{
+    background: #F58634;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 30px;
+    text-align: center;
+    border-radius: 5px;
+    margin-top: 18px;
+}
+.btn_sosanh:hover{
+    background: #000;
+    color: #fff;
+}
+.close_compare{
+    position: absolute;
+    right: 0;
+    padding: 5px 10px;
+    background: #fff;
+    top: -30px;
+    border: 1px solid #4a90e2;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close_compare a{
+    color: #4a90e2;
+}
+.btn_sss{
+    position: absolute;
+    right: 10px;
+    top: 35px;
+}
+.border_r{
+    border-right: 1px solid #4a90e2;
+}
+.nut_ss{
+    position: relative;
+    top: -7px;
+    text-align: right;
+}
+.nut_ss a{
+    color: blue;
+    cursor: pointer;
+}

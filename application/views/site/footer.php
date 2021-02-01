@@ -192,3 +192,5 @@ $(window).load(function() {
     });
 });
   </script>
+
+  <script type="text/javascript" src="<?= public_url('site/js') ?>/main.js"></script>
