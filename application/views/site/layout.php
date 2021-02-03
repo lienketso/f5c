@@ -118,20 +118,9 @@
       <div class="close_compare"><a id="dong_ss" >Đóng</a></div>
       <div class="container">
         <div class="row" id="list_com">
-      <div class="col-lg-3 border_r">
-      <div class="list_compare">
-        <div class="img_compare">
-          <img width="80" src="https://f5c.vn/upload/public/0457c712b41b663a389862231034dbd1.jpg" >
-        </div>
-        <div class="info_compare">
-          <h4>Tên sản phẩm</h4>
-        </div>
-        <a class="del_compare" title="Xóa so sánh">x</a>
-      </div>
-      </div>
 
       <div class="btn_sss">
-        <a class="btn_sosanh" id="btnSS" data-url="<?= base_url('compare/addcompare') ?>" href="">So sánh</a>
+        <a class="btn_sosanh" id="btnSS" href="<?= base_url('compare/index') ?>">So sánh</a>
       </div>
   
     </div>

@@ -1,4 +1,4 @@
-<?php $this->load->view('site/blocks/block_menu'); ?>
+
 
 <div class="breadcrum-f">
 	<div class="container">

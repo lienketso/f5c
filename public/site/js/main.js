@@ -23,4 +23,19 @@ $(document ).ready(function() {
 			})
 	});
 
+	//remove compare
+      $(document).on('click', '.del_compare', function(){  
+       var id = $(this).attr("data-id");  
+       let url = $(this).attr('data-url');
+       	 $.ajax({
+       	 	type: 'POST',
+       	 	url: url,
+       	 	data: {id},
+       	 })
+       	 .done(function(res){
+       	 	$('#'+id+'').remove(); 
+       	 })
+          
+     });  
+
 });

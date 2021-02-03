@@ -1,5 +1,4 @@
 
-<?php $this->load->view('site/blocks/block_menu'); ?>
 <section class="breadcrum-f5">
   <div class="container">
     <div class="w-path">
@@ -92,6 +91,48 @@
 
               </div>
 
+              <div class="col-lg-12">
+                
+            <div class="row">
+              <div class="col-lg-12" style="padding-bottom: 20px;">
+                <div class="box_sosanh" >
+                <h4 class="title_sosanh">So sánh với các sản phẩm tương tự</h4>
+                <div class="row-ss">
+                  <?php foreach($listSosanh as $row): ?>
+                  <div class="col-lg-3 border_ok">
+                    <div class="list_sp_tuong_tu">
+                      <div class="img_tuong_tu">
+                        <a href="<?= product_url(slug($row->name),$row->id) ?>" target="_blank"><img src="<?= url_tam($row->image_name); ?>"></a>
+                        
+                      </div>
+
+                      <div class="info_tuong_tu">
+                        <!-- <div class="tooltiptext">
+                        <?= $row->options_cat; ?>
+                        </div> -->
+                        <h3><a href="<?= product_url(slug($row->name),$row->id) ?>" target="_blank"><?= catchuoi($row->name,43); ?></a></h3>
+                        <ul class="list_option">
+                          <li>Hãng sản xuất : <span><?= $this->manufac_model->getManufacName($row->manufac_id) ?></span></li>
+                          <li>Xuất xứ : <span><?= $row->model; ?></span></li>
+
+                          <li>Bảo hành : <span><?= $row->warranty ?> tháng</span></li>
+                        </ul>
+                        <p class="price_tuong_tu"><?= ($row->price==0) ? 'Liên hệ' : number_format($row->price).' đ' ?></p>
+                        <div class="nut_ss"><a class="sosanh_home" href="<?= base_url('compare/index?product='.$info->id.','.$row->id) ?>"><img src="<?= public_url('site/img/compare.png') ?>"> So sánh</a></div>
+                      </div>
+                      
+                    </div>
+
+                  </div>
+                <?php endforeach; ?>
+
+                </div>
+              </div>
+              </div>
+
+            </div>
+              </div>
+
               <div class="col-lg-12 margin-mb">
                 <div role="tabpanel">
                   <!-- Nav tabs -->
@@ -130,43 +171,6 @@
 
             </div>
 
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="box_sosanh">
-                <h4 class="title_sosanh">So sánh với các sản phẩm tương tự</h4>
-                <div class="row-ss">
-                  <?php foreach($listSosanh as $row): ?>
-                  <div class="col-lg-3 border_ok">
-                    <div class="list_sp_tuong_tu">
-                      <div class="img_tuong_tu">
-                        <a href="<?= product_url(slug($row->name),$row->id) ?>" target="_blank"><img src="<?= url_tam($row->image_name); ?>"></a>
-                        
-                      </div>
-
-                      <div class="info_tuong_tu">
-                        <div class="tooltiptext">
-                        <?= $row->options_cat; ?>
-                        </div>
-                        <h3><a href="<?= product_url(slug($row->name),$row->id) ?>" target="_blank"><?= catchuoi($row->name,43); ?></a></h3>
-                        <ul class="list_option">
-                          <li>Hãng sản xuất : <span><?= $this->manufac_model->getManufacName($row->manufac_id) ?></span></li>
-                          <li>Xuất xứ : <span><?= $row->model; ?></span></li>
-
-                          <li>Bảo hành : <span><?= $row->warranty ?> tháng</span></li>
-                        </ul>
-                        <p class="price_tuong_tu"><?= ($row->price==0) ? 'Liên hệ' : number_format($row->price).' đ' ?></p>
-                      </div>
-                      
-                    </div>
-
-                  </div>
-                <?php endforeach; ?>
-
-                </div>
-              </div>
-              </div>
-
-            </div>
 
           </div>
 
