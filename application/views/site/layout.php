@@ -120,7 +120,7 @@
         <div class="row" id="list_com">
 
       <div class="btn_sss">
-        <a class="btn_sosanh" id="btnSS" href="<?= base_url('compare/index') ?>">So sánh</a>
+        <a class="btn_sosanh" id="btnSS" href="<?= base_url('compare/index?product=1561,2094') ?>">So sánh</a>
       </div>
   
     </div>
