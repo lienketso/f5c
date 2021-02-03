@@ -15,6 +15,7 @@ $(document ).ready(function() {
 			.done(function(res){
 				let html = res;
 				 $('#list_com').prepend(res);
+				 $('#frmCompare').attr('action', 'http://localhost/f5c/compare/index?product='+id);
 			})
 			.always(function(resp) {
 				setTimeout(() => {
@@ -37,5 +38,9 @@ $(document ).ready(function() {
        	 })
           
      });  
+
+      $('#btnSS').on('click',function(e){
+      	$('#frmCompare').submit();
+      })
 
 });

@@ -120,7 +120,9 @@
         <div class="row" id="list_com">
 
       <div class="btn_sss">
-        <a class="btn_sosanh" id="btnSS" href="<?= base_url('compare/index?product=1561,2094') ?>">So sánh</a>
+        <form method="get" action="" id="frmCompare">
+        <a class="btn_sosanh" id="btnSS">So sánh</a>
+        </form>
       </div>
   
     </div>
