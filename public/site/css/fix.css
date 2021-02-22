@@ -841,7 +841,7 @@ ul.list-bread li a{
 }
 .item-sp-cao{
     width: 100%;
-    height: 320px;
+    height: 340px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     padding: 10px;
@@ -917,6 +917,7 @@ ul.list-bread li a{
     margin:0;
     padding-top: 10px;
     line-height: 18px;
+    height: 60px;
 }
 .info_tuong_tu h3 a{
     color: #0072bc;
@@ -1067,6 +1068,7 @@ ul.list_option li span{
     text-align: center;
     border-radius: 5px;
     margin-top: 18px;
+    cursor: pointer;
 }
 .btn_sosanh:hover{
     background: #000;
@@ -1101,4 +1103,73 @@ ul.list_option li span{
 .nut_ss a{
     color: blue;
     cursor: pointer;
+}
+.item-sp-com h4{
+    font-weight: bold;
+    height: 40px;
+    line-height: 20px;
+}
+.price_com{
+    font-weight: bold;
+    font-size: 18px;
+    color: red;
+}
+.list_ss li{
+    border-top: 1px solid #ccc;
+    padding: 5px 0;
+}
+.list_ss li span{
+    font-weight: bold;
+}
+.bao_border{
+    border: 1px solid #ccc;
+}
+.btn_comp{
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+.btn_comp a{
+background: -webkit-linear-gradient(top,#f59000,#fd6e1d);
+color: #fff;
+text-transform: uppercase;
+padding: 10px 0;
+text-align: center;
+display: block;
+width: 100%;
+border-radius: 4px;
+font-weight: bold;
+}
+.btn_comp a:hover{
+    background: #000;
+}
+.item-sp-com{
+    position: relative;
+}
+.remove_com{
+    position: absolute;
+    right: 0;
+    top: 15px;
+    cursor: pointer;
+    z-index: 999;
+}
+.bao_ajax{
+    text-align: center;
+    font-weight: bold;
+}
+.bao_ajax h4{
+    text-transform: uppercase;
+}
+.bao_ajax a img{
+    max-width: 100px;
+}
+.list_more_com{
+    display: flex;
+}
+.list_m{
+    padding: 10px;
+    width: 25%;
+    text-align: center;
+}
+.list_m a img{
+    max-width: 100%;
 }

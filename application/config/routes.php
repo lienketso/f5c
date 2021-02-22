@@ -62,7 +62,7 @@ $route['search.html'] = 'home/search';
 $route['search.html/(:num)'] = 'home/search/$1';
 
 $route['thong-tin/(:any)/i(:num).html'] = 'page/view/$2';
-$route['so-sanh-(:any)/(:num).html'] = 'compare/index/$2';
+$route['so-sanh'] = 'compare/index';
 
 //tin tức
 $route['tin-tuc.html'] = 'news/all';
