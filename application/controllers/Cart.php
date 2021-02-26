@@ -5,6 +5,24 @@ Class Cart extends MY_Controller{
 		$this->load->model('cart_model');
 		$this->load->model('transaction_model');
 	}
+	function addpk(){
+		$id = $this->input->post('id');
+		$product = $this->product_model->get_info($id);
+		$qty = 1;
+		$price = $product->price;
+		$data = array();
+		$data['id'] = $product->id;
+		$data['qty'] = $qty;
+
+		$data['name'] = url_title($product->name);
+		$data['image_name'] = $product->image_name;
+		$data['price'] = $product->price;
+		$this->cart->insert($data);
+		$cart_total = $this->cart->total_items();
+		echo $cart_total;
+		die;
+
+	}
 	function add(){
 		//gọi tới thư viện cart
 		//lấy ra sản phẩm muốn thêm vào giỏ

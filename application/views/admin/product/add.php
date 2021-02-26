@@ -63,10 +63,8 @@
 					</div>
 					<div class="form-group">
 						<label for="">Phụ kiện kèm theo</label>
-						<select class="js-example-basic-multiple" name="states[]" multiple="multiple">
-							<option value="AL">Alabama</option>
-							...
-							<option value="WY">Wyoming</option>
+						<select id="slectPK" data-url="<?= admin_url('product/selectpk') ?>" class="form-control js-example-basic-multiple" name="products[]" multiple="multiple">
+
 						</select>
 						<span id="" class="error mt-2 text-danger" for=""><?php echo form_error('products'); ?></span>
 					</div>

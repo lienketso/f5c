@@ -263,5 +263,35 @@ function menuSlug(Title) {
     
   });
 
+
+
   
 });  
+
+
+  //select phụ kiện sản phẩm
+  $(document).on('keyup', '.select2-search__field', function (e) {
+      e.preventDefault();
+      let _this = $(e.currentTarget);
+      let keyword = $('.select2-search__field').val();
+      let url = $('#slectPK').attr('data-url');
+
+      $.ajax({
+          type: "POST",
+          url: url,
+          data: {
+            keyword
+          },
+        })
+        .done(function(res){
+          let html = res;
+          $('#slectPK').html(res);
+        })
+        .always(function(resp) {
+          setTimeout(() => {
+            $('.loading').css('display', 'none');
+          }, 2000)
+        })
+//end select
+
+  })

@@ -160,7 +160,7 @@ section.info-payment .panel{
 display:none;
 }
 </style>
-<?php $this->load->view('site/blocks/block_menu') ?>
+
 <div class="main_content">
 <div id="p-cart" class="section">
 <div class="container">

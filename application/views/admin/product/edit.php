@@ -63,7 +63,7 @@
 					</div>
 					<div class="form-group">
 						<label for="">Phụ kiện kèm theo</label>
-						<select class="js-example-basic-multiple form-control" name="products[]" multiple="multiple">
+						<select id="slectPK" data-url="<?= admin_url('product/selectpk') ?>" class="js-example-basic-multiple form-control" name="products[]" multiple="multiple">
 							<?php foreach($list_kemtheo as $row): ?>
 							<option value="<?= $row->id ?>" selected><?= $row->name; ?></option>
 							<?php endforeach; ?>

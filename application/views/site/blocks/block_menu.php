@@ -59,7 +59,7 @@
             <li><a href="<?= base_url('user/index') ?>"><i class="fa fa-user"></i> <?= $userLogin->name; ?></a></li>
           <?php endif; ?>
 
-          <li><a href="<?= base_url('gio-hang.html') ?>"><i class="fa fa-shopping-cart"></i> Giỏ hàng (<?= $cart_items; ?>) </a></li>
+          <li><a href="<?= base_url('gio-hang.html') ?>"><i class="fa fa-shopping-cart"></i> Giỏ hàng (<span id="countCart"><?= $cart_items; ?></span>) </a></li>
         </ul>
       </div><!-- /.nav-collapse -->
     </nav>

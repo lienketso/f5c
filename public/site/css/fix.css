@@ -1106,7 +1106,7 @@ ul.list_option li span{
 }
 .item-sp-com h4{
     font-weight: bold;
-    height: 40px;
+    height: 55px;
     line-height: 20px;
 }
 .price_com{
@@ -1172,4 +1172,39 @@ font-weight: bold;
 }
 .list_m a img{
     max-width: 100%;
+}
+.list_dikem{
+    padding: 10px;
+    text-align: center;
+}
+.img_dikem a img{
+    max-width: 100%;
+}
+.intro_dikem{
+    padding-top: 10px;
+}
+.intro_dikem h4{
+    font-size: 13px;
+    font-style: italic;
+    font-weight: bold;
+}
+.intro_dikem h4 a{
+    color: #000;
+}
+.addpk{
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    background: #F58634;
+    color: #fff;
+    border: 0;
+}
+.addpk:hover{
+    background: #000;
+    color: #fff;
+}
+.alert_add{
+    padding: 10px;
+    background: #99FF66;
+    font-weight: bold;
 }

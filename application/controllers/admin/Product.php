@@ -8,6 +8,18 @@ Class Product extends MY_Controller{
 		$this->load->model('productmeta_model');
 	}
 
+	function selectpk(){
+		$keyword= $this->input->post('keyword');
+		$input['like'] = ['name',$keyword];
+		$input['limit'] = [10,0];
+		$product = $this->product_model->get_list($input);
+		foreach($product as $row){
+			echo "<option value='".$row->id."'>".$row->name."</option>";
+		}
+		
+		die;
+	}
+
 	function index(){
 		//Tạo thông báo 
 		$this->load->library('pagination');
@@ -135,7 +147,11 @@ Class Product extends MY_Controller{
 				$alt_image = $this->input->post('alt_image');
 
 				$image_list = $this->input->post('image_list');
-
+				//phụ kiện kèm theo
+				$products = $this->input->post('products[]');
+				if($products){
+					$products = serialize($products);
+				}
 				//seo tags
 				$tags = $this->input->post('tags');
 				if($tags==''){
@@ -165,6 +181,7 @@ Class Product extends MY_Controller{
 					'meta_key'=>$meta_key,
 					'meta_desc'=>$meta_desc,
 					'alt_image' => $alt_image,
+					'products'=>$products,
 					'created'=>now()
 				);
 				$product = $this->product_model->create($data);
@@ -243,6 +260,10 @@ Class Product extends MY_Controller{
 				$alt_image = $this->input->post('alt_image');
 
 				$image_list = $this->input->post('image_list');
+				$products = $this->input->post('products[]');
+				if($products){
+					$products = serialize($products);
+				}
 
 				$data = array(
 					'name'=> $name,
@@ -261,6 +282,7 @@ Class Product extends MY_Controller{
 					'meta_key'=>$meta_key,
 					'meta_desc'=>$meta_desc,
 					'alt_image' => $alt_image,
+					'products'=>$products,
 					'last_update'=> now()
 				);
 				$this->product_model->update($id,$data);

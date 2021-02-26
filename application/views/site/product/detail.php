@@ -64,6 +64,7 @@
               <div class="col-lg-6">
                 <div class="desc-product-f5">
                   <p>Giá bán: <span><?= ($info->price==0) ? 'Liên hệ' : number_format($info->price).' đ' ?> </span></p>
+                  <?php if(!empty($info->options)): ?>
                   <div class="thongtin-them">
                     <?php 
                     $them = unserialize($info->options);
@@ -74,6 +75,8 @@
                       <?php endforeach; ?>
                     </ul>
                   </div>
+                <?php endif; ?>
+
                   <ul>
                     <li>Hãng sản xuất : <span><?= $this->manufac_model->getManufacName($info->manufac_id) ?></span></li>
                     <?php if($info->model!=''): ?>
@@ -162,7 +165,37 @@
                     </div>
                     <div role="tabpanel" class="tab-pane" id="phukien">
                       <div class="thong-tin-sp">
-                        Đang cập nhật....
+                       
+                        <?php if(!empty($info->products)): ?>
+                           <?php 
+                              $phukien = unserialize($info->products);
+                            ?>
+                        <div class="phukien_dikem">
+                          <div class="col-lg-12">
+                            <div class="alert_add">Đã thêm phụ kiện vào giỏ hàng !</div>
+                          </div>
+                          <?php foreach($phukien as $val): ?>
+                            <?php 
+                              $prophukien = $this->product_model->get_info($val);
+                            ?>
+                          <div class="col-lg-3">
+                            <div class="list_dikem">
+                              <div class="img_dikem">
+                                <a href="<?= product_url(slug($prophukien->name),$prophukien->id) ?>"><img src="<?= url_tam($prophukien->image_name) ?>" alt="<?= $prophukien->name; ?>"></a>
+                              </div>
+                              <div class="intro_dikem">
+                                <h4><a href="<?= product_url(slug($prophukien->name),$prophukien->id) ?>"><?= $prophukien->name; ?></a></h4>
+                                <button type="button" data-id="<?= $prophukien->id ?>" data-url="<?= base_url('cart/addpk') ?>" class="addpk">Thêm phụ kiện</button>
+                              </div>
+                            </div>
+                          </div>
+                        <?php endforeach; ?>
+
+                        </div>
+                        <?php else: ?>
+                           <p>Chưa có phụ kiện...</p>
+                      <?php endif; ?>
+
                       </div>
                     </div>
                   </div>
