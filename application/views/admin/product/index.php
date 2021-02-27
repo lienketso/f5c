@@ -61,6 +61,8 @@ padding: 20px;
 					<th>Tiêu đề</th>
 					<th>Hình ảnh</th>
 					<th>Danh mục</th>
+					<th>Nổi bật</th>
+					<th>Ẩn / Hiện</th>
 					<th>Cấu hình</th>
 				</tr>
 			</thead>   
@@ -72,7 +74,24 @@ padding: 20px;
 							<td><?php echo $row->name; ?></td>
 							<td class="center"><img src="<?= product_link($row->image_name) ?>" width="70"></td>	
 							<td><?= $this->product_model->getCategory($row->cat_id) ?></td>
-							<td class="center">
+							<td width="120">
+								<?php if($row->feature==1): ?>
+								<a class="an_sp" title="Click để ẩn nổi bật" href="<?= admin_url('product/feature?id='.$row->id) ?>">Nổi bật</a>
+							<?php endif; ?>
+								<?php if($row->feature==0): ?>
+								<a class="hien_sp" title="Click để hiện sản phẩm" href="<?= admin_url('product/feature?id='.$row->id) ?>">Không</a>	
+								<?php endif; ?>
+							</td>
+							<td>
+								<?php if($row->hide==0): ?>
+								<a class="an_sp" title="Click để ẩn sản phẩm" href="<?= admin_url('product/status?id='.$row->id) ?>">Ẩn</a>
+							<?php endif; ?>
+								<?php if($row->hide==1): ?>
+								<a class="hien_sp" title="Click để hiện sản phẩm" href="<?= admin_url('product/status?id='.$row->id) ?>">Hiện</a>	
+								<?php endif; ?>
+							</td>
+
+							<td class="center" width="150">
 								<a class="btn btn-sm btn-info" href="<?php echo admin_url('product/edit/'.$row->id); ?>">
 									<i class="ti-pencil-alt"></i>  
 								</a>

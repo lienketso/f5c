@@ -84,6 +84,46 @@ Class Product extends MY_Controller{
 		$this->data['temp'] = "admin/product/index";
 		$this->load->view("admin/main", $this->data);
 	}
+
+	function status(){
+		$id = $this->input->get('id');
+		$product = $this->product_model->get_info($id);
+		$onoff = '';
+		if($product->hide==1){
+			$on = '0';
+		}
+		if($product->hide==0){
+			$on = '1';
+		}
+		
+		$data = array(
+			'hide'=>$on
+		);
+		$this->product_model->update($id,$data);
+		$this->session->set_flashdata('message', 'Sửa dữ liệu thành công !');
+		//chuyển sang trang danh sách admin
+		redirect(admin_url('product'));
+	}
+
+	function feature(){
+		$id = $this->input->get('id');
+		$product = $this->product_model->get_info($id);
+
+		if($product->feature==1){
+			$on = '0';
+		}
+		if($product->feature==0){
+			$on = '1';
+		}
+		
+		$data = array(
+			'feature'=>$on
+		);
+		$this->product_model->update($id,$data);
+		$this->session->set_flashdata('message', 'Sửa dữ liệu thành công !');
+		//chuyển sang trang danh sách admin
+		redirect(admin_url('product'));
+	}
 //kiểm tra callback username
 	function check_title(){
 		$action = $this->uri->rsegment(2);
