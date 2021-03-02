@@ -51,7 +51,7 @@ class Compare extends MY_Controller{
 		$input['where'] = ['product_id'=>$id];
         $input['order'] = ['option_id','asc'];
         $listOps = $this->product_option_model->get_list($input);
-        $arr = '';
+        $arr = '';	
         foreach($listOps as $row){
         	$arr = '<li><span>'.$this->product_option_model->getOption($row->option_id).' :</span> '.$row->value.'</li>';
         }

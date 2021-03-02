@@ -137,7 +137,7 @@ $(function() {
 
   <link rel="stylesheet" type="text/css" href="<?= public_url('site/lib') ?>/datetime/jquery.datetimepicker.css" />
   <script type="text/javascript" src="<?= public_url('site/lib') ?>/datetime/jquery.datetimepicker.js"></script>
-
+  <script type="text/javascript" src="<?= public_url('site') ?>/js/underscore-min.js"></script>
   <script type="text/javascript">
 $(document).ready(function() {
     $(".datepicker").datetimepicker({
