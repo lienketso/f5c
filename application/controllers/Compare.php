@@ -38,20 +38,20 @@ class Compare extends MY_Controller{
 		$id = $this->input->post('id');
 		setcookie('productid_'.$id,$id,time()+1000,'/'); 
 		$listId = get_cookie("productid_".$id);
-		$ssProduct = $this->product_model->get_info($id);
+		$ssProduct = $this->product_model->get_info($id);		
 		if(!empty($ssProduct)){
 		echo '<div class="col-lg-3 border_r" id="'.$ssProduct->id.'"><div class="list_compare"><div class="img_compare"><img width="80" src="'.url_tam($ssProduct->image_name).'" ></div><div class="info_compare"><h4>'.$ssProduct->name.'</h4></div><a class="del_compare" data-url="'.base_url('compare/removeCompare').'" data-id="'.$ssProduct->id.'" title="Xóa so sánh">x</a></div></div>';
 		die;
 		}
 	}
 
-	function addmore(){
+	function addmore(){		
 		$id = $this->input->post('id');
 		$ssProduct = $this->product_model->get_info($id);
 		$input['where'] = ['product_id'=>$id];
         $input['order'] = ['option_id','asc'];
         $listOps = $this->product_option_model->get_list($input);
-        $arr = '';	
+        $arr = '';	  
         foreach($listOps as $row){
         	$arr = '<li><span>'.$this->product_option_model->getOption($row->option_id).' :</span> '.$row->value.'</li>';
         }
