@@ -40,7 +40,7 @@
               </div>
             </div>
           <?php endforeach; ?>
-          <?php if(count($arrProduct)<=3): ?>
+          <?php if(count($arrProduct)<3): ?>
            <div class="col-lg-4 col-xs-6" id="themCom">
              <div class="bao_ajax">
                <a data-toggle="modal" href="#modal-id"><img src="<?= public_url('site/img/plus.png') ?>"></a>

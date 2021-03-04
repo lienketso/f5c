@@ -41,7 +41,7 @@
                         <form method="get" action="<?= base_url('search.html') ?>">
                             <div class="form_sm_r">
                                 <input class="txt_search_mb" type="text" name="text-search"
-                                    value="Tìm kiếm theo từ khóa">
+                                placeholder="Tìm kiếm theo từ khóa">
                                 <button class="btn_s_mb" type="submit"><img
                                         src="<?= public_url('site/img/search.png') ?>"></button>
                             </div>
