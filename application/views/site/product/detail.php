@@ -101,12 +101,12 @@
                 <div class="box_sosanh" >
                 <h4 class="title_sosanh">So sánh với các sản phẩm tương tự</h4>
                 <div class="row-ss">
-                  <?php foreach($listSosanh as $row): ?>
-                  <div class="col-lg-3 border_ok">
+                  <?php foreach($listSosanh as $index => $row): ?>
+                  
+                  <div class="col-lg-3 border_ok <?= ($index+1)%4==0 ? 'border_left':'' ?>"> 
                     <div class="list_sp_tuong_tu">
                       <div class="img_tuong_tu">
-                        <a href="<?= product_url(slug($row->name),$row->id) ?>" target="_blank"><img src="<?= url_tam($row->image_name); ?>"></a>
-                        
+                        <a href="<?= product_url(slug($row->name),$row->id) ?>" target="_blank"><img src="<?= url_tam($row->image_name); ?>"></a>                        
                       </div>
 
                       <div class="info_tuong_tu">
@@ -121,7 +121,7 @@
                           <li>Bảo hành : <span><?= $row->warranty ?> tháng</span></li>
                         </ul>
                         <p class="price_tuong_tu"><?= ($row->price==0) ? 'Liên hệ' : number_format($row->price).' đ' ?></p>
-                        <div class="nut_ss"><a class="sosanh_home" href="<?= base_url('compare/index?product='.$info->id.','.$row->id) ?>"><img src="<?= public_url('site/img/compare.png') ?>"> So sánh</a></div>
+                        <div class="nut_ss"><a class="sosanh_home" href="<?= base_url('compare/index?product='.$info->id.','.$row->id) ?>">So sánh</a></div>
                       </div>
                       
                     </div>

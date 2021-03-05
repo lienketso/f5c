@@ -145,7 +145,8 @@ Class Home extends MY_Controller{
 		$cat = $this->input->get('cat');
 		if(isset($_GET['term'])){
 			$result = $this->product_model->search_product($term);
-			if(count($result>0)){
+		
+		
 				foreach($result as $pr){
 					echo '<a class="list-group-item item-sp-search clearfix" title="'.$pr->name.'" href="'.product_url(slug($pr->name),$pr->id).'">
 	            	<img class="img-sp-search" alt="'.$pr->name.'" src="'.url_tam($pr->image_name).'">
@@ -158,7 +159,7 @@ Class Home extends MY_Controller{
 	            </a>';
 				}
 				die;
-			}
+			
 		}
 	}
 

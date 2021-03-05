@@ -16,8 +16,7 @@ $(document).ready(function () {
 		if (existed) {
 			alert("Bạn đã chọn sản phẩm này rồi, vui lòng chọn sản phẩm khác");
 			return false;
-		}
-		console.log(existed);
+		}	
 		list.push(id);
 		if (list.length > 3) {
 			alert('Bạn đã chọn đủ 3 sản phẩm, ấn vào [×] trong danh sách so sánh để bỏ bớt trước khi chọn sản phẩm khác!');
@@ -27,7 +26,6 @@ $(document).ready(function () {
 		if (list.length == 1) {
 			$('#btnSS').hide();
 		}
-		console.log(list);
 		$.ajax({
 			type: "POST",
 			url: url,
@@ -106,13 +104,28 @@ $(document).ready(function () {
       })
 	//remove compare page
 	$(document).on('click', '.remove_com', function () {
+		let url =  $(this).attr("data-url");
 		let id = $(this).attr("data-id");
-		$('#com' + id + '').remove();
-		$('#themCom').show();
+		url = url.replace(id,'');
+		url = url.replace(',,',',');
+		if(url.endsWith(',')){
+			url = url.substr(0,url.length-1);
+		}
+		location.href =url;
+	
 	});
 
 	$('#btnSS').on('click', function (e) {
-		$('#frmCompare').submit();
+		var url = $('#frmCompare').attr('action');
+		var param = '';
+		$('#frmCompare input').each(function(){
+			param += $(this).val() +',';
+		});
+		url = url + "?product="+param;
+		if(url.endsWith(',')){
+			url = url.substr(0,url.length-1);
+		}
+		location.href =url;
 	});
 
 	//add item phụ kiện

@@ -16,6 +16,7 @@ class Compare extends MY_Controller{
 		}
 		$arrProduct = array();
 		$productMore = array();
+		$arrOptionTitle = array();
 		if(!empty($listcom)){
 			foreach($listcom as $key=>$val){
 				$product = $this->product_model->get_info($val);
@@ -24,11 +25,11 @@ class Compare extends MY_Controller{
 				$sp['limit'] = [4,0];
 				$productMore = $this->product_model->get_list($sp);
 			}
-		}
-		
-		
+		}	
+		$arrOptionTitle = $this->product_option_model->getListOptionProduct($listcom);
 		$this->data['productMore'] = $productMore;
 		$this->data['arrProduct'] = $arrProduct;
+		$this->data['arrOptionTitle'] = $arrOptionTitle;
 		$this->data['temp'] = 'site/compare/index';
 		$this->load->view('site/layout',$this->data);
 	}

@@ -134,7 +134,7 @@
                 <div class="row" id="list_com">    
                 </div>
                 <div class="btn_sss">
-                        <form method="post" action="<?= base_url('so-sanh') ?>" id="frmCompare">
+                        <form method="post" action="<?= base_url('compare/index') ?>" id="frmCompare">
                             <a class="btn_sosanh" id="btnSS">So sánh</a>
                         </form>
                     </div>

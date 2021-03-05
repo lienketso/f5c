@@ -13,13 +13,12 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12" id="CompareID">
-
           <?php foreach($arrProduct as $k=>$p): ?>
             <div class="col-lg-4 col-xs-6 bao_border" id="com<?= $p->id; ?>">
               <div class="item-sp-com">
                 <a class="img-sp-cat" href="<?= product_url(slug($p->name),$p->id) ?>"><img src="<?= url_tam($p->image_name); ?>" alt="<?= $p->name; ?>"></a>
                 <?php if($k!=0): ?>
-                <span class="remove_com" data-id="<?= $p->id; ?>"><img title="Xóa sản phẩm" src="<?= public_url('site/img/remove_btn.png') ?>"></span>
+                <span class="remove_com" data-id="<?= $p->id; ?>" data-url="<?=current_url().'?'.$_SERVER['QUERY_STRING']?>"><img title="Xóa sản phẩm" src="<?= public_url('site/img/remove_btn.png') ?>"></span>
               <?php endif; ?>
                 <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= $p->name; ?></a></h4>
                 <p><span class="price_com"><?= ($p->price==0) ? 'Liên hệ' : number_format($p->price). '₫'; ?> </span></p>
@@ -28,11 +27,23 @@
                     $input['where'] = ['product_id'=>$p->id];
                     $input['order'] = ['option_id','asc'];
                     $listOps = $this->product_option_model->get_list($input);
+                  
                    ?>
-                   <ul class="list_ss">
-                    <li><span>Bảo hành :</span> <?= $p->warranty ?> tháng</li>
-                   <?php foreach($listOps as $row): ?>
-                    <li><span><?= $this->product_option_model->getOption($row->option_id) ?> :</span> <?= $row->value; ?></li>
+                   <ul class="list_ss" id="<?= $p->id; ?>">
+                    <li data-option-id="1"><span>Bảo hành :</span> <?= $p->warranty ?> tháng</li>
+                   <?php foreach($arrOptionTitle as $row): ?>
+                    <li data-option-id="<?= $row->option_id ?>">
+                    <span ><?= $row->name ?> :</span>
+                    <?php if ($listOps) :?>
+                    <?php foreach($listOps as $i=>$v):?>
+                      <?php if($v->option_id == $row->option_id):?>
+                    <span class="option-value"> <?= $v->value ==''?'N/A':$v->value; ?> </span>                   
+                     <?php endif; ?>
+                     <?php endforeach; ?>
+                     <?php else : ?>
+                     <span class="option-value">N/A</span>              
+                     <?php endif; ?>
+                    </li>
                   <?php endforeach; ?>
                   </ul>
                 </div>
@@ -40,14 +51,14 @@
               </div>
             </div>
           <?php endforeach; ?>
-          <?php if(count($arrProduct)<3): ?>
+          <!-- <?php if(count($arrProduct)<3): ?> -->
            <div class="col-lg-4 col-xs-6" id="themCom">
              <div class="bao_ajax">
                <a data-toggle="modal" href="#modal-id"><img src="<?= public_url('site/img/plus.png') ?>"></a>
                <h4>Thêm sản phẩm để so sánh</h4>
              </div>
            </div>
-         <?php endif; ?>
+         <!-- <?php endif; ?> -->
      </div>
 
 </div>
@@ -78,4 +89,31 @@
     </div>
   </div>
 </div>
-
+<script type="text/javascript">
+$(document).ready(function(){
+  if($('.list_ss').length == 2){
+    var max= $('.list_ss')[0].children.length;
+      for(var i = 0; i<max;i++){
+        var text1 = $('.list_ss')[0].children[i].innerText;
+        var text2 =$('.list_ss')[1].children[i].innerText;
+        if(text1 != text2){
+          $('.list_ss:eq(1) li:eq('+i+')').addClass('bg-warning');
+        }
+      }
+  }
+  if($('.list_ss').length == 3){
+    var max= $('.list_ss')[0].children.length;
+      for(var i = 0; i<max;i++){
+        var text1 = $('.list_ss')[0].children[i].innerText;
+        var text2 =$('.list_ss')[1].children[i].innerText;
+        var text3 =$('.list_ss')[2].children[i].innerText;
+        if(text1 != text2 || text2 != text3){
+          $('.list_ss:eq(1) li:eq('+i+')').addClass('bg-warning');
+        }
+        if(text1 != text3 || text2 != text3){
+          $('.list_ss:eq(2) li:eq('+i+')').addClass('bg-warning');
+        }
+      }
+  }
+});
+</script>

@@ -219,6 +219,7 @@ body{
     line-height: 16px;
     width: max-content;
     padding: 0 8px 0 0;
+    max-width: 100%;
 }
 .prdLblCampaignThumb.prdLblCampaignNew span img {
     margin: 0 5px 0 0 !important;
@@ -933,9 +934,17 @@ ul.list_option{
 ul.list_option li span{
     font-weight: bold;
 }
-.border_ok{
-    border: 1px solid #ccc;
+.row-ss{
+    border-top:1px solid #ccc;
 }
+.border_left{  
+    border-right:1px solid #ccc;
+}
+.border_ok{
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
 .list_sp_tuong_tu{
     height: 370px;
     position: relative;
