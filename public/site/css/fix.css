@@ -937,11 +937,14 @@ ul.list_option li span{
 .row-ss{
     border-top:1px solid #ccc;
 }
-.border_left{  
-    border-right:1px solid #ccc;
+.border_ok:first-child{
+    border-left:1px solid #ccc;
+}
+.border_ok:nth-child(5n){  
+    border-left:1px solid #ccc;
 }
 .border_ok{
-    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 }
 
@@ -1216,4 +1219,28 @@ font-weight: bold;
     padding: 10px;
     background: #99FF66;
     font-weight: bold;
+}
+.flex-active-slide{
+    cursor: pointer;
+}
+@media only screen and (max-width: 768px) {
+    .row-ss{
+        border: none;
+    }
+
+    .border_ok{
+        border-left:1px solid #ccc;
+        border-right: 1px solid #ccc;
+        border-top: 1px solid #ccc;     
+        border-bottom:none;  
+    }
+    .border_ok:last-child{
+        border-bottom: 1px solid #ccc;
+    }
+    .title_sosanh{
+        margin-top: 50px;
+    }
+    .list-manufac{
+        display: none;
+    }
 }

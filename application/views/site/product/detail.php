@@ -102,8 +102,8 @@
                 <h4 class="title_sosanh">So sánh với các sản phẩm tương tự</h4>
                 <div class="row-ss">
                   <?php foreach($listSosanh as $index => $row): ?>
-                  
-                  <div class="col-lg-3 border_ok <?= ($index+1)%4==0 ? 'border_left':'' ?>"> 
+                  <!-- <?= ($index+1)%4==0 ? 'border_left':'' ?> -->
+                  <div class="col-lg-3 border_ok "> 
                     <div class="list_sp_tuong_tu">
                       <div class="img_tuong_tu">
                         <a href="<?= product_url(slug($row->name),$row->id) ?>" target="_blank"><img src="<?= url_tam($row->image_name); ?>"></a>                        
@@ -261,3 +261,11 @@
       </div>
     </div>
   </section>
+<script type="text/javascript">
+$(window).resize(function() {
+  $('.ex1.flex-active-slide').height($('.flex-active-slide').width());
+});
+$(window).ready(function() {
+  $('.ex1.flex-active-slide').height($('.flex-active-slide').width());
+});
+</script>
