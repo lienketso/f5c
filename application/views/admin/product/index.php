@@ -79,7 +79,7 @@ padding: 20px;
 								<a class="an_sp" title="Click để ẩn nổi bật" href="<?= admin_url('product/feature?id='.$row->id) ?>">Nổi bật</a>
 							<?php endif; ?>
 								<?php if($row->feature==0): ?>
-								<a class="hien_sp" title="Click để hiện sản phẩm" href="<?= admin_url('product/feature?id='.$row->id) ?>">Không</a>	
+								<a class="hien_sp" title="Click để hiện nổi bật" href="<?= admin_url('product/feature?id='.$row->id) ?>">Không</a>	
 								<?php endif; ?>
 							</td>
 							<td>

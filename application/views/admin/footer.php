@@ -37,7 +37,8 @@
   <script src="<?= public_url();?>/admin/ckeditor/ckeditor.js"></script>
   <!-- End custom js for this page-->
 <script type="text/javascript">
-  var nvcms_url = "<?php echo public_url('admin'); ?>"
+  var nvcms_url = "<?php echo public_url('admin'); ?>";
+  var domain_url = "<?php echo base_url(); ?>";
 //   var editor = CKEDITOR.replace( 'editor1', {
 //     filebrowserBrowseUrl: nvcms_url+'js/ckfinder/',
 //     filebrowserImageBrowseUrl: nvcms_url+'/ckfinder/ckfinder.html?Type=Images',
@@ -50,8 +51,9 @@ $('.makeMeRichTextarea').each( function () {
    var editor = CKEDITOR.replace( this.id, {
     filebrowserBrowseUrl: nvcms_url+'/ckfinder/ckfinder.html',
     filebrowserImageBrowseUrl: nvcms_url+'/ckfinder/ckfinder.html?Type=Images',
-    filebrowserUploadUrl: nvcms_url+'/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-    filebrowserImageUploadUrl: nvcms_url+'/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+    filebrowserUploadUrl: domain_url+'/upload.php',
+    filebrowserUploadMethod  : 'form',
+    filebrowserImageUploadUrl: domain_url+'/upload.php',
     filebrowserWindowWidth : '1000',
     filebrowserWindowHeight: '700'
 });
@@ -209,6 +211,9 @@ $('.makeMeRichTextarea').each( function () {
 <script src="<?= public_url('admin/vendors/select2') ?>/select2.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
+    if ($(".js-example-basic-single").length) {
+    $(".js-example-basic-single").select2();
+  }
     $('.js-example-basic-multiple').select2();
 });
 </script>

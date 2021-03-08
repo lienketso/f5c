@@ -96,7 +96,7 @@
 					
 					<div class="form-group">
 						<label for="">Thuộc danh mục</label>
-						<select name="cat_id" class="form-control">
+						<select name="cat_id" class="form-control js-example-basic-single">
 							<option value="0">--Chọn danh mục--</option>
 							<?php $this->category_model->optionCategory(0,1,4,0,0); ?>
 						</select>
