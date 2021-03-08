@@ -191,6 +191,8 @@ Class Product extends MY_Controller{
 				$products = $this->input->post('products[]');
 				if($products){
 					$products = serialize($products);
+				}else{
+					$products = '';
 				}
 				//seo tags
 				$tags = $this->input->post('tags');
@@ -303,6 +305,8 @@ Class Product extends MY_Controller{
 				$products = $this->input->post('products[]');
 				if($products){
 					$products = serialize($products);
+				}else{
+					$products = '';
 				}
 
 				$data = array(
