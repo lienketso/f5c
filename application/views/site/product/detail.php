@@ -24,17 +24,18 @@
         <div class="col-lg-9">
           <div class="row">
             <div class="col-lg-6">
-              <div class="slide-product">
+              <div class="slide-product">            
                 <!-- Place somewhere in the <body> of your page -->
                   <div id="slider" class="flexslider">
-                    <ul class="slides">
+                    <ul class="slides image">
                       <li class="ex1">
-                        <img src="<?= url_tam($info->image_name); ?>" alt="<?= $info->name; ?>" />
+                        <img id="img_01" src="<?= url_tam($info->image_name); ?>"  data-zoom-image="<?= url_tam($info->image_name); ?>" alt="<?= $info->name; ?>" />
                       </li>
                       <?php if(!empty($listAttach)): ?>
                         <?php foreach($listAttach as $a): ?>
+                         
                       <li class="ex1">
-                        <img src="<?= url_tam($a->file_name); ?>" alt="<?= $info->name; ?>" />
+                        <img  id="img_<?=$a->id?>" src="<?= url_tam($a->file_name); ?>" alt="<?= $info->name; ?>" data-zoom-image="<?= url_tam($a->file_name); ?>" alt="<?= $info->name; ?>" />
                       </li>
                     <?php endforeach; ?>
                   <?php endif; ?>
@@ -261,11 +262,17 @@
       </div>
     </div>
   </section>
+  <script type="text/javascript" src="https://cdn.rawgit.com/igorlino/elevatezoom-plus/1.1.6/src/jquery.ez-plus.js"></script>
 <script type="text/javascript">
 $(window).resize(function() {
   $('.ex1.flex-active-slide').height($('.flex-active-slide').width());
 });
 $(window).ready(function() {
   $('.ex1.flex-active-slide').height($('.flex-active-slide').width());
+ 
+  $('.slides.image li img').each(function(el,val){
+   let id = $(val).attr('id');
+   $('#'+id).ezPlus({borderColour:'#ccc'}); 
+  })
 });
 </script>

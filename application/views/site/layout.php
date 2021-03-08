@@ -196,12 +196,12 @@
         }
     }
     </style>
-    <script src='<?= public_url('site/js') ?>/jquery.zoom.js'></script>
+    <!-- <script src='<?= public_url('site/js') ?>/jquery.zoom.js'></script>
     <script>
     $(document).ready(function() {
         $('.ex1').zoom();
     });
-    </script>
+    </script> -->
     <script type="text/javascript">
     $(document).ready(function() {
         $(".dropdown").hover(
