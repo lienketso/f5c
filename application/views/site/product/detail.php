@@ -97,7 +97,7 @@
               <div class="col-lg-12">
                 
             <div class="row">
-              <div class="col-lg-12" style="padding-bottom: 20px;">
+              <div class="col-lg-12" style="padding-bottom: 20px;clear:both">
                 <div class="box_sosanh" >
                 <h4 class="title_sosanh">So sánh với các sản phẩm tương tự</h4>
                 <div class="row-ss">

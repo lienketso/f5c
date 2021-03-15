@@ -99,10 +99,17 @@ body{
         padding: 15px 20px !important;
     }
     .header-mobile{
-       
+        position: sticky;
+        top: 0;
+        z-index: 999;
+        background-color: #fff;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 15px;
+    }
+
     }
     .head_top_mb{
-        background: #2eb2f5;
+        background: #849db3;
         padding: 5px 0;
     }
     .info_header_mb{
