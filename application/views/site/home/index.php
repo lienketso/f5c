@@ -220,7 +220,7 @@
           <?php foreach($itemProduct as $k=>$pro): ?>
            <div class="col-lg-3 col-xs-6 borderlr_<?= $k ?>"  >
             <div class="item-sp-cat">
-              <a class="img-sp-cat" href="<?= product_url(slug($pro->name),$pro->id) ?>"><img src="<?= url_tam($pro->image_name); ?>" alt="<?= $pro->name; ?>"></a>
+              <a class="img-sp-hot" href="<?= product_url(slug($pro->name),$pro->id) ?>"><img src="<?= url_tam($pro->image_name); ?>" alt="<?= $pro->name; ?>"></a>
               <h4><a href="<?= product_url(slug($pro->name),$pro->id) ?>"><?= catchuoi($pro->name,70); ?></a></h4>
               <p><span><?= ($pro->price==0) ? 'Liên hệ' : number_format($pro->price). '₫'; ?> </span></p>
             </div>

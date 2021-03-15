@@ -1,7 +1,7 @@
 <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2020 <a href="http://lienketso.vn" target="_blank">lienketso.vn</a>. All rights reserved. - Hotline support : <a href="tel:0979823452">0979 823 452</a> - <a href="tel:0902698389">0902 698 389</a></span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Design & Development <i class="mdi mdi-heart text-danger"></i></span>
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2020 <a href="https://f5.vn" target="_blank">f5.vn</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"></span>
           </div>
         </footer>
         <!-- partial -->

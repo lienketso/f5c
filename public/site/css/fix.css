@@ -195,6 +195,7 @@ body{
 }
 .bao-noibat{
     border: 2px solid #F58634;
+    overflow: hidden;
 }
 .title-nb{
     background: #F58634;
@@ -251,6 +252,7 @@ body{
 .img-sp-hot{
     display: block;
     padding-bottom: 10px;
+    text-align: center;
 }
 .img-sp-hot img{
     max-width: 100%;

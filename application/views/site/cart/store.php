@@ -471,7 +471,7 @@ section.info-payment .panel{
 
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-12"> 
                                     <div class="panel panel-default">
                                         <div class="panel-body">
                                             Tên tài khoản: <b>NGUYỄN VĂN A</b>

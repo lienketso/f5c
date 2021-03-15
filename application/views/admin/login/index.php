@@ -3,6 +3,7 @@
 <head>
   <!-- Required meta tags -->
 <?php $this->load->view('admin/head'); ?>
+
 </head>
 <body>
   <div class="container-scroller">
@@ -13,8 +14,9 @@
             <div class="auth-form-transparent text-left p-3">
               <div class="brand-logo">
                 <img src="<?= public_url();?>/admin/images/logo7.png" alt="logo">
+                <h4>Chào mừng trở lại !</h4>
               </div>
-              <h4>Chào mừng trở lại !</h4>
+            
               <h6 class="font-weight-light"></h6>
                     <?php echo form_error('login'); ?>
                 <form class="pt-3" action="" method="post">
@@ -56,7 +58,7 @@
             </div>
           </div>
           <div class="col-lg-6 login-half-bg d-flex flex-row">
-            <p class="text-white font-weight-medium text-center flex-grow align-self-end">Copyright &copy; 2020 lienketso.com.vn  All rights reserved.</p>
+            <p class="text-white font-weight-medium text-center flex-grow align-self-end">Copyright &copy; 2020 f5.vn  All rights reserved.</p>
           </div>
         </div>
       </div>
