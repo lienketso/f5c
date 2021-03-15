@@ -16,7 +16,7 @@ Class Category_model extends MY_Model{
       if($row->id==$ids){
         echo " disabled=''";
       }
-      echo">".str_repeat("&brvbar;---",$lever-1).$row->name."</option>";
+      echo">".str_repeat("<span>&brvbar;---</span>",$lever-1).$row->name."</option>";
       if($lever<$max){
         $this->optionCategory($row->id, $lever+1,$max=5, $selected,$ids);
       }  

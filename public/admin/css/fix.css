@@ -93,3 +93,6 @@ ul.cat-con-con li{
 	color: #fff;
 	text-decoration: none;
 }
+.select2-container .select2-selection--single{
+	height: 55px !important; 
+}

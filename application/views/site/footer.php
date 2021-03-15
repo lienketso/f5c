@@ -186,6 +186,7 @@ $(window).load(function() {
     $('#slider').flexslider({
         animation: "slide",
         controlNav: false,
+        directionNav: false, 
         animationLoop: false,
         slideshow: false,
         sync: "#carouselh"

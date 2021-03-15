@@ -292,14 +292,20 @@
   </div>
   <div class="col-md-3 col-sm-3">
     <div class="panel mang-xh">
-      <div class="panel-heading">
+      <!-- <div class="panel-heading">
         Mạng xã hội 
-      </div>
-      <div class="panel-body" style="height:250px;overflow: hidden">
+      </div> -->
+      <!-- <div class="panel-body" style="height:250px;overflow: hidden">
         <a href="https://facebook.com/f5c.vn" target="_blank">
           <img src="<?= public_url('site/img/facebook.png') ?>">
         </a>
-      </div>
+      </div> -->
+      <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v10.0&appId=1638259809720914&autoLogAppEvents=1" nonce="T0rR6OEU"></script>
+      <div class="fb-page" 
+data-href="https://www.facebook.com/f5c.vn"
+data-hide-cover="false"
+data-show-facepile="false"></div>
     </div>
     <div class="panel dang-ky-tin" style="margin-top:-8px">
       <div class="panel-heading">

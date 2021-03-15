@@ -127,7 +127,7 @@
                     </div>
                     <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= catchuoi($p->name,50); ?></a></h4>
                     <p><span><?= ($p->price==0) ? 'Liên hệ' : number_format($p->price). '₫'; ?> </span> </p>
-                    <div class="nut_ss"><a class="sosanh_page" data-id="<?= $p->id; ?>" data-url="<?= base_url('compare/addcompare') ?>"><img src="<?= public_url('site/img/compare.png') ?>"> So sánh</a></div>
+                    <div class="nut_ss"><a class="sosanh_page" data-id="<?= $p->id; ?>" data-url="<?= base_url('compare/addcompare') ?>"> So sánh</a></div>
                   </div>
                 </div>
               <?php endforeach; ?>

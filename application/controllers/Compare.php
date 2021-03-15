@@ -64,6 +64,7 @@ class Compare extends MY_Controller{
 	function removeCompare(){
 		$this->load->helper('cookie');
 		$id = $this->input->post('id');
+		
 		delete_cookie('productid_'.$id);
 	}
 
