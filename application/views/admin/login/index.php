@@ -58,7 +58,7 @@
             </div>
           </div>
           <div class="col-lg-6 login-half-bg d-flex flex-row">
-            <p class="text-white font-weight-medium text-center flex-grow align-self-end">Copyright &copy; 2020 f5.vn  All rights reserved.</p>
+            <p class="text-white font-weight-medium text-center flex-grow align-self-end">Copyright &copy; 2020 f5c.vn  All rights reserved.</p>
           </div>
         </div>
       </div>

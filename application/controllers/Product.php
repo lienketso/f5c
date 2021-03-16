@@ -5,6 +5,7 @@ Class Product extends MY_Controller{
 		$this->load->model('product_model');
 		$this->load->model('category_model');
 		$this->load->model('product_category_model');
+		$this->load->model('comment_model');
 	}
 	function all(){
 		//category all
@@ -165,7 +166,6 @@ Class Product extends MY_Controller{
 	function detail(){
 		$this->load->model('manufac_model');
 		$this->load->model('file_model');
-
 		$id = $this->uri->rsegment(3);
 		$info = $this->product_model->get_info($id);
 		$this->data['info'] = $info;
@@ -211,7 +211,8 @@ Class Product extends MY_Controller{
 		$this->data['og_image'] = product_link($info->image_name);
 		$this->data['urlhttp'] = product_url(slug($info->name),$info->id);
 
-
+		$lstComment = $this->comment_model->getComment($id);
+		$this->data['lstComment'] = $lstComment;
 		$this->data['listRelate'] = $listRelate;
 		$this->data['temp'] = "site/product/detail";
 		$this->load->view("site/layout", $this->data);
@@ -237,5 +238,28 @@ Class Product extends MY_Controller{
 		//load view
 		$this->data['temp'] = "site/product/search";
 		$this->load->view("site/layout", $this->data);
+	}
+
+	function addAnswer(){
+
+	$comment=	$this->input->post('comment');
+	$parentId =	$this->input->post('commentId');
+	$productId = $this->input->post('productId');
+	$username = $this->input->post('userName');
+	$useremail = $this->input->post('userEmail');
+	//$produdctId, $name, $email,$content,$parentId = 0
+	$insertedId =  $this->comment_model->addComment($productId,$username,$useremail,$comment,$parentId);
+	$ressult = $this->comment_model->getById($insertedId);
+		echo json_encode($ressult);
+		die;		
+	
+	}
+	function loadMoreComment(){
+		$id = $this->input->post('productId');
+		$index =$this->input->post('pageIndex');
+		$index = $index+ 1;
+		$offset =$index * 10;
+		$lstComment = $this->comment_model->getComment($id,$offset);
+		echo ($lstComment);
 	}
 }

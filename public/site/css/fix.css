@@ -1,6 +1,24 @@
-body{
-
+textarea{
+max-width: 100%;
 }
+.panel-footer {
+    padding: 10px 15px;
+    background-color: #f5f5f5 !important;
+    border-top: 1px solid #ddd;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+.panel-primary {
+    border-color: #337ab7 !important;
+}
+.panel-success {
+    border-color: #d6e9c6 !important;
+}
+.panel-success > .panel-body{
+    background-color: #dff0d8;
+}
+
+
 @media(min-width: 768px){
     .cdmmm{
         padding-top: 10px;
@@ -1252,4 +1270,16 @@ font-weight: bold;
     .list-manufac{
         display: none;
     }
+}
+
+dl.sub-content{
+  
+    background-color: #dedede;
+}
+dl.sub-content dt{
+    padding: 10px 20px 0 20px;
+}
+dl.sub-content dd{
+    padding: 0 20px 10px 20px;
+    margin-bottom: 15px;
 }
