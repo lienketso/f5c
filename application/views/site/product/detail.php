@@ -237,15 +237,21 @@
                         </div>
                         <div class="col-lg-12">
                             <h3>Bình luận</h3>
-                            <div class="panel panel-primary">
+                            <p id="comment-noti" class="bg-success"> Cảm ơn bạn đã gửi đánh giá. Chúng tôi sẽ liên lạc
+                                với bạn sớm nhất có thể</p>
+                            <div id="panel-new-cmt" class="panel panel-primary">
                                 <div class="panel-body">
-                                    <textarea class="form-control" placeholder="Nhập câu hỏi/bình luận/ nhận xét ..."
-                                        rows="5"></textarea>
+
+                                    <textarea id="comment" class="form-control"
+                                        placeholder="Nhập câu hỏi/bình luận/ nhận xét ..." rows="5"></textarea>
                                     <input type="hidden" id="domain" value="<?=base_url()?>">
                                     <input type="hidden" id="productId" value="<?=$info->id?>">
-                                    <input type="hidden" value="<?=$userLogin->id?>" id="userId">
-                                    <input type="hidden" value="<?=$userLogin->name?>" id="userName">
-                                    <input type="hidden" value="<?=$userLogin->email?>" id="userEmail">
+                                    <input type="hidden" value="<?= !empty($userLogin) ?$userLogin->id:'' ?>"
+                                        id="userId">
+                                    <input type="hidden" value="<?=!empty($userLogin) ?$userLogin->name :''?>"
+                                        id="userName">
+                                    <input type="hidden" value="<?=!empty($userLogin) ?$userLogin->email :''?>"
+                                        id="userEmail">
                                 </div>
                                 <div class="panel-footer clearfix">
                                     <div class="col-lg-5">
@@ -254,22 +260,23 @@
                                             id="inputEmail" name="inputEmail">
                                     </div>
                                     <div class="col-lg-5">
-                                        <label for="inputEmail">Tên của bạn</label>
+                                        <label for="inputName">Tên của bạn</label>
                                         <input type="text" class="form-control" placeholder="Tên của bạn" id="inputName"
-                                            name="inputEmail">
+                                            name="inputName">
                                     </div>
                                     <div class="col-lg-2">
                                         <label for="inputEmail">&nbsp;</label>
-                                        <input class="btn btn-primary form-control" type="button" value="Gửi đánh giá">
+                                        <input class="btn btn-primary form-control" type="button" value="Gửi đánh giá"
+                                            onclick="addComment()">
                                     </div>
 
                                 </div>
                             </div>
-                            <ul class="list-group">
+                            <ul class="list-group" id="lst-content">
                                 <?php foreach($lstComment as $item): ?>
                                 <li class="list-group-item" id="<?= $item->id?>">
                                     <h4><b><?=$item->user_name?></b></h4>
-                                  
+
                                     <p><?=$item->content?></p>
                                     <p>
                                         <?php if(!empty($userLogin)): ?>
@@ -278,9 +285,9 @@
                                         &nbsp; &nbsp; &nbsp;
                                         <?php endif; ?>
                                         <i class="fa fa-thumbs-o-up"></i>
-                                        <a class="" data-id="<?=$item->id?>">Thích</a>
+                                        <a class="vote-comment" data-id="<?=$item->id?>">Thích</a>
                                         &nbsp; &nbsp; &nbsp;
-                                        <span class="text-muted"><?=date("d-m-Y", $item->created)?></span>  
+                                        <span class="text-muted"><?=date("d-m-Y", $item->created)?></span>
                                     </p>
                                     <div class="panel panel-success" style="display:none" id="panel_<?=$item->id?>">
                                         <div class="panel-body">
@@ -306,19 +313,25 @@
                                     </div>
                                     <?php $lstSubContent = $this->comment_model->getSubComment($item->id)?>
                                     <dl class="sub-content" id="<?= $item->id?>">
-                                    <?php if(!empty($lstSubContent)):?>                                 
-                                    <?php foreach($lstSubContent as $sub): ?>
+                                        <?php if(!empty($lstSubContent)):?>
+                                        <?php foreach($lstSubContent as $sub): ?>
                                         <dt><?=$sub->user_name?></dt>
-                                        <dd><?=$sub->content?></dd>      
-                                          <?php endforeach; ?>     
-                                    <?php endif;?>
+                                        <dd><?=$sub->content?></dd>
+                                        <?php endforeach; ?>
+                                        <?php endif;?>
                                     </dl>
                                 </li>
                                 <?php endforeach; ?>
 
 
                             </ul>
-                            <div class="col-lg-12 text-center"><a class="" data-page="1" onclick="loadMoreComment()">Hiển thị thêm</a></div>   
+                            <div class="col-lg-12 text-center">
+                            <div class="spinner-border text-primary" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+                            <a class="" data-page="1" onclick="loadMoreComment()"
+                                    id="load-more-comment">Hiển thị thêm</a>
+                                    </div>
                         </div>
                     </div>
 
@@ -414,6 +427,52 @@ function closePopupAnswer(id) {
     $('#panel_' + id).hide();
 }
 
+function validateEmail($email) {
+    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    return emailReg.test($email);
+}
+
+function addComment() {
+    let productId = $('#productId').val();
+    let comment = $('#comment').val().trim();
+    let name = $('#inputName').val().trim();
+    let email = $('#inputEmail').val().trim();
+    if (comment.length == 0) {
+        alert('Bạn chưa nhập bình luận');
+        return;
+    }
+    if (email.length == 0) {
+        alert('Bạn chưa email');
+        return;
+    }
+    if (!validateEmail(email)) {
+        alert('Email không hợp lệ');
+        return;
+    }
+    if (name.length == 0) {
+        alert('Bạn chưa tên');
+        return;
+    }
+    let url = $('#domain').val();
+    $.ajax({
+        method: "POST",
+        url: url + "product/addComment",
+        data: {
+            productId: productId,
+            comment: comment,
+            userName: name,
+            userEmail: email
+
+        }
+    }).done(function(res) {
+        $('#comment').val('');
+        $('#inputName').val('');
+        $('#inputEmail').val('');
+        $('#panel-new-cmt').hide('slow');
+        $('#comment-noti').show('slow');
+    });
+}
+
 function addAnswer(id) {
     let content = $('#contentId_' + id).val();
     let commentId = $('#commentId_' + id).val();
@@ -422,6 +481,7 @@ function addAnswer(id) {
     let userEmail = $('#userEmail').val();
     let url = $('#domain').val();
     if (content.length == 0) {
+
         alert('Bạn chưa nhập bình luận');
         return;
     }
@@ -438,12 +498,85 @@ function addAnswer(id) {
             }
         })
         .done(function(response) {
-        if(response.length>0){
-          var arr =JSON.parse(response);
-          var cmt = arr[0];
-          $('#'+cmt.parent_id+'.sub-content').prepend("<dt>"+cmt.user_name+"</dt><dd>"+cmt.content+"</dd>")
-        }    
-           closePopupAnswer(commentId);
+            if (response.length > 0) {
+                var arr = JSON.parse(response);
+                var cmt = arr[0];
+                $('#' + cmt.parent_id + '.sub-content').prepend("<dt>" + cmt.user_name + "</dt><dd>" + cmt.content +
+                    "</dd>")
+            }
+            closePopupAnswer(commentId);
         });
 }
+
+function loadMoreComment() {
+    $('#load-more-comment').html('Loading ...')
+    let page = $('#load-more-comment').data('page');
+    let productId = $('#productId').val();
+    let url = $('#domain').val();
+    let userId = $('#userId').val();
+    $.ajax({
+        method: "POST",
+        url: url + "product/loadMoreComment",
+        data: {
+            page: page,
+            productId: productId
+        }
+    }).done(function(res) {
+        $('#load-more-comment').html('Hiển thị thêm');      
+        $('#load-more-comment').data('page', page + 1);
+        let data = JSON.parse(res);
+        let arrCom = data.lstComment;
+        let arrSub = data.lstSubComment;
+        if (arrCom.length == 0) {
+            $('#load-more-comment').hide();
+        } else {
+            arrCom.forEach(function(item) {
+                let li = '<li class="list-group-item" id="' + item.id + '">';
+                li += '<h4><b>'+item.user_name+'</b></h4>';
+                li += '<p>'+item.content+'</p>';
+                if(userId.length>0){
+                    li += '<a class="" data-id="' + item.id + '" onclick="openPopupAnswer(' + item.id + ')">Trả lời</a>&nbsp;&nbsp;&nbsp;';
+                }               
+                li += ' <i class="fa fa-thumbs-o-up"></i><a class="vote-comment" data-id="' + item.id + '">Thích</a> &nbsp; &nbsp; &nbsp;'
+              let displayDate=  new Date(1615978619784).toLocaleString('vi-vn', {year: 'numeric', month: '2-digit', day: '2-digit'}).replace(/(\d+)\/(\d+)\/(\d+)/,'$1-$2-$3');
+                li += '<span class="text-muted">'+displayDate+'</span>';
+                li += '</p>';
+                li += '<div class="panel panel-success" style="display:none" id="' + item.id +'">';
+                li += '<div class="panel-body">';
+                li += '<textarea class="form-control" placeholder="Nhập câu hỏi/bình luận/ nhận xét ..." rows="3" id="contentId_' + item.id +'"></textarea>';
+                li += '</div>';
+                li += '<div class="panel-footer clearfix">';
+                li += '<div class="col-lg-8"></div>';
+                li += '<div class="col-lg-4 text-right">';
+                li += '<input type="hidden" value="' + item.id +'" id="commentId_' + item.id +'">';
+                li += '<a class="btn btn-primary" onclick="addAnswer(' + item.id +')">Gửi đánh giá</a>';
+                li += '<a class="btn btn-danger " onclick="closePopupAnswer(' + item.id +')">Đóng</a>';
+                li += '</div>';
+                li += '</div>';
+                li += '</div>';
+                li += '<dl class="sub-content" id="' + item.id +'"></dl>';
+                li += '</li>';
+
+                $('ul#lst-content').append(li);
+            });
+
+            arrSub.forEach(function(sub){
+                $('#' + sub.parent_id + '.sub-content').append("<dt>" + sub.user_name + "</dt><dd>" + sub.content + "</dd>");
+            });
+        }
+
+    });
+}
+
+function voteComment(id){}
+$(document).on('click','.vote-comment',function(){
+    $(this).prev().addClass('active');
+    let id = $(this).data('id');
+    let url = $('#domain').val();
+    $.ajax({
+        method: "POST",
+        url: url + "product/voteComment",
+        data: {vote: id}
+    })
+});
 </script>

@@ -240,8 +240,17 @@ Class Product extends MY_Controller{
 		$this->load->view("site/layout", $this->data);
 	}
 
-	function addAnswer(){
+	function addComment(){
+		$comment=	$this->input->post('comment');
+		$username = $this->input->post('userName');
+		$useremail = $this->input->post('userEmail');
+		$productId = $this->input->post('productId');
+		$insertedId =  $this->comment_model->addComment($productId,$username,$useremail,$comment,0);
+		echo ($insertedId);
+		die;
+	}
 
+	function addAnswer(){
 	$comment=	$this->input->post('comment');
 	$parentId =	$this->input->post('commentId');
 	$productId = $this->input->post('productId');
@@ -256,10 +265,26 @@ Class Product extends MY_Controller{
 	}
 	function loadMoreComment(){
 		$id = $this->input->post('productId');
-		$index =$this->input->post('pageIndex');
-		$index = $index+ 1;
+		$index =$this->input->post('page');	
 		$offset =$index * 10;
-		$lstComment = $this->comment_model->getComment($id,$offset);
-		echo ($lstComment);
+		$lstComment = $this->comment_model->getComment($id);
+		$arrSubComment = array();
+		foreach ($lstComment as $item){
+			$arrSubComment[]= $item->id;
+		}	
+	
+		$lstSubComment = $this->comment_model->getLoadSubComment($arrSubComment);
+		$data = array(
+			'lstComment' =>$lstComment,
+			'lstSubComment' => $lstSubComment,
+		
+	);
+		echo json_encode($data);
+	}
+
+	 function voteComment()
+	{
+		$vote =$this->input->post('vote');	
+		$this->comment_model->voteComment($vote);
 	}
 }

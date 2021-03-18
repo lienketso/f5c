@@ -1283,3 +1283,22 @@ dl.sub-content dd{
     padding: 0 20px 10px 20px;
     margin-bottom: 15px;
 }
+#comment-noti {
+    padding: 10px 20px;
+    font-size: 15px;
+    color: #309800;
+	display: none;
+}
+#lst-content >li >p > i.fa-thumbs-o-up.active{
+    color: #007bff;
+}
+#lst-content a{
+    cursor:pointer;
+}
+#load-more-comment{
+    cursor:pointer;
+    color: #F58634;
+}
+#load-more-comment:hover{
+    color: #3d3e40;
+}

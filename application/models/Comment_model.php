@@ -26,6 +26,15 @@ Class Comment_model extends MY_Model{
 		$query = $this->db->get();
 		return $query->result();
 	}
+	public function getLoadSubComment($arr){	
+		$this->db->select('*');
+		$this->db->from('comment');
+		$this->db->where('status',1);
+		$this->db->where_in('parent_id',$arr);
+		$this->db->order_by('id', 'DESC');
+		$query = $this->db->get();
+		return $query->result();
+	}
 	public function getById($id){
 		$this->db->select('*');
 		$this->db->from('comment');
@@ -49,6 +58,9 @@ Class Comment_model extends MY_Model{
 	return $this->db->insert_id();
 	}
 	
-
+public function voteComment($id){
+	$sql ="UPDATE `comment` SET `count_like` = `count_like` + 1 WHERE `id`=".$id;
+	$this->db->query($sql);
+}
 
 }
