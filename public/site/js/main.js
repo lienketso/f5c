@@ -54,7 +54,7 @@ $(document).ready(function () {
 	});
 
 	//add new compare
-	$(".addmorecom").on("click", function (e) {
+	$(document).on("click",'.addmorecom', function (e) {
 		e.preventDefault();
 		let _this = $(e.currentTarget);
 		let url = _this.attr("data-href");

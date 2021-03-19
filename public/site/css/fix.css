@@ -1302,3 +1302,20 @@ dl.sub-content dd{
 #load-more-comment:hover{
     color: #3d3e40;
 }
+.autocomplete-group{
+    position: relative;
+}
+.autocomplete-group a{
+    cursor: pointer;
+}
+.autocomplete-group ul#auto_result{
+    position: absolute;
+    padding: 20px;
+}
+.autocomplete-group #auto_result > li >a> .product-name{
+    font-weight: bold;
+}
+.autocomplete-group #auto_result  > li >a>.product-price{
+  
+    color: red;
+}

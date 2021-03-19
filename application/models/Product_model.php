@@ -76,4 +76,14 @@ Class Product_model extends MY_Model{
     return $cats;
 	}
 
+	public function autocompete($catId, $search, $arrExclude=''){
+		$this->db->select('id,name,image_name,CAST(price as INT) price ');
+		$this->db->from('product');
+		$this->db->where('cat_id',$catId);
+		$this->db->like('name',$search);
+		$this->db->limit(10);
+		$this->db->where_not_in('id', $arrExclude);
+		$query= $this->db->get();
+		 return $query->result(); 
+	}
 }

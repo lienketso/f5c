@@ -17,10 +17,12 @@ class Compare extends MY_Controller{
 		$arrProduct = array();
 		$productMore = array();
 		$arrOptionTitle = array();
+		$catId='';
 		if(!empty($listcom)){
 			foreach($listcom as $key=>$val){
 				$product = $this->product_model->get_info($val);
 				$arrProduct[] = $product;
+				$catId = $product->cat_id;
 				$sp['where'] = ['cat_id'=>$product->cat_id,'id!='=>$val];
 				$sp['limit'] = [4,0];
 				$productMore = $this->product_model->get_list($sp);
@@ -30,6 +32,7 @@ class Compare extends MY_Controller{
 		$this->data['productMore'] = $productMore;
 		$this->data['arrProduct'] = $arrProduct;
 		$this->data['arrOptionTitle'] = $arrOptionTitle;
+		$this->data['catId'] = $catId;
 		$this->data['temp'] = 'site/compare/index';
 		$this->load->view('site/layout',$this->data);
 	}
@@ -63,9 +66,21 @@ class Compare extends MY_Controller{
 
 	function removeCompare(){
 		$this->load->helper('cookie');
-		$id = $this->input->post('id');
-		
+		$id = $this->input->post('id');		
 		delete_cookie('productid_'.$id);
+	}
+	
+	function loadAutocompleProduct(){
+		$catId = $this->input->post('catId');
+		$search = $this->input->post('search');
+		$arrExclude = $this->input->post('arrExclude');
+		$result=  $this->product_model->autocompete($catId,$search,$arrExclude);
+		foreach($result  as $item){
+			$item->display_price=($item->price==0) ? 'Liên hệ' : number_format($item->price). '₫';
+		}
+		header('Content-Type: application/json');
+		echo json_encode( $result);
+		die;
 	}
 
 }
