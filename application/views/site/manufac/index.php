@@ -36,7 +36,7 @@
                 <h3 class="title-filter">Hãng sản xuất</h3>
                 <div class="list-fac">
                   <?php if(!empty($listHang)): ?>
-                    <?php foreach($listHang as $hang): ?>
+                    <?php foreach($listHang as $hang): ?>               
                   <a <?= ($infoFac->id==$hang->id) ? 'class="chinhno"' : ''; ?> href="<?= manufac_url(slug($hang->name),$hang->id,$InfoCat->id) ?>"><?php if($hang->image_name!=''): ?><img src="<?= url_tam($hang->image_name); ?>" alt="<?= $hang->name ?>"><?php else: ?>
                   <?= $hang->name; ?><?php endif; ?>
                 </a>

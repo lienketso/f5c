@@ -157,7 +157,7 @@ $(document).ready(function() {
                     $('#auto_result').append(html);
                 });
 
-            });
+            })
     });
 });
 </script>

@@ -329,7 +329,7 @@
                             <div class="spinner-border text-primary" role="status">
   <span class="sr-only">Loading...</span>
 </div>
-                            <a class="" data-page="1" onclick="loadMoreComment()"
+                            <a class="" data-page="2" onclick="loadMoreComment()"
                                     id="load-more-comment">Hiển thị thêm</a>
                                     </div>
                         </div>
@@ -565,7 +565,10 @@ function loadMoreComment() {
             });
         }
 
-    });
+    })
+    .fail(function(err){
+                console.log(err);
+            });;
 }
 
 function voteComment(id){}

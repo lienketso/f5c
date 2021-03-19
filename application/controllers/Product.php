@@ -264,22 +264,26 @@ Class Product extends MY_Controller{
 	
 	}
 	function loadMoreComment(){
+		
 		$id = $this->input->post('productId');
 		$index =$this->input->post('page');	
 		$offset =$index * 10;
-		$lstComment = $this->comment_model->getComment($id);
+		$lstComment = $this->comment_model->getComment($id,$offset);
 		$arrSubComment = array();
 		foreach ($lstComment as $item){
 			$arrSubComment[]= $item->id;
 		}	
+		$lstSubComment = array();
+		if(count($arrSubComment)>0){
+			$lstSubComment = $this->comment_model->getLoadSubComment($arrSubComment);
+		}
 	
-		$lstSubComment = $this->comment_model->getLoadSubComment($arrSubComment);
 		$data = array(
 			'lstComment' =>$lstComment,
-			'lstSubComment' => $lstSubComment,
-		
-	);
+			'lstSubComment' => $lstSubComment		
+		);	
 		echo json_encode($data);
+		die;
 	}
 
 	 function voteComment()
