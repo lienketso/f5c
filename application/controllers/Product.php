@@ -49,7 +49,7 @@ Class Product extends MY_Controller{
 		$segment = intval($segment);
 		$this->pagination->initialize($config);
 		$input['order'] = ['price','asc'];
-		$input['limit'] = [$config['per_page'], $segment];
+		$input['limit'] = [$config['per_page'], $segment];		
 		$list = $this->product_model->get_list($input);
 		$this->data['list'] = $list;
 
@@ -68,7 +68,7 @@ Class Product extends MY_Controller{
 		$this->data['temp'] = "site/product/all";
 		$this->load->view('site/layout',$this->data);
 	}
-	function category(){
+	function category(){	
 		$this->load->model('manufac_model');
 		//lấy ra id của danh mục
 		$slug = $this->uri->rsegment(3);
@@ -98,7 +98,9 @@ Class Product extends MY_Controller{
 		$this->data['total_row'] = $total_row;
 		$this->load->library('pagination');
 		$config = array();
-		$config['base_url'] = base_url($category->friendly_url);
+		$config['page_query_string'] = true;
+		$config['reuse_query_string'] = true;
+		$config['base_url'] = base_url($category->friendly_url).'/?cat=';
 		$config['total_rows']  = $total_row;
 		$config['per_page']    = 20;
 		$config['uri_segment'] = 2;
@@ -129,11 +131,12 @@ Class Product extends MY_Controller{
 		}
 		$input["limit"] = array($config['per_page'], $segment);
 		//$listMulti = $this->product_category_model->get_list($input);
-
+		// print_r($input);die;
 		$list = $this->product_model->get_list($input);
 		$this->data['list'] = $list;
 		//list hãng sản xuất theo danh mục
 		$hangsx = unserialize($category->manufac_ids);
+		// print_r($config);die;
 		$listHang = [];
 		if(!empty($hangsx)){
 		foreach($hangsx as $h){
