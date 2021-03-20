@@ -41,7 +41,7 @@
                         <form method="get" action="<?= base_url('search.html') ?>">
                             <div class="form_sm_r">
                                 <input class="txt_search_mb" type="text" name="text-search"
-                                placeholder="Tìm kiếm theo từ khóa">
+                                    placeholder="Tìm kiếm theo từ khóa">
                                 <button class="btn_s_mb" type="submit"><img
                                         src="<?= public_url('site/img/search.png') ?>"></button>
                             </div>
@@ -131,13 +131,13 @@
         <div class="sticky_compare">
             <div class="close_compare"><a id="dong_ss">Đóng</a></div>
             <div class="container">
-                <div class="row" id="list_com">    
+                <div class="row" id="list_com">
                 </div>
                 <div class="btn_sss">
-                        <form method="post" action="<?= base_url('compare/index') ?>" id="frmCompare">
-                            <a class="btn_sosanh" id="btnSS">So sánh</a>
-                        </form>
-                    </div>
+                    <form method="post" action="<?= base_url('compare/index') ?>" id="frmCompare">
+                        <a class="btn_sosanh" id="btnSS">So sánh</a>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -329,6 +329,14 @@
             }
             search_auto();
         });
+        main.find('#text-search').focusin(function() {
+            let val = $('#text-search').val();
+            if (val.length > 0) {
+                $("#divSuggestion").css({
+                    'display': 'block'
+                });
+            }
+        })
         main.find('[name="cat"]').change(function() {
             search_auto();
         });
@@ -363,7 +371,7 @@
         });
         */
 
-        $(".box_search").mouseleave(function(e) {
+        $(".box_search").focusout(function(e) {
             $("#divSuggestion").css({
                 'display': 'none'
             });

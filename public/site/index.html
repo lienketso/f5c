@@ -196,6 +196,12 @@
        }
        search_auto();
    });
+   main.find('#text-search').focusin(function(){
+	let val = $('#text-search').val();
+	if(val.length>0){
+		search_auto();
+	}
+   })
     main.find('[name="cat"]').change(function(){
     	search_auto();
     });
@@ -232,9 +238,9 @@
     */
     
     
-    $(".box_search").mouseleave(function(e){
-    	$("#divSuggestion").css({'display':'none'});
-    });
+    // $(".box_search").focusout(function(e){
+    // 	$("#divSuggestion").css({'display':'none'});
+    // });
     
     
     $('form#box_search').submit(function(){

@@ -182,7 +182,7 @@
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="home">
                                         <div class="thong-tin-sp">
-                                            <?= str_replace('{base_url}','https://f5c.vn/',$info->content); ?>
+                                            <?= str_replace('{base_url}','https://f5c.vn/',html_entity_decode ($info->content)); ?>
                                         </div>
                                     </div>
                                     <div role="tabpanel" class="tab-pane" id="tab">
