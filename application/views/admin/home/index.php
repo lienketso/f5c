@@ -21,7 +21,7 @@
 <i class="mdi mdi-chart-pie mdi-36px"></i>
 <p class="font-weight-medium mt-2">Hôm nay</p>
 </div>
-<h1 class="font-weight-light"><?= today(); ?></h1>
+<h1 class="font-weight-light"></h1>
 <p class="text-muted mb-0">Truy cập hôm nay</p>
 </div>
 </div>
@@ -33,7 +33,7 @@
 <i class="mdi mdi-car mdi-36px"></i>
 <p class="font-weight-medium mt-2">Hôm qua</p>
 </div>
-<h1 class="font-weight-light"><?= yesterday() ?></h1>
+<h1 class="font-weight-light"></h1>
 <p class="text-muted mb-0">Truy cập hôm qua</p>
 </div>
 </div>
@@ -45,7 +45,7 @@
 <i class="mdi mdi-verified mdi-36px"></i>
 <p class="font-weight-medium mt-2">Tổng</p>
 </div>
-<h1 class="font-weight-light"><?= totalview() ?></h1>
+<h1 class="font-weight-light"></h1>
 <p class="text-muted mb-0">Tổng truy cập</p>
 </div>
 </div>
