@@ -1,75 +1,74 @@
-
 <div class="breadcrum-f">
-  <div class="container">
-    <ul class="list-bread">
-      <li><a href="<?= base_url() ?>">Trang chủ <span>›</span></a></li>
-      <?php 
+    <div class="container">
+        <ul class="list-bread">
+            <li><a href="<?= base_url() ?>">Trang chủ <span>›</span></a></li>
+            <?php 
       $catcha = $this->category_model->get_info($category->parent_id);
       if(!empty($catcha)):
        ?>
-       <li><a href="<?= category_url($catcha->friendly_url) ?>"><?= $catcha->name; ?> <span>›</span></a></li>
-     <?php endif; ?>
+            <li><a href="<?= category_url($catcha->friendly_url) ?>"><?= $catcha->name; ?> <span>›</span></a></li>
+            <?php endif; ?>
 
-     <li><span> <?= $category->name; ?></span></li>
-   </ul>
- </div>
+            <li><span> <?= $category->name; ?></span></li>
+        </ul>
+    </div>
 </div>
 
 <section class="list-parent">
-  <div class="container">
-    <div class="row">
-      <?php 
+    <div class="container">
+        <div class="row">
+            <?php 
       $input['where']= ['parent_id'=>$category->id];
       $input['order'] = ['sort_order','asc'];
       $listChild = $this->category_model->get_list($input);
       ?>
-      <?php if(!empty($listChild)): ?>
-        <?php foreach($listChild as $c): ?>
-          <div class="col-lg-2 col-xs-4">
-            <div class="item-parent">
-              <a href="<?= category_url($c->friendly_url) ?>">
-                <img src="<?= url_tam($c->image_name) ?>" alt="<?= $c->name; ?>">
-                <h3><?= $c->name; ?></h3>
-              </a>
+            <?php if(!empty($listChild)): ?>
+            <?php foreach($listChild as $c): ?>
+            <div class="col-lg-2 col-xs-4">
+                <div class="item-parent">
+                    <a href="<?= category_url($c->friendly_url) ?>">
+                        <img src="<?= url_tam($c->image_name) ?>" alt="<?= $c->name; ?>">
+                        <h3><?= $c->name; ?></h3>
+                    </a>
+                </div>
             </div>
-          </div>
-        <?php endforeach; ?>
-      <?php endif; ?>
+            <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
     </div>
-  </div>
 </section>
 
 <?php if(!empty($listChild)): ?>
-  <?php foreach($listChild as $c): ?>
-    <?php 
+<?php foreach($listChild as $c): ?>
+<?php 
     $cba['where'] = ['parent_id'=>$c->id];
     $cba['order'] = ['sort_order','asc'];
     $cba['limit'] = [5,0];
     $listCapba = $this->category_model->get_list($cba);
     $conId = [];
     ?>
-    <section class="cat-page-list">
-      <div class="container">
+<section class="cat-page-list">
+    <div class="container">
         <div class="pls-menu">
-          <p class="pls-menu-head">
-            <a href="<?= category_url($c->friendly_url) ?>" title="<?= $c->name ?>"><?= $c->name ?></a>
-          </p>
-          <?php if(!empty($listCapba)): ?>
+            <p class="pls-menu-head">
+                <a href="<?= category_url($c->friendly_url) ?>" title="<?= $c->name ?>"><?= $c->name ?></a>
+            </p>
+            <?php if(!empty($listCapba)): ?>
             <ul class="lon">
-              <?php foreach($listCapba as $cc): ?>
+                <?php foreach($listCapba as $cc): ?>
                 <?php
                 array_push($conId,$cc->id);
                 ?>
                 <li><a href="<?= category_url($cc->friendly_url) ?>"><?= $cc->name; ?></a></li>
-              <?php endforeach; ?>
+                <?php endforeach; ?>
             </ul>
-          <?php endif; ?>
+            <?php endif; ?>
 
         </div>
 
         <div class="list-product-page">
-          <div class="rowss">
-            <?php 
+            <div class="rowss">
+                <?php 
 
             if(!empty($conId)){
               $pr['where'] = ['hide'=>'0'];
@@ -81,111 +80,167 @@
             $pr['limit'] = [8,0];
             $productP = $this->product_model->get_list($pr);
             ?>
-            <?php foreach($productP as $k=>$p): ?>
-              <div class="col-lg-3 col-xs-6 borderlr_<?= $k ?>">
-                <div class="item-sp-cat">
-                  <a class="img-sp-cat" href="<?= product_url(slug($p->name),$p->id) ?>"><img src="<?= url_tam($p->image_name); ?>" alt="<?= $p->name ?>"></a>
-                  <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= catchuoi($p->name,75); ?></a></h4>
-                  <p><span><?= ($p->price==0) ? 'Liên hệ' : number_format($p->price). '₫'; ?> </span></p>
+                <?php foreach($productP as $k=>$p): ?>
+                <div class="col-lg-3 col-xs-6 borderlr_<?= $k ?>">
+                    <div class="item-sp-cat">
+                        <a class="img-sp-cat" href="<?= product_url(slug($p->name),$p->id) ?>"><img
+                                src="<?= url_tam($p->image_name); ?>" alt="<?= $p->name ?>"></a>
+                        <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= catchuoi($p->name,75); ?></a></h4>
+                        <p><span><?= ($p->price==0) ? 'Liên hệ' : number_format($p->price). '₫'; ?> </span></p>
 
-                </div>
-              </div>
-            <?php endforeach; ?>
-
-          </div>
-        </div>
-
-      </div>
-    </section>
-  <?php endforeach; ?>
-
-  <?php else: ?>
-
-    <section class="current-cat-pro">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-9">
-            <div class="result clearfix">
-              <div class="orderby pull-right">
-                Xếp theo
-                <form method="get" id="frmSort">
-                <select class="orderby fillter_checkbox sort_order" name="sort_order">
-                  <option value="">Mặc định</option>
-                  <option value="asc" <?= ($sort_order=='asc') ? 'selected' : '' ?> > Giá từ thấp tới cao</option>
-                  <option value="desc" <?= ($sort_order=='desc') ? 'selected' : '' ?> > Giá từ cao tới thấp</option>
-                </select>
-                </form>
-              </div>
-
-            </div>
-            <div class="row">
-              <?php foreach($list as $k=>$p): ?>
-                <div class="col-lg-3 col-xs-6">
-                  <div class="item-sp-cao page-cat">
-                    <div class="img_list_page">
-                    <a class="img-sp-cat-page" href="<?= product_url(slug($p->name),$p->id) ?>"><img src="<?= url_tam($p->image_name); ?>" alt="<?= $p->name; ?>"></a>
                     </div>
-                    <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= catchuoi($p->name,50); ?></a></h4>
-                    <p><span><?= ($p->price==0) ? 'Liên hệ' : number_format($p->price). '₫'; ?> </span> </p>
-                    <div class="nut_ss"><a class="sosanh_page" data-id="<?= $p->id; ?>" data-url="<?= base_url('compare/addcompare') ?>">So sánh</a></div>
-                  </div>
                 </div>
-              <?php endforeach; ?>
-              <div class="pagination-bx clearfix col-md-12 text-center">
-               <?= $this->pagination->create_links(); ?>
-             </div>
-           </div>
-         </div>
-         <div class="col-lg-3">
-          <div class="filter-right">
-            <div class="filter-fac">
-              <h3 class="title-filter">Hãng sản xuất</h3>
-              <div class="list-fac">
-                <?php if(!empty($listHang)): ?>
-                  <?php foreach($listHang as $hang): ?>
-                    <a href="<?= manufac_url(slug($hang->name),$hang->id,$category->id) ?>"><?php if($hang->image_name!=''): ?>
-                      <img src="<?= url_tam($hang->image_name); ?>">
-                      <?php else: ?>
-                    <?= $hang->name; ?><?php endif; ?>
-                  </a>
                 <?php endforeach; ?>
-              <?php endif; ?>
 
             </div>
-          </div>
         </div>
 
-          <div class="box-sidebar">
-       <div class="panel sp-xem-nhieu">
-        <div class="panel-heading">
-          Sản phẩm nhiều lượt xem
-        </div>
-        <ul class="list-group">
-          <?php foreach($listXN as $row): ?>
-          <li class="list-group-item">
-            <div class="item-product">
-              <div class="product-img">
-                <a href="<?= product_url(slug($row->name),$row->id) ?>" title="<?= $row->name; ?>">
-                 <img src="<?= url_tam($row->image_name); ?>" alt="<?= $row->name; ?>">
-               </a>
-             </div>
-             <div class="caption">
-              <a class="name-product" href="<?= product_url(slug($row->name),$row->id) ?>" title="<?= $row->name; ?>"><?= $row->name; ?></a>
-              <div class="price">
-                <span class="amount"><?= ($row->price==0) ? 'Liên hệ' : number_format($row->price).'đ'; ?> </span>
-              </div>
-            </div>
-          </div>
-        </li>
-      <?php endforeach; ?>
-</ul>
-</div>
-
-</div>
-
-      </div>
     </div>
-  </div>
 </section>
+<?php endforeach; ?>
 
+<?php else: ?>
+
+<section class="current-cat-pro">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="result clearfix">
+                    <div class="orderby pull-right">
+                        Xếp theo
+                        <form method="get" id="frmSort">
+                            <select class="orderby fillter_checkbox sort_order" name="sort_order">
+                                <option value="">Mặc định</option>
+                                <option value="asc" <?= ($sort_order=='asc') ? 'selected' : '' ?>> Giá từ thấp tới cao
+                                </option>
+                                <option value="desc" <?= ($sort_order=='desc') ? 'selected' : '' ?>> Giá từ cao tới thấp
+                                </option>
+                            </select>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <?php foreach($list as $k=>$p): ?>
+                    <div class="col-lg-3 col-xs-6">
+                        <div class="item-sp-cao page-cat">
+                            <div class="img_list_page">
+                                <a class="img-sp-cat-page" href="<?= product_url(slug($p->name),$p->id) ?>"><img
+                                        src="<?= url_tam($p->image_name); ?>" alt="<?= $p->name; ?>"></a>
+                            </div>
+                            <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= catchuoi($p->name,50); ?></a>
+                            </h4>
+                            <p><span><?= ($p->price==0) ? 'Liên hệ' : number_format($p->price). '₫'; ?> </span> </p>
+                            <div class="nut_ss"><a class="sosanh_page" data-id="<?= $p->id; ?>"
+                                    data-url="<?= base_url('compare/addcompare') ?>">So sánh</a></div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                    <div class="pagination-bx clearfix col-md-12 text-center">
+                        <?= $this->pagination->create_links(); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="filter-right">
+                    <div class="panel panel-manu">
+                        <div class="panel-heading">
+                            Hãng sản xuất
+                        </div>
+                        <div class="panel-body">
+                            <?php if(!empty($listHang)): ?>
+                            <ul class="list-unstyled">
+                                <?php foreach($listHang as $hang): ?>
+                                <li>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" data-uri="<?= $friendly_url.'/?manu='.$hang->id ?>"
+                                                <?= $manu==$hang->id?"checked":""?>>
+                                            <a href="<?= $friendly_url.'/?manu='.$hang->id ?>"> <?= $hang->name; ?>
+                                                (<?= $hang->count?>)</a>
+                                        </label>
+                                    </div>
+                                </li>
+                                <?php endforeach; ?>
+                            </ul>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-sidebar">
+                    <div class="panel panel-manu">
+                        <div class="panel-heading">
+                            Nơi sản xuất
+                        </div>
+                        <div class="panel-body">
+                            <?php if(!empty($location_manu)): ?>
+                            <ul class="list-unstyled" id="location_manu" data-total="<?=count($location_manu)?>">
+                                <?php foreach($location_manu as $key=> $loc): ?>
+                                <li <?=$key>=6?'class="deactive"':''?>>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" data-uri="<?= $friendly_url.'/?loc='.$loc->model ?>"
+                                                <?= $current_loc==$loc->model?"checked":""?>>
+                                            <a href="<?= $friendly_url.'/?loc='.$loc->model ?>"> <?= $loc->model; ?>
+                                                (<?= $loc->count?>)</a>
+                                        </label>
+                                    </div>
+                                </li>
+                                <?php endforeach; ?>
+                                <?php if(count($location_manu)>6): ?>
+                                <li class="show_more_loc" data-attr="active"><a>Xem thêm</a> </li>
+                                <?php endif; ?>
+                            </ul>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-manu">
+                        <div class="panel-heading">
+                            Khoảng giá (VND)
+                        </div>
+                        <div class="panel-body">
+                            <?php if(!empty($range)): ?> 
+                            <ul class="list-unstyled" id="price_range" data-total="<?=count($range)?>">
+                                <?php foreach($range as $key=> $ra): ?>
+                                <li >
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"  <?= $range_id==$ra->id?"checked":""?>>
+                                            <a href="<?= $friendly_url.'/?range_id='.$ra->id.'&minp='.$ra->minp .'&maxp='.$ra->maxp ?>"> 
+                                            <?= $ra->price_range; ?>
+                                                (<?= $ra->num?>)</a>
+                                        </label>
+                                    </div>
+                                </li>
+                                <?php endforeach; ?>                             
+                            </ul>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
 <?php endif; ?>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.show_more_loc').click(function() {
+        var attr = $('.show_more_loc').data('attr');
+        if (attr == 'active') {
+            $('#location_manu li.deactive').addClass('active');
+            $('#location_manu li.deactive').removeClass('deactive');
+            $('.show_more_loc').html('Thu gọn');
+            $('.show_more_loc').data('attr', 'deactive');
+        } else {
+            $('#location_manu li.active').addClass('deactive');
+            $('#location_manu li.active').removeClass('active');
+            $('.show_more_loc').html('Xem thêm');
+            $('.show_more_loc').data('attr', 'active');
+        }
+    })
+});
+</script>
