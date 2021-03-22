@@ -94,24 +94,24 @@ Class Product extends MY_Controller{
 		}
 		$locamanu = $this->product_model->getLocationManu($input);
 		$range = $this->product_model->price_range($input);
-
+$extent ='';
 		//Search theo hãng sx
 		$manu = $this->input->get('manu');
 		if(!is_null($manu) && $manu>0){
-			$input['where'] = ['manufac_id'=>$manu];
+			$extent .= 'AND manufac_id ='.$manu .' ';
 		}
 		//Search theo xuất xứ
 		$loc = $this->input->get('loc');
 		
 		if(!is_null($loc)) {
-			$input['where'] = ['model'=>$loc];
+			$extent .= 'AND model ='.$loc .' ';
 		}
 		$range_id = $this->input->get('range_id');
 		$minp = $this->input->get('minp');
 		$maxp =$this->input->get('maxp');
 		if(!is_null($minp) && !is_null($maxp)) {
-			$input['where'] = ['price >='=>$minp];
-			$input['where'] = ['price <'=>$maxp];
+			$extent .= 'AND price >='.$minp .' ';
+			$extent .= 'AND price <='.$maxp .' ';
 		}	
 
 		$total_row = $this->product_model->get_total($input);
@@ -156,7 +156,7 @@ Class Product extends MY_Controller{
 		$input["limit"] = array($config['per_page'], $segment);
 		//$listMulti = $this->product_category_model->get_list($input);
 		// print_r($input);die;
-		$list = $this->product_model->get_list($input);
+		$list = $this->product_model->get_list_extent($input,$extent	);
 		// print_r($this->db->last_query());die;
 		$this->data['list'] = $list;
 		//list hãng sản xuất theo danh mục

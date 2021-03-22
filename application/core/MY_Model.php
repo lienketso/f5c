@@ -53,7 +53,7 @@ Class MY_Model extends CI_Model{
 		return $this->get_info_rule($where);
 	}
 	//lấy thông tin của dòng từ điều kiện
-	function get_info_rule($where){
+	function get_info_rule($where){	
 		$this->db->where($where);
 		$query = $this->db->get($this->table);
 		if($query->num_rows()){
@@ -93,6 +93,14 @@ Class MY_Model extends CI_Model{
 		$query = $this->db->get($this->table);	
 		return $query->result();
 	}
+	function get_list_extent($input = array(),$extent){
+		$this->get_list_set_input($input);
+		$str = preg_replace('/^AND/', '', $extent);
+		$query = $this->db->where($str);
+		//truy vấn dữ liệu
+		$query = $this->db->get($this->table);	
+		return $query->result();
+	}
 	function get_where_in($where,$order,$limit){
 		$this->db->where($where);
 		$this->db->order_by($order[0], $order[1]);
@@ -109,6 +117,7 @@ Class MY_Model extends CI_Model{
 	}
 	//lấy dữ liệu gán điều kiện
 	function get_list_set_input($input){
+		
 		if(isset($input['select'])){
 			$this->db->select($input['select']);
 		}
@@ -130,6 +139,7 @@ Class MY_Model extends CI_Model{
 		if(isset($input['order'][0]) && isset($input['order'][1])){
 			$this->db->order_by($input['order'][0], $input['order'][1]);
 		}
+		
 		else{
 			$this->db->order_by('id','desc');
 		}
