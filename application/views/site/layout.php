@@ -371,10 +371,12 @@
         });
         */
 
-        $(".box_search").focusout(function(e) {
-            $("#divSuggestion").css({
+        $("#text-search").focusout(function(e) {       
+            setTimeout(function(){  
+                $("#divSuggestion").css({
                 'display': 'none'
-            });
+            }); }, 500); 
+           
         });
 
 

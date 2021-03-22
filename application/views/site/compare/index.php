@@ -28,6 +28,7 @@
                             <?php 
                     $input['where'] = ['product_id'=>$p->id];
                     $input['order'] = ['option_id','asc'];
+                    $spkethop = $this->product_model->getSerialProcduct($p->products);
                     $listOps = $this->product_option_model->get_list($input);
                   
                    ?>
@@ -49,7 +50,34 @@
                                 <?php endforeach; ?>
                             </ul>
                         </div>
-                        <div class="btn_comp"><a class="" href="<?= base_url('cart/add/'.$p->id); ?>">Mua sản phẩm</a>
+                        <div class="btn_comp"><a class="compare_cart" id="<?= $p->id; ?>" data-id="<?= $p->id; ?>"
+                                data-href="<?= base_url('cart/addmulti/'); ?>">Mua sản phẩm</a>
+                            <?php if ($spkethop) :?>
+                            <h5 id="title-spkh">Sản phẩm kết hợp</h5>
+                            <ul class="ul-spkh">
+                                <?php foreach($spkethop as $sp): ?>
+                                <li>
+                                    <div>
+                                        <div class="content-left">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" style="margin-top:20px" id="<?= $sp->id; ?>"
+                                                        value="<?= $sp->id; ?>" class="spkh" data-p-id="<?= $p->id; ?>">
+                                                    <img src="<?= url_tam($p->image_name); ?>" alt="<?= $p->name; ?>"
+                                                        data-holder-rendered="true"
+                                                        style="width: 64px; height: 64px;display:inline">
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="content-right">
+                                            <div><?=$sp->name?></div>
+                                            <p><?= ($sp->price==0) ? 'Liên hệ' : number_format($sp->price). '₫'; ?></p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <?php endforeach; ?>
+                            </ul>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -91,7 +119,7 @@
                     <div class="autocomplete-group">
                         <input id="domain" type="hidden" value="<?= base_url() ?>">
                         <input type="hidden" id="catId" value="<?=$catId?>">
-                        <input class="form-control" id="auto_input" type="text" placeholder=""  autocomplete="off">
+                        <input class="form-control" id="auto_input" type="text" placeholder="" autocomplete="off">
                         <ul id="auto_result" class="list-group list-group-flush"></ul>
                     </div>
                 </div>
@@ -144,20 +172,50 @@ $(document).ready(function() {
                 search: search,
                 arrExclude: arrExclude
             })
-            .done(function(data) {              
+            .done(function(data) {
                 $('#auto_result').html('');
-                data.forEach(function(item){                  
-                    let html ='<li class="list-group-item">'
-                    html+='<a class="addmorecom" data-id="'+item.id+'" data-href="'+domain+'compare/addmore">'
-                    html+='<div class="product-name">'+item.name+'</div>'
-                    html+='<span class="product-price">'+item.display_price+'</span>'
-                    html+='</a>'                           
-                    html+='</li>'
+                data.forEach(function(item) {
+                    let html = '<li class="list-group-item">'
+                    html += '<a class="addmorecom" data-id="' + item.id + '" data-href="' +
+                        domain + 'compare/addmore">'
+                    html += '<div class="product-name">' + item.name + '</div>'
+                    html += '<span class="product-price">' + item.display_price + '</span>'
+                    html += '</a>'
+                    html += '</li>'
 
                     $('#auto_result').append(html);
                 });
 
             })
     });
+
+    $('.spkh').click(function() {
+        let flag = $(this).is(':checked');
+        let p = $(this).data('p-id');
+        let arrId = $('#' + p + '.compare_cart').data('id');
+        let id = $(this).attr('id');
+        if (flag) {
+            arrId = arrId + '_' + id
+        } else {
+            arrId = arrId.replace(id, '');
+        }
+        if (arrId.substring(arrId.length - 1) == '_') {
+            arrId= arrId.substring(0, arrId.length - 1);
+        }
+        $('#' + p + '.compare_cart').data('id', arrId);
+        console.log(arrId);
+    });
+
+    $('.compare_cart').click(function(){
+        let arrId = $(this).data('id');
+        let url =  $(this).data('href');
+        $(".spkh").prop( "checked", false );
+        $.post(url,{
+            arrId:arrId
+        }) .done(function(href) {
+            window.location.href =href;
+             });
+
+    })
 });
 </script>

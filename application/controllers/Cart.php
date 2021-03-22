@@ -44,6 +44,27 @@ Class Cart extends MY_Controller{
 		//chuyển sang trang danh sách giỏ hàng
 		redirect(base_url('cart/index'));
 	}
+	function addmulti(){
+		$this->load->model('product_model');
+		$str =  $this->input->post('arrId');
+		$arrId = explode('_',$str);
+		foreach($arrId as $id){
+			$product = $this->product_model->get_info($id);
+		//số lượng sản phẩm
+		$qty = 1;
+		$price = $product->price;
+		//thông tin sản phẩm
+		$data = array();
+		$data['id'] = $product->id;
+		$data['qty'] = $qty;	
+		$data['name'] = url_title($product->name);
+		$data['image_name'] = $product->image_name;
+		$data['price'] = $product->price;
+		$this->cart->insert($data);		
+		}
+		echo (base_url('cart/index'));
+		die;
+	}
 	function store(){
 		$this->data['temp'] = 'site/cart/store';
 		$this->load->view('site/layout',$this->data);

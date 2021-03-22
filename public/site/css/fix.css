@@ -1337,3 +1337,30 @@ dl.sub-content dd{
 #location_manu li.active{
     display: block;
 }
+ul.ul-spkh li{
+    padding: 10px 0 10px 0;
+    border-top: 1px solid #ccc;
+}
+
+ul.ul-spkh .content-left{
+    display: table-cell;
+}
+ul.ul-spkh .content-right{
+    display: table-cell;
+    padding-left: 15px;
+}
+ul.ul-spkh .content-right >div{
+    font-size: 17px;
+    font-weight: bold;
+}
+ul.ul-spkh .content-right >p{
+    color: red;
+    font-weight: bold;
+}
+h5#title-spkh{
+    color: #006DAE;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 17px;
+}

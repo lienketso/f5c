@@ -20,6 +20,16 @@ Class Product_model extends MY_Model{
 		}
 		return $arrList;
 	}
+
+	public function getSerialProcduct($serial){
+		$ids= unserialize($serial);
+		$this->db->select('*');
+		$this->db->from($this->table);
+		$this->db->where_in('id',$ids);	
+		$this->db->order_by('id', 'DESC');
+		$query = $this->db->get();
+		return $query->result();
+	}
 	public function getCity($id){
 		$this->load->model('city_model');
 		$city = $this->city_model->get_info($id);
