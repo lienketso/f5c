@@ -90,7 +90,7 @@ Class MY_Model extends CI_Model{
 	function get_list($input = array()){
 		$this->get_list_set_input($input);
 		//truy vấn dữ liệu
-		$query = $this->db->get($this->table);
+		$query = $this->db->get($this->table);	
 		return $query->result();
 	}
 	function get_where_in($where,$order,$limit){

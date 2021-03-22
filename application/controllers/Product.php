@@ -92,18 +92,42 @@ Class Product extends MY_Controller{
 		}else{
 			$input['where'] = ['cat_id'=>$category->id];
 		}
+		$locamanu = $this->product_model->getLocationManu($input);
+		$range = $this->product_model->price_range($input);
+
+		//Search theo hãng sx
+		$manu = $this->input->get('manu');
+		if(!is_null($manu) && $manu>0){
+			$input['where'] = ['manufac_id'=>$manu];
+		}
+		//Search theo xuất xứ
+		$loc = $this->input->get('loc');
 		
+		if(!is_null($loc)) {
+			$input['where'] = ['model'=>$loc];
+		}
+		$range_id = $this->input->get('range_id');
+		$minp = $this->input->get('minp');
+		$maxp =$this->input->get('maxp');
+		if(!is_null($minp) && !is_null($maxp)) {
+			$input['where'] = ['price >='=>$minp];
+			$input['where'] = ['price <'=>$maxp];
+		}	
+
 		$total_row = $this->product_model->get_total($input);
+		$base_url =  base_url($category->friendly_url);
 
 		$this->data['total_row'] = $total_row;
 		$this->load->library('pagination');
 		$config = array();
 		$config['page_query_string'] = true;
 		$config['reuse_query_string'] = true;
-		$config['base_url'] = base_url($category->friendly_url).'/?cat=';
+		$config['base_url'] = $base_url;
 		$config['total_rows']  = $total_row;
 		$config['per_page']    = 20;
 		$config['uri_segment'] = 2;
+		$config['suffix'] = '';
+		$config['first_url'] = $config['base_url'] . $config['suffix'];
 		$config['full_tag_open'] = '<ul class="pagination">';
 		$config['full_tag_close'] = '</ul>';
 		$config['num_tag_open'] = '<li>';
@@ -133,15 +157,57 @@ Class Product extends MY_Controller{
 		//$listMulti = $this->product_category_model->get_list($input);
 		// print_r($input);die;
 		$list = $this->product_model->get_list($input);
+		// print_r($this->db->last_query());die;
 		$this->data['list'] = $list;
 		//list hãng sản xuất theo danh mục
 		$hangsx = unserialize($category->manufac_ids);
-		// print_r($config);die;
+		
 		$listHang = [];
 		if(!empty($hangsx)){
 		foreach($hangsx as $h){
-			$listHang[] = $this->manufac_model->get_info($h);
+			$listHang[] = $this->manufac_model->get_info($h);		
 		}
+		}
+		foreach($listHang as $i){
+			$i->count = $this->product_model->countProductByManu($i->id);
+		}
+		foreach( $range as $key=> $item){
+			$item->id = $key +1;
+			if($item->price_range=='0 - 500K'){
+				$item->minp=0;
+				$item->maxp=500000;
+			}
+			else if($item->price_range=='500k - 1 triệu'){
+				$item->minp=500000;
+				$item->maxp=1000000;
+			}
+			else if($item->price_range=='500k - 1 triệu'){
+				$item->minp=500000;
+				$item->maxp=1000000;
+			}
+			else if($item->price_range=='1 triệu - 2 triệu'){
+				$item->minp=1000000;
+				$item->maxp=2000000;
+			}
+			else if($item->price_range=='2 triệu - 3 triệu'){
+				$item->minp=2000000;
+				$item->maxp=3000000;
+			}
+			else if($item->price_range=='3 triệu - 5 triệu'){
+				$item->minp=3000000;
+				$item->maxp=5000000;
+			}
+			else if($item->price_range=='5 triệu - 10 triệu'){
+				$item->minp=5000000;
+				$item->maxp=10000000;
+			}
+			else if($item->price_range=='10 triệu - 20 triệu'){
+				$item->minp=10000000;
+				$item->maxp=20000000;
+			}else{
+				$item->minp=20000000;
+				$item->maxp=2000000000000;
+			}
 		}
 		
 		$this->data['listHang'] = $listHang;
@@ -152,8 +218,6 @@ Class Product extends MY_Controller{
 		$xn['limit'] = [6,0];
 		$listXN = $this->product_model->get_list($xn);
 		$this->data['listXN'] = $listXN;
-		
-		//pre($list);die;
 
 		$this->data['title'] = $category->name;
 		$this->data['meta_desc'] = $category->meta_desc;
@@ -161,6 +225,12 @@ Class Product extends MY_Controller{
 		$this->data['og_title'] = $category->name;
 		$this->data['og_image'] = product_link($category->image_name);
 		$this->data['urlhttp'] = category_url(slug($category->name),$category->id);
+		$this->data['friendly_url'] =$base_url;
+		$this->data['manu'] =$manu;
+		$this->data['location_manu'] =$locamanu;
+		$this->data['current_loc']=$loc;
+		$this->data['range'] =$range;
+		$this->data['range_id']=$range_id;
 
 		//hiển thị ra view
 		$this->data['temp'] = "site/product/category";

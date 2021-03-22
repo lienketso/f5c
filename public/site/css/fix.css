@@ -760,7 +760,7 @@ ul.list-bread li a{
 .title-filter{
     font-size: 18px;
     color: #fff;
-    background: #F58634;
+    background-color: #F58634;
     font-weight: bold;
     margin: 0;
     padding: 10px;
@@ -1318,4 +1318,22 @@ dl.sub-content dd{
 .autocomplete-group #auto_result  > li >a>.product-price{
   
     color: red;
+}
+.panel-manu .panel-heading{
+    background-color:  #F58634 !important;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+#location_manu li.show_more_loc{
+    padding-top: 5px;
+    border-top: 1px solid #ccc;
+    cursor: pointer;
+    text-align: center; 
+}
+#location_manu li.deactive{
+    display: none;
+}
+#location_manu li.active{
+    display: block;
 }
