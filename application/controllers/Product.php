@@ -80,6 +80,7 @@ Class Product extends MY_Controller{
 		$input = array();
 		//lấy ra danh sách sản phẩm trong danh mục
 		$this->data['sort_order'] = $sort_order;
+		
 		if($category->parent_id==0){
 			$ids = [$category->id];
 			$s['where'] = ['parent_id'=>$category->id];
@@ -89,11 +90,15 @@ Class Product extends MY_Controller{
 			}
 			$input['where'] = ['hide'=>0];
 			$input['where_in'] = ['cat_id',$ids];
+			$locamanu = $this->product_model->getLocationManu($input['where_in'],false);
+			$range = $this->product_model->price_range($input,false);
 		}else{
 			$input['where'] = ['cat_id'=>$category->id];
-		}
-		$locamanu = $this->product_model->getLocationManu($input);
-		$range = $this->product_model->price_range($input);
+			$locamanu = $this->product_model->getLocationManu($input['where'],true);
+			$range = $this->product_model->price_range($input,true);
+		}		
+
+		
 		$extent ="";
 		//Search theo hãng sx
 		$manu = $this->input->get('manu');

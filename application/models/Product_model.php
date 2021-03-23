@@ -106,18 +106,29 @@ Class Product_model extends MY_Model{
 		return $this->db->count_all_results();
 	}
 
-	public function getLocationManu($where = array()){
+	public function getLocationManu($where = array(),$flag){
 		
 		$this->db->select('model, count(model) count');
 		$this->db->from('product');
 		$this->db->where("model <> ''");
-		$this->db->where($where['where']);
+		if($flag){
+			$this->db->where($where);
+		}else{
+			$this->db->where_in($where[0],$where[1] );
+		}
+		
 		$this->db->group_by("model"); 
 		$query= $this->db->get();
 	
 		return $query->result(); 
 	}
-	public function price_range($where = array()){
+	public function price_range($where = array(),$flag){
+		if($flag){
+			$arr= $where['where']['cat_id'];
+		}else{
+			$arr= implode(",",$where['where_in'][1] );
+		}
+		
 		$sql ="select t.`price_range`, count(`price`) as `num`";
 		$sql .= " from";
 		$sql .= " (select case";
@@ -131,9 +142,9 @@ Class Product_model extends MY_Model{
 		$sql .= " when `price` >= 20000000  then '> 20 triệu'";
 		$sql .= " end";
 		$sql .= " as `price_range`, price";
-		$sql .=" from `product` WHERE `cat_id`IN ?) as t";
+		$sql .=" from `product` WHERE `cat_id`IN (".$arr.")) as t";
 		$sql .= " group by `price_range` ORDER BY `price`";		
-		$query = $this->db->query($sql,$where);
+		$query = $this->db->query($sql);
 		return $query->result(); 		
 	}
 }
