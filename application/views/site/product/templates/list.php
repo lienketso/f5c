@@ -143,12 +143,13 @@
             </div>
             <div class="col-lg-3">
                 <div class="filter-right">
+                <?php if(count($listHang)>0): ?>
                     <div class="panel panel-manu">
                         <div class="panel-heading">
                             Hãng sản xuất
                         </div>
                         <div class="panel-body">
-                            <?php if(!empty($listHang)): ?>
+                          
                             <ul class="list-unstyled">
                                 <?php foreach($listHang as $hang): ?>
                                 <li>
@@ -163,18 +164,19 @@
                                 </li>
                                 <?php endforeach; ?>
                             </ul>
-                            <?php endif; ?>
+                          
                         </div>
                     </div>
+                    <?php endif; ?>
                 </div>
 
                 <div class="box-sidebar">
+                <?php if(count($location_manu)>0): ?>
                     <div class="panel panel-manu">
                         <div class="panel-heading">
                             Nơi sản xuất
                         </div>
-                        <div class="panel-body">
-                            <?php if(!empty($location_manu)): ?>
+                        <div class="panel-body">                         
                             <ul class="list-unstyled" id="location_manu" data-total="<?=count($location_manu)?>">
                                 <?php foreach($location_manu as $key=> $loc): ?>
                                 <li <?=$key>=6?'class="deactive"':''?>>
@@ -192,10 +194,10 @@
                                 <li class="show_more_loc" data-attr="active"><a>Xem thêm</a> </li>
                                 <?php endif; ?>
                             </ul>
-                            <?php endif; ?>
+                          
                         </div>
                     </div>
-
+                    <?php endif; ?>
                     <div class="panel panel-manu">
                         <div class="panel-heading">
                             Khoảng giá (VND)
