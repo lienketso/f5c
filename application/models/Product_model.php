@@ -23,6 +23,9 @@ Class Product_model extends MY_Model{
 
 	public function getSerialProcduct($serial){
 		$ids= unserialize($serial);
+		if(count($ids)==0){
+			return array();
+		}
 		$this->db->select('*');
 		$this->db->from($this->table);
 		$this->db->where_in('id',$ids);	
