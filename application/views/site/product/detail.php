@@ -322,16 +322,16 @@
                                     </dl>
                                 </li>
                                 <?php endforeach; ?>
-
-
                             </ul>
+                            <?php if(count($lstComment)>0):?>
                             <div class="col-lg-12 text-center">
-                            <div class="spinner-border text-primary" role="status">
-  <span class="sr-only">Loading...</span>
-</div>
-                            <a class="" data-page="2" onclick="loadMoreComment()"
-                                    id="load-more-comment">Hiển thị thêm</a>
-                                    </div>
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                                <a class="" data-page="2" onclick="loadMoreComment()" id="load-more-comment">Hiển thị
+                                    thêm</a>
+                            </div>
+                            <?php endif;?>
                         </div>
                     </div>
 
@@ -515,71 +515,83 @@ function loadMoreComment() {
     let url = $('#domain').val();
     let userId = $('#userId').val();
     $.ajax({
-        method: "POST",
-        url: url + "product/loadMoreComment",
-        data: {
-            page: page,
-            productId: productId
-        }
-    }).done(function(res) {
-        $('#load-more-comment').html('Hiển thị thêm');      
-        $('#load-more-comment').data('page', page + 1);
-        let data = JSON.parse(res);
-        let arrCom = data.lstComment;
-        let arrSub = data.lstSubComment;
-        if (arrCom.length == 0) {
-            $('#load-more-comment').hide();
-        } else {
-            arrCom.forEach(function(item) {
-                let li = '<li class="list-group-item" id="' + item.id + '">';
-                li += '<h4><b>'+item.user_name+'</b></h4>';
-                li += '<p>'+item.content+'</p>';
-                if(userId.length>0){
-                    li += '<a class="" data-id="' + item.id + '" onclick="openPopupAnswer(' + item.id + ')">Trả lời</a>&nbsp;&nbsp;&nbsp;';
-                }               
-                li += ' <i class="fa fa-thumbs-o-up"></i><a class="vote-comment" data-id="' + item.id + '">Thích</a> &nbsp; &nbsp; &nbsp;'
-              let displayDate=  new Date(1615978619784).toLocaleString('vi-vn', {year: 'numeric', month: '2-digit', day: '2-digit'}).replace(/(\d+)\/(\d+)\/(\d+)/,'$1-$2-$3');
-                li += '<span class="text-muted">'+displayDate+'</span>';
-                li += '</p>';
-                li += '<div class="panel panel-success" style="display:none" id="' + item.id +'">';
-                li += '<div class="panel-body">';
-                li += '<textarea class="form-control" placeholder="Nhập câu hỏi/bình luận/ nhận xét ..." rows="3" id="contentId_' + item.id +'"></textarea>';
-                li += '</div>';
-                li += '<div class="panel-footer clearfix">';
-                li += '<div class="col-lg-8"></div>';
-                li += '<div class="col-lg-4 text-right">';
-                li += '<input type="hidden" value="' + item.id +'" id="commentId_' + item.id +'">';
-                li += '<a class="btn btn-primary" onclick="addAnswer(' + item.id +')">Gửi đánh giá</a>';
-                li += '<a class="btn btn-danger " onclick="closePopupAnswer(' + item.id +')">Đóng</a>';
-                li += '</div>';
-                li += '</div>';
-                li += '</div>';
-                li += '<dl class="sub-content" id="' + item.id +'"></dl>';
-                li += '</li>';
+            method: "POST",
+            url: url + "product/loadMoreComment",
+            data: {
+                page: page,
+                productId: productId
+            }
+        }).done(function(res) {
+            $('#load-more-comment').html('Hiển thị thêm');
+            $('#load-more-comment').data('page', page + 1);
+            let data = JSON.parse(res);
+            let arrCom = data.lstComment;
+            let arrSub = data.lstSubComment;
+            if (arrCom.length == 0) {
+                $('#load-more-comment').hide();
+            } else {
+                arrCom.forEach(function(item) {
+                    let li = '<li class="list-group-item" id="' + item.id + '">';
+                    li += '<h4><b>' + item.user_name + '</b></h4>';
+                    li += '<p>' + item.content + '</p>';
+                    if (userId.length > 0) {
+                        li += '<a class="" data-id="' + item.id + '" onclick="openPopupAnswer(' + item.id +
+                            ')">Trả lời</a>&nbsp;&nbsp;&nbsp;';
+                    }
+                    li += ' <i class="fa fa-thumbs-o-up"></i><a class="vote-comment" data-id="' + item.id +
+                        '">Thích</a> &nbsp; &nbsp; &nbsp;'
+                    let displayDate = new Date(1615978619784).toLocaleString('vi-vn', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit'
+                    }).replace(/(\d+)\/(\d+)\/(\d+)/, '$1-$2-$3');
+                    li += '<span class="text-muted">' + displayDate + '</span>';
+                    li += '</p>';
+                    li += '<div class="panel panel-success" style="display:none" id="' + item.id + '">';
+                    li += '<div class="panel-body">';
+                    li +=
+                        '<textarea class="form-control" placeholder="Nhập câu hỏi/bình luận/ nhận xét ..." rows="3" id="contentId_' +
+                        item.id + '"></textarea>';
+                    li += '</div>';
+                    li += '<div class="panel-footer clearfix">';
+                    li += '<div class="col-lg-8"></div>';
+                    li += '<div class="col-lg-4 text-right">';
+                    li += '<input type="hidden" value="' + item.id + '" id="commentId_' + item.id + '">';
+                    li += '<a class="btn btn-primary" onclick="addAnswer(' + item.id +
+                    ')">Gửi đánh giá</a>';
+                    li += '<a class="btn btn-danger " onclick="closePopupAnswer(' + item.id + ')">Đóng</a>';
+                    li += '</div>';
+                    li += '</div>';
+                    li += '</div>';
+                    li += '<dl class="sub-content" id="' + item.id + '"></dl>';
+                    li += '</li>';
 
-                $('ul#lst-content').append(li);
-            });
+                    $('ul#lst-content').append(li);
+                });
 
-            arrSub.forEach(function(sub){
-                $('#' + sub.parent_id + '.sub-content').append("<dt>" + sub.user_name + "</dt><dd>" + sub.content + "</dd>");
-            });
-        }
+                arrSub.forEach(function(sub) {
+                    $('#' + sub.parent_id + '.sub-content').append("<dt>" + sub.user_name + "</dt><dd>" +
+                        sub.content + "</dd>");
+                });
+            }
 
-    })
-    .fail(function(err){
-                console.log(err);
-            });;
+        })
+        .fail(function(err) {
+            console.log(err);
+        });;
 }
 
-function voteComment(id){}
-$(document).on('click','.vote-comment',function(){
+function voteComment(id) {}
+$(document).on('click', '.vote-comment', function() {
     $(this).prev().addClass('active');
     let id = $(this).data('id');
     let url = $('#domain').val();
     $.ajax({
         method: "POST",
         url: url + "product/voteComment",
-        data: {vote: id}
+        data: {
+            vote: id
+        }
     })
 });
 </script>
