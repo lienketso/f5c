@@ -23,6 +23,9 @@ Class Product_model extends MY_Model{
 
 	public function getSerialProcduct($serial){
 		$ids= unserialize($serial);
+		if(count($ids)==0){
+			return array();
+		}
 		$this->db->select('*');
 		$this->db->from($this->table);
 		$this->db->where_in('id',$ids);	
@@ -104,12 +107,14 @@ Class Product_model extends MY_Model{
 	}
 
 	public function getLocationManu($where = array()){
+		
 		$this->db->select('model, count(model) count');
 		$this->db->from('product');
 		$this->db->where("model <> ''");
-		$this->db->where_in($where );
+		$this->db->where($where['where']);
 		$this->db->group_by("model"); 
 		$query= $this->db->get();
+	
 		return $query->result(); 
 	}
 	public function price_range($where = array()){

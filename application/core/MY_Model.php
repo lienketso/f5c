@@ -95,8 +95,10 @@ Class MY_Model extends CI_Model{
 	}
 	function get_list_extent($input = array(),$extent){
 		$this->get_list_set_input($input);
-		$str = preg_replace('/^AND/', '', $extent);
-		$query = $this->db->where($str);
+		if(!empty($extent)){
+			$str = preg_replace('/^AND/', '', $extent);
+			$query = $this->db->where($str);
+		}		
 		//truy vấn dữ liệu
 		$query = $this->db->get($this->table);	
 		return $query->result();

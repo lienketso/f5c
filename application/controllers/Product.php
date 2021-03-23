@@ -94,24 +94,24 @@ Class Product extends MY_Controller{
 		}
 		$locamanu = $this->product_model->getLocationManu($input);
 		$range = $this->product_model->price_range($input);
-$extent ='';
+		$extent ="";
 		//Search theo hãng sx
 		$manu = $this->input->get('manu');
 		if(!is_null($manu) && $manu>0){
-			$extent .= 'AND manufac_id ='.$manu .' ';
+			$extent .= "AND manufac_id =".$manu ." ";
 		}
 		//Search theo xuất xứ
 		$loc = $this->input->get('loc');
 		
 		if(!is_null($loc)) {
-			$extent .= 'AND model ='.$loc .' ';
+			$extent .= "AND model ='".$loc ."' ";
 		}
 		$range_id = $this->input->get('range_id');
 		$minp = $this->input->get('minp');
 		$maxp =$this->input->get('maxp');
 		if(!is_null($minp) && !is_null($maxp)) {
-			$extent .= 'AND price >='.$minp .' ';
-			$extent .= 'AND price <='.$maxp .' ';
+			$extent .= "AND price >=".$minp ." ";
+			$extent .= "AND price <=".$maxp ." ";
 		}	
 
 		$total_row = $this->product_model->get_total($input);
