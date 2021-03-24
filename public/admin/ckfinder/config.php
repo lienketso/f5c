@@ -110,7 +110,7 @@ if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 define("NVCMS_DIR", $http."");
 
 
-define("NVCMS_URL", "http://".$http."");
+define("NVCMS_URL", $http."");
 
 $baseUrl = NVCMS_URL.'/upload/';
 
@@ -344,7 +344,7 @@ $config['ResourceType'][] = Array(
 
 $config['ResourceType'][] = Array(
 
-		'name' => 'public',
+		'name' => 'Images',
 
 		'url' => $baseUrl . 'public',
 
