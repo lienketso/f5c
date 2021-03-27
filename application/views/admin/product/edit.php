@@ -52,7 +52,7 @@
 					<div class="form-group">
 						<label for="">Nội dung sản phẩm</label>	
 						<div id="">
-							<textarea name="content" class="makeMeRichTextarea" id="edtone"><?= $info->content; ?></textarea>
+							<textarea name="content" class="makeMeRichTextarea" id="edtone"><?= str_replace('{base_url}','https://f5c.vn/',html_entity_decode ($info->content)); ?></textarea>
 						</div>
 					</div>
 
