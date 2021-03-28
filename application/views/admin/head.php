@@ -14,5 +14,6 @@
 
   <link rel="stylesheet" href="<?= public_url();?>/admin/css/themify-icons.css">
   <link rel="stylesheet" href="<?= public_url();?>/admin/vendors/dropify/dropify.min.css" >
+  <link rel="stylesheet" href="<?= public_url();?>/admin/css/jquery.notify.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="<?= public_url();?>/site/lib/images/favicon.png" />

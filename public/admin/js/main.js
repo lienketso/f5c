@@ -294,4 +294,22 @@ function menuSlug(Title) {
         })
 //end select
 
-  })
+  });
+  $(document).ready(function(){
+    $(".number").autoNumeric('init',{aPad:false});
+    
+    $(".number").blur(function(){
+      let old = $(this).data('old-number');
+      let new_n = $(this).autoNumeric('get');
+      let url = $(this).data('url');    
+      let id=$(this).attr('id'); 
+    if(old!= new_n){
+      $.post(url,{id:id, price:new_n})
+      .done(function(res){
+        $('input#'+id).attr('data-old-number',new_n);
+      
+        $.notify("Cập nhật thành công",'info',{showDuration:20000});
+      });
+    }
+    });
+  });

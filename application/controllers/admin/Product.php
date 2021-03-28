@@ -6,6 +6,7 @@ Class Product extends MY_Controller{
 		$this->load->model('category_model');
 		$this->load->model('product_category_model');
 		$this->load->model('productmeta_model');
+		$this->load->model('user_model');
 	}
 
 	function selectpk(){
@@ -432,4 +433,17 @@ Class Product extends MY_Controller{
     	$this->product_category_model->delete_rule($rule);
     	$this->product_model->deleteOne($id);
     }
+
+	function update_price(){
+	$id=	$this->input->post('id');
+	$price = $this->input->post('price');
+	$user = $this->session->userdata('userlogin');
+	
+	$data = array(
+		'admin_update'=> $user->username,
+		'price'=>$price,
+		'last_update'=> now()
+	);
+	$this->product_model->update($id,$data);
+	}
 }//end class

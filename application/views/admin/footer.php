@@ -30,6 +30,8 @@
   <script src="<?= public_url();?>/admin/js/hoverable-collapse.js"></script>
   <script src="<?= public_url();?>/admin/js/template.js"></script>
   <script src="<?= public_url();?>/admin/js/settings.js"></script>
+  <script src="<?= public_url();?>/admin/js/AutoNumeric.js"></script>
+  <script src="<?= public_url();?>/admin/js/notify.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="<?= public_url();?>/admin/js/dashboard.js"></script>
