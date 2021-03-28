@@ -17,3 +17,4 @@
   <link rel="stylesheet" href="<?= public_url();?>/admin/css/jquery.notify.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="<?= public_url();?>/site/lib/images/favicon.png" />
+  <script src="<?= public_url();?>/admin/vendors/js/vendor.bundle.base.js"></script>

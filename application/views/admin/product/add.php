@@ -7,6 +7,16 @@
 </nav>
 <form class="forms-sample" method="post" action="" enctype="multipart/form-data">
 	<div class="row">
+	<?php if(!empty($this->session->flashdata('exist'))):?>
+        <div class="col-md-12">
+            <div class="alert alert-danger" role="alert">
+                <?php echo $this->session->flashdata('exist');?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        <?php endif;?>
 		<div class="col-md-8 grid-margin stretch-card">
 			<div class="card">
 				<div class="card-body">

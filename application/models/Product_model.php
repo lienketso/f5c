@@ -147,4 +147,15 @@ Class Product_model extends MY_Model{
 		$query = $this->db->query($sql);
 		return $query->result(); 		
 	}
+	public function check_exist($id,$name){
+		$this->db->select('id');
+		$this->db->from('product');
+		$this->db->where('name',$name);	
+		if($id>0){
+			$this->db->where_not_in('id', $id);
+		}	
+		
+		$query= $this->db->get();
+		 return $query->result(); 
+	}
 }

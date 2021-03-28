@@ -12,7 +12,7 @@
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
-  <script src="<?= public_url();?>/admin/vendors/js/vendor.bundle.base.js"></script>
+
   <!-- endinject -->
   <!-- Plugin js for this page -->
   <script src="<?= public_url();?>/admin/vendors/chart.js/Chart.min.js"></script>
