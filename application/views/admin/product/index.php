@@ -58,7 +58,7 @@
                                     class="ti-trash"></i> Xóa tùy chọn</button>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" style="width:1600px">
                                 <thead class="filter">
                                     <tr>
                                         <th>
@@ -67,9 +67,11 @@
                                         </th>
                                         <th>Tiêu đề</th>
                                         <th>Hình ảnh</th>
+                                        <th>Danh mục</th>
                                         <th>Nổi bật</th>
                                         <th>Ngày sửa</th>
                                         <th>Giá tiền</th>
+                                        <th>VAT</th>
                                         <th>Ẩn / Hiện</th>
                                         <th>Cấu hình</th>
                                     </tr>
@@ -80,17 +82,18 @@
                                         <td>
                                             <input type="checkbox" id="" name="id[]" value="<?php echo $row->id ?>">
                                         </td>
-                                        <td><?php echo $row->name; ?> <br/> <strong style="color:#666">Danh mục : <?= $this->product_model->getCategory($row->cat_id) ?></td>
+                                        <td><?php echo $row->name; ?></td>
                                         <td class="center"><img src="<?= product_link($row->image_name) ?>" width="70">
                                         </td>
+                                        <td><?= $this->product_model->getCategory($row->cat_id) ?></td>
                                         <td width="120">
                                             <a id="feature_<?=$row->id?>" data-id="<?=$row->id?>"
                                                 class="<?= $row->feature==1?'an_sp':'hien_sp'?> "
-                                                title="<?= $row->feature==1?'Click để ẩn nổi bật':'Click để hiện nổi bật'?>"                                              
-												data-href="<?= admin_url('product/feature') ?>"
-												data-show="<?=$row->feature?>" href='javascript:void(0)'
-												 onclick='changeFeature("feature_<?=$row->id?>")'>
-												<?= $row->feature==1?'Nổi bật':'Không'?></a>
+                                                title="<?= $row->feature==1?'Click để ẩn nổi bật':'Click để hiện nổi bật'?>"
+                                                data-href="<?= admin_url('product/feature') ?>"
+                                                data-show="<?=$row->feature?>" href='javascript:void(0)'
+                                                onclick='changeFeature("feature_<?=$row->id?>")'>
+                                                <?= $row->feature==1?'Nổi bật':'Không'?></a>
 
                                         </td>
                                         <td>
@@ -106,6 +109,12 @@
                                                 id="<?= $row->id ?>" value="<?= $row->price ?>"
                                                 data-old-number="<?= intval($row->price) ?>"
                                                 data-url="<?= admin_url('product/update_price') ?>" />
+                                        </td>
+                                        <td>
+                                            <input id="vat_<?= $row->id ?>" data-id="<?= $row->id ?>" type="number"
+                                                min="0" max="100" placeholder="VAT" value="<?= $row->vat ?>"
+                                                data-url="<?= admin_url('product/update_price') ?>"
+                                                onblur='changeVAT("<?= $row->id ?>")' class="form-control vat" />
                                         </td>
                                         <td>
                                             <?php if($row->hide==0): ?>
@@ -124,24 +133,24 @@
                                         </td>
 
                                         <td class="center" width="150">
-										<div style="width:150px;">
-										<a class="btn btn-sm btn-info"
-                                                href="<?php echo admin_url('product/edit/'.$row->id); ?>">
-                                                <i class="ti-pencil-alt"></i>
-                                            </a>
-                                            <a class="btn btn-sm btn-danger"
-                                                href="<?php echo admin_url('product/del/'.$row->id); ?>"
-                                                onclick="return check_del();">
-                                                <i class="ti-trash"></i>
-                                            </a>
-											
-											<a class="btn btn-sm btn-success" target='_blank'
-                                                href="<?php echo base_url('/view-p'.$row->id.'.html'); ?>">
-                                                <i class="ti-eye"></i>
-                                            </a>
-											
-										</div>
-                                       
+                                            <div style="width:150px;">
+                                                <a class="btn btn-sm btn-info"
+                                                    href="<?php echo admin_url('product/edit/'.$row->id); ?>">
+                                                    <i class="ti-pencil-alt"></i>
+                                                </a>
+                                                <a class="btn btn-sm btn-danger"
+                                                    href="<?php echo admin_url('product/del/'.$row->id); ?>"
+                                                    onclick="return check_del();">
+                                                    <i class="ti-trash"></i>
+                                                </a>
+
+                                                <a class="btn btn-sm btn-success" target='_blank'
+                                                    href="<?php echo base_url('/view-p'.$row->id.'.html'); ?>">
+                                                    <i class="ti-eye"></i>
+                                                </a>
+
+                                            </div>
+
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
@@ -161,11 +170,32 @@
     </div>
     <!--/row-->
 </div>
-<script type="text/javascript">feature
+<script type="text/javascript">
+function changeVAT(id) {
+    console.log(id);
+    let old = $('#' + id).data('old-number');
+    let new_n = $('#' + id).autoNumeric('get');
+    let url = $('#' + id).data('url');
+    let id = $('#' + id).attr('id');
+    let vat = $('#VAT_' + id).val();
+    if (old != new_n) {
+        $.post(url, {
+                id: id,
+                price: new_n,
+                vat: vat
+            })
+            .done(function(res) {
+                $('input#' + id).attr('data-old-number', new_n);
+
+                $.notify("Cập nhật thành công", 'info');
+            });
+    }
+}
+
 function changeStatus(pram) {
     var id = $('#' + pram).attr('id');
     let show = $('#' + pram).attr('data-show');
-    let href = $('#' + pram).attr('data-href');  
+    let href = $('#' + pram).attr('data-href');
     if (show == "0") {
         $('#' + pram).attr('title', 'Click để ẩn sản phẩm');
         $('#' + pram).removeClass('an_sp');
@@ -177,8 +207,8 @@ function changeStatus(pram) {
         $('#' + pram).removeClass('hien_sp');
         $('#' + pram).addClass('an_sp');
         $('#' + pram).html('Ẩn'),
-        $('#' + pram).attr('data-show', 0);
-     
+            $('#' + pram).attr('data-show', 0);
+
     }
     $.post(href, {
             id: id,
@@ -188,11 +218,12 @@ function changeStatus(pram) {
             $.notify('Trạng thái đã cập nhật !', 'info')
         })
 }
+
 function changeFeature(pram) {
     var id = $('#' + pram).attr('id');
     let show = $('#' + pram).attr('data-show');
     let href = $('#' + pram).attr('data-href');
-  
+
     if (show == "0") {
         $('#' + pram).attr('title', 'Click để ẩn nổi bật');
         $('#' + pram).removeClass('hien_sp');
@@ -204,7 +235,7 @@ function changeFeature(pram) {
         $('#' + pram).removeClass('an_sp');
         $('#' + pram).addClass('hien_sp');
         $('#' + pram).html('Không'),
-            $('#' + pram).attr('data-show', 0);    
+            $('#' + pram).attr('data-show', 0);
     }
     $.post(href, {
             id: id,

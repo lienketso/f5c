@@ -124,12 +124,12 @@ Class Product extends MY_Controller{
 //kiểm tra callback username
 	function check_title(){
 		$action = $this->uri->rsegment(2);
-		$slug = $this->input->post('name');
-		$where = array('name'=> $slug);
+		$slug = $this->input->post('friendly_url');
+		$where = array('friendly_url'=> $slug);
 		$check = true;
 		if($action == 'edit'){
 			$info = $this->data['info'];
-			if($info->name == $slug){
+			if($info->slug == $slug){
 				$check = false;
 			}
 		}
@@ -151,11 +151,16 @@ Class Product extends MY_Controller{
 		$input['where'] = array('status'=>1);
 		$input['order'] = array('id','desc');
 		if($this->input->post()){
-			$this->form_validation->set_rules('name','Tiêu đề','required|min_length[2]|callback_check_title');
-			// $this->form_validation->set_rules('friendly_url','Tiêu đề','required|min_length[2]');
+			$this->form_validation->set_rules('name','Tiêu đề','required|min_length[2]');
+			$this->form_validation->set_rules('friendly_url','Tiêu đề','required|min_length[2]|callback_check_title');
 			if($this->form_validation->run()){
 				
 				$name = $this->input->post('name');
+				$exist = $this->product_model->check_exist($id,$name);
+				if(count($exist)>0){
+					$this->session->set_flashdata('exist','Sản phẩm này đã tồn tại');
+					redirect(admin_url('product/add/'));
+				}
 				$slug = $this->input->post('friendly_url');
 				if($slug==''){
 					$slug = slug($name);
@@ -270,17 +275,18 @@ Class Product extends MY_Controller{
 
 		if($this->input->post()){
 			$this->form_validation->set_rules('name','Tên sản phẩm','required|min_length[4]');
+			$this->form_validation->set_rules('friendly_url','Đường dẫn tĩnh','required');
 
+			$name = $this->input->post('name');
+			$exist = $this->product_model->check_exist($id,$name);
+			if(count($exist)>0){
+				$this->session->set_flashdata('exist','Sản phẩm này đã tồn tại');
+				redirect(admin_url('product/edit/'.$id));
+			}
 			if($this->form_validation->run()){
-				//tiến hành thêm vào csdl
-				$name = $this->input->post('name');
+				//tiến hành thêm vào csdl			
 				$slug = $this->input->post('friendly_url');
-				if($slug==''){
-					$slug = slug($name);
-				}else{
-					$slug = slug($slug);
-				}
-
+				$slug = slug($slug);
 				//echo $cat_name;die;
 				$cat_id = $this->input->post('cat_id');
 				$price = $this->input->post('price');
@@ -440,13 +446,16 @@ Class Product extends MY_Controller{
 	function update_price(){
 	$id=	$this->input->post('id');
 	$price = $this->input->post('price');
+	$vat =  $this->input->post('vat');
 	$user = $this->session->userdata('userlogin');
-	
+	if(empty($vat )){$vat=0;}
 	$data = array(
 		'admin_update'=> $user->username,
 		'price'=>$price,
+		'vat'=>$vat,
 		'last_update'=> now()
 	);
 	$this->product_model->update($id,$data);
+	die;
 	}
 }//end class
