@@ -26,6 +26,10 @@ Class Product extends MY_Controller{
 		$this->load->library('pagination');
 		$input = array();
 		$input['where'] = [];
+		$id = $this->input->get('id');
+		if($id){
+			$input['where'] = ['id'=>$id];
+		}
 		//lấy ra tổng tất cả các sản phẩm
 		$total_row = $this->product_model->get_total($input);
 		$this->data['total_row'] = $total_row;
@@ -359,7 +363,7 @@ Class Product extends MY_Controller{
 				// tạo nội dung thông báo
 				$this->session->set_flashdata('message', 'Sửa dữ liệu thành công !');
 				//chuyển sang trang danh sách danh mục
-				redirect(admin_url('product'));
+				redirect(admin_url('product?id='.$id));
 			}
 		}
 
