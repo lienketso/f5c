@@ -58,7 +58,7 @@
                                     class="ti-trash"></i> Xóa tùy chọn</button>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-bordered" style="width:1600px">
+                            <table class="table table-bordered" style="width: 1528px;">
                                 <thead class="filter">
                                     <tr>
                                         <th>
