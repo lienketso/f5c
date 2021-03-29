@@ -12,6 +12,7 @@ Class MY_Model extends CI_Model{
 	}
 	public function search_product($name){
 		$this->db->like('name',$name,'both');
+		$this->db->or_like('name_no_spaces',$name,'both');
 		$this->db->limit(5,0);
 		$query = $this->db->get($this->table);
 		return $query->result();
