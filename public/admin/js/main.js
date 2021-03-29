@@ -271,30 +271,30 @@ function menuSlug(Title) {
 
   //select phụ kiện sản phẩm
   $(document).on('keyup', '.select2-search__field', function (e) {
-      e.preventDefault();
-      let _this = $(e.currentTarget);
-      let keyword = $('.select2-search__field').val();
-      let url = $('#slectPK').attr('data-url');
+    e.preventDefault();
+    let _this = $(e.currentTarget);
+    let keyword = $('.select2-search__field').val();
+    let url = $('#slectPK').attr('data-url');
 
-      $.ajax({
-          type: "POST",
-          url: url,
-          data: {
-            keyword
-          },
-        })
-        .done(function(res){
-          let html = res;
-          $('#slectPK').html(res);
-        })
-        .always(function(resp) {
-          setTimeout(() => {
-            $('.loading').css('display', 'none');
-          }, 2000)
-        })
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: {
+        keyword
+      },
+    })
+    .done(function(res){
+      let html = res;
+      $('#slectPK').html(res);
+    })
+    .always(function(resp) {
+      setTimeout(() => {
+        $('.loading').css('display', 'none');
+      }, 2000)
+    })
 //end select
 
-  });
+});
   $(document).ready(function(){
     $(".number").autoNumeric('init',{aPad:false});
     
@@ -303,15 +303,105 @@ function menuSlug(Title) {
       let new_n = $(this).autoNumeric('get');
       let url = $(this).data('url');    
       let id=$(this).attr('id'); 
-    if(old!= new_n){
-      $.post(url,{id:id, price:new_n})
-      .done(function(res){
-        $('input#'+id).attr('data-old-number',new_n);
-      
-        $.notify("Cập nhật thành công",'info',{showDuration:20000});
-      });
-    }
+      if(old!= new_n){
+        $.post(url,{id:id, price:new_n})
+        .done(function(res){
+          $('input#'+id).attr('data-old-number',new_n);
+
+          $.notify("Cập nhật thành công",'info',{showDuration:20000});
+        });
+      }
     });
+
+    //change VAT
+    $('.vat').on('blur',function(e){
+
+      e.preventDefault();
+      let _this = $(e.currentTarget);
+      let id = _this.attr('data-id');
+      let old = _this.attr('data-vat-old');
+      let new_n = $('#vat_' + id).val();
+      let url = _this.attr('data-url');
+      
+      let vat = $('#vat_' + id).val();
+      if (old != new_n) {
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: {
+            id, vat
+          },
+        })
+        .done(function(res) {
+          $('#vat_' + id).attr('data-vat-old', new_n);
+
+          $.notify("Cập nhật thành công", 'info');
+        });
+      }
+    });
+    //change status
+
+    $('.product_status').on('click',function(e){
+      e.preventDefault();
+      let _this = $(e.currentTarget);
+      var id = _this.attr('data-id');
+      let show = _this.attr('data-show');
+      let url = _this.attr('data-url');
+      if (show == "0") {
+        _this.attr('title', 'Click để ẩn sản phẩm');
+        _this.removeClass('an_sp');
+        _this.addClass('hien_sp');
+        _this.html('Hiện')
+        _this.attr('data-show', 1);
+      } else {
+        _this.attr('title', 'Click để hiện sản phẩm');
+        _this.removeClass('hien_sp');
+        _this.addClass('an_sp');
+        _this.html('Ẩn'),
+        _this.attr('data-show', 0);
+      }
+      $.post(url, {
+            id: id,
+            hide: show
+        })
+        .done(function(res) {
+            $.notify('Trạng thái đã cập nhật !', 'info')
+        })
+
+    });
+
+    //change feature
+    $('.show_hot').on('click',function(e){
+      e.preventDefault();
+      let _this = $(e.currentTarget);
+      var id = _this.attr('data-id');
+      let show = _this.attr('data-show');
+      let url = _this.attr('data-url');
+      if (show == "0") {
+        _this.attr('title', 'Click để ẩn nổi bật');
+        _this.removeClass('hien_sp');
+        _this.addClass('an_sp');
+        _this.html('Nổi bật')
+        _this.attr('data-show', 1);
+    } else {
+        _this.attr('title', 'Click để hiện nổi bật');
+        _this.removeClass('an_sp');
+        _this.addClass('hien_sp');
+        _this.html('Không'),
+        _this.attr('data-show', 0);
+    }
+    $.post(url, {
+            id: id,
+            feature: show
+        })
+        .done(function(res) {
+            $.notify('Nổi bật đã cập nhật !', 'info')
+        })
+
+
+    });
+
+
   });
 
   

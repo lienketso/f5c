@@ -108,10 +108,10 @@ Class Product extends MY_Controller{
 		$id = $this->input->post('id');
 		$hide = $this->input->post('feature');
 
-		if($product->feature==1){
+		if($hide==1){
 			$feature = '0';
 		}
-		if($product->feature==0){
+		if($hide==0){
 			$feature = '1';
 		}
 		
@@ -452,6 +452,18 @@ Class Product extends MY_Controller{
 	$data = array(
 		'admin_update'=> $user->username,
 		'price'=>$price,
+		'vat'=>$vat,
+		'last_update'=> now()
+	);
+	$this->product_model->update($id,$data);
+	die;
+	}
+	function update_vat(){
+	$id=	$this->input->post('id');
+	$vat =  $this->input->post('vat');
+	$user = $this->session->userdata('userlogin');
+	$data = array(
+		'admin_update'=> $user->username,
 		'vat'=>$vat,
 		'last_update'=> now()
 	);

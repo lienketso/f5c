@@ -67,7 +67,6 @@
                                         </th>
                                         <th>Tiêu đề</th>
                                         <th>Hình ảnh</th>
-                                        <th>Danh mục</th>
                                         <th>Nổi bật</th>
                                         <th>Ngày sửa</th>
                                         <th>Giá tiền</th>
@@ -82,17 +81,16 @@
                                         <td>
                                             <input type="checkbox" id="" name="id[]" value="<?php echo $row->id ?>">
                                         </td>
-                                        <td><?php echo $row->name; ?></td>
+                                        <td><?php echo $row->name; ?><br/><strong style="color: #666">Danh mục : <?= $this->product_model->getCategory($row->cat_id) ?></strong></td>
                                         <td class="center"><img src="<?= product_link($row->image_name) ?>" width="70">
                                         </td>
-                                        <td><?= $this->product_model->getCategory($row->cat_id) ?></td>
                                         <td width="120">
                                             <a id="feature_<?=$row->id?>" data-id="<?=$row->id?>"
-                                                class="<?= $row->feature==1?'an_sp':'hien_sp'?> "
+                                                class="<?= $row->feature==1?'an_sp':'hien_sp'?> show_hot"
                                                 title="<?= $row->feature==1?'Click để ẩn nổi bật':'Click để hiện nổi bật'?>"
-                                                data-href="<?= admin_url('product/feature') ?>"
-                                                data-show="<?=$row->feature?>" href='javascript:void(0)'
-                                                onclick='changeFeature("feature_<?=$row->id?>")'>
+                                                data-url="<?= admin_url('product/feature') ?>"
+                                                data-show="<?= $row->feature ?>" href='javascript:void(0)'
+                                                >
                                                 <?= $row->feature==1?'Nổi bật':'Không'?></a>
 
                                         </td>
@@ -111,24 +109,24 @@
                                                 data-url="<?= admin_url('product/update_price') ?>" />
                                         </td>
                                         <td>
-                                            <input id="vat_<?= $row->id ?>" data-id="<?= $row->id ?>" type="number"
+                                            <input id="vat_<?= $row->id ?>" data-vat-old="<?= $row->vat ?>" data-id="<?= $row->id ?>" type="number"
                                                 min="0" max="100" placeholder="VAT" value="<?= $row->vat ?>"
-                                                data-url="<?= admin_url('product/update_price') ?>"
-                                                onblur='changeVAT("<?= $row->id ?>")' class="form-control vat" />
+                                                data-url="<?= admin_url('product/update_vat') ?>"
+                                                 class="form-control vat" />
                                         </td>
                                         <td>
                                             <?php if($row->hide==0): ?>
                                             <a id="status_<?=$row->id?>" data-id="<?=$row->id?>"
                                                 class="an_sp product_status" title="Click để ẩn sản phẩm"
                                                 data-show="<?=$row->hide?>" href='javascript:void(0)'
-                                                data-href="<?= admin_url('product/status') ?>"
-                                                onclick='changeStatus("status_<?=$row->id?>")'>Ẩn</a>
+                                                data-url="<?= admin_url('product/status') ?>"
+                                                >Ẩn</a>
                                             <?php endif; ?>
                                             <?php if($row->hide==1): ?>
                                             <a id="status_<?=$row->id?>" data-id="<?=$row->id?>"
                                                 class="hien_sp product_status" title="Click để hiện sản phẩm"
                                                 href='javascript:void(0)'
-                                                data-href="<?= admin_url('product/status') ?>">Hiện</a>
+                                                data-url="<?= admin_url('product/status') ?>">Hiện</a>
                                             <?php endif; ?>
                                         </td>
 
@@ -170,79 +168,3 @@
     </div>
     <!--/row-->
 </div>
-<script type="text/javascript">
-function changeVAT(id) {
-    console.log(id);
-    let old = $('#' + id).data('old-number');
-    let new_n = $('#' + id).autoNumeric('get');
-    let url = $('#' + id).data('url');
-    let id = $('#' + id).attr('id');
-    let vat = $('#VAT_' + id).val();
-    if (old != new_n) {
-        $.post(url, {
-                id: id,
-                price: new_n,
-                vat: vat
-            })
-            .done(function(res) {
-                $('input#' + id).attr('data-old-number', new_n);
-
-                $.notify("Cập nhật thành công", 'info');
-            });
-    }
-}
-
-function changeStatus(pram) {
-    var id = $('#' + pram).attr('id');
-    let show = $('#' + pram).attr('data-show');
-    let href = $('#' + pram).attr('data-href');
-    if (show == "0") {
-        $('#' + pram).attr('title', 'Click để ẩn sản phẩm');
-        $('#' + pram).removeClass('an_sp');
-        $('#' + pram).addClass('hien_sp');
-        $('#' + pram).html('Hiện')
-        $('#' + pram).attr('data-show', 1);
-    } else {
-        $('#' + pram).attr('title', 'Click để hiện sản phẩm');
-        $('#' + pram).removeClass('hien_sp');
-        $('#' + pram).addClass('an_sp');
-        $('#' + pram).html('Ẩn'),
-            $('#' + pram).attr('data-show', 0);
-
-    }
-    $.post(href, {
-            id: id,
-            hide: show
-        })
-        .done(function(res) {
-            $.notify('Trạng thái đã cập nhật !', 'info')
-        })
-}
-
-function changeFeature(pram) {
-    var id = $('#' + pram).attr('id');
-    let show = $('#' + pram).attr('data-show');
-    let href = $('#' + pram).attr('data-href');
-
-    if (show == "0") {
-        $('#' + pram).attr('title', 'Click để ẩn nổi bật');
-        $('#' + pram).removeClass('hien_sp');
-        $('#' + pram).addClass('an_sp');
-        $('#' + pram).html('Nổi bật')
-        $('#' + pram).attr('data-show', 1);
-    } else {
-        $('#' + pram).attr('title', 'Click để hiện nổi bật');
-        $('#' + pram).removeClass('an_sp');
-        $('#' + pram).addClass('hien_sp');
-        $('#' + pram).html('Không'),
-            $('#' + pram).attr('data-show', 0);
-    }
-    $.post(href, {
-            id: id,
-            feature: show
-        })
-        .done(function(res) {
-            $.notify('Trạng thái đã cập nhật !', 'info')
-        })
-}
-</script>
