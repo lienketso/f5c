@@ -67,7 +67,6 @@
                                         </th>
                                         <th>Tiêu đề</th>
                                         <th>Hình ảnh</th>
-                                        <th>Danh mục</th>
                                         <th>Nổi bật</th>
                                         <th>Ngày sửa</th>
                                         <th>Giá tiền</th>
@@ -81,10 +80,9 @@
                                         <td>
                                             <input type="checkbox" id="" name="id[]" value="<?php echo $row->id ?>">
                                         </td>
-                                        <td><?php echo $row->name; ?></td>
+                                        <td><?php echo $row->name; ?> <br/> <strong style="color:#666">Danh mục : <?= $this->product_model->getCategory($row->cat_id) ?></td>
                                         <td class="center"><img src="<?= product_link($row->image_name) ?>" width="70">
                                         </td>
-                                        <td><?= $this->product_model->getCategory($row->cat_id) ?></td>
                                         <td width="120">
                                             <a id="feature_<?=$row->id?>" data-id="<?=$row->id?>"
                                                 class="<?= $row->feature==1?'an_sp':'hien_sp'?> "

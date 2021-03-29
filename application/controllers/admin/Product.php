@@ -124,12 +124,12 @@ Class Product extends MY_Controller{
 //kiểm tra callback username
 	function check_title(){
 		$action = $this->uri->rsegment(2);
-		$slug = $this->input->post('friendly_url');
-		$where = array('friendly_url'=> $slug);
+		$slug = $this->input->post('name');
+		$where = array('name'=> $slug);
 		$check = true;
 		if($action == 'edit'){
 			$info = $this->data['info'];
-			if($info->slug == $slug){
+			if($info->name == $slug){
 				$check = false;
 			}
 		}
@@ -151,16 +151,11 @@ Class Product extends MY_Controller{
 		$input['where'] = array('status'=>1);
 		$input['order'] = array('id','desc');
 		if($this->input->post()){
-			$this->form_validation->set_rules('name','Tiêu đề','required|min_length[2]');
-			$this->form_validation->set_rules('friendly_url','Tiêu đề','required|min_length[2]|callback_check_title');
+			$this->form_validation->set_rules('name','Tiêu đề','required|min_length[2]|callback_check_title');
+			// $this->form_validation->set_rules('friendly_url','Tiêu đề','required|min_length[2]');
 			if($this->form_validation->run()){
 				
 				$name = $this->input->post('name');
-				$exist = $this->product_model->check_exist($id,$name);
-				if(count($exist)>0){
-					$this->session->set_flashdata('exist','Sản phẩm này đã tồn tại');
-					redirect(admin_url('product/add/'));
-				}
 				$slug = $this->input->post('friendly_url');
 				if($slug==''){
 					$slug = slug($name);
@@ -275,19 +270,17 @@ Class Product extends MY_Controller{
 
 		if($this->input->post()){
 			$this->form_validation->set_rules('name','Tên sản phẩm','required|min_length[4]');
-			$this->form_validation->set_rules('friendly_url','Đường dẫn tĩnh','required');
 
-			$name = $this->input->post('name');
-			$exist = $this->product_model->check_exist($id,$name);
-			if(count($exist)>0){
-				$this->session->set_flashdata('exist','Sản phẩm này đã tồn tại');
-				redirect(admin_url('product/edit/'.$id));
-			}
 			if($this->form_validation->run()){
 				//tiến hành thêm vào csdl
-			
+				$name = $this->input->post('name');
 				$slug = $this->input->post('friendly_url');
-				$slug = slug($slug);
+				if($slug==''){
+					$slug = slug($name);
+				}else{
+					$slug = slug($slug);
+				}
+
 				//echo $cat_name;die;
 				$cat_id = $this->input->post('cat_id');
 				$price = $this->input->post('price');
