@@ -88,17 +88,24 @@
                                 <?php endif; ?>
 
                                 <ul>
+                                    <?php if($info->manufac_id!=0): ?>
                                     <li>Hãng sản xuất :
                                         <span><?= $this->manufac_model->getManufacName($info->manufac_id) ?></span>
                                     </li>
+                                    <?php endif; ?>
                                     <?php if($info->model!=''): ?>
                                     <li>Xuất xứ : <span><?= $info->model; ?></span></li>
                                     <?php endif; ?>
+                                    <?php if($info->warranty!='' || $info->warranty!=0): ?>
                                     <li>Bảo hành : <span><?= $info->warranty; ?> tháng</span></li>
+                                    <?php endif; ?>
                                     <li>Trạng thái : <span>Còn hàng</span></li>
+                                    <?php if($info->show_vat==1): ?>
                                     <li>VAT :
                                         <span><?= ($info->vat==0) ? 'Đã bao gồm 10% VAT' : 'Chưa bao gồm VAT' ?></span>
                                     </li>
+                                    <?php endif; ?>
+
                                 </ul>
                             </div>
 

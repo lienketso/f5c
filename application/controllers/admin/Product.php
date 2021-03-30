@@ -407,9 +407,7 @@ Class Product extends MY_Controller{
 		}
 		$this->data['info'] = $info;
 		$rule = 'product_id='.$id;
-		//xoa postmeta
-		$this->productmeta_model->delete_rule($rule);
-		$this->product_category_model->delete_rule($rule);
+
 		$this->product_model->deleteOne($id);
 		$this->session->set_flashdata('message', 'Xóa dữ liệu thành công !');
 		//chuyển sang trang danh sách danh mục
@@ -441,8 +439,6 @@ Class Product extends MY_Controller{
     	}
         //thuc hien xoa san pham
     	$rule = "product_id=".$id;
-    	$this->productmeta_model->delete_rule($rule);
-    	$this->product_category_model->delete_rule($rule);
     	$this->product_model->deleteOne($id);
     }
 

@@ -11,6 +11,7 @@ Class MY_Model extends CI_Model{
 		return $query->result();
 	}
 	public function search_product($name){
+		$this->db->where("hide='0'");
 		$this->db->like('name',$name,'both');
 		$this->db->or_like('name_no_spaces',$name,'both');
 		$this->db->limit(5,0);
@@ -134,6 +135,9 @@ Class MY_Model extends CI_Model{
 		//thêm điều kiện tìm kiếm theo lệnh like
 		if(isset($input['like']) && $input['like']){
 			$this->db->like($input['like'][0], $input['like'][1],'both');
+		}
+		if(isset($input['or_like']) && $input['or_like']){
+			$this->db->or_like($input['or_like'][0], $input['or_like'][1],'both');
 		}
 		if(isset($input['limit'][0]) && isset($input['limit'][1])){
 			$this->db->limit($input['limit'][0], $input['limit'][1]);
