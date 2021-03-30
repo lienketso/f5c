@@ -86,7 +86,7 @@ Class Home extends MY_Controller{
 
 		//Sản phẩm được xem nhiều
 		$this->load->model('product_model');
-		//$xn['where'] = ['hide'=>0];
+		$xn['where'] = ['hide'=>'0','feature'=>'1'];
 		$xn['order'] = ['count_view','desc'];
 		$xn['limit'] = [16,0];
 		$listXemnhieu = $this->product_model->get_list($xn);

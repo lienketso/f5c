@@ -78,6 +78,7 @@ Class Product extends MY_Controller{
 		$sort_order = 'asc';
 		$sort_order = $this->input->get('sort_order');
 		$input = array();
+		$input['where'] = ['hide'=>'0'];
 		//lấy ra danh sách sản phẩm trong danh mục
 		$this->data['sort_order'] = $sort_order;
 		
@@ -262,7 +263,7 @@ Class Product extends MY_Controller{
 		$listAttach = $this->file_model->get_list($w);
 		$this->data['listAttach'] = $listAttach;
 
-		$re['where'] = ['cat_id'=>$info->cat_id,'id!='=>$info->id];
+		$re['where'] = ['hide'=>'0','cat_id'=>$info->cat_id,'id!='=>$info->id];
 		$re['limit'] = [4,0];
 		$listRelate = $this->product_model->get_list($re);
 

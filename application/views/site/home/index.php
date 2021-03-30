@@ -170,6 +170,7 @@
   ?>
   <?php 
   //sản phẩm
+  $p['where'] = ['hide'=>'0'];
   $p['where_in'] = ['cat_id',$uid];
   $p['order'] = ['id','desc'];
   $p['limit'] = [8,0];
