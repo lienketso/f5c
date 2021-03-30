@@ -125,6 +125,23 @@ Class Product extends MY_Controller{
 		$this->product_model->update($id,$data);	
 		die;
 	}
+	function vatStatus(){
+		$id = $this->input->post('id');
+		$status = $this->input->post('vatstatus');
+
+		if($status==1){
+			$show = '0';
+		}
+		if($status==0){
+			$show = '1';
+		}
+		
+		$data = array(
+			'show_vat'=>$show
+		);
+		$this->product_model->update($id,$data);	
+		die;
+	}
 //kiểm tra callback username
 	function check_title(){
 		$action = $this->uri->rsegment(2);

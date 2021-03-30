@@ -69,6 +69,7 @@
                                         <th>Hình ảnh</th>
                                         <th>Giá tiền</th>
                                         <th>VAT</th>
+                                        <th>Ẩn hiện VAT</th>
                                         <th>Ngày sửa</th>
                                         <th>Nổi bật</th>
                                         <th>Ẩn / Hiện</th>
@@ -95,6 +96,15 @@
                                                 min="0" max="100" placeholder="VAT" value="<?= $row->vat ?>"
                                                 data-url="<?= admin_url('product/update_vat') ?>"
                                                  class="form-control vat" />
+                                        </td>
+                                        <td>
+                                             <a id="vatStatus_<?=$row->id?>" data-id="<?=$row->id?>"
+                                                class="<?= $row->show_vat==1?'an_sp':'hien_sp'?> vat_status"
+                                                title="<?= $row->show_vat==1?'Click để ẩn vat':'Click để hiện vat'?>"
+                                                data-url="<?= admin_url('product/vatStatus') ?>"
+                                                data-show="<?= $row->show_vat ?>" href='javascript:void(0)'
+                                                >
+                                                <?= $row->show_vat==1?'Hiện':'Không'?></a>
                                         </td>
                                         <td>
 

@@ -400,6 +400,35 @@ function menuSlug(Title) {
 
 
     });
+    //change vat show or hide
+    $('.vat_status').on('click',function(e){
+      e.preventDefault();
+      let _this = $(e.currentTarget);
+      var id = _this.attr('data-id');
+      let show = _this.attr('data-show');
+      let url = _this.attr('data-url');
+      if (show == "0") {
+        _this.attr('title', 'Click để ẩn vat');
+        _this.removeClass('hien_sp');
+        _this.addClass('an_sp');
+        _this.html('Hiển thị')
+        _this.attr('data-show', 1);
+    } else {
+        _this.attr('title', 'Click để hiện vat');
+        _this.removeClass('an_sp');
+        _this.addClass('hien_sp');
+        _this.html('Không'),
+        _this.attr('data-show', 0);
+    }
+    $.post(url, {
+            id: id,
+            vatstatus: show
+        })
+        .done(function(res) {
+            $.notify('Đã cập nhật trạng thái VAT !', 'info')
+        })
+
+    });
 
 
   });
