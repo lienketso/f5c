@@ -257,7 +257,7 @@ Class Product extends MY_Controller{
 		$this->data['categoryName'] = $categoryName;
 
 		//ảnh đính kèm
-		$w['where'] = ['table_id'=>$info->id,'table'=>'product'];
+		$w['where'] = ['table_id'=>$info->id];
 		$w['order'] = ['id','desc'];
 		$listAttach = $this->file_model->get_list($w);
 		$this->data['listAttach'] = $listAttach;
