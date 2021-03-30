@@ -411,7 +411,7 @@ function menuSlug(Title) {
         _this.attr('title', 'Click để ẩn vat');
         _this.removeClass('hien_sp');
         _this.addClass('an_sp');
-        _this.html('Hiển thị')
+        _this.html('Hiện')
         _this.attr('data-show', 1);
     } else {
         _this.attr('title', 'Click để hiện vat');
