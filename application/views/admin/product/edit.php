@@ -64,6 +64,13 @@
                             placeholder="Không điền nếu đã bao gồm VAT">
                         <span id="" class="error mt-2 text-danger" for=""><?php echo form_error('vat'); ?></span>
                     </div>
+                    <div class="form-group">
+                        <label for="">Hiện VAT</label>
+                        <select name="show_vat" class="form-control ">
+                            <option value="1" <?= ($info->show_vat==1) ? 'selected' : ''; ?>>--Có--</option>
+                            <option value="0" <?= ($info->show_vat==0) ? 'selected' : ''; ?>>--Không--</option>
+                        </select>
+                    </div>
 
                     <div class="form-group">
                         <label for="">Thông số</label>

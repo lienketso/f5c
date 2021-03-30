@@ -23,6 +23,10 @@ max-width: 100%;
 }
 
 @media(min-width: 768px){
+    .flexslider{
+        height: 330px;
+        overflow: hidden;
+    }
     .cdmmm{
         padding-top: 10px;
     }

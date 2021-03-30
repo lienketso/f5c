@@ -175,6 +175,7 @@ Class Product extends MY_Controller{
 				if($vat==''){
 					$vat = 0;
 				}
+				$show_vat = $this->input->post('show_vat');
 				$thongso = $this->input->post('options_cat');
 				$content = $this->input->post('content');
 				$baohanh = $this->input->post('warranty');
@@ -217,6 +218,7 @@ Class Product extends MY_Controller{
 					'model'=>$model,
 					'price'=>$price,
 					'vat'=>$vat,
+					'show_vat'=>$show_vat,
 					'price_other' => $price_other,
 					'options_cat'=>$thongso,
 					'content'=>$content,
@@ -295,6 +297,7 @@ Class Product extends MY_Controller{
 				if($vat==''){
 					$vat = 0;
 				}
+				$show_vat = $this->input->post('show_vat');
 				$thongso = $this->input->post('options_cat');
 				$content = $this->input->post('content');
 				$baohanh = $this->input->post('warranty');
@@ -327,6 +330,7 @@ Class Product extends MY_Controller{
 					'price'=>$price,
 					'price_other' => $price_other,
 					'vat'=>$vat,
+					'show_vat'=>$show_vat,
 					'options_cat'=>$thongso,
 					'content'=>$content,
 					'warranty' => $baohanh,

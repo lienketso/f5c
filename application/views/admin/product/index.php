@@ -67,10 +67,10 @@
                                         </th>
                                         <th>Tiêu đề</th>
                                         <th>Hình ảnh</th>
-                                        <th>Nổi bật</th>
-                                        <th>Ngày sửa</th>
                                         <th>Giá tiền</th>
                                         <th>VAT</th>
+                                        <th>Ngày sửa</th>
+                                        <th>Nổi bật</th>
                                         <th>Ẩn / Hiện</th>
                                         <th>Cấu hình</th>
                                     </tr>
@@ -84,24 +84,6 @@
                                         <td><?php echo $row->name; ?><br/><strong style="color: #666">Danh mục : <?= $this->product_model->getCategory($row->cat_id) ?></strong></td>
                                         <td class="center"><img src="<?= product_link($row->image_name) ?>" width="70">
                                         </td>
-                                        <td width="120">
-                                            <a id="feature_<?=$row->id?>" data-id="<?=$row->id?>"
-                                                class="<?= $row->feature==1?'an_sp':'hien_sp'?> show_hot"
-                                                title="<?= $row->feature==1?'Click để ẩn nổi bật':'Click để hiện nổi bật'?>"
-                                                data-url="<?= admin_url('product/feature') ?>"
-                                                data-show="<?= $row->feature ?>" href='javascript:void(0)'
-                                                >
-                                                <?= $row->feature==1?'Nổi bật':'Không'?></a>
-
-                                        </td>
-                                        <td>
-
-                                            <b><?= $row->admin_update?></b><br />
-                                            <span
-                                                style="color: #08c;font-size: 12px;padding-right:20px"><?=date("d-m-Y H:i",$row->last_update)  ?></span>
-
-
-                                        </td>
                                         <td>
                                             <input type="text" class="form-control text-right number"
                                                 id="<?= $row->id ?>" value="<?= $row->price ?>"
@@ -114,6 +96,26 @@
                                                 data-url="<?= admin_url('product/update_vat') ?>"
                                                  class="form-control vat" />
                                         </td>
+                                        <td>
+
+                                            <b><?= $row->admin_update?></b><br />
+                                            <span
+                                                style="color: #08c;font-size: 12px;padding-right:20px"><?=date("d-m-Y H:i",$row->last_update)  ?></span>
+
+
+                                        </td>
+                                        <td width="120">
+                                            <a id="feature_<?=$row->id?>" data-id="<?=$row->id?>"
+                                                class="<?= $row->feature==1?'an_sp':'hien_sp'?> show_hot"
+                                                title="<?= $row->feature==1?'Click để ẩn nổi bật':'Click để hiện nổi bật'?>"
+                                                data-url="<?= admin_url('product/feature') ?>"
+                                                data-show="<?= $row->feature ?>" href='javascript:void(0)'
+                                                >
+                                                <?= $row->feature==1?'Nổi bật':'Không'?></a>
+
+                                        </td>
+                                        
+                                        
                                         <td>
                                             <?php if($row->hide==0): ?>
                                             <a id="status_<?=$row->id?>" data-id="<?=$row->id?>"

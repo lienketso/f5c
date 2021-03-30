@@ -53,6 +53,13 @@
 						<input type="number" min="0" max="30" name="vat" value="<?= set_value('vat'); ?>" class="form-control" placeholder="Không điền nếu đã bao gồm VAT">
 						<span id="" class="error mt-2 text-danger" for=""><?php echo form_error('vat'); ?></span>
 					</div>
+					<div class="form-group">
+						<label for="">Hiện VAT</label>
+						<select name="show_vat" class="form-control ">
+							<option value="1">--Có--</option>
+							<option value="0">--Không--</option>
+						</select>
+					</div>
 
 					<div class="form-group">
 						<label for="">Thông số</label>
