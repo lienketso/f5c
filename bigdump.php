@@ -51,7 +51,7 @@ $db_connection_charset = 'utf8';
 
 // OPTIONAL SETTINGS 
 
-$filename           = 'f5cnew.gz';     // Specify the dump filename to suppress the file selection dialog
+$filename           = 'f5cvn_db2.sql';     // Specify the dump filename to suppress the file selection dialog
 $ajax               = true;   // AJAX mode: import will be done without refreshing the website
 $linespersession    = 3000;   // Lines to be executed per one import session
 $delaypersession    = 0;      // You can specify a sleep time in milliseconds after each session
@@ -90,7 +90,7 @@ $string_quotes = '\'';                  // Change to '"' if your dump file uses 
 
 // How many lines may be considered to be one query (except text lines)
 
-$max_query_lines = 300;
+$max_query_lines = 300000;
 
 // Where to put the upload files into (default: bigdump folder)
 
