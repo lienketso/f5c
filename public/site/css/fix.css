@@ -1,3 +1,6 @@
+body{
+	max-width: none !important;
+}
 textarea{
 max-width: 100%;
 }

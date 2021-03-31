@@ -15,7 +15,8 @@
           <div class="row">
             <div class="col-md-3 col-sm-3 no-padding-right">
               <a href="<?= base_url() ?>" class="logo" rel="nofollow">
-                <img src="https://f5c.vn/upload/public/bf9cec94a52f7beb1d5a66d07d416da4.png" style="  ">
+                <!-- <img src="https://f5c.vn/upload/public/bf9cec94a52f7beb1d5a66d07d416da4.png" style="  "> -->
+                <img src="<?= public_url('site') ?>/img/logof5c.png"/>
               </a>
             </div>
             <div class="col-md-9 col-sm-9 no-padding">

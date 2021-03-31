@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div id="header" class="no-mobile">
+    <div id="header" class="no-mobile" style="background-color:#F58634">
         <?php $this->load->view('site/header'); ?>
     </div>
 
