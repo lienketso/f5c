@@ -33,13 +33,7 @@
                             onkeyup="return ChangeToSlug();" placeholder="Nhập tiêu đề">
                         <span id="" class="error mt-2 text-danger" for=""><?php echo form_error('name'); ?></span>
                     </div>
-                    <div class="form-group">
-                        <label for="">Slug</label>
-                        <input type="text" name="friendly_url" value="<?= $info->friendly_url; ?>" class="form-control"
-                            id="input_slug" placeholder="Đường dẫn tĩnh">
-                        <span id="" class="error mt-2 text-danger"
-                            for=""><?php echo form_error('friendly_url'); ?></span>
-                    </div>
+                    
 
                     <div class="form-group">
                         <label for="">Giá bán (đ)</label>
@@ -49,14 +43,7 @@
                         <span id="" class="error mt-2 text-danger" for=""><?php echo form_error('price'); ?></span>
                     </div>
 
-                    <div class="form-group">
-                        <label for="">Giá thị trường (đ)</label>
-                        <input type="text" name="price_other" value="<?= number_format($info->price_other); ?>"
-                            onkeyup="this.value=FormatNumber(this.value);" class="form-control" id=""
-                            placeholder="Giá thị trường để so sánh">
-                        <span id="" class="error mt-2 text-danger"
-                            for=""><?php echo form_error('price_other'); ?></span>
-                    </div>
+                    
 
                     <div class="form-group">
                         <label for="">VAT ( Thuế giá trị gia tăng )</label>
@@ -71,7 +58,12 @@
                             <option value="0" <?= ($info->show_vat==0) ? 'selected' : ''; ?>>--Không--</option>
                         </select>
                     </div>
-
+                    <div class="form-group">
+                        <label for="">Tags</label>
+                        <input type="text" name="tags" value="<?= set_value('tags'); ?>" class="form-control"
+                            placeholder="Nhập từ khóa cách nhau bởi dấu ,">
+                        <span id="" class="error mt-2 text-danger" for=""><?php echo form_error('tags'); ?></span>
+                    </div>
                     <div class="form-group">
                         <label for="">Thông số</label>
                         <textarea name="options_cat" class="makeMeRichTextarea" id="metadesc" placeholder="Thông số"
@@ -86,12 +78,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="">Tags</label>
-                        <input type="text" name="tags" value="<?= set_value('tags'); ?>" class="form-control"
-                            placeholder="Nhập từ khóa cách nhau bởi dấu ,">
-                        <span id="" class="error mt-2 text-danger" for=""><?php echo form_error('tags'); ?></span>
-                    </div>
+                    
                     <div class="form-group">
                         <label for="">Phụ kiện kèm theo</label>
                         <select id="slectPK" data-url="<?= admin_url('product/selectpk') ?>"
@@ -101,6 +88,21 @@
                             <?php endforeach; ?>
                         </select>
                         <span id="" class="error mt-2 text-danger" for=""><?php echo form_error('products'); ?></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Slug</label>
+                        <input type="text" name="friendly_url" value="<?= $info->friendly_url; ?>" class="form-control"
+                            id="input_slug" placeholder="Đường dẫn tĩnh">
+                        <span id="" class="error mt-2 text-danger"
+                            for=""><?php echo form_error('friendly_url'); ?></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Giá thị trường (đ)</label>
+                        <input type="text" name="price_other" value="<?= number_format($info->price_other); ?>"
+                            onkeyup="this.value=FormatNumber(this.value);" class="form-control" id=""
+                            placeholder="Giá thị trường để so sánh">
+                        <span id="" class="error mt-2 text-danger"
+                            for=""><?php echo form_error('price_other'); ?></span>
                     </div>
                     <p class="card-description">
                         <code><i class="ti-settings"></i> Cấu hình Seo (Rich Snippet)</code>

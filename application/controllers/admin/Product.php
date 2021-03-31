@@ -414,13 +414,12 @@ Class Product extends MY_Controller{
 		$this->load->view('admin/main', $this->data);
 	}
 	function del(){
-		$type = $this->input->get('type');
 		$id = $this->uri->rsegment(3);
 		$id = intval($id);
 		$info = $this->product_model->get_info($id);
 		if (!$info) {
 			$this->session->set_flashdata('message','Không tồn tại sản phẩm này');
-			redirect(admin_url('product?type='.$type));
+			redirect_back(admin_url('product'));
 		}
 		$this->data['info'] = $info;
 		$rule = 'product_id='.$id;
@@ -428,31 +427,29 @@ Class Product extends MY_Controller{
 		$this->product_model->deleteOne($id);
 		$this->session->set_flashdata('message', 'Xóa dữ liệu thành công !');
 		//chuyển sang trang danh sách danh mục
-		redirect(admin_url('product?type='.$type));
+		redirect_back(admin_url('product'));
 	}
 	function delete_all()
 	{
-		$type = $this->input->get('type');
 		$ids = $this->input->post('id[]');
 		foreach ($ids as $id)
 		{
 			$this->_del($id);
 		}
 		$this->session->set_flashdata('message','Xóa tùy chọn thành công');
-		redirect(admin_url('product?type='.$type));
+		redirect_back(admin_url('product'));
 	}
     /*
      *Xoa san pham
      */
     private function _del($id)
     {
-    	$type = $this->input->get('type');
     	$product = $this->product_model->get_info($id);
     	if(!$product)
     	{
             //tạo ra nội dung thông báo
     		$this->session->set_flashdata('message', 'không tồn tại sản phẩm này');
-    		redirect(admin_url('product?type='.$type));
+    		redirect(admin_url('product'));
     	}
         //thuc hien xoa san pham
     	$rule = "product_id=".$id;

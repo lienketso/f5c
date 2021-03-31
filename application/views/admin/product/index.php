@@ -49,7 +49,7 @@
 
             <div class="row-fluid sortable">
                 <div class="box span12">
-                    <form name="theForm" id="theForm" action="<?= admin_url('product') ?>" method="post">
+                    <form name="theForm" id="theForm" action="<?= admin_url('product/delete_all') ?>" method="post">
                         <input type="hidden" name="btnOnclick" value="">
                         <div class="" style="text-align: right;padding-bottom: 10px">
                             <a href="<?php echo admin_url('product/add'); ?>" class="btn btn-small btn-success"><i
