@@ -1469,4 +1469,10 @@ h5#title-spkh{
   .form-search select.sl-cat {
     width: 89px!important;
 }
-  
+.box-goi-y-search {
+    width: 555px !important;   
+    left: 89px !important;   
+}
+.title-detail-p{
+    font-size: 28px;
+}
