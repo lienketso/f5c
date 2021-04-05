@@ -148,15 +148,16 @@
                                                     href="<?php echo admin_url('product/edit/'.$row->id); ?>">
                                                     <i class="ti-pencil-alt"></i>
                                                 </a>
-                                                <a class="btn btn-sm btn-danger"
-                                                    href="<?php echo admin_url('product/del/'.$row->id); ?>"
-                                                    onclick="return check_del();">
-                                                    <i class="ti-trash"></i>
-                                                </a>
+                                                
 
                                                 <a class="btn btn-sm btn-success" target='_blank'
                                                     href="<?php echo base_url('/view-p'.$row->id.'.html'); ?>">
                                                     <i class="ti-eye"></i>
+                                                </a>
+                                                <a class="btn btn-sm btn-danger"
+                                                    href="<?php echo admin_url('product/del/'.$row->id); ?>"
+                                                    onclick="return check_del();">
+                                                    <i class="ti-trash"></i>
                                                 </a>
 
                                             </div>

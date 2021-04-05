@@ -110,7 +110,7 @@
 					</div>
 					<div class="form-group">
 						<label for="">Thứ tự</label>
-						<input type="number"  name="sort_order" value="<?= set_value('sort_order'); ?>" class="form-control" min="0" max="99"  placeholder="Thứ tự ưu tiên">
+						<input type="number"  name="sort_order" value="<?= set_value('sort_order'); ?>" class="form-control" min="0" max="99999"  placeholder="Thứ tự ưu tiên">
 					</div>
 					
 					<div class="form-group">
