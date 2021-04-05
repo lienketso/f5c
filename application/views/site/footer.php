@@ -33,28 +33,60 @@
 
       <div class="footer-center">
           <div class="container">
+          <div class="row " style="margin-bottom:20px;margin-top:10px;">               
+               <div class="col-md-6">
+                <span>Chấp nhận thanh toán</span>       
+                 <img src="<?php echo public_url('site/img/visa.svg')?>" title="Thanh toán bằng thẻ Visa" alt="Visa">
+                 <img src="<?php echo public_url('site/img/mastercard.svg') ?>"  title="Thanh toán bằng thẻ Master Card" alt="Master Card">
+                 <img src="<?php echo public_url('site/img/internet-banking.svg') ?>"  title="Thanh toán bằng Internet Banking (Thẻ ATM nội địa)" alt="Internet Banking">
+                 <img src="<?php echo public_url('site/img/cash.svg') ?>"  title="Thanh toán bằng tiền mặt" alt="Tiền mặt">
+               </div>              
+           </div>
               <div class="row">
-                  <div class="col-md-4">
-                     <h4>TRỤ SỞ HÀ NỘI</h4> 
-                      <P >560 Trường Chinh, Đống Đa, Hà Nội</P> 
-                      <P style="font-weight:500">Hotline: 0932168866 | Email: info@f5pro.vn</P>                 
+                  <div class="col-md-3">
+                      <h4>TRỤ SỞ HÀ NỘI</h4>
+                      <P>560 Trường Chinh, Đống Đa, Hà Nội</P>
+                      <P style="font-weight:500">Hotline: 0932168866 | Email: info@f5pro.vn</P>
                       <P style="font-weight:500"> Tel: +84-24-35640558 | Fax : +84-24-35640730</P>
                       <br>
                   </div>
-                  <div class="col-md-4">
-                     <h4>CHI NHÁNH HỒ CHÍ MINH</h4>                     
-                      <P> 248 Hoàng Hoa Thám, P.12, Q.Tân Bình, TP.HCM</P>                
-                      <P style="font-weight:500">  Hotline: 0975236688 | Email: sale@f5pro.vn</P>                 
+                  <div class="col-md-3">
+                      <h4>CHI NHÁNH HỒ CHÍ MINH</h4>
+                      <P> 248 Hoàng Hoa Thám, P.12, Q.Tân Bình, TP.HCM</P>
+                      <P style="font-weight:500"> Hotline: 0975236688 | Email: sale@f5pro.vn</P>
                       <br>
                   </div>
-                  <div class="col-md-4">
-                    <h4> CHI NHÁNH ĐÀ NẴNG</h4>                       
-                      <P> 12 Nguyễn Hữu Thọ, Q.Hải Châu, Đà Nẵng    </P>                 
-                      <P style="font-weight:500"> Hotline: 0935666443 | Email: saledn@f5pro.vn    </P>                
-                      <P style="font-weight:500">  Tel: +84-236-3889982 | Fax : +84-236-3889983</P>
+                  <div class="col-md-3">
+                      <h4> CHI NHÁNH ĐÀ NẴNG</h4>
+                      <P> 12 Nguyễn Hữu Thọ, Q.Hải Châu, Đà Nẵng </P>
+                      <P style="font-weight:500"> Hotline: 0935666443 | Email: saledn@f5pro.vn </P>
+                      <P style="font-weight:500"> Tel: +84-236-3889982 | Fax : +84-236-3889983</P>
                       <br>
+                  </div>
+                  <div class="col-md-3">
+                      <div id="fb-root"></div>
+                      <script async defer crossorigin="anonymous"
+                          src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v10.0&appId=1638259809720914&autoLogAppEvents=1"
+                          nonce="T0rR6OEU"></script>
+                      <div class="fb-page" data-href="https://www.facebook.com/f5c.vn" data-hide-cover="false"
+                          data-show-facepile="false"></div>
                   </div>
               </div>
+              <div class="row">
+               
+
+               <div class="col-md-12 text-center">
+               <a href="http://online.gov.vn/Home/WebDetails/19131" rel="noopener nofollow" target="_blank" title="THÔNG TIN WEBSITE THƯƠNG MẠI ĐIỆN TỬ">
+                     <img  src="<?php echo public_url('site/img/bo-cong-thuong.png') ?>" alt="Bộ công thương">
+                 </a>
+                     <a>
+                     <img src="<?php echo public_url('site/img/comodo_secure_seal.png') ?>" alt="Comodo SSL">
+                 </a>
+                     <a rel="nofollow noopener">
+                     <img  src="<?php echo public_url('site/img/dmca_logo.png')?>" alt="DMCA.com Protection">
+                 </a>
+               </div>
+           </div>
           </div>
       </div>
 
@@ -186,7 +218,7 @@ $(window).load(function() {
     $('#slider').flexslider({
         animation: "slide",
         controlNav: false,
-        directionNav: false, 
+        directionNav: false,
         animationLoop: false,
         slideshow: false,
         sync: "#carouselh"

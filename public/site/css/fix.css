@@ -87,7 +87,33 @@ max-width: 100%;
         display: none !important;
     }
 }
-
+.no-mobile{
+    background: rgb(31,109,174);
+    background: radial-gradient(circle, rgba(31,109,174,1) 0%, rgba(245,134,52,1) 70%);
+    color: #fff;
+}
+.no-mobile ul.list-inline{
+    text-align: center;
+}
+.no-mobile ul.list-inline li a{
+    color: #fff;
+    font-size: 12px;
+}
+.no-mobile .nav-res{
+    margin-top: 17px;
+}
+.no-mobile .nav-res > li >a{
+    color: #fff;
+    font-weight: bold;
+}
+.no-mobile .nav-mega  li.dropdown.mega-dropdown > a{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.no-mobile .nav-mega .mega-line-1,
+.no-mobile .nav-mega .mega-line-2{
+    color: #fff;
+}
 @media(max-width: 767px){
     .margin-mb{
         margin-top: 70px;
@@ -1374,3 +1400,74 @@ h5#title-spkh{
     text-align: center;
     margin-top: 17px;
 }
+.form-search {
+    border: 2px solid #ffffff !important;
+    margin-bottom: 0 !important;
+}
+.form-search .btn-search {
+    text-transform: uppercase;
+    font-weight: 700;
+    background-color: #ff8a00 !important;
+    color: #fff;
+    width: 60px !important;
+    font-size: 14px;
+}
+#header.fixed .logo {
+    margin-top: 24px !important;
+}
+.hotline-pn{
+    position: fixed;
+    top: 130px;
+    right: 0;
+}
+.hotline-pn  .dropbtn {
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    background-color: transparent;
+  }
+  .hotline-pn  .dropbtn img{
+    width: 58px;
+  }
+.hotline-pn .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .hotline-pn .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 21px;
+    left: -210px;
+    padding: 10px;
+  }
+  .hotline-pn .dropdown-content .title{
+      display: inline-block;
+      width: 96px;
+  }
+  .hotline-pn .dropdown-content .title i{
+      margin-right: 5px;
+  }
+
+  
+  .hotline-pn .dropdown-content a {
+    color: #006DAE;
+    font-weight: bold;
+    padding: 8px 10px;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .hotline-pn .dropdown-content a:hover {background-color: #ddd;}
+  
+  .hotline-pn .dropdown:hover .dropdown-content {display: block;}
+
+  .form-search select.sl-cat {
+    width: 89px!important;
+}
+  

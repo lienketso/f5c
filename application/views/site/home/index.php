@@ -1,12 +1,12 @@
  <div class="on-top-fixed"></div>
 
-  <section class="cdmmm">
-    <section class="container">
-      <div class="rowsss">
-      <div class="col-lg-9">
-        <div class="row">
-          <!-- danh muc san pham -->
-<!--           <div class="col-md-3 col-sm-12 no-padding-right danh-muc no-mobile">
+ <section class="cdmmm">
+     <section class="container">
+         <div class="rowsss">
+             <div class="col-lg-9">
+                 <div class="row">
+                     <!-- danh muc san pham -->
+                     <!--           <div class="col-md-3 col-sm-12 no-padding-right danh-muc no-mobile">
             <ul class="list-group">
               <li class="menu-lv1 list-group-item title">DANH SÁCH SẢN PHẨM</li>
               <?php if($allCategory && !empty($allCategory)): ?>
@@ -45,30 +45,30 @@
               </ul>
             </div> -->
 
-            <div class="col-md-12 col-sm-12 no-padding">
-              <!-- slide top -->
-              <div class="owl-banner">
-                <?php foreach($slideTop as $row): ?>
-                  <div class="item">
-                    <a href="<?= $row->link; ?>" title="<?= $row->name; ?>">
-                      <img alt="<?= $row->name; ?>" src="<?= url_tam($row->image_name); ?>">
-                    </a>
-                  </div>
-                <?php endforeach; ?>
-              </div>
-              
-              <!-- <div class="ads_banner_bottom">
+                     <div class="col-md-12 col-sm-12 no-padding">
+                         <!-- slide top -->
+                         <div class="owl-banner">
+                             <?php foreach($slideTop as $row): ?>
+                             <div class="item">
+                                 <a href="<?= $row->link; ?>" title="<?= $row->name; ?>">
+                                     <img alt="<?= $row->name; ?>" src="<?= url_tam($row->image_name); ?>">
+                                 </a>
+                             </div>
+                             <?php endforeach; ?>
+                         </div>
+
+                         <!-- <div class="ads_banner_bottom">
                 <?php foreach($bannerTop as $row): ?>
                 <a class="ads_two" target="_blank" href="<?= $row->url; ?>" style="background-image:url('<?= url_tam($row->image_name); ?>')"></a>
               <?php endforeach; ?>
               </div> -->
 
-            </div>
-          </div>
-        </div>
+                     </div>
+                 </div>
+             </div>
 
-        <div class="col-lg-3">
-<!--           <div class="clearfix no-mobile">
+             <div class="col-lg-3">
+                 <!--           <div class="clearfix no-mobile">
             <div class="dropdown login ">
               <div id='account_panel'>
                 <?php if(empty($userLogin)): ?>
@@ -104,54 +104,60 @@
   (<b class='session_red load_cart'><?= $cart_items; ?></b>)
   <br>Giỏ hàng</a>
 </div> -->
-<!-- dau gia -->
-<div class="dau-gia" style="max-width:265px">
+                 <!-- dau gia -->
+                 <div class="dau-gia" style="max-width:265px">
 
-  <div class="list_ads_head">
-    <?php foreach($bannerRight as $row): ?>
-    <a target="_blank" href="<?= $row->url; ?>"><img src="<?= url_tam($row->image_name); ?>" alt="banner khuyến mại f5c"></a>
-    <?php endforeach; ?>
-  </div>
- 
-</div>
-</div>
-</div>
-</section>
-</section>
-<!-- Message -->
+                     <div class="list_ads_head">
+                         <?php foreach($bannerRight as $row): ?>
+                         <a target="_blank" href="<?= $row->url; ?>"><img src="<?= url_tam($row->image_name); ?>"
+                                 alt="banner khuyến mại f5c"></a>
+                         <?php endforeach; ?>
+                     </div>
 
-<section class="product-nb">
-  <div class="container">
-    <div class="bao-noibat">
-      <h3 class="title-nb">Sản phẩm nổi bật</h3>
-      <div class="list-sp-hot">
-        <div class="container">
-          <div class="row">
-            <?php if(!empty($listXemnhieu)): ?>
-              <?php foreach($listXemnhieu as $row): ?>
-                <div class="col-lg-3 col-xs-6">
-                  <div class="item-sp-hot">
-                    <a class="img-sp-hot" href="<?= product_url(slug($row->name),$row->id) ?>"><img src="<?= url_tam($row->image_name); ?>"></a>
-                    <div class="prdLblCampaign">
-                      <div class="prdLblCampaignThumb prdLblCampaignNew"><span style="background:linear-gradient(90deg,#FFC300 4.5%,#DD220D 90.3%)"> <img src="<?= public_url('site') ?>/img/icon5-50x50.png"> <small>ĐƯỢC QUAN QUÂM NHẤT</small> </span></div>
-                    </div>
-                    <h4><a href="<?= product_url(slug($row->name),$row->id) ?>"><?= $row->name; ?></a></h4>
-                    <p><span><?= ($row->price==0) ? 'Liên hệ' : number_format($row->price). '₫' ?> </span></p>
-                  </div>
-                </div>
-              <?php endforeach; ?>
-            <?php endif; ?>
+                 </div>
+             </div>
+         </div>
+     </section>
+ </section>
+ <!-- Message -->
 
-          </div>
-        </div>
+ <section class="product-nb">
+     <div class="container">
+         <div class="bao-noibat">
+             <h3 class="title-nb">Sản phẩm nổi bật</h3>
+             <div class="list-sp-hot">
+                 <div class="container">
+                     <div class="row">
+                         <?php if(!empty($listXemnhieu)): ?>
+                         <?php foreach($listXemnhieu as $row): ?>
+                         <div class="col-lg-3 col-xs-6">
+                             <div class="item-sp-hot">
+                                 <a class="img-sp-hot" href="<?= product_url(slug($row->name),$row->id) ?>"><img
+                                         src="<?= url_tam($row->image_name); ?>"></a>
+                                 <div class="prdLblCampaign">
+                                     <div class="prdLblCampaignThumb prdLblCampaignNew"><span
+                                             style="background:linear-gradient(90deg,#FFC300 4.5%,#DD220D 90.3%)"> <img
+                                                 src="<?= public_url('site') ?>/img/icon5-50x50.png"> <small>ĐƯỢC QUAN
+                                                 QUÂM NHẤT</small> </span></div>
+                                 </div>
+                                 <h4><a href="<?= product_url(slug($row->name),$row->id) ?>"><?= $row->name; ?></a></h4>
+                                 <p><span><?= ($row->price==0) ? 'Liên hệ' : number_format($row->price). '₫' ?> </span>
+                                 </p>
+                             </div>
+                         </div>
+                         <?php endforeach; ?>
+                         <?php endif; ?>
 
-      </div>
-    </div>
-  </div>
-</section>
+                     </div>
+                 </div>
 
-<?php foreach($listCatHome as $row): ?>
-  <?php 
+             </div>
+         </div>
+     </div>
+ </section>
+
+ <?php foreach($listCatHome as $row): ?>
+ <?php 
   $con['where'] = ['parent_id'=>$row->id,'show_home'=>'1'];
   $con['limit'] = [5,0];
   $uid = [$row->id];
@@ -168,7 +174,7 @@
   }
 
   ?>
-  <?php 
+ <?php 
   //sản phẩm
   $p['where'] = ['hide'=>'0'];
   $p['where_in'] = ['cat_id',$uid];
@@ -180,158 +186,148 @@
   $manufac = unserialize($row->manufac_ids);
   
   ?>
-  <section class="nhom-sp-home">
-    <div class="container">
-    <div class="home-menu">
-      <div class="home-menu-head">
-        <a href="<?= category_url($row->friendly_url) ?>" title="<?= $row->name ?>"><i class="fa <?= $row->class_icon ?>"></i> <?= $row->name; ?></a>
-      </div>
-      <ul class="l home-menu-item">
-        <?php if($listCon): ?>
-          <?php foreach($listCon as $c): ?>
-            <li><a href="<?= category_url($c->friendly_url) ?>" title="<?= $c->name; ?>"><?= $c->name; ?></a>
-            </li>
-          <?php endforeach; ?>
-        <?php endif; ?>
-      </ul>
-    </div>
+ <section class="nhom-sp-home">
+     <div class="container">
+         <div class="home-menu">
+             <div class="home-menu-head">
+                 <a href="<?= category_url($row->friendly_url) ?>" title="<?= $row->name ?>"><i
+                         class="fa <?= $row->class_icon ?>"></i> <?= $row->name; ?></a>
+             </div>
+             <ul class="l home-menu-item">
+                 <?php if($listCon): ?>
+                 <?php foreach($listCon as $c): ?>
+                 <li><a href="<?= category_url($c->friendly_url) ?>" title="<?= $c->name; ?>"><?= $c->name; ?></a>
+                 </li>
+                 <?php endforeach; ?>
+                 <?php endif; ?>
+             </ul>
+         </div>
 
-    <div class="list-manufac">
-      <ul>
-        <?php if(!empty($manufac)): ?>
-          <?php foreach($manufac as $m): ?>
-            <?php $mInfo = $this->manufac_model->get_info($m); ?>
-        <li><a href="<?= manufac_url(slug($mInfo->name),$m,$row->id) ?>" title="<?= $mInfo->name; ?>">
-          <?php if($mInfo->image_name!=''): ?>
-          <img src="<?= url_tam($mInfo->image_name) ?>" alt="<?= $mInfo->name; ?>">
-          <?php else: ?>
-            <span><?= $mInfo->name; ?></span>
-          <?php endif; ?>
-        </a>
-      </li>
-      <?php endforeach; ?>
-    <?php endif; ?>
-      </ul>
-    </div>
+         <div class="list-manufac">
+             <ul>
+                 <?php if(!empty($manufac)): ?>
+                 <?php foreach($manufac as $m): ?>
+                 <?php $mInfo = $this->manufac_model->get_info($m); ?>
+                 <li><a href="<?= manufac_url(slug($mInfo->name),$m,$row->id) ?>" title="<?= $mInfo->name; ?>">
+                         <?php if($mInfo->image_name!=''): ?>
+                         <img src="<?= url_tam($mInfo->image_name) ?>" alt="<?= $mInfo->name; ?>">
+                         <?php else: ?>
+                         <span><?= $mInfo->name; ?></span>
+                         <?php endif; ?>
+                     </a>
+                 </li>
+                 <?php endforeach; ?>
+                 <?php endif; ?>
+             </ul>
+         </div>
 
-    <div class="nhom-sp-product">
-      <div class="rowss">
+         <div class="nhom-sp-product">
+             <div class="rowss">
 
-        <?php if(!empty($itemProduct)): ?>
-          <?php foreach($itemProduct as $k=>$pro): ?>
-           <div class="col-lg-3 col-xs-6 borderlr_<?= $k ?>"  >
-            <div class="item-sp-cat">
-              <a class="img-sp-hot" href="<?= product_url(slug($pro->name),$pro->id) ?>"><img src="<?= url_tam($pro->image_name); ?>" alt="<?= $pro->name; ?>"></a>
-              <h4><a href="<?= product_url(slug($pro->name),$pro->id) ?>"><?= catchuoi($pro->name,70); ?></a></h4>
-              <p><span><?= ($pro->price==0) ? 'Liên hệ' : number_format($pro->price). '₫'; ?> </span></p>
-            </div>
-          </div>
-        <?php endforeach; ?>
-      <?php endif; ?>
-    </div>
-  </div>
-</div>
-</section>
-<?php endforeach; ?>
+                 <?php if(!empty($itemProduct)): ?>
+                 <?php foreach($itemProduct as $k=>$pro): ?>
+                 <div class="col-lg-3 col-xs-6 borderlr_<?= $k ?>">
+                     <div class="item-sp-cat">
+                         <a class="img-sp-hot" href="<?= product_url(slug($pro->name),$pro->id) ?>"><img
+                                 src="<?= url_tam($pro->image_name); ?>" alt="<?= $pro->name; ?>"></a>
+                         <h4><a href="<?= product_url(slug($pro->name),$pro->id) ?>"><?= catchuoi($pro->name,70); ?></a>
+                         </h4>
+                         <p><span><?= ($pro->price==0) ? 'Liên hệ' : number_format($pro->price). '₫'; ?> </span></p>
+                     </div>
+                 </div>
+                 <?php endforeach; ?>
+                 <?php endif; ?>
+             </div>
+         </div>
+     </div>
+ </section>
+ <?php endforeach; ?>
 
-<section class="row-cdm">
-  <div class="container">
-    <div class="row">
-  <div class="col-md-9 col-sm-9">
-    <div class="row">
-      <div class="col-md-6 col-sm-6">
-        <div class="panel tin-hot">
-          <div class="panel-heading">
-            <a style="color:#fff" href="#">Tin Hot </a>
-          </div>
-          <ul class="list-group">
-            <?php if(!empty($listTinhot)): ?>
-            <?php foreach($listTinhot as $row): ?>
-            <li class="list-group-item">
-              <div class="media">
-                <a class="pull-left" href="<?= news_url(slug($row->title),$row->id); ?>">
-                  <img class="media-object" src="<?= url_tam($row->image_name) ?>" alt="<?= $row->title; ?>">  
-                </a>
-                <div class="media-body">
-                  <a class="media-heading" href="<?= news_url(slug($row->title),$row->id); ?>"><?= $row->title; ?></a>
-                  <p class="media-content"><?= catchuoi($row->intro,200) ?></p>
-                  <a class="xem-tiep" href="<?= news_url(slug($row->title),$row->id); ?>">Xem tiếp</a>
-                </div>
-              </div>
-            </li>
-          <?php endforeach; ?>
-        <?php endif; ?>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-6 col-sm-6">
-        <div class="panel tin-moi">
-          <div class="panel-heading">
-            <a  style="color:#fff" href="#">Tin Mới</a>
-          </div>
-          <ul class="list-group">
-            <?php if(!empty($listTinmoi)): ?>
-              <?php foreach($listTinmoi as $row): ?>
-            <li class="list-group-item">
-              <div class="media">
-                <a class="pull-left" href="<?= news_url(slug($row->title),$row->id) ?>">
-                  <img class="media-object" src="<?= url_tam($row->image_name) ?>" alt="<?= $row->title; ?>">  
-                </a>
-                <div class="media-body">
-                  <a class="media-heading" href="<?= news_url(slug($row->title),$row->id) ?>"><?= $row->title; ?></a>
-                  <p class="media-content"><?= catchuoi($row->intro,100) ?></p>
-                  <a class="xem-tiep" href="<?= news_url(slug($row->title),$row->id) ?>">Xem tiếp</a>
-                </div>
-              </div>
-            </li>
-          <?php endforeach; ?>
-        <?php endif; ?>            
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3 col-sm-3">
-    <div class="panel mang-xh">
-      <!-- <div class="panel-heading">
-        Mạng xã hội 
-      </div> -->
-      <!-- <div class="panel-body" style="height:250px;overflow: hidden">
-        <a href="https://facebook.com/f5c.vn" target="_blank">
-          <img src="<?= public_url('site/img/facebook.png') ?>">
-        </a>
-      </div> -->
-      <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v10.0&appId=1638259809720914&autoLogAppEvents=1" nonce="T0rR6OEU"></script>
-      <div class="fb-page" 
-data-href="https://www.facebook.com/f5c.vn"
-data-hide-cover="false"
-data-show-facepile="false"></div>
-    </div>
-    <div class="panel dang-ky-tin" style="margin-top:-8px">
-      <div class="panel-heading">
-        <a href="#" class="lightbox">Đăng ký Nhận tin khuyến mãi </a>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-</section>           
-<style>
-  .sp-da-xem .product-img, #detai-so-sanh .product-img{
-    height:120px;
-    line-height:120px;
-    text-align:center;
-    
-  }
-  .sp-da-xem .product-img img, #detai-so-sanh .product-img img{
-    border:none;
+ <section class="row-cdm">
+     <div class="container">
+         <div class="row">
+             <div class="col-md-9 col-sm-9">
+                 <div class="row">
+                     <div class="col-md-6 col-sm-6">
+                         <div class="panel tin-hot">
+                             <div class="panel-heading">
+                                 <a style="color:#fff" href="#">Tin Hot </a>
+                             </div>
+                             <ul class="list-group">
+                                 <?php if(!empty($listTinhot)): ?>
+                                 <?php foreach($listTinhot as $row): ?>
+                                 <li class="list-group-item">
+                                     <div class="media">
+                                         <a class="pull-left" href="<?= news_url(slug($row->title),$row->id); ?>">
+                                             <img class="media-object" src="<?= url_tam($row->image_name) ?>"
+                                                 alt="<?= $row->title; ?>">
+                                         </a>
+                                         <div class="media-body">
+                                             <a class="media-heading"
+                                                 href="<?= news_url(slug($row->title),$row->id); ?>"><?= $row->title; ?></a>
+                                             <p class="media-content"><?= catchuoi($row->intro,200) ?></p>
+                                             <a class="xem-tiep" href="<?= news_url(slug($row->title),$row->id); ?>">Xem
+                                                 tiếp</a>
+                                         </div>
+                                     </div>
+                                 </li>
+                                 <?php endforeach; ?>
+                                 <?php endif; ?>
+                             </ul>
+                         </div>
+                     </div>
+                     <div class="col-md-6 col-sm-6">
+                         <div class="panel tin-moi">
+                             <div class="panel-heading">
+                                 <a style="color:#fff" href="#">Tin Mới</a>
+                             </div>
+                             <ul class="list-group">
+                                 <?php if(!empty($listTinmoi)): ?>
+                                 <?php foreach($listTinmoi as $row): ?>
+                                 <li class="list-group-item">
+                                     <div class="media">
+                                         <a class="pull-left" href="<?= news_url(slug($row->title),$row->id) ?>">
+                                             <img class="media-object" src="<?= url_tam($row->image_name) ?>"
+                                                 alt="<?= $row->title; ?>">
+                                         </a>
+                                         <div class="media-body">
+                                             <a class="media-heading"
+                                                 href="<?= news_url(slug($row->title),$row->id) ?>"><?= $row->title; ?></a>
+                                             <p class="media-content"><?= catchuoi($row->intro,100) ?></p>
+                                             <a class="xem-tiep" href="<?= news_url(slug($row->title),$row->id) ?>">Xem
+                                                 tiếp</a>
+                                         </div>
+                                     </div>
+                                 </li>
+                                 <?php endforeach; ?>
+                                 <?php endif; ?>
+                             </ul>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-md-3 col-sm-3">
+
+
+             </div>
+         </div>
+     </div>
+ </section>
+ <style>
+.sp-da-xem .product-img,
+#detai-so-sanh .product-img {
+    height: 120px;
+    line-height: 120px;
+    text-align: center;
+
+}
+
+.sp-da-xem .product-img img,
+#detai-so-sanh .product-img img {
+    border: none;
     vertical-align: middle;
-    width:auto !important;
-    max-height:110px;
-    margin-bottom:5px
-  }
-  
-</style>  
-           
-
+    width: auto !important;
+    max-height: 110px;
+    margin-bottom: 5px
+}
+ </style>

@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div id="header" class="no-mobile" style="background-color:#F58634">
+    <div id="header" class="no-mobile">
         <?php $this->load->view('site/header'); ?>
     </div>
 
@@ -141,7 +141,18 @@
             </div>
         </div>
     </section>
-
+<div class="hotline-pn">
+<div class="dropdown">
+  <button class="dropbtn">
+  <img  src="<?php echo public_url('site/img/hotline.png') ?>">
+  </button>
+  <div class="dropdown-content">
+      <div class=""><span class="title"><i class="fa fa-phone-square"></i>Miền bắc</span> <a class="number-phone" href="tel:0932168866 ">0932 168 866 </a></div>
+      <div class=""><span class="title"><i class="fa fa-phone-square"></i>Miền trung </span><a class="number-phone" href="tel:0935666443">0935 666 443 </a></div>
+      <div class=""><span class="title"><i class="fa fa-phone-square"></i>Miền nam </span><a class="number-phone" href="tel:0975236688">097 523 6688 </a></div>  
+  </div>
+</div>
+</div>
     <!-- ===facebook, google + fixed bĂªn pháº£i -->
     <!--  <div id="share-fix">
     <div class="share-icon share-google"><a target="_blank" href="https://plus.google.com/u/1/+F5CORP/posts">&nbsp;</a></div>
@@ -195,6 +206,9 @@
             padding-top: 50px;
         }
     }
+
+
+
     </style>
     <!-- <script src='<?= public_url('site/js') ?>/jquery.zoom.js'></script>
     <script>
@@ -465,7 +479,7 @@
         $('.sticky_compare').hide();
     });
     </script>
-
+<script lang="javascript">var _vc_data = {id : 10615814, secret : '931afe31ebc900da83965903746e1415'};(function() {var ga = document.createElement('script');ga.type = 'text/javascript';ga.async=true; ga.defer=true;ga.src = '//live.vnpgroup.net/client/tracking.js?id=10615814';var s = document.getElementsByTagName('script');s[0].parentNode.insertBefore(ga, s[0]);})();</script>
 </body>
 
 </html>
