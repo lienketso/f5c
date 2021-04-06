@@ -24,9 +24,9 @@
                                         <i class="fa fa-bars" aria-hidden="true"></i>
                                         Danh mục
                                     </span>
-                                    <span class="mega-line-2">
+                                    <!-- <span class="mega-line-2">
                                         <br />sản phẩm <span class="caret"></span>
-                                    </span>
+                                    </span> -->
                                 </a>
                                 <ul class="dropdown-menu mega-dropdown-menu">
                                     <?php if($allCategory && !empty($allCategory)): ?>
@@ -103,7 +103,7 @@
                 <?php if(empty($userLogin)): ?>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img
-                            src="http://localhost:8080/f5c/public/site/img/user.png"></a>
+                            src="<?= public_url('site/img/user.png') ?>"></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="<?= base_url('user/register.html') ?>">Đăng ký</a></li>
                         <li><a href="<?= base_url('user/login.html') ?>">Đăng nhập</a></li>
@@ -115,7 +115,7 @@
                 <?php endif; ?>
 
                 <li><a href="<?= base_url('gio-hang.html') ?>"><img
-                            src="http://localhost:8080/f5c/public/site/img/cart.png"> (<span
+                            src="<?= public_url('site/img/cart.png') ?>"> (<span
                             id="countCart"><?= $cart_items; ?></span>) </a></li>
             </ul>
         </div>
