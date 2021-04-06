@@ -13,13 +13,13 @@
                         <li class="dang-ky"><a href="#" class="lightbox">Đăng ký nhận tin khuyến mãi</a></li>
                         <li class="dich-vu"><a href="<?= base_url('thong-tin/dich-vu-khach-hang/i24.html') ?>">
                                 Dịch vụ khách hàng</a></li>
-                        <li class="so-do"><a href="<?= base_url('sitemap.html') ?>">Sơ đồ trang web</a></li>
+                        <li class="so-do"><a href="<?= base_url('sitemap.xml') ?>">Sơ đồ trang web</a></li>
                     </ul>
 
                     <div class="box_search" style="position:relative">
                         <ul class="nav navbar-nav nav-mega">
                             <li class="dropdown mega-dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <a href="#" class="dropdown-toggle cathead" data-toggle="dropdown">
                                     <span class="mega-line-1">
                                         <i class="fa fa-bars" aria-hidden="true"></i>
                                         Danh mục
