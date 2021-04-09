@@ -110,12 +110,10 @@ max-width: 100%;
     font-weight: bold;
 }
 .no-mobile .nav-mega  li.dropdown.mega-dropdown > a{
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 10px;
 }
 .cathead{
     position: relative;
-    top: 8px;
 }
 .no-mobile .nav-mega .mega-line-1,
 .no-mobile .nav-mega .mega-line-2{

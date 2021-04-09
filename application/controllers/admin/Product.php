@@ -273,172 +273,255 @@ Class Product extends MY_Controller{
 		$this->data['temp'] = "admin/product/add";
 		$this->load->view("admin/main", $this->data);
 	}
-
-
-	function edit(){
-
-		$this->load->model('manufac_model');
-		$this->load->model('countries_model');
+	function upload_multi(){
 		$this->load->model('file_model');
-
-		$id = $this->uri->rsegment(3);
-		$id = intval($id);
-		$info = $this->product_model->get_info($id);
-		if (!$info) {
-			$this->session->set_flashdata('message','Không tồn tại sản phẩm này');
-			redirect(admin_url('product'));
-		}
-		
-	
-		$this->data['info'] = $info;
-
-		if($this->input->post()){
-			$this->form_validation->set_rules('name','Tên sản phẩm','required|min_length[4]|callback_check_title');
-			
-			if($this->form_validation->run()){
-				//tiến hành thêm vào csdl		
-				$name = $this->input->post('name');	
-				$slug = $this->input->post('friendly_url');
-				if($slug==''){
-					$slug = slug($name);
-				}else{
-					$slug = slug($slug);
-				}
-				//echo $cat_name;die;
-				$cat_id = $this->input->post('cat_id');
-				$price = $this->input->post('price');
-				$price = str_replace(',','',$price);
-				$price_other = $this->input->post('price_other');
-				$price_other = str_replace(',','',$price_other);
-				$vat = $this->input->post('vat');
-				if($vat==''){
-					$vat = 0;
-				}
-				$show_vat = $this->input->post('show_vat');
-				$thongso = $this->input->post('options_cat');
-				$content = $this->input->post('content');
-				$baohanh = $this->input->post('warranty');
-				$sort_order = $this->input->post('sort_order');	
-				$manufac_id = $this->input->post('manufac_id');	
-				$model = $this->input->post('model');	
-				$image_name = $this->input->post('image_name');	
-				$image_name = str_replace(base_url('upload/public/'),'',$image_name);
-
-				$site_title = $this->input->post('site_title');	
-				$meta_key = $this->input->post('meta_key');	
-				$meta_desc = $this->input->post('meta_desc');	
-				$alt_image = $this->input->post('alt_image');
-
-				$image_list = $this->input->post('image_list');
-				$products = $this->input->post('products[]');
-				if($products){
-					$products = serialize($products);
-				}else{
-					$products = '';
-				}
-
-				$data = array(
-					'name'=> $name,
-					'friendly_url' => $slug,
-					'cat_id'=>$cat_id,
-					'image_name' => $image_name,
-					'manufac_id'=>$manufac_id,
-					'model'=>$model,
-					'price'=>$price,
-					'price_other' => $price_other,
-					'vat'=>$vat,
-					'show_vat'=>$show_vat,
-					'options_cat'=>$thongso,
-					'content'=>$content,
-					'warranty' => $baohanh,
-					'sort_order'=>$sort_order,
-					'site_title'=>$site_title,
-					'meta_key'=>$meta_key,
-					'meta_desc'=>$meta_desc,
-					'alt_image' => $alt_image,
-					'products'=>$products,
-					'last_update'=> now()
-				);
-				$this->product_model->update($id,$data);
-				
-				$im['where'] = ['table_id'=>$id];
-				$listImgOld = $this->file_model->get_list($im);
-				if(!empty($listImgOld)){
-					$where = "table_id=".$id;
-					$this->file_model->delete_rule($where);
-				}
-				if($image_list && !empty($image_list)){
-					foreach($image_list as $key=>$val){
-						$idata = [
-							'table_id'=>$id,
-							'file_name'=>str_replace(base_url('upload/public/'),'',$val),
-							'table'=>'product-images',
-							'created'=>now()
-
-						];
-						$this->file_model->create($idata);
+		$productid = $this->input->post('productid');
+		$countfiles = count($_FILES['files']['name']);
+		$upload_location = "upload/public/media/";
+		$files_arr = array();
+		// Loop all files
+		for($index = 0;$index < $countfiles;$index++){
+			if(isset($_FILES['files']['name'][$index]) && $_FILES['files']['name'][$index] != ''){
+				$filename = $_FILES['files']['name'][$index];
+				$ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+				$valid_ext = array("png","jpeg","jpg");
+				if(in_array($ext, $valid_ext)){
+					$path = $upload_location.$filename;
+					if(move_uploaded_file($_FILES['files']['tmp_name'][$index],$path)){
+						$files_arr[] = $filename;
 					}
-					
 				}
+				//insert to file table
+				$data = [
+					'file_name'=>'media/'.$filename,
+					'orig_name'=>$filename,
+					'table'=>'product',
+					'table_id'=>$productid,
+					'created'=>now()
+				];
+				$this->file_model->create($data);
+			}
+		}
+
+		echo json_encode($files_arr);
+		die;
+	}
+	function deleteFile(){
+		$this->load->model('file_model');
+		$img_id = $this->input->post('img_id');
+		$link = $this->input->post('link');
+		if(file_exists($link)){
+			unlink($link);
+		}
+		$this->file_model->deleteOne($img_id);
+		die;
+	}
+	function ajaxUpload(){
+		$upload_path = './upload/public/'.date('Y');
+		$file  = $_FILES['image_list'];
+		$image_list = array();
+        $count = count($file['name']);//lấy tổng số file được upload
+        $config = array();
+         //$config['encrypt_name'] = TRUE;
+        $config['upload_path']   = $upload_path;
+         //Định dạng file được phép tải
+        $config['allowed_types'] = 'jpg|JPEG|png|gif|pdf';
+         //Dung lượng tối đa
+        $config['max_size']      = '3000';
+        for($i=0; $i<=$count-1; $i++) {
+              $_FILES['userfile']['name']     = $file['name'][$i];  //khai báo tên của file thứ i
+              $_FILES['userfile']['type']     = $file['type'][$i]; //khai báo kiểu của file thứ i
+              $_FILES['userfile']['tmp_name'] = $file['tmp_name'][$i]; //khai báo đường dẫn tạm của file thứ i
+              $_FILES['userfile']['error']    = $file['error'][$i]; //khai báo lỗi của file thứ i
+              $_FILES['userfile']['size']     = $file['size'][$i]; //khai báo kích cỡ của file thứ i
+              //load thư viện upload và cấu hình
+              $this->CI->load->library('upload', $config);
+              //thực hiện upload từng file
+              if($this->CI->upload->do_upload())
+              {
+                  //nếu upload thành công thì lưu toàn bộ dữ liệu
+              	$data = $this->CI->upload->data();
+              	$image_list[] = $data['file_name'];
+                  //in cấu trúc dữ liệu của các file
+              }     
+              else{
+              	$data = $this->CI->upload->display_errors();
+              }
+          }
+          return json_encode($image_list);
+          die;
+      }
+
+      function edit(){
+
+      	$this->load->model('manufac_model');
+      	$this->load->model('countries_model');
+      	$this->load->model('file_model');
+
+      	$id = $this->uri->rsegment(3);
+      	$id = intval($id);
+      	$info = $this->product_model->get_info($id);
+      	if (!$info) {
+      		$this->session->set_flashdata('message','Không tồn tại sản phẩm này');
+      		redirect(admin_url('product'));
+      	}
+      	$this->data['info'] = $info;
+
+      	if($this->input->post()){
+      		$this->form_validation->set_rules('name','Tên sản phẩm','required|min_length[4]|callback_check_title');
+
+      		if($this->form_validation->run()){
+				//tiến hành thêm vào csdl		
+      			$name = $this->input->post('name');	
+      			$slug = $this->input->post('friendly_url');
+      			if($slug==''){
+      				$slug = slug($name);
+      			}else{
+      				$slug = slug($slug);
+      			}
+				//echo $cat_name;die;
+      			$cat_id = $this->input->post('cat_id');
+      			$price = $this->input->post('price');
+      			$price = str_replace(',','',$price);
+      			$price_other = $this->input->post('price_other');
+      			$price_other = str_replace(',','',$price_other);
+      			$vat = $this->input->post('vat');
+      			if($vat==''){
+      				$vat = 0;
+      			}
+      			$show_vat = $this->input->post('show_vat');
+      			$thongso = $this->input->post('options_cat');
+      			$content = $this->input->post('content');
+      			$baohanh = $this->input->post('warranty');
+      			$sort_order = $this->input->post('sort_order');	
+      			$manufac_id = $this->input->post('manufac_id');	
+      			$model = $this->input->post('model');	
+      			$image_name = $this->input->post('image_name');	
+      			$image_name = str_replace(base_url('upload/public/'),'',$image_name);
+
+      			$site_title = $this->input->post('site_title');	
+      			$meta_key = $this->input->post('meta_key');	
+      			$meta_desc = $this->input->post('meta_desc');	
+      			$alt_image = $this->input->post('alt_image');
+
+				// $image_list = $this->input->post('image_list');
+      			$products = $this->input->post('products[]');
+      			if($products){
+      				$products = serialize($products);
+      			}else{
+      				$products = '';
+      			}
+				//load thư viện uploads ảnh
+      			// $this->load->library('upload_library');
+      			// $upload_path = './uploads/public/'.date('Y');
+				//uploads nhiều ảnh kèm theo
+      			// $file  = $_FILES['image_list'];
+      			// $image_list = array();
+      			// $image_list = $this->upload_library->upload_file($upload_path, 'image_list');
+ 
+				// $image_list_json = json_encode($image_list);
+      			$data = array(
+      				'name'=> $name,
+      				'friendly_url' => $slug,
+      				'cat_id'=>$cat_id,
+      				'image_name' => $image_name,
+      				'manufac_id'=>$manufac_id,
+      				'model'=>$model,
+      				'price'=>$price,
+      				'price_other' => $price_other,
+      				'vat'=>$vat,
+      				'show_vat'=>$show_vat,
+      				'options_cat'=>$thongso,
+      				'content'=>$content,
+      				'warranty' => $baohanh,
+      				'sort_order'=>$sort_order,
+      				'site_title'=>$site_title,
+      				'meta_key'=>$meta_key,
+      				'meta_desc'=>$meta_desc,
+      				'alt_image' => $alt_image,
+      				'products'=>$products,
+      				'last_update'=> now()
+      			);
+      			$this->product_model->update($id,$data);
+
+      			$im['where'] = ['table_id'=>$id];
+      			$listImgOld = $this->file_model->get_list($im);
+      			if(!empty($listImgOld)){
+      				$where = "table_id=".$id;
+      				$this->file_model->delete_rule($where);
+      			}
+      			if($image_list && !empty($image_list)){
+      				foreach($image_list as $key=>$val){
+      					$idata = [
+      						'table_id'=>$id,
+      						'file_name'=>str_replace(base_url('upload/public/'),'',$val),
+      						'table'=>'product-images',
+      						'created'=>now()
+
+      					];
+      					$this->file_model->create($idata);
+      				}
+
+      			}
 
 				// tạo nội dung thông báo
-				$this->session->set_flashdata('message', 'Sửa dữ liệu thành công !');
+      			$this->session->set_flashdata('message', 'Sửa dữ liệu thành công !');
 				//chuyển sang trang danh sách danh mục
-				redirect(admin_url('product?id='.$id));
-			}
-		}
+      			redirect(admin_url('product?id='.$id));
+      		}
+      	}
 
-		$ct['where'] = [];
-		$ct['order'] = ['name','asc'];
-		$listCountries = $this->countries_model->get_list($ct);
-		$this->data['listCountries'] = $listCountries;
+      	$ct['where'] = [];
+      	$ct['order'] = ['name','asc'];
+      	$listCountries = $this->countries_model->get_list($ct);
+      	$this->data['listCountries'] = $listCountries;
 
-		$at['where'] = ['table_id'=>$id];
-		$imgAttach = $this->file_model->get_list($at);
-		$this->data['imgAttach'] = $imgAttach;
-		
+      	$at['where'] = ['table_id'=>$id];
+      	$imgAttach = $this->file_model->get_list($at);
+      	$this->data['imgAttach'] = $imgAttach;
+
 		// sản phẩm kèm theo
-		
-		$kemtheo = unserialize($info->products);
-		$list_kemtheo = [];
-		if(!empty($kemtheo)){
-			foreach($kemtheo as $kem){
-				$pro = $this->product_model->get_info($kem);
-				$list_kemtheo[] = $pro;
-			}
-		}
-		
-		$this->data['list_kemtheo'] = $list_kemtheo;
 
-		$this->data['temp'] = 'admin/product/edit';
-		$this->load->view('admin/main', $this->data);
-	}
-	function del(){
-		$id = $this->uri->rsegment(3);
-		$id = intval($id);
-		$info = $this->product_model->get_info($id);
-		if (!$info) {
-			$this->session->set_flashdata('message','Không tồn tại sản phẩm này');
-			redirect_back(admin_url('product'));
-		}
-		$this->data['info'] = $info;
-		$rule = 'product_id='.$id;
+      	$kemtheo = unserialize($info->products);
+      	$list_kemtheo = [];
+      	if(!empty($kemtheo)){
+      		foreach($kemtheo as $kem){
+      			$pro = $this->product_model->get_info($kem);
+      			$list_kemtheo[] = $pro;
+      		}
+      	}
 
-		$this->product_model->deleteOne($id);
-		$this->session->set_flashdata('message', 'Xóa dữ liệu thành công !');
+      	$this->data['list_kemtheo'] = $list_kemtheo;
+
+      	$this->data['temp'] = 'admin/product/edit';
+      	$this->load->view('admin/main', $this->data);
+      }
+      function del(){
+      	$id = $this->uri->rsegment(3);
+      	$id = intval($id);
+      	$info = $this->product_model->get_info($id);
+      	if (!$info) {
+      		$this->session->set_flashdata('message','Không tồn tại sản phẩm này');
+      		redirect_back(admin_url('product'));
+      	}
+      	$this->data['info'] = $info;
+      	$rule = 'product_id='.$id;
+
+      	$this->product_model->deleteOne($id);
+      	$this->session->set_flashdata('message', 'Xóa dữ liệu thành công !');
 		//chuyển sang trang danh sách danh mục
-		redirect_back(admin_url('product'));
-	}
-	function delete_all()
-	{
-		$ids = $this->input->post('id[]');
-		foreach ($ids as $id)
-		{
-			$this->_del($id);
-		}
-		$this->session->set_flashdata('message','Xóa tùy chọn thành công');
-		redirect_back(admin_url('product'));
-	}
+      	redirect_back(admin_url('product'));
+      }
+      function delete_all()
+      {
+      	$ids = $this->input->post('id[]');
+      	foreach ($ids as $id)
+      	{
+      		$this->_del($id);
+      	}
+      	$this->session->set_flashdata('message','Xóa tùy chọn thành công');
+      	redirect_back(admin_url('product'));
+      }
     /*
      *Xoa san pham
      */
@@ -456,31 +539,31 @@ Class Product extends MY_Controller{
     	$this->product_model->deleteOne($id);
     }
 
-	function update_price(){
-	$id=	$this->input->post('id');
-	$price = $this->input->post('price');
-	$vat =  $this->input->post('vat');
-	$user = $this->session->userdata('userlogin');
-	if(empty($vat )){$vat=0;}
-	$data = array(
-		'admin_update'=> $user->username,
-		'price'=>$price,
-		'vat'=>$vat,
-		'last_update'=> now()
-	);
-	$this->product_model->update($id,$data);
-	die;
-	}
-	function update_vat(){
-	$id=	$this->input->post('id');
-	$vat =  $this->input->post('vat');
-	$user = $this->session->userdata('userlogin');
-	$data = array(
-		'admin_update'=> $user->username,
-		'vat'=>$vat,
-		'last_update'=> now()
-	);
-	$this->product_model->update($id,$data);
-	die;
-	}
+    function update_price(){
+    	$id=	$this->input->post('id');
+    	$price = $this->input->post('price');
+    	$vat =  $this->input->post('vat');
+    	$user = $this->session->userdata('userlogin');
+    	if(empty($vat )){$vat=0;}
+    	$data = array(
+    		'admin_update'=> $user->username,
+    		'price'=>$price,
+    		'vat'=>$vat,
+    		'last_update'=> now()
+    	);
+    	$this->product_model->update($id,$data);
+    	die;
+    }
+    function update_vat(){
+    	$id=	$this->input->post('id');
+    	$vat =  $this->input->post('vat');
+    	$user = $this->session->userdata('userlogin');
+    	$data = array(
+    		'admin_update'=> $user->username,
+    		'vat'=>$vat,
+    		'last_update'=> now()
+    	);
+    	$this->product_model->update($id,$data);
+    	die;
+    }
 }//end class

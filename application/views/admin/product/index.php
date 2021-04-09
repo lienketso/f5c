@@ -70,7 +70,6 @@
                                         <th>Giá tiền</th>
                                         <th>VAT</th>
                                         <th>Ẩn hiện VAT</th>
-                                        <th>Ngày sửa</th>
                                         <th>Nổi bật</th>
                                         <th>Ẩn / Hiện</th>
                                         <th>Cấu hình</th>
@@ -82,7 +81,11 @@
                                         <td>
                                             <input type="checkbox" id="" name="id[]" value="<?php echo $row->id ?>">
                                         </td>
-                                        <td><?php echo $row->name; ?><br/><strong style="color: #666">Danh mục : <?= $this->product_model->getCategory($row->cat_id) ?></strong></td>
+                                        <td><?php echo $row->name; ?><br/><strong style="color: #666">Danh mục : <?= $this->product_model->getCategory($row->cat_id) ?></strong>
+                                            <br/><br/><b><?= $row->admin_update?></b><br />
+                                            <span
+                                                style="color: #08c;font-size: 12px;padding-right:20px"><?=date("d-m-Y H:i",$row->last_update)  ?></span>
+                                        </td>
                                         <td class="center"><img src="<?= product_link($row->image_name) ?>" width="70">
                                         </td>
                                         <td>
@@ -106,14 +109,7 @@
                                                 >
                                                 <?= $row->show_vat==1?'Hiện':'Không'?></a>
                                         </td>
-                                        <td>
 
-                                            <b><?= $row->admin_update?></b><br />
-                                            <span
-                                                style="color: #08c;font-size: 12px;padding-right:20px"><?=date("d-m-Y H:i",$row->last_update)  ?></span>
-
-
-                                        </td>
                                         <td width="120">
                                             <a id="feature_<?=$row->id?>" data-id="<?=$row->id?>"
                                                 class="<?= $row->feature==1?'an_sp':'hien_sp'?> show_hot"
