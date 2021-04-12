@@ -26,7 +26,7 @@
                     <div style="float: left; padding-right: 15px;">
                         <div class="control-group">
                             <div class="controls">
-                                <select data-placeholder="Loại nhà đất" name="category_id" id="" class="form-control"
+                                <select name="category_id" id="" class="form-control"
                                     data-rel="chosen">
                                     <option value="0">--Danh mục--</option>
                                     <?php foreach($listCategory as $row): ?>
@@ -37,8 +37,19 @@
                             </div>
                         </div>
                     </div>
+                    <div style="float: left; padding-right: 15px;">
+                        <div class="control-group">
+                            <div class="controls">
+                                <select name="vat" id="" class="form-control" data-rel="chosen">
+                                    <option value="">--VAT--</option>
+                                    <option value="0" <?= ($vat && $vat==0) ? 'selected' : '' ?> >Chưa vat</option>
+                                    <option value="1" <?= ($vat && $vat==1) ? 'selected' : '' ?> >Có vat</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
-                    <div style="float: left; padding-top: 10px">
+                    <div style="float: left; ">
                         <button type="submit" class="btn btn-info">Tìm</button>
                         <a href="<?= admin_url('product'); ?>" class="btn btn-secondary">Làm lại</a>
                     </div>

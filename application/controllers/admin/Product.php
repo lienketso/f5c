@@ -66,13 +66,20 @@ Class Product extends MY_Controller{
 		//kiểm tra xem có lọc sản phẩm không, thêm điều kiện
 		$name = $this->input->get('name');
 		$category_id = $this->input->get('category_id');
+		$vat = $this->input->get('vat');
 		if($name){
 			$input['like'] = array('name', $name);
 		}
 		if($category_id && $category_id!=0){
 			$input['where'] += ['cat_id'=>$category_id];
 		}
+		if($vat!='' && $vat>0){
+			$input['where'] += ['vat>='=>1];
+		}elseif($vat!='' && $vat==0){
+			$input['where'] += ['vat'=>0];
+		}
 
+		$this->data['vat'] = $vat;
 		$this->data['name'] = $name;
 		$this->data['category_id'] = $category_id;
 
@@ -316,41 +323,6 @@ Class Product extends MY_Controller{
 		$this->file_model->deleteOne($img_id);
 		die;
 	}
-	function ajaxUpload(){
-		$upload_path = './upload/public/'.date('Y');
-		$file  = $_FILES['image_list'];
-		$image_list = array();
-        $count = count($file['name']);//lấy tổng số file được upload
-        $config = array();
-         //$config['encrypt_name'] = TRUE;
-        $config['upload_path']   = $upload_path;
-         //Định dạng file được phép tải
-        $config['allowed_types'] = 'jpg|JPEG|png|gif|pdf';
-         //Dung lượng tối đa
-        $config['max_size']      = '3000';
-        for($i=0; $i<=$count-1; $i++) {
-              $_FILES['userfile']['name']     = $file['name'][$i];  //khai báo tên của file thứ i
-              $_FILES['userfile']['type']     = $file['type'][$i]; //khai báo kiểu của file thứ i
-              $_FILES['userfile']['tmp_name'] = $file['tmp_name'][$i]; //khai báo đường dẫn tạm của file thứ i
-              $_FILES['userfile']['error']    = $file['error'][$i]; //khai báo lỗi của file thứ i
-              $_FILES['userfile']['size']     = $file['size'][$i]; //khai báo kích cỡ của file thứ i
-              //load thư viện upload và cấu hình
-              $this->CI->load->library('upload', $config);
-              //thực hiện upload từng file
-              if($this->CI->upload->do_upload())
-              {
-                  //nếu upload thành công thì lưu toàn bộ dữ liệu
-              	$data = $this->CI->upload->data();
-              	$image_list[] = $data['file_name'];
-                  //in cấu trúc dữ liệu của các file
-              }     
-              else{
-              	$data = $this->CI->upload->display_errors();
-              }
-          }
-          return json_encode($image_list);
-          die;
-      }
 
       function edit(){
 

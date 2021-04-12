@@ -435,6 +435,7 @@ function menuSlug(Title) {
     $('#files').change(function(e){
       let domaim = window.location.protocol+'//'+window.location.hostname+'/f5c/upload/public/media/';
       let admindomain = window.location.protocol+'//'+window.location.hostname+'/f5c/admin/';
+      let publicadmin = window.location.protocol+'//'+window.location.hostname+'/f5c/public/admin/';
       let productid = $('#productid').val();
       e.preventDefault();
       let _this = $(e.currentTarget);
@@ -459,7 +460,7 @@ function menuSlug(Title) {
        for(var index = 0; index < response.length; index++) {
          var src = response[index];
          // Add img element in <div id='preview'>
-         $('#previewIMG').append('<div class="img_att_list" id="del'+index+'"><span data-id="'+index+'" data-link="upload/public/media/'+src+'" data-url="'+admindomain+'product/deleteFile" class="del_image"><img src="http://localhost/f5c/public/admin/images/delete.png"></span><img class="img_at" src="'+domaim+src+'"></div>');
+         $('#previewIMG').append('<div class="img_att_list" id="del'+index+'"><span data-id="'+index+'" data-link="upload/public/media/'+src+'" data-url="'+admindomain+'product/deleteFile" class="del_image"><img src="'+publicadmin+'images/delete.png"></span><img class="img_at" src="'+domaim+src+'"></div>');
        }
 
      }
