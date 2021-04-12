@@ -65,6 +65,10 @@
                         <span id="" class="error mt-2 text-danger" for=""><?php echo form_error('tags'); ?></span>
                     </div>
                     <div class="form-group">
+						<label for="">Video URL</label>
+						<input type="text" name="video_url" value="<?= $info->video_url; ?>" class="form-control" placeholder="Link youtube">					
+					</div>
+                    <div class="form-group">
                         <label for="">Thông số</label>
                         <textarea name="options_cat" class="makeMeRichTextarea" id="metadesc" placeholder="Thông số"
                             onkeyup="keyupMeta()" rows="4"><?= $info->options_cat; ?></textarea>

@@ -181,6 +181,7 @@
   $p['order'] = ['id','desc'];
   $p['limit'] = [8,0];
   $itemProduct = $this->product_model->get_list($p);
+  $videos =$this->product_model->get_video_list();
   
   //hãng sản xuất
   $manufac = unserialize($row->manufac_ids);
@@ -313,6 +314,39 @@
          </div>
      </div>
  </section>
+ <section class="video">
+     <div class="container">        
+         <div class="panel panel-video">
+             <h3 class="panel-title">VIDEO GIỚI THIỆU VÀ HƯỚNG DẪN</h3>
+             <div class="panel-body"> <div class="row">
+             <div class="col-md-6">
+                 <?php if(count($videos)>0):?>
+                 <iframe style="width:100%;min-height:200px" class="yt-iframe lazy-iframe" width="730" height="410"                 
+                     src="<?= $videos[0]->video_url?>" allow="autoplay; encrypted-media" frameborder="0"
+                     allowfullscreen=""></iframe>
+                     <?php endif;?>
+             </div>
+             <div class="col-md-6">
+             <?php foreach($videos as $k=>$v): ?>
+                <?php if( $k>0):?>
+                 <div class="video-item">
+                     <div class="thumbnail">
+                     <a href="<?= product_url(slug($v->name),$v->id) ?>">
+                         <img src="https://img.youtube.com/vi/<?= youtube_id($v->video_url)?>/0.jpg" alt="...">
+                         </a> 
+                         <div class="caption">
+                            <a href="<?= product_url(slug($v->name),$v->id) ?>" title="<?=$v->name ?>"><?=$v->name ?> </a> 
+                         </div>
+                     </div>
+                 </div>
+                 <?php endif;?>
+                 <?php endforeach; ?>
+             </div>
+         </div></div>
+            </div>
+        
+     </div>
+ </section>
  <style>
 .sp-da-xem .product-img,
 #detai-so-sanh .product-img {
@@ -329,5 +363,27 @@
     width: auto !important;
     max-height: 110px;
     margin-bottom: 5px
+}
+.panel-video .panel-title{
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px;
+    background-color: #faebd7;
+}
+.panel-video .thumbnail{
+    border:none;
+}
+.panel-video .thumbnail .caption {
+    padding: 9px;
+    color: #333;
+    height: 42px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.video-item{
+    width: 50%;
+    float: left;
+    padding: 0 10px;
 }
  </style>

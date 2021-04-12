@@ -192,6 +192,7 @@ Class Product extends MY_Controller{
 				if($vat==''){
 					$vat = 0;
 				}
+				$video_url = $this->input->post('video_url');
 				$show_vat = $this->input->post('show_vat');
 				$thongso = $this->input->post('options_cat');
 				$content = $this->input->post('content');
@@ -238,6 +239,7 @@ Class Product extends MY_Controller{
 					'show_vat'=>$show_vat,
 					'price_other' => $price_other,
 					'options_cat'=>$thongso,
+					'video_url' => $video_url,
 					'content'=>$content,
 					'warranty' => $baohanh,
 					'sort_order'=>$sort_order,
@@ -316,6 +318,7 @@ Class Product extends MY_Controller{
 				}
 				$show_vat = $this->input->post('show_vat');
 				$thongso = $this->input->post('options_cat');
+				$video_url = $this->input->post('video_url');
 				$content = $this->input->post('content');
 				$baohanh = $this->input->post('warranty');
 				$sort_order = $this->input->post('sort_order');	
@@ -349,6 +352,7 @@ Class Product extends MY_Controller{
 					'vat'=>$vat,
 					'show_vat'=>$show_vat,
 					'options_cat'=>$thongso,
+					'video_url' => $video_url,
 					'content'=>$content,
 					'warranty' => $baohanh,
 					'sort_order'=>$sort_order,
