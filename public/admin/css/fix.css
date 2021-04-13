@@ -99,27 +99,3 @@ ul.cat-con-con li{
 .select2-container .select2-selection--single{
 	height: 55px !important; 
 }
-.list_dinh_kem{
-	display: flex;
-}
-.img_att_list{
-	width: 10%;
-	padding: 10px;
-	border: 1px solid #ccc;
-    margin: 10px;
-    position: relative;
-}
-.img_att_list span{
-	cursor: pointer;
-	position: absolute;
-	right: -5px;
-    top: -10px;
-}
-.img_att_list .img_at{
-	width: 100%;
-}
-.btn_multi_upload{
-	padding: 10px;
-    border: 1px solid #ccc;
-    margin: 30px 10px;
-}

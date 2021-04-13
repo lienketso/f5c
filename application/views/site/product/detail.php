@@ -139,14 +139,14 @@
                         </div> -->
                                                         <h3><a href="<?= product_url(slug($row->name),$row->id) ?>"
                                                                 target="_blank"><?= catchuoi($row->name,43); ?></a></h3>
-                                                        <!-- <ul class="list_option">
+                                                        <ul class="list_option">
                                                             <li>Hãng sản xuất :
                                                                 <span><?= $this->manufac_model->getManufacName($row->manufac_id) ?></span>
                                                             </li>
                                                             <li>Xuất xứ : <span><?= $row->model; ?></span></li>
 
                                                             <li>Bảo hành : <span><?= $row->warranty ?> tháng</span></li>
-                                                        </ul> -->
+                                                        </ul>
                                                         <p class="price_tuong_tu">
                                                             <?= ($row->price==0) ? 'Liên hệ' : number_format($row->price).' đ' ?>
                                                         </p>

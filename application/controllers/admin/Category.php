@@ -194,8 +194,7 @@ Class Category extends MY_Controller{
 					'show_home'=>$show_home,
 					'site_title'=>$site_title,
 					'meta_desc'=>$meta_desc,
-					'meta_key'=>$meta_key,
-					'status'=>$status
+					'meta_key'=>$meta_key
 					);
 			//update category
 			$this->category_model->update($category_id, $data);
@@ -217,6 +216,8 @@ Class Category extends MY_Controller{
 		}
 		$this->data['info'] = $info;
 		//kiểm tra xem danh mục có sản phẩm không mới cho xóa
+		$rule = "category_id=".$id;
+		$this->category_meta_model->delete_rule($rule);
 		$this->category_model->deleteOne($id);
 			$this->session->set_flashdata('message','Xóa danh mục thành công ! ');
 			redirect(admin_url('category'));
@@ -244,6 +245,8 @@ Class Category extends MY_Controller{
             redirect(admin_url('category'));
         }
         //thuc hien xoa san pham
+        $rule = "category_id=".$id;
+		$this->category_meta_model->delete_rule($rule);
         $this->category_model->deleteOne($id);
     }
 }//end classs

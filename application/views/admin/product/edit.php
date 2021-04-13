@@ -65,6 +65,10 @@
                         <span id="" class="error mt-2 text-danger" for=""><?php echo form_error('tags'); ?></span>
                     </div>
                     <div class="form-group">
+						<label for="">Video URL</label>
+						<input type="text" name="video_url" value="<?= $info->video_url; ?>" class="form-control" placeholder="Link youtube">					
+					</div>
+                    <div class="form-group">
                         <label for="">Thông số</label>
                         <textarea name="options_cat" class="makeMeRichTextarea" id="metadesc" placeholder="Thông số"
                             onkeyup="keyupMeta()" rows="4"><?= $info->options_cat; ?></textarea>
@@ -103,24 +107,6 @@
                             placeholder="Giá thị trường để so sánh">
                         <span id="" class="error mt-2 text-danger"
                             for=""><?php echo form_error('price_other'); ?></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Danh sách ảnh đính kèm</label>
-                        <input type="hidden" name="productid" id="productid" value="<?= $info->id; ?>">
-                        <div class="list_dinh_kem" id="previewIMG">
-                            <?php if(!empty($imgAttach )): ?>
-                        <?php foreach($imgAttach as $key=>$val): ?>
-                            <div class="img_att_list" id="del<?= $val->id; ?>">
-                                <span class="del_image" data-id="<?= $val->id ?>" data-link="<?= $val->file_name; ?>" data-url="<?= admin_url('product/deleteFile') ?>"><img  src="<?= public_url('admin/images/delete.png') ?>"></span>
-                                <img class="img_at" src="<?= product_link($val->file_name) ?>">
-                            </div>
-                        <?php endforeach; ?>
-                        <?php endif; ?>
-                        </div>
-
-                        <div class="btn_multi_upload">
-                            <input id="files" data-url="<?= admin_url('product/upload_multi') ?>" type="file" multiple="" name="files[]">
-                        </div>
                     </div>
                     <p class="card-description">
                         <code><i class="ti-settings"></i> Cấu hình Seo (Rich Snippet)</code>
@@ -201,7 +187,7 @@
                         <select name="model" class="form-control">
                             <option value="0">--Chọn xuất xứ--</option>
                             <?php foreach($listCountries as $row): ?>
-                            <option value="<?= $row->name; ?>" <?= ($row->name==$info->model) ? 'selected' : '' ?>>
+                            <option value="<?= $row->name; ?>" <?= ($row->name==$info->name) ? 'selected' : '' ?>>
                                 <?= $row->name; ?></option>
                             <?php endforeach; ?>
                         </select>
@@ -227,7 +213,7 @@
                             placeholder="Thẻ alt cho ảnh đại diện">
                     </div>
 
-                    <!-- <div class="form-group">
+                    <div class="form-group">
                         <label>Ảnh đính kèm</label>
                         <div class="input-group col-xs-12">
                             <button type="button" class="form-control" id="addImgList">+ Thêm ảnh</button>
@@ -253,7 +239,7 @@
                         <?php endforeach; ?>
                         <?php endif; ?>
 
-                    </div> -->
+                    </div>
 
 
                 </div>

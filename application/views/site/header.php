@@ -5,7 +5,7 @@
                 <div class="col-md-3 col-sm-3 no-padding-right">
                     <a href="<?= base_url() ?>" class="logo" rel="nofollow">
                         <!-- <img src="https://f5c.vn/upload/public/bf9cec94a52f7beb1d5a66d07d416da4.png" style="  "> -->
-                        <img src="<?= public_url('site') ?>/img/logo-h.png" />
+                        <img src="<?= public_url('site') ?>/img/logof5c.png" />
                     </a>
                 </div>
                 <div class="col-md-9 col-sm-9 no-padding">
@@ -13,20 +13,20 @@
                         <li class="dang-ky"><a href="#" class="lightbox">Đăng ký nhận tin khuyến mãi</a></li>
                         <li class="dich-vu"><a href="<?= base_url('thong-tin/dich-vu-khach-hang/i24.html') ?>">
                                 Dịch vụ khách hàng</a></li>
-                        <li class="so-do"><a href="<?= base_url('sitemap.xml') ?>">Sơ đồ trang web</a></li>
+                        <li class="so-do"><a href="<?= base_url('sitemap.html') ?>">Sơ đồ trang web</a></li>
                     </ul>
 
                     <div class="box_search" style="position:relative">
                         <ul class="nav navbar-nav nav-mega">
                             <li class="dropdown mega-dropdown">
-                                <a href="#" class="dropdown-toggle cathead" data-toggle="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <span class="mega-line-1">
                                         <i class="fa fa-bars" aria-hidden="true"></i>
                                         Danh mục
                                     </span>
-                                    <!-- <span class="mega-line-2">
+                                    <span class="mega-line-2">
                                         <br />sản phẩm <span class="caret"></span>
-                                    </span> -->
+                                    </span>
                                 </a>
                                 <ul class="dropdown-menu mega-dropdown-menu">
                                     <?php if($allCategory && !empty($allCategory)): ?>
@@ -103,7 +103,7 @@
                 <?php if(empty($userLogin)): ?>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img
-                            src="<?= public_url('site/img/user.png') ?>"></a>
+                            src="<?= public_url('site/img/user.png')?>"></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="<?= base_url('user/register.html') ?>">Đăng ký</a></li>
                         <li><a href="<?= base_url('user/login.html') ?>">Đăng nhập</a></li>
@@ -115,7 +115,7 @@
                 <?php endif; ?>
 
                 <li><a href="<?= base_url('gio-hang.html') ?>"><img
-                            src="<?= public_url('site/img/cart.png') ?>"> (<span
+                            src="<?=public_url('site/img/cart.png')?>"> (<span
                             id="countCart"><?= $cart_items; ?></span>) </a></li>
             </ul>
         </div>

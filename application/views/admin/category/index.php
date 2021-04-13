@@ -71,7 +71,6 @@
    			<span class="st-con">
    			<a style="background: cyan;" href="<?= admin_url('category/add/'.$con->id); ?>">Thêm con</a>
    			<a style="background: antiquewhite;" href="<?= admin_url('category/edit/'.$con->id); ?>">Sửa</a>
-        <a style="background: #c00; color: #fff" href="<?= admin_url('category/del/'.$con->id); ?>">Xóa</a>
    			</span>
    			<div class="collapse" id="collapse-<?= $con->id ?>">
   			<div class="body-cat">
@@ -80,8 +79,7 @@
   					<li>
   						<div class="cat-child"><a style="color: #666">--- <?= $concon->name; ?></a></div>
   						<span class="st-con">
-              <a style="background: antiquewhite;" href="<?= admin_url('category/edit/'.$concon->id); ?>">Sửa</a>
-  						<a style="background: #c00; color: #fff" href="<?= admin_url('category/del/'.$concon->id); ?>">Xóa</a>
+  						<a style="background: antiquewhite;" href="<?= admin_url('category/edit/'.$concon->id); ?>">Sửa</a>
   						</span>
   					</li>
   				<?php endforeach; ?>

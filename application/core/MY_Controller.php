@@ -173,7 +173,7 @@ Class MY_Controller extends CI_Controller{
 				}
 				if(!$check){
 					$this->session->set_flashdata('message', 'Bạn không có quyền truy cập, liên hệ admin !');
-					redirect(base_url('admin/home'));
+					redirect(base_url('admin'));
 				}
 			}
 		}

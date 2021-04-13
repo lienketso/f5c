@@ -235,6 +235,26 @@ function rebuild_date( $format, $time = 0 )
         '/December(\W|$)/' => $lang['december'] . "$1" );
     return preg_replace( array_keys( $replaces ), array_values( $replaces ), $return );
 }
+function youtube_id($url = '')
+{
+    if($url==''){
+        return '';
+    }
+    $id = '';
+    
+    $last_index = strrpos($url,"/");
+    if($last_index < strlen($url)){
+        $id = substr($url,$last_index +1);
+    }
+   
+    if(strpos($id,'watch')!==false){
+        $id=   substr( $id,strpos($id,'=')+1) ; 
+    }
+    if(strpos($id,'?')!==false){
+        $id = substr($url,0,(strpos($id,'?')+1));
+    }
+    return $id;
+}
 // function online()
 // {
 //     $rip = $_SERVER['REMOTE_ADDR'];

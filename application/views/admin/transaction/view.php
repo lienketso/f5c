@@ -46,7 +46,7 @@
                                   <?php $product = $this->product_model->get_info($row->product_id); ?>
                                     <tr class="text-right">
                                       <td class="text-left"><?= $i++; ?></td>
-                                      <td class="text-left"><?= (!empty($product)) ? $product->name : 'Đã xóa'; ?></td>
+                                      <td class="text-left"><?= $product->name; ?></td>
                                       <td><?php echo $row->quantity; ?></td>
                                       <td><?= number_format($row->price); ?> đ</td>
                                       <td><?= number_format($row->amount); ?></td>
