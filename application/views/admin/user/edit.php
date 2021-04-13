@@ -36,7 +36,7 @@
 </div>
 
 <?php $admin_main = $this->config->item('root_admin'); ?>  
-<?php if($admin_main == 1): ?>
+<?php if($accoutname->id == $admin_main): ?>
 <div class="form-group">
 	<label for="">Phân quyền tài khoản</label>
 	<select class="form-control" name="type">
