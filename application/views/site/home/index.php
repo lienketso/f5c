@@ -247,9 +247,9 @@
  <section class="row-cdm">
      <div class="container">
          <div class="row">
-             <div class="col-md-9 col-sm-9">
+             <div class="col-md-12 col-sm-12">
                  <div class="row">
-                     <div class="col-md-6 col-sm-6">
+                     <div class="col-md-5 col-sm-5">
                          <div class="panel tin-hot">
                              <div class="panel-heading">
                                  <a style="color:#fff" href="#">Tin Hot </a>
@@ -277,7 +277,7 @@
                              </ul>
                          </div>
                      </div>
-                     <div class="col-md-6 col-sm-6">
+                     <div class="col-md-7 col-sm-7">
                          <div class="panel tin-moi">
                              <div class="panel-heading">
                                  <a style="color:#fff" href="#">Tin Mới</a>

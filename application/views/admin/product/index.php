@@ -38,7 +38,7 @@
                         </div>
                     </div>
 
-                    <div style="float: left; padding-top: 10px">
+                    <div style="float: left;">
                         <button type="submit" class="btn btn-info">Tìm</button>
                         <a href="<?= admin_url('product'); ?>" class="btn btn-secondary">Làm lại</a>
                     </div>
@@ -58,7 +58,7 @@
                                     class="ti-trash"></i> Xóa tùy chọn</button>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-bordered" style="width: 1528px;">
+                            <table class="table table-bordered" style="">
                                 <thead class="filter">
                                     <tr>
                                         <th>
@@ -70,7 +70,6 @@
                                         <th>Giá tiền</th>
                                         <th>VAT</th>
                                         <th>Ẩn hiện VAT</th>
-                                        <th>Ngày sửa</th>
                                         <th>Nổi bật</th>
                                         <th>Ẩn / Hiện</th>
                                         <th>Cấu hình</th>
@@ -82,7 +81,11 @@
                                         <td>
                                             <input type="checkbox" id="" name="id[]" value="<?php echo $row->id ?>">
                                         </td>
-                                        <td><?php echo $row->name; ?><br/><strong style="color: #666">Danh mục : <?= $this->product_model->getCategory($row->cat_id) ?></strong></td>
+                                        <td><?php echo $row->name; ?><br/><strong style="color: #666">Danh mục : <?= $this->product_model->getCategory($row->cat_id) ?></strong><br/>
+                                            <b><?= $row->admin_update?></b><br />
+                                            <span
+                                                style="color: #08c;font-size: 12px;padding-right:20px"><?=date("d-m-Y H:i",$row->last_update)  ?></span>
+                                        </td>
                                         <td class="center"><img src="<?= product_link($row->image_name) ?>" width="70">
                                         </td>
                                         <td>
@@ -92,7 +95,7 @@
                                                 data-url="<?= admin_url('product/update_price') ?>" />
                                         </td>
                                         <td>
-                                            <input id="vat_<?= $row->id ?>" data-vat-old="<?= $row->vat ?>" data-id="<?= $row->id ?>" type="number"
+                                            <input style="width:100px" id="vat_<?= $row->id ?>" data-vat-old="<?= $row->vat ?>" data-id="<?= $row->id ?>" type="number"
                                                 min="0" max="100" placeholder="VAT" value="<?= $row->vat ?>"
                                                 data-url="<?= admin_url('product/update_vat') ?>"
                                                  class="form-control vat" />
@@ -106,14 +109,7 @@
                                                 >
                                                 <?= $row->show_vat==1?'Hiện':'Không'?></a>
                                         </td>
-                                        <td>
 
-                                            <b><?= $row->admin_update?></b><br />
-                                            <span
-                                                style="color: #08c;font-size: 12px;padding-right:20px"><?=date("d-m-Y H:i",$row->last_update)  ?></span>
-
-
-                                        </td>
                                         <td width="120">
                                             <a id="feature_<?=$row->id?>" data-id="<?=$row->id?>"
                                                 class="<?= $row->feature==1?'an_sp':'hien_sp'?> show_hot"
