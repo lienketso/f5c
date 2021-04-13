@@ -17,7 +17,7 @@
             </div>
         </div>
         <?php endif;?>
-		
+        
         <div class="col-md-8 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
@@ -34,7 +34,6 @@
                         <span id="" class="error mt-2 text-danger" for=""><?php echo form_error('name'); ?></span>
                     </div>
                     
-
                     <div class="form-group">
                         <label for="">Giá bán (đ)</label>
                         <input type="text" name="price" value="<?= number_format($info->price); ?>"
@@ -42,8 +41,6 @@
                             placeholder="Giá sử dụng để giao dịch">
                         <span id="" class="error mt-2 text-danger" for=""><?php echo form_error('price'); ?></span>
                     </div>
-
-                    
 
                     <div class="form-group">
                         <label for="">VAT ( Thuế giá trị gia tăng )</label>
@@ -65,9 +62,9 @@
                         <span id="" class="error mt-2 text-danger" for=""><?php echo form_error('tags'); ?></span>
                     </div>
                     <div class="form-group">
-						<label for="">Video URL</label>
-						<input type="text" name="video_url" value="<?= $info->video_url; ?>" class="form-control" placeholder="Link youtube">					
-					</div>
+                        <label for="">Video URL</label>
+                        <input type="text" name="video_url" value="<?= $info->video_url; ?>" class="form-control" placeholder="Link youtube">                   
+                    </div>
                     <div class="form-group">
                         <label for="">Thông số</label>
                         <textarea name="options_cat" class="makeMeRichTextarea" id="metadesc" placeholder="Thông số"
@@ -82,7 +79,6 @@
                         </div>
                     </div>
 
-                    
                     <div class="form-group">
                         <label for="">Phụ kiện kèm theo</label>
                         <select id="slectPK" data-url="<?= admin_url('product/selectpk') ?>"
@@ -107,6 +103,12 @@
                             placeholder="Giá thị trường để so sánh">
                         <span id="" class="error mt-2 text-danger"
                             for=""><?php echo form_error('price_other'); ?></span>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label for="">Thứ tự</label>
+                        <input type="number" name="sort_order" value="<?= $info->sort_order; ?>" class="form-control"
+                            min="0" max="99999" placeholder="Thứ tự ưu tiên">
                     </div>
                     <p class="card-description">
                         <code><i class="ti-settings"></i> Cấu hình Seo (Rich Snippet)</code>
@@ -162,11 +164,7 @@
                         <input type="number" min="1" max="84" name="warranty" value="<?= $info->warranty; ?>"
                             class="form-control" min="0" max="5" placeholder="Nhập số tháng bảo hành">
                     </div>
-                    <div class="form-group">
-                        <label for="">Thứ tự</label>
-                        <input type="number" name="sort_order" value="<?= $info->sort_order; ?>" class="form-control"
-                            min="0" max="99999" placeholder="Thứ tự ưu tiên">
-                    </div>
+                    
 
                     <div class="form-group">
                         <label for="">Thuộc danh mục</label>
@@ -177,7 +175,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Hãng sản xuất</label>
-                        <select name="manufac_id" class="form-control">
+                        <select name="manufac_id" class="form-control js-example-basic-single">
                             <option value="0">--Chọn hãng--</option>
                             <?php $this->manufac_model->optionManufac($info->manufac_id); ?>
                         </select>
@@ -187,7 +185,7 @@
                         <select name="model" class="form-control">
                             <option value="0">--Chọn xuất xứ--</option>
                             <?php foreach($listCountries as $row): ?>
-                            <option value="<?= $row->name; ?>" <?= ($row->name==$info->name) ? 'selected' : '' ?>>
+                            <option value="<?= $row->name; ?>" <?= ($row->name==$info->model) ? 'selected' : '' ?>>
                                 <?= $row->name; ?></option>
                             <?php endforeach; ?>
                         </select>
@@ -207,43 +205,58 @@
                             <img src="" id="imgreview" style="width: 100%; padding-top: 10px">
                         </div>
                     </div>
+                     <div class="form-group">
+                        <label for="">Danh sách ảnh đính kèm</label>
+                        <input type="hidden" name="productid" id="productid" value="<?= $info->id; ?>">
+                        <div class="list_dinh_kem" id="previewIMG">
+                            <?php if(!empty($imgAttach )): ?>
+                        <?php foreach($imgAttach as $key=>$val): ?>
+                            <div class="img_att_list" id="del<?= $val->id; ?>">
+                                <span class="del_image" data-id="<?= $val->id ?>" data-link="upload/public/<?= $val->file_name; ?>" data-url="<?= admin_url('product/deleteFile') ?>"><img  src="<?= public_url('admin/images/delete.png') ?>"></span>
+                                <img class="img_at" src="<?= product_link($val->file_name) ?>">
+                            </div>
+                        <?php endforeach; ?>
+                        <?php endif; ?>
+                        </div>
+
+                        <div class="btn_multi_upload">
+                            <input id="files" data-url="<?= admin_url('product/upload_multi') ?>" type="file" multiple="" name="files[]">
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="">Tiêu đề thẻ Alt</label>
                         <input type="text" name="alt_image" value="<?= $info->alt_image; ?>" class="form-control"
                             placeholder="Thẻ alt cho ảnh đại diện">
                     </div>
 
-                    <div class="form-group">
-                        <label>Ảnh đính kèm</label>
-                        <div class="input-group col-xs-12">
-                            <button type="button" class="form-control" id="addImgList">+ Thêm ảnh</button>
-                        </div>
-                    </div>
-
-                    <div class="listImage" id="listImage">
-                        <?php if(!empty($imgAttach )): ?>
-                        <?php foreach($imgAttach as $key=>$val): ?>
-                        <div class="form-group" id="liste<?= $val->id; ?>">
-                            <label></label>
-                            <div class="input-group col-xs-12">
-                                <input type="text" value="<?= $val->file_name; ?>" name="image_list[]"
-                                    id="e<?= $val->id ?>" class="form-control file-upload-info"
-                                    placeholder="Upload Image">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-primary" id=""
-                                        onclick="browseServerSetting('<?= 'e'.$val->id ?>')" type="button">Chọn</button>
-                                </span>
-                                <button type="button" class="btn-del btn_remove_e" id="<?= $val->id; ?>">X</button>
-                            </div>
-                        </div>
-                        <?php endforeach; ?>
-                        <?php endif; ?>
-
-                    </div>
-
-
                 </div>
             </div>
         </div>
     </div>
 </form>
+<style type="text/css">
+    .list_dinh_kem {
+    display: flex;
+    }
+    .img_att_list {
+    width: 10%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 10px;
+    position: relative;
+    }
+.img_att_list span {
+    cursor: pointer;
+    position: absolute;
+    right: -5px;
+    top: -10px;
+}
+.img_att_list .img_at {
+    width: 100%;
+}
+.btn_multi_upload {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 30px 10px;
+}
+</style>

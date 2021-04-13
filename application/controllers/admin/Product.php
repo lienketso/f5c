@@ -66,12 +66,20 @@ Class Product extends MY_Controller{
 		//kiểm tra xem có lọc sản phẩm không, thêm điều kiện
 		$name = $this->input->get('name');
 		$category_id = $this->input->get('category_id');
+		$vat = $this->input->get('vat');
 		if($name){
 			$input['like'] = array('name', $name);
 		}
 		if($category_id && $category_id!=0){
 			$input['where'] += ['cat_id'=>$category_id];
 		}
+		if($vat!='' && $vat>0){
+			$input['where'] += ['vat>='=>1];
+		}elseif($vat!='' && $vat==0){
+			$input['where'] += ['vat'=>0];
+		}
+
+		$this->data['vat'] = $vat;
 
 		$this->data['name'] = $name;
 		$this->data['category_id'] = $category_id;
@@ -276,6 +284,49 @@ Class Product extends MY_Controller{
 		$this->load->view("admin/main", $this->data);
 	}
 
+	function upload_multi(){
+		$this->load->model('file_model');
+		$productid = $this->input->post('productid');
+		$countfiles = count($_FILES['files']['name']);
+		$upload_location = "upload/public/media/";
+		$files_arr = array();
+		// Loop all files
+		for($index = 0;$index < $countfiles;$index++){
+			if(isset($_FILES['files']['name'][$index]) && $_FILES['files']['name'][$index] != ''){
+				$filename = $_FILES['files']['name'][$index];
+				$ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+				$valid_ext = array("png","jpeg","jpg");
+				if(in_array($ext, $valid_ext)){
+					$path = $upload_location.$filename;
+					if(move_uploaded_file($_FILES['files']['tmp_name'][$index],$path)){
+						$files_arr[] = $filename;
+					}
+				}
+				//insert to file table
+				$data = [
+					'file_name'=>'media/'.$filename,
+					'orig_name'=>$filename,
+					'table'=>'product',
+					'table_id'=>$productid,
+					'created'=>now()
+				];
+				$this->file_model->create($data);
+			}
+		}
+
+		echo json_encode($files_arr);
+		die;
+	}
+	function deleteFile(){
+		$this->load->model('file_model');
+		$img_id = $this->input->post('img_id');
+		$link = $this->input->post('link');
+		if(file_exists($link)){
+			unlink($link);
+		}
+		$this->file_model->deleteOne($img_id);
+		die;
+	}
 
 	function edit(){
 

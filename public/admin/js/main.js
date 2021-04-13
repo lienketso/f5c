@@ -430,7 +430,65 @@ function menuSlug(Title) {
 
     });
 
+          //upload multifile ajax
+    $('#files').change(function(e){
+      let domaim = window.location.protocol+'//'+window.location.hostname+'/upload/public/media/';
+      let admindomain = window.location.protocol+'//'+window.location.hostname+'/admin/';
+      let publicadmin = window.location.protocol+'//'+window.location.hostname+'/public/admin/';
+      let productid = $('#productid').val();
+      e.preventDefault();
+      let _this = $(e.currentTarget);
+      var form_data = new FormData();
+      let url = _this.attr('data-url');
+      // Read selected files
+      var totalfiles = document.getElementById('files').files.length;
+      for (var index = 0; index < totalfiles; index++) {
+      form_data.append("files[]", document.getElementById('files').files[index]);
+      }
+      form_data.append('productid',productid);
+      // AJAX request
+     $.ajax({
+     url: url, 
+     type: 'post',
+     data: form_data,
+     dataType: 'json',
+     contentType: false,
+     processData: false,
+     success: function (response) {
 
-  });
+       for(var index = 0; index < response.length; index++) {
+         var src = response[index];
+         // Add img element in <div id='preview'>
+         $('#previewIMG').append('<div class="img_att_list" id="del'+index+'"><span data-id="'+index+'" data-link="upload/public/media/'+src+'" data-url="'+admindomain+'product/deleteFile" class="del_image"><img src="'+publicadmin+'images/delete.png"></span><img class="img_at" src="'+domaim+src+'"></div>');
+       }
+
+     }
+   });
+
+ });
+
+        //del image ajax
+    $(document).on('click', '.del_image', function(e){  
+       e.preventDefault();
+       let _this = $(e.currentTarget);
+       let url = _this.attr('data-url');
+       let link = _this.attr('data-link');
+       var img_id = _this.attr("data-id"); 
+       if(confirm("Bạn có thực sự muốn xóa [OK]:Yes [Cancel]:No?")){  
+        $('#del'+img_id+'').remove();  
+        }
+        //ajax unlink and remove database
+        $.ajax({
+          url: url,
+          type: 'post',
+          data : {link,img_id},
+          success: function (response) {
+            console.log('success');
+          }
+        });
+
+     });  
+
+  }); //end document
 
   

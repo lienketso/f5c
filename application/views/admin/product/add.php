@@ -126,7 +126,7 @@
 					</div>
 					<div class="form-group">
 						<label for="">Hãng sản xuất</label>
-						<select name="manufac_id" class="form-control">
+						<select name="manufac_id" class="form-control js-example-basic-single">
 							<option value="0">--Chọn hãng--</option>
 							<?php $this->manufac_model->optionManufac(0); ?>
 						</select>
