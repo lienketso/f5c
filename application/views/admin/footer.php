@@ -219,5 +219,18 @@ $('.makeMeRichTextarea').each( function () {
     $('.js-example-basic-multiple').select2();
 });
 </script>
+<script type="text/javascript">
+  document.addEventListener('keydown', handler, true);.
+  $(document).on('keydown', '.js-example-basic-single', function(e) {
+  if (e.originalEvent && e.which == 40) {
+    e.preventDefault();
+    $(this).siblings('select').select2('open');
+  }
+});
+
+$('select').select2({
+  selectOnClose: true
+});
+</script>
 </body>
 </html>

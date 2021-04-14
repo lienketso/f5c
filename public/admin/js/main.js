@@ -432,9 +432,9 @@ function menuSlug(Title) {
 
           //upload multifile ajax
     $('#files').change(function(e){
-      let domaim = window.location.protocol+'//'+window.location.hostname+'/upload/public/media/';
-      let admindomain = window.location.protocol+'//'+window.location.hostname+'/admin/';
-      let publicadmin = window.location.protocol+'//'+window.location.hostname+'/public/admin/';
+      let domaim = window.location.protocol+'//'+window.location.hostname+'/f5c/upload/public/media/';
+      let admindomain = window.location.protocol+'//'+window.location.hostname+'/f5c/admin/';
+      let publicadmin = window.location.protocol+'//'+window.location.hostname+'/f5c/public/admin/';
       let productid = $('#productid').val();
       e.preventDefault();
       let _this = $(e.currentTarget);

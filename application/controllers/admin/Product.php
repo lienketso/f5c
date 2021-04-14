@@ -184,6 +184,7 @@ Class Product extends MY_Controller{
 			// $this->form_validation->set_rules('friendly_url','Tiêu đề','required|min_length[2]');
 			if($this->form_validation->run()){
 				
+
 				$name = $this->input->post('name');
 				$slug = $this->input->post('friendly_url');
 				if($slug==''){
@@ -261,12 +262,13 @@ Class Product extends MY_Controller{
 				$product = $this->product_model->create($data);
 				//add category and product
 				$product_id = $this->db->insert_id();
-				if($image_list && !empty($image_list)){
-					foreach($image_list as $img){
+				$filess = $_FILES['files']['name'];
+				if($filess && !empty($filess)){
+					foreach($filess  as $img){
 						$data_2 = [
 							'table_id'=>$product_id,
-							'table'=>'product-images',
-							'file_name'=>str_replace(base_url('upload/public/'),'',$img),
+							'table'=>'product',
+							'file_name'=>'media/'.$img,
 							'created'=> now()
 						];
 						$this->file_model->create($data_2);
@@ -311,6 +313,30 @@ Class Product extends MY_Controller{
 					'created'=>now()
 				];
 				$this->file_model->create($data);
+			}
+		}
+
+		echo json_encode($files_arr);
+		die;
+	}
+	function add_multi(){
+
+		$countfiles = count($_FILES['files']['name']);
+		$upload_location = "upload/public/media/";
+		$files_arr = array();
+		// Loop all files
+		for($index = 0;$index < $countfiles;$index++){
+			if(isset($_FILES['files']['name'][$index]) && $_FILES['files']['name'][$index] != ''){
+				$filename = $_FILES['files']['name'][$index];
+				$ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+				$valid_ext = array("png","jpeg","jpg");
+				if(in_array($ext, $valid_ext)){
+					$path = $upload_location.$filename;
+					if(move_uploaded_file($_FILES['files']['tmp_name'][$index],$path)){
+						$files_arr[] = $filename;
+					}
+				}
+
 			}
 		}
 

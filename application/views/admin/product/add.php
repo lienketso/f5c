@@ -157,6 +157,17 @@
 					</div>
 
 					<div class="form-group">
+                        <label for="">Danh sách ảnh đính kèm</label>
+                        <div class="list_dinh_kem" id="previewIMG">
+              
+                        </div>
+
+                        <div class="btn_multi_upload">
+                            <input id="files" data-url="<?= admin_url('product/add_multi') ?>" type="file" multiple="" name="files[]">
+                        </div>
+                    </div>
+
+					<!-- <div class="form-group">
 						<label>Ảnh đính kèm</label>
 						<div class="input-group col-xs-12">
 							<button type="button" class="form-control" id="addImgList">+ Thêm ảnh</button>
@@ -165,7 +176,7 @@
 
 					<div class="listImage" id="listImage">
 
-					</div>
+					</div> -->
 
 
 				</div>
@@ -173,3 +184,29 @@
 		</div>
 	</div>
 </form>
+<style type="text/css">
+    .list_dinh_kem {
+    display: flex;
+    }
+    .img_att_list {
+    width: 10%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 10px;
+    position: relative;
+    }
+.img_att_list span {
+    cursor: pointer;
+    position: absolute;
+    right: -5px;
+    top: -10px;
+}
+.img_att_list .img_at {
+    width: 100%;
+}
+.btn_multi_upload {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 30px 10px;
+}
+</style>

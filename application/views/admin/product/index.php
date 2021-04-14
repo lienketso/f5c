@@ -37,6 +37,17 @@
                             </div>
                         </div>
                     </div>
+                    <div style="float: left; padding-right: 15px;">
+                        <div class="control-group">
+                            <div class="controls">
+                                <select name="vat" id="" class="form-control" data-rel="chosen">
+                                    <option value="">--VAT--</option>
+                                    <option value="0" <?= ($vat && $vat==0) ? 'selected' : '' ?> >Full VAT</option>
+                                    <option value="1" <?= ($vat && $vat==1) ? 'selected' : '' ?> >Chưa VAT</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
                     <div style="float: left;">
                         <button type="submit" class="btn btn-info">Tìm</button>
