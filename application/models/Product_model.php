@@ -160,7 +160,7 @@ Class Product_model extends MY_Model{
 	}
 
 	public function get_video_list(){
-		$sql ="SELECT `id`, `video_url`, `name` FROM `product` WHERE `video_url` IS NOT NULL AND `hide` = '0' ORDER BY rand() LIMIT 5";
+		$sql ="SELECT `id`, `video_url`, `name` FROM `product` WHERE `video_url` IS NOT NULL AND  `video_url` <> '' AND `hide` = '0' ORDER BY rand() LIMIT 5";
 		$query = $this->db->query($sql);
 		 $list= $query->result(); 		
 		 return $list;
