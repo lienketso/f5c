@@ -174,8 +174,10 @@ Class Home extends MY_Controller{
 		$input['where'] = ['hide'=>'0'];
 		$input2['where'] = ['hide'=>'0'];
 		if($text_search){
+			$input['group_start']='start';
 			$input['like'] = ['name',$text_search];
 			$input['or_like'] = ['name_no_spaces',$text_search];
+			$input['group_end']='end';
 			$input2['like'] = ['name',$text_search];
 		}
 		if($cat && $cat>0){

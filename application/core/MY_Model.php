@@ -134,12 +134,18 @@ Class MY_Model extends CI_Model{
 		if(isset($input['where_in']) && $input['where_in']){
 			$this->db->where_in($input['where_in'][0],$input['where_in'][1]);
 		}
+		if(isset($input['group_start']) && $input['group_start']){
+			$this->db->group_start();
+		}
 		//thêm điều kiện tìm kiếm theo lệnh like
 		if(isset($input['like']) && $input['like']){
 			$this->db->like($input['like'][0], $input['like'][1],'both');
 		}
 		if(isset($input['or_like']) && $input['or_like']){
 			$this->db->or_like($input['or_like'][0], $input['or_like'][1],'both');
+		}
+		if(isset($input['group_end']) && $input['group_end']){
+			$this->db->group_end();
 		}
 		if(isset($input['limit'][0]) && isset($input['limit'][1])){
 			$this->db->limit($input['limit'][0], $input['limit'][1]);
