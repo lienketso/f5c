@@ -12,10 +12,12 @@ Class MY_Model extends CI_Model{
 	}
 	public function search_product($name){
 		$this->db->where("hide='0'");
+		$this->db->group_start();
 		$this->db->like('name',$name,'both');
 		$this->db->or_like('name_no_spaces',$name,'both');
-		$this->db->limit(5,0);
-		$query = $this->db->get($this->table);
+		$this->db->group_end();
+		$this->db->limit(30,0);
+		$query = $this->db->get($this->table);	
 		return $query->result();
 	}
 	function get_total($input = array()){
