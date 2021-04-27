@@ -66,7 +66,7 @@
       <?php 
           
 
-          $pr['where'] = ['hide'=>'0'];
+          $pr['where'] = ['hide'=>'0','tieubieu'=>1];
           $pr['where_in'] = ['cat_id',$conId];
           
           $pr['limit'] = [8,0];

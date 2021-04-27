@@ -489,6 +489,34 @@ function menuSlug(Title) {
 
      });  
 
+
+     //change sort order
+    $('.sort').on('blur',function(e){
+
+      e.preventDefault();
+      let _this = $(e.currentTarget);
+      let id = _this.attr('data-id');
+      let old = _this.attr('data-sort-old');
+      let new_n = $('#sort_' + id).val();
+      let url = _this.attr('data-url');
+      
+      let sort = $('#sort_' + id).val();
+      if (old != new_n) {
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: {
+            id, sort
+          },
+        })
+        .done(function(res) {
+          $('#sort_' + id).attr('data-sort-old', new_n);
+
+          $.notify("Cập nhật thành công", 'info');
+        });
+      }
+    });
+
   }); //end document
 
   

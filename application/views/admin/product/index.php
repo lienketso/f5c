@@ -26,7 +26,7 @@
                     <div style="float: left; padding-right: 15px;">
                         <div class="control-group">
                             <div class="controls">
-                                <select data-placeholder="Loại nhà đất" name="category_id" id="" class="form-control"
+                                <select data-placeholder="Loại danh mục" name="category_id" id="" class="form-control js-example-basic-single"
                                     data-rel="chosen">
                                     <option value="0">--Danh mục--</option>
                                     <?php foreach($listCategory as $row): ?>
@@ -81,6 +81,7 @@
                                         <th>Giá tiền</th>
                                         <th>VAT</th>
                                         <th>Ẩn hiện VAT</th>
+                                        <th>TT Ưu tiên</th>
                                         <th>Nổi bật</th>
                                         <th>Ẩn / Hiện</th>
                                         <th>Cấu hình</th>
@@ -111,6 +112,7 @@
                                                 data-url="<?= admin_url('product/update_vat') ?>"
                                                  class="form-control vat" />
                                         </td>
+                                        
                                         <td>
                                              <a id="vatStatus_<?=$row->id?>" data-id="<?=$row->id?>"
                                                 class="<?= $row->show_vat==1?'an_sp':'hien_sp'?> vat_status"
@@ -120,7 +122,12 @@
                                                 >
                                                 <?= $row->show_vat==1?'Hiện':'Không'?></a>
                                         </td>
-
+                                        <td>
+                                            <input style="width:100px" id="sort_<?= $row->id ?>" data-sort-old="<?= $row->sort_order ?>" data-id="<?= $row->id ?>" type="number"
+                                                min="0" max="1000" placeholder="Thứ tự" value="<?= $row->sort_order ?>"
+                                                data-url="<?= admin_url('product/update_sort') ?>"
+                                                 class="form-control sort" />
+                                        </td>
                                         <td width="120">
                                             <a id="feature_<?=$row->id?>" data-id="<?=$row->id?>"
                                                 class="<?= $row->feature==1?'an_sp':'hien_sp'?> show_hot"

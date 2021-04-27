@@ -27,7 +27,7 @@
                             <div class="slide-product">
                                 <!-- Place somewhere in the <body> of your page -->
                                 <div id="slider" class="flexslider">
-                                    <ul class="slides image">
+                                    <ul class="slides image no-mobile">
                                         <li class="ex1">
                                             <img id="img_01" src="<?= url_tam($info->image_name); ?>"
                                                 data-zoom-image="<?= url_tam($info->image_name); ?>"
@@ -40,6 +40,23 @@
                                             <img id="img_<?=$a->id?>" src="<?= url_tam($a->file_name); ?>"
                                                 alt="<?= $info->name; ?>"
                                                 data-zoom-image="<?= url_tam($a->file_name); ?>"
+                                                alt="<?= $info->name; ?>" />
+                                        </li>
+                                        <?php endforeach; ?>
+                                        <?php endif; ?>
+
+                                        <!-- items mirrored twice, total of 12 -->
+                                    </ul>
+                                    <ul class="slides image no-desktop">
+                                        <li class="ex1">
+                                            <img id="img_01" src="<?= url_tam($info->image_name); ?>"                                                
+                                                alt="<?= $info->name; ?>" />
+                                        </li>
+                                        <?php if(!empty($listAttach)): ?>
+                                        <?php foreach($listAttach as $a): ?>
+
+                                        <li class="ex1">
+                                            <img id="img_<?=$a->id?>" src="<?= url_tam($a->file_name); ?>"
                                                 alt="<?= $info->name; ?>" />
                                         </li>
                                         <?php endforeach; ?>
@@ -111,21 +128,21 @@
 
                             <div class="buynow-area">
                                 <a href="<?= base_url('cart/add/'.$info->id) ?>" class="buy_now">Mua ngay <span
-                                        class="buy_now_subtext">Giao tận nơi, không mua không sao</span></a>
+                                        class="buy_now_subtext">Giao tận nơi</span></a>
                             </div>
 
                         </div>
 
                         <div class="col-lg-12">
-
+                            <?php if(!empty($listSosanh)): ?>
                             <div class="row">
                                 <div class="col-lg-12" style="padding-bottom: 20px;clear:both">
-                                    <div class="box_sosanh">
-                                        <h4 class="title_sosanh">So sánh với các sản phẩm tương tự</h4>
+                                    <div id="showthem" class="box_sosanh">
+                                        <h4 class="title_sosanh">So sánh với các sản phẩm tương tự <span id="showss">Xem thêm</span></h4>
                                         <div class="row-ss">
                                             <?php foreach($listSosanh as $index => $row): ?>
                                             <!-- <?= ($index+1)%4==0 ? 'border_left':'' ?> -->
-                                            <div class="col-lg-3 border_ok ">
+                                            <div class="col-lg-3 col-xs-6 border_ok ">
                                                 <div class="list_sp_tuong_tu">
                                                     <div class="img_tuong_tu">
                                                         <a href="<?= product_url(slug($row->name),$row->id) ?>"
@@ -139,14 +156,14 @@
                         </div> -->
                                                         <h3><a href="<?= product_url(slug($row->name),$row->id) ?>"
                                                                 target="_blank"><?= catchuoi($row->name,43); ?></a></h3>
-                                                        <ul class="list_option">
+                                                       <!--  <ul class="list_option">
                                                             <li>Hãng sản xuất :
                                                                 <span><?= $this->manufac_model->getManufacName($row->manufac_id) ?></span>
                                                             </li>
                                                             <li>Xuất xứ : <span><?= $row->model; ?></span></li>
 
                                                             <li>Bảo hành : <span><?= $row->warranty ?> tháng</span></li>
-                                                        </ul>
+                                                        </ul> -->
                                                         <p class="price_tuong_tu">
                                                             <?= ($row->price==0) ? 'Liên hệ' : number_format($row->price).' đ' ?>
                                                         </p>
@@ -165,6 +182,7 @@
                                 </div>
 
                             </div>
+                        <?php endif; ?>
                         </div>
 
                         <div class="col-lg-12 margin-mb">
@@ -190,6 +208,14 @@
                                     <div role="tabpanel" class="tab-pane active" id="home">
                                         <div class="thong-tin-sp">
                                             <?= str_replace('{base_url}','https://f5c.vn/',html_entity_decode ($info->content)); ?>
+
+                                            <div class="video_hd" style="text-align: center;">
+                                                 <?php if($info->video_url!=''): ?>
+                 <iframe style="width:100%;min-height:200px" class="yt-iframe lazy-iframe" width="730" height="410"                 
+                     src="https://www.youtube.com/embed/<?= youtube_id($info->video_url) ?>" allow="autoplay; encrypted-media" frameborder="0"
+                     allowfullscreen=""></iframe>
+                     <?php endif;?>
+                                            </div>
                                         </div>
                                     </div>
                                     <div role="tabpanel" class="tab-pane" id="tab">
@@ -346,9 +372,19 @@
                 </div>
 
                 <div class="col-lg-3">
+                    <style type="text/css">
+                        .support-list ul li{
+                            position: relative;
+                        }
+                        .chat_support {
+                            position: absolute;
+                            right: 0;
+                            top: -10px;
+                            }
+                    </style>
                     <div class="support-page">
                         <h3>Hỗ trợ mua hàng</h3>
-                        <?php foreach($GroupSupport as $row): ?>
+                        <?php foreach($GroupSupport as $key=>$row): ?>
                         <?php 
                 $ls['where'] = ['group_id'=>$row->id];
                 $ls['order'] = ['sort_order','asc'];
@@ -361,8 +397,9 @@
                                 <?php foreach($listSP as $item): ?>
                                 <li><a href="tel:<?= $item->phone; ?>">
                                         <img src="<?= public_url('site/img/phone.png') ?>">
-                                        <span><?= $item->phone; ?></span></a> - <a style="font-size: 11px;"
-                                        href="mailto:info@f5pro.vn">info@f5pro.vn</a>
+                                        <span><?= $item->phone; ?></span></a> <a style="font-size: 11px;"
+                                        href="mailto:<?= $item->gmail; ?>"><?= $item->gmail; ?></a>
+                                    <?php if($key!=3): ?>
                                     <div class="chat_support">
                                         <a target="_blank" href="https://zalo.me/<?= trim($item->yahoo) ?>"
                                             title="Click để chat với zalo"><img
@@ -371,6 +408,8 @@
                                             title="Click để chat với messenger"><img
                                                 src="<?= public_url('site/img/fbicon.png') ?>"></a>
                                     </div>
+                                    <?php endif; ?>
+
                                 </li>
                                 <?php endforeach; ?>
                             </ul>
@@ -602,3 +641,28 @@ $(document).on('click', '.vote-comment', function() {
     })
 });
 </script>
+
+<style type="text/css">
+    #showss{
+    font-size: 13px;
+    color: #000;
+    text-transform: none;
+    padding-left: 20px;
+    cursor: pointer;
+    }
+    @media(min-width: 768px){
+        .box_sosanh{
+            height: 394px;
+            overflow: hidden;
+        }
+    }
+    .show_more{
+        height: auto !important;
+        overflow: unset;
+    }
+    @media(max-width: 767px){
+        #showss{
+            display: none;
+        }
+    }
+</style>

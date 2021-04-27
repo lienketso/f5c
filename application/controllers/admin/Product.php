@@ -209,6 +209,9 @@ Class Product extends MY_Controller{
 				$sort_order = $this->input->post('sort_order');	
 				$manufac_id = $this->input->post('manufac_id');	
 				$model = $this->input->post('model');	
+				$hide = $this->input->post('hide');
+				$feature = $this->input->post('feature');
+				$tieubieu = $this->input->post('tieubieu');
 				$image_name = $this->input->post('image_name');	
 				$image_name = str_replace(base_url('upload/public/'),'',$image_name);
 				$site_title = $this->input->post('site_title');	
@@ -235,7 +238,7 @@ Class Product extends MY_Controller{
 					$meta_des = sub($content,200);
 				}
 				//end seo tag
-
+				$user_update = $this->session->userdata('userlogin');
 				$data = array(
 					'name'=> $name,
 					'friendly_url' => $slug,
@@ -250,6 +253,9 @@ Class Product extends MY_Controller{
 					'options_cat'=>$thongso,
 					'video_url' => $video_url,
 					'content'=>$content,
+					'hide'=>$hide,
+					'feature'=>$feature,
+					'tieubieu'=>$tieubieu,
 					'warranty' => $baohanh,
 					'sort_order'=>$sort_order,
 					'site_title'=>$site_title,
@@ -257,6 +263,7 @@ Class Product extends MY_Controller{
 					'meta_desc'=>$meta_desc,
 					'alt_image' => $alt_image,
 					'products'=>$products,
+					'admin_update'=>$user_update->username,
 					'created'=>now()
 				);
 				$product = $this->product_model->create($data);
@@ -401,6 +408,9 @@ Class Product extends MY_Controller{
 				$sort_order = $this->input->post('sort_order');	
 				$manufac_id = $this->input->post('manufac_id');	
 				$model = $this->input->post('model');	
+				$hide = $this->input->post('hide');
+				$feature = $this->input->post('feature');
+				$tieubieu = $this->input->post('tieubieu');
 				$image_name = $this->input->post('image_name');	
 				$image_name = str_replace(base_url('upload/public/'),'',$image_name);
 
@@ -416,7 +426,7 @@ Class Product extends MY_Controller{
 				}else{
 					$products = '';
 				}
-
+				$user_edit = $this->session->userdata('userlogin');
 				$data = array(
 					'name'=> $name,
 					'friendly_url' => $slug,
@@ -431,6 +441,9 @@ Class Product extends MY_Controller{
 					'options_cat'=>$thongso,
 					'video_url' => $video_url,
 					'content'=>$content,
+					'hide'=>$hide,
+					'feature'=>$feature,
+					'tieubieu'=>$tieubieu,
 					'warranty' => $baohanh,
 					'sort_order'=>$sort_order,
 					'site_title'=>$site_title,
@@ -438,6 +451,7 @@ Class Product extends MY_Controller{
 					'meta_desc'=>$meta_desc,
 					'alt_image' => $alt_image,
 					'products'=>$products,
+					'admin_edit'=>$user_edit->username,
 					'last_update'=> now()
 				);
 				$this->product_model->update($id,$data);
@@ -559,6 +573,18 @@ Class Product extends MY_Controller{
 	$data = array(
 		'admin_update'=> $user->username,
 		'vat'=>$vat,
+		'last_update'=> now()
+	);
+	$this->product_model->update($id,$data);
+	die;
+	}
+	function update_sort(){
+	$id=	$this->input->post('id');
+	$sort =  $this->input->post('sort');
+	$user = $this->session->userdata('userlogin');
+	$data = array(
+		'admin_update'=> $user->username,
+		'sort_order'=>$sort,
 		'last_update'=> now()
 	);
 	$this->product_model->update($id,$data);

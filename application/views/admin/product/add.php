@@ -167,6 +167,28 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+						<label for="">Ẩn / Hiện sản phẩm</label>
+						<select name="hide" class="form-control">
+							<option value="0" <?= (set_value('hide')==0) ? 'selected' : '' ?>>Hiện</option>
+							<option value="1" <?= (set_value('hide')==1) ? 'selected' : '' ?>>Ẩn</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="">Nổi bật ( Hiện trên trang chủ)</label>
+						<select name="feature" class="form-control">
+							<option value="0" <?= (set_value('feature')==0) ? 'selected' : '' ?>>Không</option>
+							<option value="1" <?= (set_value('feature')==1) ? 'selected' : '' ?>>Có</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="">Tiêu biểu (hiện trong danh mục)</label>
+						<select name="tieubieu" class="form-control">
+							<option value="0" <?= (set_value('tieubieu')==0) ? 'selected' : '' ?>>Không</option>
+							<option value="1" <?= (set_value('tieubieu')==1) ? 'selected' : '' ?>>Có</option>
+						</select>
+					</div>
+
 					<!-- <div class="form-group">
 						<label>Ảnh đính kèm</label>
 						<div class="input-group col-xs-12">

@@ -229,6 +229,28 @@
                             placeholder="Thẻ alt cho ảnh đại diện">
                     </div>
 
+                    <div class="form-group">
+                        <label for="">Ẩn / Hiện sản phẩm</label>
+                        <select name="hide" class="form-control">
+                            <option value="0" <?= ($info->hide==0) ? 'selected' : '' ?>>Hiện</option>
+                            <option value="1" <?= ($info->hide==1) ? 'selected' : '' ?>>Ẩn</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nổi bật ( Hiện trên trang chủ)</label>
+                        <select name="feature" class="form-control">
+                            <option value="0" <?= ($info->feature==0) ? 'selected' : '' ?>>Không</option>
+                            <option value="1" <?= ($info->feature==1) ? 'selected' : '' ?>>Có</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Tiêu biểu (hiện trong danh mục)</label>
+                        <select name="tieubieu" class="form-control">
+                            <option value="0" <?= ($info->tieubieu==0) ? 'selected' : '' ?>>Không</option>
+                            <option value="1" <?= ($info->tieubieu==1) ? 'selected' : '' ?>>Có</option>
+                        </select>
+                    </div>
+
                 </div>
             </div>
         </div>
