@@ -322,7 +322,7 @@
              <div class="col-md-6">
                  <?php if(count($videos)>0):?>
                  <iframe style="width:100%;min-height:200px" class="yt-iframe lazy-iframe" width="730" height="410"                 
-                     src="<?= $videos[0]->video_url?>" allow="autoplay; encrypted-media" frameborder="0"
+                     src="https://www.youtube.com/embed/<?= youtube_id($videos[0]->video_url)?>" allow="autoplay; encrypted-media" frameborder="0"
                      allowfullscreen=""></iframe>
                      <?php endif;?>
              </div>
