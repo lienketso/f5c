@@ -82,7 +82,7 @@
                      <a>
                      <img src="<?php echo public_url('site/img/comodo_secure_seal.png') ?>" alt="Comodo SSL">
                  </a>
-                     <a rel="nofollow noopener">
+                     <a rel="nofollow noopener" href="https://www.dmca.com/Protection/Status.aspx?ID=46f106a7-1500-40eb-b5ba-5bb88b641e9f" target="_blank">
                      <img  src="<?php echo public_url('site/img/dmca_logo.png')?>" alt="DMCA.com Protection">
                  </a>
                </div>
@@ -222,6 +222,11 @@ $(window).load(function() {
         animationLoop: false,
         slideshow: false,
         sync: "#carouselh"
+    });
+
+    //show so sanh
+    $('#showss').on('click',function(e){
+      $('#showthem').addClass('show_more');
     });
 });
   </script>

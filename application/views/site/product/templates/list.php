@@ -27,7 +27,7 @@
             <div class="col-lg-2 col-xs-4">
                 <div class="item-parent">
                     <a href="<?= category_url($c->friendly_url) ?>">
-                        <img src="<?= url_tam($c->image_name) ?>" alt="<?= $c->name; ?>">
+                        <img src="<?= ($c->image_name!=NULL || !empty($c->image_name)) ? url_tam($c->image_name) : public_url('site/images/no_image.png')  ?>"" alt="<?= $c->name; ?>">
                         <h3><?= $c->name; ?></h3>
                     </a>
                 </div>
@@ -155,7 +155,7 @@
                                 <li>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" data-uri="<?= $friendly_url.'/?manu='.$hang->id ?>"
+                                            <input type="checkbox" class="checkmedi" data-uri="<?= $friendly_url.'/?manu='.$hang->id ?>"
                                                 <?= $manu==$hang->id?"checked":""?>>
                                             <a href="<?= $friendly_url.'/?manu='.$hang->id ?>"> <?= $hang->name; ?>
                                                 (<?= $hang->count?>)</a>
@@ -182,7 +182,7 @@
                                 <li <?=$key>=6?'class="deactive"':''?>>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" data-uri="<?= $friendly_url.'/?loc='.$loc->model ?>"
+                                            <input class="checkmedi" type="checkbox" data-uri="<?= $friendly_url.'/?loc='.$loc->model ?>"
                                                 <?= $current_loc==$loc->model?"checked":""?>>
                                             <a href="<?= $friendly_url.'/?loc='.$loc->model ?>"> <?= $loc->model; ?>
                                                 (<?= $loc->count?>)</a>
@@ -209,7 +209,7 @@
                                 <li >
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox"  <?= $range_id==$ra->id?"checked":""?>>
+                                            <input class="checkmedi" data-uri="<?= $friendly_url.'/?range_id='.$ra->id.'&minp='.$ra->minp .'&maxp='.$ra->maxp ?>" type="checkbox"  <?= $range_id==$ra->id?"checked":""?>>
                                             <a href="<?= $friendly_url.'/?range_id='.$ra->id.'&minp='.$ra->minp .'&maxp='.$ra->maxp ?>"> 
                                             <?= $ra->price_range; ?>
                                                 (<?= $ra->num?>)</a>

@@ -13,20 +13,7 @@
               <span class="menu-title">Menu</span>
             </a>
           </li> -->
-          <li class="nav-item <?= ($urlSec=='news') ? 'active' : '' ?>">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic-post" aria-expanded="false" aria-controls="ui-basic-post">
-              <i class="ti-rss menu-icon"></i>
-              <span class="menu-title">Bài viết</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse <?= ($urlSec=='news') ? 'show' : '' ?>" id="ui-basic-post">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="<?= admin_url('news'); ?>" >Danh sách bài viết</a></li>
-                <li class="nav-item "> <a class="nav-link" href="<?= admin_url('news/add'); ?>">Thêm mới</a></li>
-                <li class="nav-item"> <a class="nav-link" href="<?= admin_url('catnews'); ?>">Danh mục</a></li>
-              </ul>
-            </div>
-          </li>
+          
 
           <li class="nav-item <?= ($urlSec=='product' || $urlSec=='category') ? 'active' : '' ?>">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic-product" aria-expanded="false" aria-controls="ui-basic-product">
@@ -36,8 +23,8 @@
             </a>
             <div class="collapse <?= ($urlSec=='product' || $urlSec=='category') ? 'show' : '' ?>" id="ui-basic-product">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="<?= admin_url('category'); ?>">Danh mục </a></li>
                 <li class="nav-item"> <a class="nav-link" href="<?= admin_url('product'); ?>" >Danh sách sản phẩm</a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?= admin_url('category'); ?>">Danh mục </a></li>
                 <li class="nav-item"> <a class="nav-link" href="<?= admin_url('product/add'); ?>" >Thêm mới</a></li>
                 <li class="nav-item"> <a class="nav-link" href="<?= admin_url('manufac'); ?>" >Hãng sản xuất</a></li>
                 <li class="nav-item"> <a class="nav-link" href="<?= admin_url('countries'); ?>" >Xuất xứ</a></li>
@@ -58,7 +45,20 @@
             </div>
           </li>
 
-          
+          <li class="nav-item <?= ($urlSec=='news') ? 'active' : '' ?>">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic-post" aria-expanded="false" aria-controls="ui-basic-post">
+              <i class="ti-rss menu-icon"></i>
+              <span class="menu-title">Bài viết</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse <?= ($urlSec=='news') ? 'show' : '' ?>" id="ui-basic-post">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="<?= admin_url('news'); ?>" >Danh sách bài viết</a></li>
+                <li class="nav-item "> <a class="nav-link" href="<?= admin_url('news/add'); ?>">Thêm mới</a></li>
+                <li class="nav-item"> <a class="nav-link" href="<?= admin_url('catnews'); ?>">Danh mục</a></li>
+              </ul>
+            </div>
+          </li>
           <li class="nav-item <?= ($urlSec=='page') ? 'active' : '' ?>">
             <a class="nav-link" href="<?= admin_url('page') ?>" aria-expanded="false">
               <i class="mdi mdi-comment-alert menu-icon"></i>

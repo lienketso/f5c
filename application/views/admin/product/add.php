@@ -91,6 +91,10 @@
 						<input type="text" name="price_other" value="<?= set_value('price_other'); ?>" onkeyup="this.value=FormatNumber(this.value);" class="form-control" id=""  placeholder="Giá thị trường để so sánh">
 						<span id="" class="error mt-2 text-danger" for=""><?php echo form_error('price_other'); ?></span>
 					</div>
+					<div class="form-group">
+						<label for="">Thứ tự</label>
+						<input type="number"  name="sort_order" value="<?= set_value('sort_order'); ?>" class="form-control" min="0" max="99999"  placeholder="Thứ tự ưu tiên">
+					</div>
 					<p class="card-description">
 						<code><i class="ti-settings"></i> Cấu hình Seo (Rich Snippet)</code> 
 						<button type="button" id="onset" class="btn btn-primary btn-sm"><i class="ti-eye"></i> Hiện cấu hình</button>
@@ -112,21 +116,20 @@
 						<label for="">Bảo hành ( Tháng )</label>
 						<input type="number" min="1" max="84" name="warranty" value="<?= set_value('warranty'); ?>" class="form-control" min="0" max="5" placeholder="Nhập số tháng bảo hành">
 					</div>
-					<div class="form-group">
-						<label for="">Thứ tự</label>
-						<input type="number"  name="sort_order" value="<?= set_value('sort_order'); ?>" class="form-control" min="0" max="99999"  placeholder="Thứ tự ưu tiên">
-					</div>
+					
 					
 					<div class="form-group">
 						<label for="">Thuộc danh mục</label>
+						<!-- <select name="cat_id" class="form-control js-example-basic-single"> -->
 						<select name="cat_id" class="form-control js-example-basic-single">
-							<option value="0">--Chọn danh mục--</option>
+							<option value="">--Chọn danh mục--</option>
 							<?php $this->category_model->optionCategory(0,1,4,0,0); ?>
 						</select>
+						<span id="" class="error mt-2 text-danger" for=""><?php echo form_error('cat_id'); ?></span>
 					</div>
 					<div class="form-group">
 						<label for="">Hãng sản xuất</label>
-						<select name="manufac_id" class="form-control js-example-basic-single">
+						<select name="manufac_id" class="form-control">
 							<option value="0">--Chọn hãng--</option>
 							<?php $this->manufac_model->optionManufac(0); ?>
 						</select>
@@ -134,7 +137,7 @@
 					<div class="form-group">
 						<label for="">Xuất xứ</label>
 						<select name="model" class="form-control">
-							<option value="0">--Chọn xuất xứ--</option>
+							<option value="">--Chọn xuất xứ--</option>
 							<?php $this->countries_model->optionCountries(0); ?>
 						</select>
 					</div>
@@ -157,17 +160,17 @@
 					</div>
 
 					<div class="form-group">
-                        <label for="">Danh sách ảnh đính kèm</label>
-                        <div class="list_dinh_kem" id="previewIMG">
-              
-                        </div>
+						<label>Ảnh đính kèm</label>
+						<div class="input-group col-xs-12">
+							<button type="button" class="form-control" id="addImgList">+ Thêm ảnh</button>
+						</div>
+					</div>
 
-                        <div class="btn_multi_upload">
-                            <input id="files" data-url="<?= admin_url('product/add_multi') ?>" type="file" multiple="" name="files[]">
-                        </div>
-                    </div>
+					<div class="listImage" id="listImage">
 
-                    <div class="form-group">
+					</div>
+
+					<div class="form-group">
 						<label for="">Ẩn / Hiện sản phẩm</label>
 						<select name="hide" class="form-control">
 							<option value="0" <?= (set_value('hide')==0) ? 'selected' : '' ?>>Hiện</option>
@@ -189,46 +192,9 @@
 						</select>
 					</div>
 
-					<!-- <div class="form-group">
-						<label>Ảnh đính kèm</label>
-						<div class="input-group col-xs-12">
-							<button type="button" class="form-control" id="addImgList">+ Thêm ảnh</button>
-						</div>
-					</div>
-
-					<div class="listImage" id="listImage">
-
-					</div> -->
-
 
 				</div>
 			</div>
 		</div>
 	</div>
 </form>
-<style type="text/css">
-    .list_dinh_kem {
-    display: flex;
-    }
-    .img_att_list {
-    width: 10%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    margin: 10px;
-    position: relative;
-    }
-.img_att_list span {
-    cursor: pointer;
-    position: absolute;
-    right: -5px;
-    top: -10px;
-}
-.img_att_list .img_at {
-    width: 100%;
-}
-.btn_multi_upload {
-    padding: 10px;
-    border: 1px solid #ccc;
-    margin: 30px 10px;
-}
-</style>

@@ -11,8 +11,8 @@
 
 <section class="current-cat-pro">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-9">
+
+      
         <div class="txt_ketqua">
           Kết quả tìm kiếm với từ khóa '<span><?= $text_search; ?></span>' ( <span><?= $numrows; ?></span> sản phẩm )
         </div>
@@ -26,43 +26,11 @@
               </div>
             </div>
           <?php endforeach; ?>
-          <div class="pagination-bx clearfix col-md-12 text-center">
+         
+       </div>
+       <div class="pagination-bx clearfix col-md-12 text-center">
            <?= $this->pagination->create_links(); ?>
          </div>
-       </div>
-     </div>
-     <div class="col-lg-3">
-
-      <div class="box-sidebar">
-       <div class="panel sp-xem-nhieu">
-        <div class="panel-heading">
-          Sản phẩm nhiều lượt xem
-        </div>
-        <ul class="list-group">
-          <?php foreach($listXN as $row): ?>
-          <li class="list-group-item">
-            <div class="item-product">
-              <div class="product-img">
-                <a href="<?= product_url(slug($row->name),$row->id) ?>" title="<?= $row->name; ?>">
-                 <img src="<?= url_tam($row->image_name); ?>" alt="<?= $row->name; ?>">
-               </a>
-             </div>
-             <div class="caption">
-              <a class="name-product" href="<?= product_url(slug($row->name),$row->id) ?>" title="<?= $row->name; ?>"><?= $row->name; ?></a>
-              <div class="price">
-                <span class="amount"><?= ($row->price==0) ? 'Liên hệ' : number_format($row->price).'đ'; ?> </span>
-              </div>
-            </div>
-          </div>
-        </li>
-      <?php endforeach; ?>
-</ul>
-</div>
-
-</div>
-
-</div>
-</div>
 </div>
 </section>
 

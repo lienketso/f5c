@@ -22,7 +22,7 @@
       <div class="col-lg-2 col-xs-4">
         <div class="item-parent">
           <a href="<?= category_url($c->friendly_url) ?>">
-            <img src="<?= url_tam($c->image_name) ?>" alt="<?= $c->name; ?>">
+            <img src="<?= ($c->image_name!=NULL || !empty($c->image_name)) ? url_tam($c->image_name) : public_url('site/images/no_image.png')  ?>" alt="<?= $c->name; ?>">
             <h3><?= $c->name; ?></h3>
           </a>
         </div>

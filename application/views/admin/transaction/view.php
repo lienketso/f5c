@@ -18,7 +18,7 @@
                             <div class="col-lg-4 pr-0">
                               <p class="mt-5 mb-2 text-right"><b>Địa chỉ nhận hàng</b></p>
                               <p class="text-right">
-                                <?= $customer['address']; ?> , <?= $this->district_model->getDistrict($customer['district']) ?> , <?= $this->city_model->getCity($customer['city']) ?>
+                                <?= (empty($customer['address'])) ? 'Chưa rõ' : $customer['address']; ?> , <?= (empty($customer['district'])) ? 'Chưa rõ' : $this->district_model->getDistrict($customer['district']) ?> , <?= (empty($customer['city'])) ? 'Chưa rõ' : $this->city_model->getCity($customer['city']) ?>
                               </p>
                             </div>
                           </div>
@@ -46,7 +46,7 @@
                                   <?php $product = $this->product_model->get_info($row->product_id); ?>
                                     <tr class="text-right">
                                       <td class="text-left"><?= $i++; ?></td>
-                                      <td class="text-left"><?= $product->name; ?></td>
+                                      <td class="text-left"><?= (!empty($product)) ? $product->name : 'Đã xóa'; ?></td>
                                       <td><?php echo $row->quantity; ?></td>
                                       <td><?= number_format($row->price); ?> đ</td>
                                       <td><?= number_format($row->amount); ?></td>

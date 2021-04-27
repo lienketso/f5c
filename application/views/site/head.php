@@ -1,9 +1,9 @@
 <!-- Basic Page Needs
   ================================================== -->
-  <title><?= (isset($title)) ? $title : $this->site_model->getSettingMeta('site_title'); ?></title>
+  <title><?= (isset($og_title)) ? $og_title : $this->site_model->getSettingMeta('site_title'); ?></title>
   
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="title" content="<?= (isset($title)) ? $title : $this->site_model->getSettingMeta('site_title'); ?>" />
+  <meta name="title" content="<?= (isset($og_title)) ? $og_title : $this->site_model->getSettingMeta('site_title'); ?>" />
   <meta name="description" content="<?= (isset($meta_desc)) ? $meta_desc : $this->site_model->getSettingMeta('meta_desc'); ?>" />
   <meta name="keywords" content="<?= (isset($meta_keyword)) ? $meta_keyword : $this->site_model->getSettingMeta('meta_keyword'); ?>" />
   <meta name="robots" content="index, follow" />
@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <!-- CSS - ICO ================================================== -->
-  <link rel="shortcut icon" href="<?= public_url('site/') ?>img/favicon.ico" type="image/x-icon"/>
+  <link rel="shortcut icon" href="<?= base_url() ?>favicon.png" type="image/x-icon"/>
 
 <link rel="stylesheet" href="<?= public_url('site/lib') ?>/css/css.css" type="text/css" />
 <link rel="stylesheet" href="<?= public_url('site') ?>/css/fix.css" type="text/css" />

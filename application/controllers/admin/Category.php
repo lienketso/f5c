@@ -9,11 +9,19 @@ Class Category extends MY_Controller{
 
 		$this->load->library('pagination');
 		$input = array();
-		$input['where'] = array('parent_id'=>0);
+		if($this->input->get('parent')){
+			$input['where'] = ['parent_id'=>$this->input->get('parent')];
+		}else{
+			$input['where'] = array('parent_id'=>0);
+		}
+		//$input['where'] = array('parent_id'=>0);
+
 		$total_row = $this->category_model->get_total($input);
 		$this->data['total_row'] = $total_row;
 		$config = array();
+		if (count($_GET) > 0) $config['suffix'] = '?' . http_build_query($_GET, '', "&");
 		$config['base_url']    = admin_url('category/index');
+		$config['first_url'] = $config['base_url'].'?'.http_build_query($_GET);
 		$config['total_rows']  = $total_row;
 		$config['per_page']    = 20;
 		$config['uri_segment'] = 4;
@@ -127,6 +135,7 @@ Class Category extends MY_Controller{
 				$info = $this->input->post('info');
 				$status = $this->input->post('status');
 				$image_name = $this->input->post('image_name');
+				$image_name = str_replace(base_url('upload/public/'),'',$image_name);
 				//$image_1 = $this->input->post('image_1');
 				$show_home = $this->input->post('show_home');
 				$meta_desc = $this->input->post('meta_desc');
@@ -176,9 +185,10 @@ Class Category extends MY_Controller{
 				$friendly_url = slug($name);
 				}
 				$parent_id = $this->input->post('parent_id');
-				$info = $this->input->post('info');
+				$infos = $this->input->post('info');
 				$status = $this->input->post('status');
 				$image_name = $this->input->post('image_name');
+				$image_name = str_replace(base_url('upload/public/'),'',$image_name);
 				//$image_1 = $this->input->post('image_1');
 				$show_home = $this->input->post('show_home');
 				$meta_desc = $this->input->post('meta_desc');
@@ -188,19 +198,20 @@ Class Category extends MY_Controller{
 					'name'=> $name,
 					'parent_id'=> $parent_id,
 					'friendly_url' => $friendly_url,
-					'info' => $info,
+					'info' => $infos,
 					'sort_order' => intval($sort_order),
 					'image_name'=>$image_name,
 					'show_home'=>$show_home,
 					'site_title'=>$site_title,
 					'meta_desc'=>$meta_desc,
-					'meta_key'=>$meta_key
+					'meta_key'=>$meta_key,
+					'status'=>$status
 					);
 			//update category
 			$this->category_model->update($category_id, $data);
 			$this->session->set_flashdata('message', 'Sửa dữ liệu thành công !');
 			//chuyển sang trang danh sách danh mục
-			redirect(admin_url('category'));
+			redirect(admin_url('category?parent='.$info->parent_id));
 			}
 		}
 		$this->data['temp'] = 'admin/category/edit';
@@ -216,8 +227,6 @@ Class Category extends MY_Controller{
 		}
 		$this->data['info'] = $info;
 		//kiểm tra xem danh mục có sản phẩm không mới cho xóa
-		$rule = "category_id=".$id;
-		$this->category_meta_model->delete_rule($rule);
 		$this->category_model->deleteOne($id);
 			$this->session->set_flashdata('message','Xóa danh mục thành công ! ');
 			redirect(admin_url('category'));
@@ -245,8 +254,6 @@ Class Category extends MY_Controller{
             redirect(admin_url('category'));
         }
         //thuc hien xoa san pham
-        $rule = "category_id=".$id;
-		$this->category_meta_model->delete_rule($rule);
         $this->category_model->deleteOne($id);
     }
 }//end classs

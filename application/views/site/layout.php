@@ -479,7 +479,15 @@
         $('.sticky_compare').hide();
     });
     </script>
-<script lang="javascript">var _vc_data = {id : 10615814, secret : '931afe31ebc900da83965903746e1415'};(function() {var ga = document.createElement('script');ga.type = 'text/javascript';ga.async=true; ga.defer=true;ga.src = '//live.vnpgroup.net/client/tracking.js?id=10615814';var s = document.getElementsByTagName('script');s[0].parentNode.insertBefore(ga, s[0]);})();</script>
+<script lang="javascript">var _vc_data = {id : 5040535, secret : 'fdf53da7cda26d137ff694b5d10d8600'};(function() {var ga = document.createElement('script');ga.type = 'text/javascript';ga.async=true; ga.defer=true;ga.src = '//live.vnpgroup.net/client/tracking.js?id=5040535';var s = document.getElementsByTagName('script');s[0].parentNode.insertBefore(ga, s[0]);})();</script>
+<script type="text/javascript">
+     $('.checkmedi').on('click', function(event) {
+        event.preventDefault();
+        let _this = $(event.currentTarget);
+        let url = _this.attr('data-uri');
+        window.location.href = url;
+     })
+</script>
 </body>
 
 </html>

@@ -159,14 +159,16 @@
  <?php foreach($listCatHome as $row): ?>
  <?php 
   $con['where'] = ['parent_id'=>$row->id,'show_home'=>'1'];
-  $con['limit'] = [5,0];
+  $con['limit'] = [10,0];
+  $con['order'] = ['sort_order','asc'];
   $uid = [$row->id];
 
   $listCon = $this->category_model->get_list($con);
   foreach($listCon as $cc){
     $uid[] += $cc->id;
     $concon['where'] = ['parent_id'=>$cc->id];
-    $concon['limit'] = [5,0];
+    $concon['order'] = ['sort_order','asc'];
+    $concon['limit'] = [10,0];
     $listConcc = $this->category_model->get_list($concon);
     foreach($listConcc as $ccc){
       $uid[] += $ccc->id;
@@ -178,7 +180,7 @@
   //sản phẩm
   $p['where'] = ['hide'=>'0'];
   $p['where_in'] = ['cat_id',$uid];
-  $p['order'] = ['id','desc'];
+  $p['order'] = ['sort_order','desc'];
   $p['limit'] = [8,0];
   $itemProduct = $this->product_model->get_list($p);
   $videos =$this->product_model->get_video_list();

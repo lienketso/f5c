@@ -271,30 +271,30 @@ function menuSlug(Title) {
 
   //select phụ kiện sản phẩm
   $(document).on('keyup', '.select2-search__field', function (e) {
-    e.preventDefault();
-    let _this = $(e.currentTarget);
-    let keyword = $('.select2-search__field').val();
-    let url = $('#slectPK').attr('data-url');
+      e.preventDefault();
+      let _this = $(e.currentTarget);
+      let keyword = $('.select2-search__field').val();
+      let url = $('#slectPK').attr('data-url');
 
-    $.ajax({
-      type: "POST",
-      url: url,
-      data: {
-        keyword
-      },
-    })
-    .done(function(res){
-      let html = res;
-      $('#slectPK').html(res);
-    })
-    .always(function(resp) {
-      setTimeout(() => {
-        $('.loading').css('display', 'none');
-      }, 2000)
-    })
+      $.ajax({
+          type: "POST",
+          url: url,
+          data: {
+            keyword
+          },
+        })
+        .done(function(res){
+          let html = res;
+          $('#slectPK').html(res);
+        })
+        .always(function(resp) {
+          setTimeout(() => {
+            $('.loading').css('display', 'none');
+          }, 2000)
+        })
 //end select
 
-});
+  });
   $(document).ready(function(){
     $(".number").autoNumeric('init',{aPad:false});
     
@@ -303,17 +303,17 @@ function menuSlug(Title) {
       let new_n = $(this).autoNumeric('get');
       let url = $(this).data('url');    
       let id=$(this).attr('id'); 
-      if(old!= new_n){
-        $.post(url,{id:id, price:new_n})
-        .done(function(res){
-          $('input#'+id).attr('data-old-number',new_n);
-
-          $.notify("Cập nhật thành công",'info',{showDuration:20000});
-        });
-      }
+    if(old!= new_n){
+      $.post(url,{id:id, price:new_n})
+      .done(function(res){
+        $('input#'+id).attr('data-old-number',new_n);
+      
+        $.notify("Cập nhật thành công",'info',{showDuration:20000});
+      });
+    }
     });
 
-    //change VAT
+     //change VAT
     $('.vat').on('blur',function(e){
 
       e.preventDefault();
@@ -400,6 +400,7 @@ function menuSlug(Title) {
 
 
     });
+
     //change vat show or hide
     $('.vat_status').on('click',function(e){
       e.preventDefault();
@@ -430,11 +431,11 @@ function menuSlug(Title) {
 
     });
 
-          //upload multifile ajax
+        //upload multifile ajax
     $('#files').change(function(e){
-      let domaim = window.location.protocol+'//'+window.location.hostname+'/f5c/upload/public/media/';
-      let admindomain = window.location.protocol+'//'+window.location.hostname+'/f5c/admin/';
-      let publicadmin = window.location.protocol+'//'+window.location.hostname+'/f5c/public/admin/';
+      let domaim = window.location.protocol+'//'+window.location.hostname+'/upload/public/media/';
+      let admindomain = window.location.protocol+'//'+window.location.hostname+'/admin/';
+      let publicadmin = window.location.protocol+'//'+window.location.hostname+'/public/admin/';
       let productid = $('#productid').val();
       e.preventDefault();
       let _this = $(e.currentTarget);
@@ -489,8 +490,7 @@ function menuSlug(Title) {
 
      });  
 
-
-     //change sort order
+    // change sort order
     $('.sort').on('blur',function(e){
 
       e.preventDefault();
@@ -517,6 +517,4 @@ function menuSlug(Title) {
       }
     });
 
-  }); //end document
-
-  
+  });//end document

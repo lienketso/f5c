@@ -19,9 +19,9 @@
 <div class="card-body text-center">
 <div class="text-danger mb-4">
 <i class="mdi mdi-chart-pie mdi-36px"></i>
-<p class="font-weight-medium mt-2">Hôm nay</p>
+<p class="font-weight-medium mt-2">Đang online</p>
 </div>
-<h1 class="font-weight-light"></h1>
+<h1 class="font-weight-light"><?= online() ?></h1>
 <p class="text-muted mb-0">Truy cập hôm nay</p>
 </div>
 </div>
@@ -31,9 +31,9 @@
 <div class="card-body text-center">
 <div class="text-info mb-4">
 <i class="mdi mdi-car mdi-36px"></i>
-<p class="font-weight-medium mt-2">Hôm qua</p>
+<p class="font-weight-medium mt-2">Hôm nay</p>
 </div>
-<h1 class="font-weight-light"></h1>
+<h1 class="font-weight-light"><?= today() ?></h1>
 <p class="text-muted mb-0">Truy cập hôm qua</p>
 </div>
 </div>
@@ -45,7 +45,7 @@
 <i class="mdi mdi-verified mdi-36px"></i>
 <p class="font-weight-medium mt-2">Tổng</p>
 </div>
-<h1 class="font-weight-light"></h1>
+<h1 class="font-weight-light"><?= totalview() ?></h1>
 <p class="text-muted mb-0">Tổng truy cập</p>
 </div>
 </div>
@@ -73,8 +73,8 @@
 <tr>
 <td><?= $l->name; ?></td>
 <td><?= $l->count_view; ?></td>
-<td><a href="" target="_blank">Xem</a></td>
-<td>chuwa</td>
+<td><a href="<?= product_url(slug($l->name),$l->id) ?>" target="_blank">Xem</a></td>
+<td><?= int_to_date($l->created) ?></td>
 </tr>
 <?php endforeach; ?>
 </tbody>
@@ -101,7 +101,7 @@
 <tr>
 <td><?= $l->title; ?></td>
 <td><?= $l->count_view; ?></td>
-<td><a target="_blank" class="btn btn-primary btn-sm" href="">Xem</a></td>
+<td><a target="_blank" class="btn btn-primary btn-sm" href="<?= news_url(slug($l->title),$l->id); ?>">Xem</a></td>
 </tr>
 <?php endforeach; ?>
 </tbody>

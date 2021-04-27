@@ -95,7 +95,7 @@ Class Support_group extends MY_Controller{
 				$this->support_group_model->update($id,$data);
 				$this->session->set_flashdata('message', 'Sửa dữ liệu thành công !');
 				//chuyển sang trang danh sách danh mục
-				redirect(admin_url('support_order'));
+				redirect(admin_url('support_group'));
 		}
 	}
 		$this->data['temp'] = 'admin/support_group/edit';

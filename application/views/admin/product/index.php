@@ -57,17 +57,36 @@
             </form>
         </div>
         <div class="card-body">
-
+            <style type="text/css">
+                .search_result{
+                    position: relative;
+                }
+                .search_result span{
+                    position: absolute;
+                    top: 10px;
+                }
+            </style>
             <div class="row-fluid sortable">
                 <div class="box span12">
                     <form name="theForm" id="theForm" action="<?= admin_url('product/delete_all') ?>" method="post">
                         <input type="hidden" name="btnOnclick" value="">
+                        <div class="thanhcm">
+                        <?php if($name || $category_id || $vat): ?>   
+                        <div class="search_result">
+                            <span>
+                            Có <strong style="color: #fc7242">( <?= $total_row ?> )</strong> sản phẩm được tìm thấy 
+                            </span>
+                        </div>
+                    <?php endif; ?>
+
                         <div class="" style="text-align: right;padding-bottom: 10px">
                             <a href="<?php echo admin_url('product/add'); ?>" class="btn btn-small btn-success"><i
                                     class="ti-write"></i> Thêm mới</a>
                             <button class="btn btn-small btn-danger" onclick="return xacnhanDelete();"><i
                                     class="ti-trash"></i> Xóa tùy chọn</button>
                         </div>
+                        </div>
+
                         <div class="table-responsive">
                             <table class="table table-bordered" style="">
                                 <thead class="filter">
@@ -93,16 +112,20 @@
                                         <td>
                                             <input type="checkbox" id="" name="id[]" value="<?php echo $row->id ?>">
                                         </td>
-                                        <td><?php echo $row->name; ?><br/><strong style="color: #666">Danh mục : <?= $this->product_model->getCategory($row->cat_id) ?></strong><br/>
-                                            <b><?= $row->admin_update?></b><br />
-                                            <span
-                                                style="color: #08c;font-size: 12px;padding-right:20px"><?=date("d-m-Y H:i",$row->last_update)  ?></span>
+                                        <td><?php echo $row->name; ?><br/><strong style="color: #666">Danh mục : <?= $this->product_model->getCategory($row->cat_id) ?></strong>
+                                            <br/>Tạo : <?= $row->admin_update; ?> : <span
+                                                style="color: #08c;font-size: 12px;padding-right:20px"><?=date("d-m-Y H:i",$row->created)  ?></span><br/>
+                                                <?php if($row->admin_edit!=''): ?>
+                                                Sửa : <b><?= $row->admin_edit ?></b> : <span
+                                                style="color: #08c;font-size: 12px;padding-right:20px"><?=date("d-m-Y H:i",$row->last_update)  ?></span><br />
+
+                                                <?php endif; ?>
                                         </td>
                                         <td class="center"><img src="<?= product_link($row->image_name) ?>" width="70">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control text-right number"
-                                                id="<?= $row->id ?>" value="<?= $row->price ?>"
+                                            <input  type="text" class="form-control text-right number"
+                                                id="<?= $row->id ?>" style="width: 140px;" value="<?= $row->price ?>"
                                                 data-old-number="<?= intval($row->price) ?>"
                                                 data-url="<?= admin_url('product/update_price') ?>" />
                                         </td>
@@ -112,7 +135,6 @@
                                                 data-url="<?= admin_url('product/update_vat') ?>"
                                                  class="form-control vat" />
                                         </td>
-                                        
                                         <td>
                                              <a id="vatStatus_<?=$row->id?>" data-id="<?=$row->id?>"
                                                 class="<?= $row->show_vat==1?'an_sp':'hien_sp'?> vat_status"

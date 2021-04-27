@@ -30,6 +30,21 @@ Class Product extends MY_Controller{
 		if($id){
 			$input['where'] = ['id'=>$id];
 		}
+		//kiểm tra xem có lọc sản phẩm không, thêm điều kiện
+		$name = $this->input->get('name');
+		$category_id = $this->input->get('category_id');
+		$vat = $this->input->get('vat');
+		if($name){
+			$input['like'] = array('name', $name);
+		}
+		if($category_id && $category_id!=0){
+			$input['where'] += ['cat_id'=>$category_id];
+		}
+		if($vat!='' && $vat>0){
+			$input['where'] += ['vat>='=>1];
+		}elseif($vat!='' && $vat==0){
+			$input['where'] += ['vat'=>0];
+		}
 		//lấy ra tổng tất cả các sản phẩm
 		$total_row = $this->product_model->get_total($input);
 		$this->data['total_row'] = $total_row;
@@ -63,21 +78,7 @@ Class Product extends MY_Controller{
 		$segment = $this->uri->segment(4);
 		$segment = intval($segment);
 		$input["limit"] = array($config['per_page'], $segment);
-		//kiểm tra xem có lọc sản phẩm không, thêm điều kiện
-		$name = $this->input->get('name');
-		$category_id = $this->input->get('category_id');
-		$vat = $this->input->get('vat');
-		if($name){
-			$input['like'] = array('name', $name);
-		}
-		if($category_id && $category_id!=0){
-			$input['where'] += ['cat_id'=>$category_id];
-		}
-		if($vat!='' && $vat>0){
-			$input['where'] += ['vat>='=>1];
-		}elseif($vat!='' && $vat==0){
-			$input['where'] += ['vat'=>0];
-		}
+		
 
 		$this->data['vat'] = $vat;
 
@@ -181,10 +182,9 @@ Class Product extends MY_Controller{
 		$input['order'] = array('id','desc');
 		if($this->input->post()){
 			$this->form_validation->set_rules('name','Tiêu đề','required|min_length[2]|callback_check_title');
-			// $this->form_validation->set_rules('friendly_url','Tiêu đề','required|min_length[2]');
+			$this->form_validation->set_rules('cat_id','Danh mục','required');
 			if($this->form_validation->run()){
 				
-
 				$name = $this->input->post('name');
 				$slug = $this->input->post('friendly_url');
 				if($slug==''){
@@ -269,13 +269,12 @@ Class Product extends MY_Controller{
 				$product = $this->product_model->create($data);
 				//add category and product
 				$product_id = $this->db->insert_id();
-				$filess = $_FILES['files']['name'];
-				if($filess && !empty($filess)){
-					foreach($filess  as $img){
+				if($image_list && !empty($image_list)){
+					foreach($image_list as $img){
 						$data_2 = [
 							'table_id'=>$product_id,
-							'table'=>'product',
-							'file_name'=>'media/'.$img,
+							'table'=>'product-images',
+							'file_name'=>str_replace(base_url('upload/public/'),'',$img),
 							'created'=> now()
 						];
 						$this->file_model->create($data_2);
@@ -326,30 +325,6 @@ Class Product extends MY_Controller{
 		echo json_encode($files_arr);
 		die;
 	}
-	function add_multi(){
-
-		$countfiles = count($_FILES['files']['name']);
-		$upload_location = "upload/public/media/";
-		$files_arr = array();
-		// Loop all files
-		for($index = 0;$index < $countfiles;$index++){
-			if(isset($_FILES['files']['name'][$index]) && $_FILES['files']['name'][$index] != ''){
-				$filename = $_FILES['files']['name'][$index];
-				$ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-				$valid_ext = array("png","jpeg","jpg");
-				if(in_array($ext, $valid_ext)){
-					$path = $upload_location.$filename;
-					if(move_uploaded_file($_FILES['files']['tmp_name'][$index],$path)){
-						$files_arr[] = $filename;
-					}
-				}
-
-			}
-		}
-
-		echo json_encode($files_arr);
-		die;
-	}
 	function deleteFile(){
 		$this->load->model('file_model');
 		$img_id = $this->input->post('img_id');
@@ -380,7 +355,7 @@ Class Product extends MY_Controller{
 
 		if($this->input->post()){
 			$this->form_validation->set_rules('name','Tên sản phẩm','required|min_length[4]|callback_check_title');
-			
+			$this->form_validation->set_rules('cat_id','Danh mục','required');
 			if($this->form_validation->run()){
 				//tiến hành thêm vào csdl		
 				$name = $this->input->post('name');	
@@ -456,25 +431,25 @@ Class Product extends MY_Controller{
 				);
 				$this->product_model->update($id,$data);
 				
-				$im['where'] = ['table_id'=>$id];
-				$listImgOld = $this->file_model->get_list($im);
-				if(!empty($listImgOld)){
-					$where = "table_id=".$id;
-					$this->file_model->delete_rule($where);
-				}
-				if($image_list && !empty($image_list)){
-					foreach($image_list as $key=>$val){
-						$idata = [
-							'table_id'=>$id,
-							'file_name'=>str_replace(base_url('upload/public/'),'',$val),
-							'table'=>'product-images',
-							'created'=>now()
+				// $im['where'] = ['table_id'=>$id];
+				// $listImgOld = $this->file_model->get_list($im);
+				// if(!empty($listImgOld)){
+				// 	$where = "table_id=".$id;
+				// 	$this->file_model->delete_rule($where);
+				// }
+				// if($image_list && !empty($image_list)){
+				// 	foreach($image_list as $key=>$val){
+				// 		$idata = [
+				// 			'table_id'=>$id,
+				// 			'file_name'=>str_replace(base_url('upload/public/'),'',$val),
+				// 			'table'=>'product-images',
+				// 			'created'=>now()
 
-						];
-						$this->file_model->create($idata);
-					}
+				// 		];
+				// 		$this->file_model->create($idata);
+				// 	}
 					
-				}
+				// }
 
 				// tạo nội dung thông báo
 				$this->session->set_flashdata('message', 'Sửa dữ liệu thành công !');
@@ -558,9 +533,8 @@ Class Product extends MY_Controller{
 	$user = $this->session->userdata('userlogin');
 	if(empty($vat )){$vat=0;}
 	$data = array(
-		'admin_update'=> $user->username,
+		'admin_edit'=> $user->username,
 		'price'=>$price,
-		'vat'=>$vat,
 		'last_update'=> now()
 	);
 	$this->product_model->update($id,$data);
@@ -571,7 +545,7 @@ Class Product extends MY_Controller{
 	$vat =  $this->input->post('vat');
 	$user = $this->session->userdata('userlogin');
 	$data = array(
-		'admin_update'=> $user->username,
+		'admin_edit'=> $user->username,
 		'vat'=>$vat,
 		'last_update'=> now()
 	);

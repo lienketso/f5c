@@ -150,7 +150,7 @@
 	</div>
 	<div class="form-group">
 		<label for="">Thứ tự</label>
-		<input type="number" name="sort_order" min="1" value="<?= $info->sort_order; ?>" class="form-control" id="" placeholder="Thứ tự hiển thị">
+		<input type="number" name="sort_order" min="0" value="<?= $info->sort_order; ?>" class="form-control" id="" placeholder="Thứ tự hiển thị">
 	</div>
 	<div class="form-group">
 		<label for="">Hiện trang chủ</label>
@@ -168,10 +168,10 @@
 			</span>
 		</div>
 		<div class="col-xs-12">
-			<img src="<?= $info->image_name ?>" id="imgreview" style="width: 100%; padding-top: 10px">
+			<img src="<?= url_tam($info->image_name) ?>" id="imgreview" style="width:100px; padding-top: 10px">
 		</div>
 	</div>
-	<div class="form-group">
+	<!-- <div class="form-group">
 		<label>Ảnh danh mục</label>
 		<div class="input-group col-xs-12">
 			<input type="text" value="<?= set_value('image_1'); ?>" name="image_1" id="Imagecat" class="form-control file-upload-info" placeholder="Upload Image">
@@ -179,7 +179,7 @@
 				<button class="file-upload-browse btn btn-primary" id="" onclick="browseServerSetting('Imagecat')" type="button">Chọn ảnh</button>
 			</span>
 		</div>
-	</div>
+	</div> -->
 	<div class="form-group">
 		<label for="exampleFormControlSelect3">Trạng thái</label>
 		<select name="status" class="form-control form-control-sm" id="exampleFormControlSelect4">

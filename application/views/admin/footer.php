@@ -49,6 +49,7 @@
 //     filebrowserWindowWidth : '1000',
 //     filebrowserWindowHeight: '700'
 // } );
+$(window).on('load', function (){
 $('.makeMeRichTextarea').each( function () {
    var editor = CKEDITOR.replace( this.id, {
     filebrowserBrowseUrl: nvcms_url+'/ckfinder/ckfinder.html',
@@ -60,6 +61,7 @@ $('.makeMeRichTextarea').each( function () {
     filebrowserWindowHeight: '700'
 });
      //CKFinder.SetupFCKeditor( editor, '../' );
+  });
   });
 </script>
 <script type="text/javascript">
@@ -217,19 +219,6 @@ $('.makeMeRichTextarea').each( function () {
     $(".js-example-basic-single").select2();
   }
     $('.js-example-basic-multiple').select2();
-});
-</script>
-<script type="text/javascript">
-  document.addEventListener('keydown', handler, true);.
-  $(document).on('keydown', '.js-example-basic-single', function(e) {
-  if (e.originalEvent && e.which == 40) {
-    e.preventDefault();
-    $(this).siblings('select').select2('open');
-  }
-});
-
-$('select').select2({
-  selectOnClose: true
 });
 </script>
 </body>

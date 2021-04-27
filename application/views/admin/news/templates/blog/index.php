@@ -64,7 +64,7 @@
 <td><?php echo $row->title ?></td>
 <td class="center">
 <?php if($row->image_name!=''): ?>
-<img src="<?= $row->image_name; ?>" width="70">
+<img src="<?= url_tam($row->image_name); ?>" width="70">
 <?php else: ?>
 <img src="<?= public_url('site/img/noimage.png'); ?>" width="70">
 <?php endif; ?>

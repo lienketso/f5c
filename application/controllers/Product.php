@@ -78,7 +78,7 @@ Class Product extends MY_Controller{
 		$sort_order = 'asc';
 		$sort_order = $this->input->get('sort_order');
 		$input = array();
-		$input['where'] = ['hide'=>'0'];
+		$input['where'] = ['hide'=>0];
 		//lấy ra danh sách sản phẩm trong danh mục
 		$this->data['sort_order'] = $sort_order;
 		
@@ -89,12 +89,12 @@ Class Product extends MY_Controller{
 			foreach($chill as $d){
 				$ids[] += $d->id;
 			}
-			$input['where'] = ['hide'=>0];
+			$input['where'] = ['hide'=>'0'];
 			$input['where_in'] = ['cat_id',$ids];
 			$locamanu = $this->product_model->getLocationManu($input['where_in'],false);
 			$range = $this->product_model->price_range($input,false);
 		}else{
-			$input['where'] = ['cat_id'=>$category->id];
+			$input['where'] = ['cat_id'=>$category->id,'hide'=>'0'];
 			$locamanu = $this->product_model->getLocationManu($input['where'],true);
 			$range = $this->product_model->price_range($input,true);
 		}		
@@ -126,7 +126,7 @@ Class Product extends MY_Controller{
 		$this->data['total_row'] = $total_row;
 		$this->load->library('pagination');
 		$config = array();
-		$config['page_query_string'] = true;
+		// $config['page_query_string'] = true;
 		$config['reuse_query_string'] = true;
 		$config['base_url'] = $base_url;
 		$config['total_rows']  = $total_row;
@@ -158,6 +158,8 @@ Class Product extends MY_Controller{
 		$this->pagination->initialize($config);
 		if($sort_order){
 			$input['order'] = ['price',$sort_order];
+		}else{
+			$input['order'] = ['sort_order','desc'];
 		}
 		$input["limit"] = array($config['per_page'], $segment);
 		//$listMulti = $this->product_category_model->get_list($input);

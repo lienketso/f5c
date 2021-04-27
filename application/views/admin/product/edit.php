@@ -17,7 +17,7 @@
             </div>
         </div>
         <?php endif;?>
-        
+		
         <div class="col-md-8 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
@@ -34,6 +34,7 @@
                         <span id="" class="error mt-2 text-danger" for=""><?php echo form_error('name'); ?></span>
                     </div>
                     
+
                     <div class="form-group">
                         <label for="">Giá bán (đ)</label>
                         <input type="text" name="price" value="<?= number_format($info->price); ?>"
@@ -41,6 +42,8 @@
                             placeholder="Giá sử dụng để giao dịch">
                         <span id="" class="error mt-2 text-danger" for=""><?php echo form_error('price'); ?></span>
                     </div>
+
+                    
 
                     <div class="form-group">
                         <label for="">VAT ( Thuế giá trị gia tăng )</label>
@@ -79,6 +82,7 @@
                         </div>
                     </div>
 
+                    
                     <div class="form-group">
                         <label for="">Phụ kiện kèm theo</label>
                         <select id="slectPK" data-url="<?= admin_url('product/selectpk') ?>"
@@ -104,7 +108,7 @@
                         <span id="" class="error mt-2 text-danger"
                             for=""><?php echo form_error('price_other'); ?></span>
                     </div>
-                   
+                    
                     <div class="form-group">
                         <label for="">Thứ tự</label>
                         <input type="number" name="sort_order" value="<?= $info->sort_order; ?>" class="form-control"
@@ -169,13 +173,15 @@
                     <div class="form-group">
                         <label for="">Thuộc danh mục</label>
                         <select name="cat_id" class="form-control js-example-basic-single">
-                            <option value="0">--Chọn danh mục--</option>
+                            <option value="">--Chọn danh mục--</option>
                             <?php $this->category_model->optionCategory(0,1,4,$info->cat_id,0); ?>
                         </select>
+                        <span id="" class="error mt-2 text-danger"
+                            for=""><?php echo form_error('cat_id'); ?></span>
                     </div>
                     <div class="form-group">
                         <label for="">Hãng sản xuất</label>
-                        <select name="manufac_id" class="form-control js-example-basic-single">
+                        <select name="manufac_id" class="form-control">
                             <option value="0">--Chọn hãng--</option>
                             <?php $this->manufac_model->optionManufac($info->manufac_id); ?>
                         </select>
@@ -183,7 +189,7 @@
                     <div class="form-group">
                         <label for="">Xuất xứ</label>
                         <select name="model" class="form-control">
-                            <option value="0">--Chọn xuất xứ--</option>
+                            <option value="">--Chọn xuất xứ--</option>
                             <?php foreach($listCountries as $row): ?>
                             <option value="<?= $row->name; ?>" <?= ($row->name==$info->model) ? 'selected' : '' ?>>
                                 <?= $row->name; ?></option>
@@ -202,11 +208,11 @@
                             </span>
                         </div>
                         <div class="col-xs-12">
-                            <img src="" id="imgreview" style="width: 100%; padding-top: 10px">
+                            <img src="<?= product_link($info->image_name); ?>" id="imgreview" style="width: 30%; padding-top: 10px">
                         </div>
                     </div>
-                     <div class="form-group">
-                        <label for="">Danh sách ảnh đính kèm</label>
+                    <div class="form-group">
+                        <label for="">Danh sách ảnh đính kèm (Tên ảnh không chứa khoảng cách, chữ cái tiếng việt, các ký tự đặc biệt '/.{}[]\%#$!*^')</label>
                         <input type="hidden" name="productid" id="productid" value="<?= $info->id; ?>">
                         <div class="list_dinh_kem" id="previewIMG">
                             <?php if(!empty($imgAttach )): ?>
@@ -251,34 +257,9 @@
                         </select>
                     </div>
 
+
                 </div>
             </div>
         </div>
     </div>
 </form>
-<style type="text/css">
-    .list_dinh_kem {
-    display: flex;
-    }
-    .img_att_list {
-    width: 10%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    margin: 10px;
-    position: relative;
-    }
-.img_att_list span {
-    cursor: pointer;
-    position: absolute;
-    right: -5px;
-    top: -10px;
-}
-.img_att_list .img_at {
-    width: 100%;
-}
-.btn_multi_upload {
-    padding: 10px;
-    border: 1px solid #ccc;
-    margin: 30px 10px;
-}
-</style>
