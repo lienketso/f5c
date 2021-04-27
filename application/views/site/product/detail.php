@@ -27,7 +27,7 @@
                             <div class="slide-product">
                                 <!-- Place somewhere in the <body> of your page -->
                                 <div id="slider" class="flexslider">
-                                    <ul class="slides image">
+                                    <ul class="slides image no-mobile">
                                         <li class="ex1">
                                             <img id="img_01" src="<?= url_tam($info->image_name); ?>"
                                                 data-zoom-image="<?= url_tam($info->image_name); ?>"
@@ -40,6 +40,23 @@
                                             <img id="img_<?=$a->id?>" src="<?= url_tam($a->file_name); ?>"
                                                 alt="<?= $info->name; ?>"
                                                 data-zoom-image="<?= url_tam($a->file_name); ?>"
+                                                alt="<?= $info->name; ?>" />
+                                        </li>
+                                        <?php endforeach; ?>
+                                        <?php endif; ?>
+
+                                        <!-- items mirrored twice, total of 12 -->
+                                    </ul>
+                                    <ul class="slides image no-desktop">
+                                        <li class="ex1">
+                                            <img id="img_01" src="<?= url_tam($info->image_name); ?>"                                                
+                                                alt="<?= $info->name; ?>" />
+                                        </li>
+                                        <?php if(!empty($listAttach)): ?>
+                                        <?php foreach($listAttach as $a): ?>
+
+                                        <li class="ex1">
+                                            <img id="img_<?=$a->id?>" src="<?= url_tam($a->file_name); ?>"
                                                 alt="<?= $info->name; ?>" />
                                         </li>
                                         <?php endforeach; ?>
