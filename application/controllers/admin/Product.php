@@ -232,6 +232,7 @@ Class Product extends MY_Controller{
 				$meta_key = $this->input->post('meta_key');	
 				$meta_desc = $this->input->post('meta_desc');	
 				$alt_image = $this->input->post('alt_image');
+				$sale = $this->input->post('sale');
 
 				//load thư viện uploads ảnh
 				$this->load->library('upload_library');
@@ -283,6 +284,7 @@ Class Product extends MY_Controller{
 					'meta_key'=>$meta_key,
 					'meta_desc'=>$meta_desc,
 					'alt_image' => $alt_image,
+					'sale'=>$sale,
 					'products'=>$products,
 					'admin_update'=>$user_update->username,
 					'created'=>now()
@@ -415,7 +417,7 @@ Class Product extends MY_Controller{
 				$meta_key = $this->input->post('meta_key');	
 				$meta_desc = $this->input->post('meta_desc');	
 				$alt_image = $this->input->post('alt_image');
-
+				$sale = $this->input->post('sale');
 				$image_list = $this->input->post('image_list');
 				$products = $this->input->post('products[]');
 				if($products){
@@ -447,6 +449,7 @@ Class Product extends MY_Controller{
 					'meta_key'=>$meta_key,
 					'meta_desc'=>$meta_desc,
 					'alt_image' => $alt_image,
+					'sale'=>$sale,
 					'products'=>$products,
 					'admin_edit'=>$user_edit->username,
 					'last_update'=> now()

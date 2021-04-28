@@ -131,15 +131,34 @@
                                         class="buy_now_subtext">Giao tận nơi</span></a>
                             </div>
 
+                            <?php if($info->sale!=''): ?>
                             <div class="info_more">
-                                <?= $this->site_model->getSettingMeta('site_book_button'); ?>
+                                <span><img src="<?= public_url('site/img/gift.png') ?>"> Quà tặng</span>
+                                <?= $info->sale; ?>
                             </div>
+                            <?php endif; ?>
+
                             <style type="text/css">
                                 .info_more{
                                     margin-top: 70px;
-                                    border: 2px solid #F58634;
-                                    padding: 10px;
+                                    border: 1px solid #ccc;
+                                    padding: 15px 10px;
                                     border-radius: 5px;
+                                    position: relative;
+                                }
+                                .info_more span{
+                                    position: absolute;
+                                    top: -10px;
+                                    background: #fff;
+                                    padding: 0 10px;
+                                    text-transform: uppercase;
+                                    font-weight: bold;
+                                    color: red;
+                                }
+                                .info_more span img{
+                                    width:17px;
+                                    position: relative;
+                                    top: -3px;
                                 }
                                 .info_more p{
                                     margin-bottom: 0;

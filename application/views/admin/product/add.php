@@ -197,6 +197,10 @@
 							<option value="1" <?= (set_value('tieubieu')==1) ? 'selected' : '' ?>>Có</option>
 						</select>
 					</div>
+					<div class="form-group">
+                     <label for="">Quà tặng</label>
+                      <textarea name="sale" placeholder="Note các quà tặng" class="form-control" id="" rows="8"></textarea>
+                     </div>
 
 
 				</div>

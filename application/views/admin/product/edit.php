@@ -256,6 +256,10 @@
                             <option value="1" <?= ($info->tieubieu==1) ? 'selected' : '' ?>>Có</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                     <label for="">Quà tặng</label>
+                      <textarea name="sale" placeholder="Note các quà tặng" class="form-control" id="" rows="8"><?= $info->sale; ?></textarea>
+                     </div>
 
 
                 </div>
