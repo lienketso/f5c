@@ -233,7 +233,14 @@ Class Product extends MY_Controller{
 				$meta_desc = $this->input->post('meta_desc');	
 				$alt_image = $this->input->post('alt_image');
 
+				//load thư viện uploads ảnh
+				$this->load->library('upload_library');
 				$image_list = $this->input->post('image_list');
+				//uploads nhiều ảnh kèm theo
+				$upload_path = 'upload/public/media';
+				$image_list = array();
+				$image_list = $this->upload_library->upload_file($upload_path, 'image_list');
+				
 				//phụ kiện kèm theo
 				$products = $this->input->post('products[]');
 				if($products){
@@ -288,7 +295,7 @@ Class Product extends MY_Controller{
 						$data_2 = [
 							'table_id'=>$product_id,
 							'table'=>'product-images',
-							'file_name'=>str_replace(base_url('upload/public/'),'',$img),
+							'file_name'=>'media/'.$img,
 							'created'=> now()
 						];
 						$this->file_model->create($data_2);
@@ -316,17 +323,18 @@ Class Product extends MY_Controller{
 		for($index = 0;$index < $countfiles;$index++){
 			if(isset($_FILES['files']['name'][$index]) && $_FILES['files']['name'][$index] != ''){
 				$filename = $_FILES['files']['name'][$index];
+				$newfilename= date('dmYHis-').str_replace(" ", "", $filename);
 				$ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 				$valid_ext = array("png","jpeg","jpg");
 				if(in_array($ext, $valid_ext)){
-					$path = $upload_location.$filename;
+					$path = $upload_location.$newfilename;
 					if(move_uploaded_file($_FILES['files']['tmp_name'][$index],$path)){
-						$files_arr[] = $filename;
+						$files_arr[] = $newfilename;
 					}
 				}
 				//insert to file table
 				$data = [
-					'file_name'=>'media/'.$filename,
+					'file_name'=>'media/'.$newfilename,
 					'orig_name'=>$filename,
 					'table'=>'product',
 					'table_id'=>$productid,

@@ -159,7 +159,7 @@
 						<input type="text" name="alt_image" value="<?= set_value('alt_image'); ?>" class="form-control"  placeholder="Thẻ alt cho ảnh đại diện">
 					</div>
 
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label>Ảnh đính kèm</label>
 						<div class="input-group col-xs-12">
 							<button type="button" class="form-control" id="addImgList">+ Thêm ảnh</button>
@@ -168,7 +168,13 @@
 
 					<div class="listImage" id="listImage">
 
-					</div>
+					</div> -->
+					<div class="form-group">
+							  <label class="control-label" for="">Ảnh kèm theo</label>
+							  <div class="controls">
+						<input class="form-control" id="image_list" type="file" multiple="" name="image_list[]">
+							  </div>
+							</div>
 
 					<div class="form-group">
 						<label for="">Ẩn / Hiện sản phẩm</label>

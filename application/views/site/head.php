@@ -49,3 +49,8 @@
 </script>
 <!--End raty -->
 <!-- Java Script ================================================== -->
+
+<!-- mã google analytic -->
+<?= $this->site_model->getSettingMeta('site_analytic'); ?>
+<!-- mã google facebook pixel -->
+<?= $this->site_model->getSettingMeta('site_pixel'); ?>

@@ -76,6 +76,9 @@
                
 
                <div class="col-md-12 text-center">
+                <div class="hitstat">
+                <div id="histats_counter"></div>
+              </div>
                <a href="http://online.gov.vn/Home/WebDetails/19131" rel="noopener nofollow" target="_blank" title="THÔNG TIN WEBSITE THƯƠNG MẠI ĐIỆN TỬ">
                      <img  src="<?php echo public_url('site/img/bo-cong-thuong.png') ?>" alt="Bộ công thương">
                  </a>
@@ -108,6 +111,18 @@
 -->
 
   <style>
+  @media(min-width: 768px){
+    .hitstat{
+      position: absolute;
+      left: 145px;
+      top: 20px;
+    }
+  }
+  @media(max-width: 767px){
+    .hitstat{
+      padding: 10px 0;
+    }
+  }
 .modal-body p.title {
     color: #f8941d;
     font-size: 22px;

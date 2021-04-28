@@ -489,6 +489,10 @@
         window.location.href = url;
      })
 </script>
+
+<!-- Mã đo lường hitstat -->
+<?= $this->site_model->getSettingMeta('site_hitstat'); ?>
+
 </body>
 
 </html>

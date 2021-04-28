@@ -78,18 +78,7 @@
 						<input type="text" name="copyright" value="<?= $this->site_model->getSettingMeta('copyright'); ?>" class="form-control" id="">
 					</div>
 
-					<div class="form-group">
-						<label for="">Mã Google Analytic</label>	
-						<div id="">
-							<textarea rows="4" name="site_analytic" class="form-control" id=""><?= $this->site_model->getSettingMeta('site_analytic'); ?></textarea>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="">Mã Pixel</label>	
-						<div id="">
-							<textarea rows="4" name="site_pixel" class="form-control" id=""><?= $this->site_model->getSettingMeta('site_pixel'); ?></textarea>
-						</div>
-					</div>
+					
 					<p class="card-description">
 						<code><i class="ti-settings"></i> Cấu hình Seo (Rich Snippet)</code> 
 						<button type="button" id="onset" class="btn btn-primary btn-sm"><i class="ti-eye"></i> Hiện cấu hình</button>
@@ -221,6 +210,22 @@
 						</div>
 						<div class="col-xs-12">
 							<img src="<?= $this->site_model->getSettingMeta('logo_footer'); ?>" id="imgreview2" style="width: 100%; padding-top: 10px">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="">Nhúng mã đo lường xem truy cập ( Hitstat.com )</label>
+						<textarea name="site_hitstat" class="form-control meta-desc" id="" placeholder="Thẻ mô tả website trên facebook" rows="12"><?= $this->site_model->getSettingMeta('site_hitstat'); ?></textarea>
+					</div>
+					<div class="form-group">
+						<label for="">Mã Google Analytic</label>	
+						<div id="">
+							<textarea rows="4" name="site_analytic" class="form-control" id=""><?= $this->site_model->getSettingMeta('site_analytic'); ?></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="">Mã Pixel</label>	
+						<div id="">
+							<textarea rows="4" name="site_pixel" class="form-control" id=""><?= $this->site_model->getSettingMeta('site_pixel'); ?></textarea>
 						</div>
 					</div>
 				</div>
