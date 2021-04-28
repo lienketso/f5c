@@ -50,7 +50,7 @@ Class Upload_library{
   function config($upload_path =''){
           // $this->CI->load->helper('common');
           // $new_name = slug().$_FILES["userfiles"]['name'];
-          // $config = array();
+          $config = array();
           // $config['file_name'] = $new_name;
          //thuc mục chứa file
          $config['remove_spaces'] = TRUE;
