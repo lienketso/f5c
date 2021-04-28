@@ -30,6 +30,52 @@ function manufac_url($slug,$id,$catid){
   return base_url($slug.'-m'.$id.'-'.$catid.'.html');
 }
 
+function gen_url($uri, $param='', $request = ''){
+    $url = $uri.'/';  
+    if($request==''){ 
+        return $url.'?'. $param;       
+    }
+    
+    $query= '';
+    if($param!=''){     
+        $query= explode('=',$param)[0];
+    }   
+   $current= ''; 
+        $arr = explode('&',$request);
+            foreach( $arr as  $key=> $item){
+                if(strpos($item,$query)===false){
+                    $current =$current.'&'. $item;
+                }  
+               
+            }
+
+            $sub = substr($current, 1);
+            $current = '?'.  $sub;
+            $url = $url. $current.'&'.$param;
+    
+    return  $url;
+}
+function rollback_url($uri, $exclude='', $request = ''){
+    $url = $uri.'/';
+    if($request!=''){
+        $current= ''; 
+        $arr = explode('&',$request);
+            foreach( $arr as  $key=> $item){
+                if(strpos($item,$exclude)===false){
+                    $current =$current.'&'. $item;
+                }  
+               
+            }
+
+            if($current!=''){
+                $sub = substr($current, 1);
+                $current = '?'.$sub;
+                $url = $url.$current;
+            }           
+    }  
+    return  $url; 
+}
+
 function pre($param=''){
     echo "<pre>";
     print_r($param);

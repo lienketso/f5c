@@ -155,10 +155,14 @@
                                 <li>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" class="checkmedi" data-uri="<?= $friendly_url.'/?manu='.$hang->id ?>"
+                                            <input type="checkbox" class="checkmedi" id="<?=$hang->id.'manu'?>"
+                                            data-uri="<?= gen_url($friendly_url,'manu='.$hang->id, $_SERVER['QUERY_STRING'])?>"
+                                            data-rollback="<?= rollback_url($friendly_url,'manu', $_SERVER['QUERY_STRING'])?>"
                                                 <?= $manu==$hang->id?"checked":""?>>
-                                            <a href="<?= $friendly_url.'/?manu='.$hang->id ?>"> <?= $hang->name; ?>
-                                                (<?= $hang->count?>)</a>
+                                                <label class="form-check-label" for="<?=$hang->id.'manu'?>">
+                                                <?= $hang->name; ?>
+                                                <!-- (<?= $hang->count?>) -->
+                                                </label>
                                         </label>
                                     </div>
                                 </li>
@@ -182,10 +186,15 @@
                                 <li <?=$key>=6?'class="deactive"':''?>>
                                     <div class="checkbox">
                                         <label>
-                                            <input class="checkmedi" type="checkbox" data-uri="<?= $friendly_url.'/?loc='.$loc->model ?>"
+                                            <input class="checkmedi" type="checkbox" id="<?=$key.'loc'?>"
+                                            data-uri="<?= gen_url($friendly_url,'loc='.$loc->model, $_SERVER['QUERY_STRING'])  ?>"
+                                            data-rollback="<?= rollback_url($friendly_url,'loc', $_SERVER['QUERY_STRING'])?>"
                                                 <?= $current_loc==$loc->model?"checked":""?>>
-                                            <a href="<?= $friendly_url.'/?loc='.$loc->model ?>"> <?= $loc->model; ?>
-                                                (<?= $loc->count?>)</a>
+                                                <label class="form-check-label" for="<?=$key.'loc'?>"> 
+                                                <?= $loc->model; ?>
+                                                <!-- (<?= $loc->count?>) -->
+                                                </label>
+                                          
                                         </label>
                                     </div>
                                 </li>
@@ -209,10 +218,14 @@
                                 <li >
                                     <div class="checkbox">
                                         <label>
-                                            <input class="checkmedi" data-uri="<?= $friendly_url.'/?range_id='.$ra->id.'&minp='.$ra->minp .'&maxp='.$ra->maxp ?>" type="checkbox"  <?= $range_id==$ra->id?"checked":""?>>
-                                            <a href="<?= $friendly_url.'/?range_id='.$ra->id.'&minp='.$ra->minp .'&maxp='.$ra->maxp ?>"> 
+                                            <input class="checkmedi" id="<?=$ra->id.'price'?>'"
+                                            data-uri="<?= gen_url($friendly_url,'range_id='.$ra->id.'&minp='.$ra->minp .'&maxp='.$ra->maxp, $_SERVER['QUERY_STRING']) ?>"
+                                            data-rollback="<?= rollback_url($friendly_url,'range_id,minp,maxp=', $_SERVER['QUERY_STRING'])?>"
+                                             type="checkbox"  <?= $range_id==$ra->id?"checked":""?>>
+                                             <label class="form-check-label" for="<?=$ra->id.'price'?>">
                                             <?= $ra->price_range; ?>
-                                                (<?= $ra->num?>)</a>
+                                            <!-- (<?= $ra->num?>) -->
+                                                </label>
                                         </label>
                                     </div>
                                 </li>
