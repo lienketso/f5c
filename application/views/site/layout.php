@@ -231,9 +231,10 @@
 
         //------------
         $('.xemthem').on('click', function(e) {
-            e.preventDefault();
+            e.preventDefault();            
             let _this = $(e.currentTarget);
             let uid = _this.attr('data-uid');
+            $('.parem-ul').removeClass('boauto');
             $('#' + uid).addClass('boauto');
         });
 
