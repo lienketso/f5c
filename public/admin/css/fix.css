@@ -77,7 +77,7 @@ ul.cat-con-con li{
 .an_sp{
 	background: #00CC00;
 	color: #fff;
-	padding: 5px 20px;
+	padding: 5px 5px;
 	border-radius: 5px;
 }
 .an_sp:hover{
@@ -88,7 +88,7 @@ ul.cat-con-con li{
 .hien_sp{
 	background: #CC0000;
 	color: #fff;
-	padding: 5px 20px;
+	padding: 5px 5px;
 	border-radius: 5px;
 }
 .hien_sp:hover{

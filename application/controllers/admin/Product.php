@@ -34,11 +34,19 @@ Class Product extends MY_Controller{
 		$name = $this->input->get('name');
 		$category_id = $this->input->get('category_id');
 		$vat = $this->input->get('vat');
+		$admin_edit = $this->input->get('admin_edit');
+		$admin_add = $this->input->get('admin_add');
 		if($name){
 			$input['like'] = array('name', $name);
 		}
 		if($category_id && $category_id!=0){
 			$input['where'] += ['cat_id'=>$category_id];
+		}
+		if($admin_edit){
+			$input['where'] += ['admin_edit'=>$admin_edit];
+		}
+		if($admin_add){
+			$input['where'] += ['admin_update'=>$admin_add];
 		}
 		if($vat!='' && $vat>0){
 			$input['where'] += ['vat>='=>1];
@@ -84,6 +92,8 @@ Class Product extends MY_Controller{
 
 		$this->data['name'] = $name;
 		$this->data['category_id'] = $category_id;
+		$this->data['admin_edit'] = $admin_edit;
+		$this->data['admin_add'] = $admin_add;
 
 		//lấy danh sách sản phẩm
 		$list = $this->product_model->get_list($input);
@@ -92,6 +102,10 @@ Class Product extends MY_Controller{
 		$ca['order'] = ['sort_order','asc'];
 		$listCategory = $this->category_model->get_list($ca);
 		$this->data['listCategory'] = $listCategory;
+
+		$this->load->model('admin_model');
+		$listUser = $this->admin_model->get_list();
+		$this->data['listUser'] = $listUser;
 
 		$message = $this->session->flashdata('message');
 		$this->data['message'] = $message;

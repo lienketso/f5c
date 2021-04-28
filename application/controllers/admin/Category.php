@@ -214,6 +214,12 @@ Class Category extends MY_Controller{
 			redirect(admin_url('category?parent='.$info->parent_id));
 			}
 		}
+
+		$this->load->model('manufac_model');
+		$mn['order'] = ['name','asc'];
+		$list_manufac = $this->manufac_model->get_list($mn);
+		$this->data['list_manufac'] = $list_manufac;
+
 		$this->data['temp'] = 'admin/category/edit';
 		$this->load->view('admin/main', $this->data);
 	}

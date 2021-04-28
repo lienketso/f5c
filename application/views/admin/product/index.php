@@ -40,10 +40,35 @@
                     <div style="float: left; padding-right: 15px;">
                         <div class="control-group">
                             <div class="controls">
-                                <select name="vat" id="" class="form-control" data-rel="chosen">
+                                <select name="vat" style="font-size: 12px" id="" class="form-control" data-rel="chosen">
                                     <option value="">--VAT--</option>
                                     <option value="0" <?= ($vat && $vat==0) ? 'selected' : '' ?> >Full VAT</option>
                                     <option value="1" <?= ($vat && $vat==1) ? 'selected' : '' ?> >Chưa VAT</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="float: left; padding-right: 15px;">
+                        <div class="control-group">
+                            <div class="controls">
+                                <select name="admin_edit" style="font-size: 12px" id="" class="form-control" data-rel="chosen">
+                                    <option value="">--Admin sửa--</option>
+                                    <?php foreach($listUser as $row): ?>
+                                    <option <?= ($admin_edit&&$admin_edit==$row->username) ? 'selected' : '' ?> value="<?= $row->username; ?>" ><?= $row->username; ?></option>
+                                    <?php endforeach; ?>
+                                   
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="float: left; padding-right: 15px;">
+                        <div class="control-group">
+                            <div class="controls">
+                                <select style="font-size: 12px" name="admin_add" id="" class="form-control" data-rel="chosen">
+                                    <option value="">--Admin tạo--</option>
+                                    <?php foreach($listUser as $row): ?>
+                                    <option <?= ($admin_add&&$admin_add==$row->username) ? 'selected' : '' ?> value="<?= $row->username; ?>" ><?= $row->username; ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
@@ -120,17 +145,19 @@
                                                 style="color: #08c;font-size: 12px;padding-right:20px"><?=date("d-m-Y H:i",$row->last_update)  ?></span><br />
 
                                                 <?php endif; ?>
+             
+                                                <span>Lượt xem : <b><?= $row->count_view; ?></b></span>
                                         </td>
                                         <td class="center"><img src="<?= product_link($row->image_name) ?>" width="70">
                                         </td>
                                         <td>
                                             <input  type="text" class="form-control text-right number"
-                                                id="<?= $row->id ?>" style="width: 140px;" value="<?= $row->price ?>"
+                                                id="<?= $row->id ?>" style="width: 110px;" value="<?= $row->price ?>"
                                                 data-old-number="<?= intval($row->price) ?>"
                                                 data-url="<?= admin_url('product/update_price') ?>" />
                                         </td>
                                         <td>
-                                            <input style="width:100px" id="vat_<?= $row->id ?>" data-vat-old="<?= $row->vat ?>" data-id="<?= $row->id ?>" type="number"
+                                            <input style="width:85px" id="vat_<?= $row->id ?>" data-vat-old="<?= $row->vat ?>" data-id="<?= $row->id ?>" type="number"
                                                 min="0" max="100" placeholder="VAT" value="<?= $row->vat ?>"
                                                 data-url="<?= admin_url('product/update_vat') ?>"
                                                  class="form-control vat" />
@@ -145,12 +172,12 @@
                                                 <?= $row->show_vat==1?'Hiện':'Không'?></a>
                                         </td>
                                         <td>
-                                            <input style="width:100px" id="sort_<?= $row->id ?>" data-sort-old="<?= $row->sort_order ?>" data-id="<?= $row->id ?>" type="number"
+                                            <input style="width:85px" id="sort_<?= $row->id ?>" data-sort-old="<?= $row->sort_order ?>" data-id="<?= $row->id ?>" type="number"
                                                 min="0" max="1000" placeholder="Thứ tự" value="<?= $row->sort_order ?>"
                                                 data-url="<?= admin_url('product/update_sort') ?>"
                                                  class="form-control sort" />
                                         </td>
-                                        <td width="120">
+                                        <td width="">
                                             <a id="feature_<?=$row->id?>" data-id="<?=$row->id?>"
                                                 class="<?= $row->feature==1?'an_sp':'hien_sp'?> show_hot"
                                                 title="<?= $row->feature==1?'Click để ẩn nổi bật':'Click để hiện nổi bật'?>"
@@ -178,19 +205,19 @@
                                             <?php endif; ?>
                                         </td>
 
-                                        <td class="center" width="150">
-                                            <div style="width:150px;">
-                                                <a class="btn btn-sm btn-info"
+                                        <td class="center" width="90">
+                                            <div style="">
+                                                <a class=""
                                                     href="<?php echo admin_url('product/edit/'.$row->id); ?>">
                                                     <i class="ti-pencil-alt"></i>
                                                 </a>
                                                 
 
-                                                <a class="btn btn-sm btn-success" target='_blank'
+                                                <a class="" target='_blank'
                                                     href="<?php echo base_url('/view-p'.$row->id.'.html'); ?>">
                                                     <i class="ti-eye"></i>
                                                 </a>
-                                                <a class="btn btn-sm btn-danger"
+                                                <a class=""
                                                     href="<?php echo admin_url('product/del/'.$row->id); ?>"
                                                     onclick="return check_del();">
                                                     <i class="ti-trash"></i>

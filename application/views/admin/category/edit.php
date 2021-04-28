@@ -29,6 +29,15 @@
 		<label for="">Mô tả ngắn</label>
 		<textarea name="info" class="form-control" id="metadesc" onkeyup="keyupMeta()" rows="4"><?= $info->info; ?></textarea>
 	</div>
+	<div class="form-group">
+                        <label for="">Hãng sản xuất</label>
+                        <select class="js-example-basic-multiple form-control" name="manufac[]" multiple="multiple">
+                            <?php foreach($list_manu as $row): ?>
+                            <option value="<?= $row->id ?>" selected><?= $row->name; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <span id="" class="error mt-2 text-danger" for=""><?php echo form_error('manufac'); ?></span>
+                    </div>
 	<p class="card-description">
 		<code><i class="ti-settings"></i> Cấu hình Seo (Rich Snippet)</code> 
 		<button type="button" id="onset" class="btn btn-primary btn-sm"><i class="ti-eye"></i> Hiện cấu hình</button>
