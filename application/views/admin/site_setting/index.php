@@ -66,6 +66,12 @@
 							<textarea name="site_order_success" class="makeMeRichTextarea" id="edtsuccess"><?= $this->site_model->getSettingMeta('site_order_success'); ?></textarea>
 						</div>
 					</div>
+					<div class="form-group">
+						<label for="">Thông tin dưới nút đặt hàng</label>	
+						<div id="">
+							<textarea name="site_book_button" class="makeMeRichTextarea" id="edtdathang"><?= $this->site_model->getSettingMeta('site_book_button'); ?></textarea>
+						</div>
+					</div>
 
 					<div class="form-group">
 						<label for="">Copyright</label>

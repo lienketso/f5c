@@ -131,6 +131,21 @@
                                         class="buy_now_subtext">Giao tận nơi</span></a>
                             </div>
 
+                            <div class="info_more">
+                                <?= $this->site_model->getSettingMeta('site_book_button'); ?>
+                            </div>
+                            <style type="text/css">
+                                .info_more{
+                                    margin-top: 70px;
+                                    border: 2px solid #F58634;
+                                    padding: 10px;
+                                    border-radius: 5px;
+                                }
+                                .info_more p{
+                                    margin-bottom: 0;
+                                    line-height: 22px;
+                                }
+                            </style>
                         </div>
 
                         <div class="col-lg-12">
