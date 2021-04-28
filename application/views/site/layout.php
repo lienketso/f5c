@@ -231,10 +231,10 @@
 
         //------------
         $('.xemthem').on('click', function(e) {
-            e.preventDefault();            
+            e.preventDefault();
             let _this = $(e.currentTarget);
             let uid = _this.attr('data-uid');
-            $('.parem-ul').removeClass('boauto');
+            $('.parem-ul ')
             $('#' + uid).addClass('boauto');
         });
 
@@ -485,7 +485,10 @@
      $('.checkmedi').on('click', function(event) {
         event.preventDefault();
         let _this = $(event.currentTarget);
-        let url = _this.attr('data-uri');
+        let url = _this.attr('data-rollback');
+       if($(event.currentTarget).prop('checked')){
+        url = _this.attr('data-uri');
+               }     
         window.location.href = url;
      })
 </script>
