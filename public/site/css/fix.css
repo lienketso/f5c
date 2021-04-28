@@ -31,6 +31,10 @@ max-width: 100%;
 }
 }
 @media(min-width: 768px){
+    .mega-dropdown-menu{
+        height: 700px;
+        overflow-y: scroll;
+    }
     .flexslider{
        
     }

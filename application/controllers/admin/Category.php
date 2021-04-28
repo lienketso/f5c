@@ -138,6 +138,15 @@ Class Category extends MY_Controller{
 				$image_name = str_replace(base_url('upload/public/'),'',$image_name);
 				//$image_1 = $this->input->post('image_1');
 				$show_home = $this->input->post('show_home');
+
+				//hãng sản xuất
+				$manufac = $this->input->post('manufac[]');
+				if(!empty($manufac)){
+					$manufac_ids = serialize($manufac);
+				}else{
+					$manufac_ids = '';
+				}
+
 				$meta_desc = $this->input->post('meta_desc');
 				$meta_key = $this->input->post('meta_key');
 				$site_title = $this->input->post('site_title');
@@ -150,6 +159,7 @@ Class Category extends MY_Controller{
 					'status' => $status,
 					'image_name'=>$image_name,
 					'show_home'=>$show_home,
+					'manufac_ids'=>$manufac_ids,
 					'site_title'=>$site_title,
 					'meta_desc'=>$meta_desc,
 					'meta_key'=>$meta_key
@@ -161,6 +171,22 @@ Class Category extends MY_Controller{
 		redirect(admin_url('category'));
 	}
 		}
+
+		$this->load->model('manufac_model');
+		$mn['order'] = ['name','asc'];
+		$list_manufac = $this->manufac_model->get_list($mn);
+		$this->data['list_manufac'] = $list_manufac;
+
+		$args = [];
+		if(!empty($this->input->post('manufac[]'))){
+			$manuCurrent = $this->input->post('manufac[]');
+			foreach($manuCurrent as $c){
+				$args[] = $c;
+			}
+		}
+
+		$this->data['manuCurrent'] = $args;
+
 		$this->data['temp'] = 'admin/category/add';
 		$this->load->view('admin/main', $this->data);
 	}
@@ -191,6 +217,15 @@ Class Category extends MY_Controller{
 				$image_name = str_replace(base_url('upload/public/'),'',$image_name);
 				//$image_1 = $this->input->post('image_1');
 				$show_home = $this->input->post('show_home');
+
+				//hãng sản xuất
+				$manufac = $this->input->post('manufac[]');
+				if(!empty($manufac)){
+					$manufac_ids = serialize($manufac);
+				}else{
+					$manufac_ids = '';
+				}
+
 				$meta_desc = $this->input->post('meta_desc');
 				$meta_key = $this->input->post('meta_key');
 				$site_title = $this->input->post('site_title');
@@ -202,6 +237,7 @@ Class Category extends MY_Controller{
 					'sort_order' => intval($sort_order),
 					'image_name'=>$image_name,
 					'show_home'=>$show_home,
+					'manufac_ids'=>$manufac_ids,
 					'site_title'=>$site_title,
 					'meta_desc'=>$meta_desc,
 					'meta_key'=>$meta_key,
@@ -219,6 +255,16 @@ Class Category extends MY_Controller{
 		$mn['order'] = ['name','asc'];
 		$list_manufac = $this->manufac_model->get_list($mn);
 		$this->data['list_manufac'] = $list_manufac;
+
+		$args = [];
+		if(!empty($info->manufac_ids)){
+			$currentManufac = unserialize($info->manufac_ids);
+			foreach($currentManufac as $f){
+				$args[] = $f;
+			}
+		}
+		$this->data['curentManu'] = $args;
+		
 
 		$this->data['temp'] = 'admin/category/edit';
 		$this->load->view('admin/main', $this->data);

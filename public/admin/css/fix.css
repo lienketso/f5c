@@ -126,3 +126,6 @@ ul.cat-con-con li{
     border: 1px solid #ccc;
     margin: 30px 10px;
 }
+.table thead th, .jsgrid .jsgrid-table thead th{
+	font-size: 12px !important;
+}
