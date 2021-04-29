@@ -187,7 +187,6 @@
   
   //hãng sản xuất
   $manufac = unserialize($row->manufac_ids);
-  
   ?>
  <section class="nhom-sp-home">
      <div class="container">

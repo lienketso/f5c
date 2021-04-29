@@ -129,6 +129,10 @@ max-width: 100%;
     color: #fff;
 }
 @media(max-width: 767px){
+    .thong-tin-sp img{
+        max-width: 100%;
+        height: auto !important;
+    }
     .home-menu-head{
         width: 100%;
     }

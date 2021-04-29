@@ -109,9 +109,7 @@
                         <li><a href="<?= base_url('user/login.html') ?>">Đăng nhập</a></li>
                     </ul>
                 </li>
-                <?php else: ?>
-                <li><a href="<?= base_url('user/index') ?>"><i class="fa fa-user"></i> <?= $userLogin->name; ?></a>
-                </li>
+               
                 <?php endif; ?>
 
                 <li><a href="<?= base_url('gio-hang.html') ?>"><img
