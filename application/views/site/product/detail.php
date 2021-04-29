@@ -138,9 +138,18 @@
                             </div>
                             <?php endif; ?>
 
+                            <div class="address_all">
+                                <?= $this->site_model->getSettingMeta('site_book_button'); ?>
+                            </div>
+
                             <style type="text/css">
+                                .address_all{
+                                    padding: 15px 10px;
+                                    border: 1px solid #ccc;
+                                    margin-top: 20px;
+                                }
                                 .info_more{
-                                    margin-top: 70px;
+                                    margin-top: 25px;
                                     border: 1px solid #ccc;
                                     padding: 15px 10px;
                                     border-radius: 5px;
@@ -232,8 +241,7 @@
                                             thuật</a>
                                     </li>
                                     <li role="presentation">
-                                        <a href="#phukien" aria-controls="phukien" role="tab" data-toggle="tab">Phụ
-                                            kiện</a>
+                                        <a href="#phukien" aria-controls="phukien" role="tab" data-toggle="tab">Kết hợp tốt nhất</a>
                                     </li>
                                 </ul>
 

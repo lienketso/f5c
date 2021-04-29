@@ -15,14 +15,7 @@
         <div class="thanhtimkiem">
             <form method="GET" action="<?php echo admin_url('product'); ?>">
                 <div class="span12">
-                    <div style="float: left; padding-right: 15px;">
-                        <div class="control-group">
-                            <div class="controls">
-                                <input class="form-control" id="" type="text" name="name" value="<?= $name ?>"
-                                    placeholder="Lọc theo tiêu đề...">
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div style="float: left; padding-right: 15px;">
                         <div class="control-group">
                             <div class="controls">
@@ -37,6 +30,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div style="float: left; padding-right: 15px;">
                         <div class="control-group">
                             <div class="controls">
@@ -45,6 +39,14 @@
                                     <option value="0" <?= ($vat && $vat==0) ? 'selected' : '' ?> >Full VAT</option>
                                     <option value="1" <?= ($vat && $vat==1) ? 'selected' : '' ?> >Chưa VAT</option>
                                 </select>
+                            </div>
+                        </div>
+                    </div>
+                     <div style="float: left; padding-right: 15px;">
+                        <div class="control-group">
+                            <div class="controls">
+                                <input class="form-control" id="" type="text" name="name" value="<?= $name ?>"
+                                    placeholder="Lọc theo tên sản phẩm...">
                             </div>
                         </div>
                     </div>
@@ -127,7 +129,7 @@
                                         <th>Ẩn hiện VAT</th>
                                         <th>TT Ưu tiên</th>
                                         <th>Nổi bật</th>
-                                        <th>Ẩn / Hiện</th>
+                                        <th>Ẩn / Hiện SP</th>
                                         <th>Cấu hình</th>
                                     </tr>
                                 </thead>
