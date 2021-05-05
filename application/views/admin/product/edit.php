@@ -81,7 +81,35 @@
                                 id="edtone"><?= str_replace('{base_url}','https://f5c.vn/',html_entity_decode ($info->content)); ?></textarea>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <?php  
+                                if(!empty($info->options)){
+                                    $them = unserialize($info->options);
+                                }else{
+                                    $them = [];
+                                }
+                                $i = 1;
+                         ?>
+                        <label for="">Thuộc tính riêng ( hiển thị phần mô tả sản phẩm trong trang chi tiết )</label>
+                        <div id="danhsach_tt">
+                        <?php foreach($them as $key=>$val): ?>
+                            <?php $i++; ?>
+                        <div class="list_thuoctinh" id="thuoctinh_e<?= $i; ?>">
+                        <div class="row">
+                        <div class="col-lg-5"><input type="text" class="form-control" name="option_name[]" value="<?= $key ?>" placeholder="Tên thuộc tính"></div>
+                        <div class="col-lg-5"><input type="text" class="form-control" name="option_value[]" value="<?= $val ?>" placeholder="Giá trị"></div>
+                        <div class="col-lg-2"><div class="xoa_tt"><a class="del_thuoc_tinh" id="e<?= $i; ?>" href="javascript:void">Xóa</a></div></div>
+                        </div>
+                        </div>
+                        <?php endforeach; ?>
+                        </div>
+                        
 
+                        <div class="button_them_tt">
+                            <button type="button" class="add_thuoctinh" id="add_thuoctinh">+ Thêm thuộc tính riêng</button>
+                        </div>
+
+                    </div>
                     
                     <div class="form-group">
                         <label for="">Phụ kiện kèm theo</label>
@@ -93,6 +121,7 @@
                         </select>
                         <span id="" class="error mt-2 text-danger" for=""><?php echo form_error('products'); ?></span>
                     </div>
+                    
                     <div class="form-group">
                         <label for="">Slug</label>
                         <input type="text" name="friendly_url" value="<?= $info->friendly_url; ?>" class="form-control"

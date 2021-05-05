@@ -72,7 +72,25 @@
 							<textarea name="content" class="makeMeRichTextarea" id="edtone"><?= set_value('content'); ?></textarea>
 						</div>
 					</div>
-					
+					<div class="form-group">
+                        
+                        <label for="">Thuộc tính riêng ( hiển thị phần mô tả sản phẩm trong trang chi tiết )</label>
+                        <div id="danhsach_tt">
+                        <div class="list_thuoctinh" id="thuoctinh">
+                        <div class="row">
+                        <div class="col-lg-5"><input type="text" class="form-control" name="option_name[]" value="" placeholder="Tên thuộc tính"></div>
+                        <div class="col-lg-5"><input type="text" class="form-control" name="option_value[]" value="" placeholder="Giá trị"></div>
+                        
+                        </div>
+                        </div>
+                        </div>
+                        
+
+                        <div class="button_them_tt">
+                            <button type="button" class="add_thuoctinh" id="add_thuoctinh">+ Thêm thuộc tính riêng</button>
+                        </div>
+
+                    </div>
 					
 					<div class="form-group">
 						<label for="">Phụ kiện kèm theo</label>
@@ -81,6 +99,7 @@
 						</select>
 						<span id="" class="error mt-2 text-danger" for=""><?php echo form_error('products'); ?></span>
 					</div>
+					 
 					<div class="form-group">
 						<label for="">Slug</label>
 						<input type="text" name="friendly_url" value="<?= set_value('friendly_url'); ?>" class="form-control" id="input_slug" placeholder="Đường dẫn tĩnh">

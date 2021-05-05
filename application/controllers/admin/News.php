@@ -114,6 +114,7 @@ Class News extends MY_Controller{
 				$content = $this->input->post('content');
 				$created = now();
 				$image_name = $this->input->post('image_name');
+				$image_name = str_replace(base_url('upload/public/'),'',$image_name);
 				$site_title = $this->input->post('site_title');
 				$meta_key = $this->input->post('meta_key');
 				$meta_desc = $this->input->post('meta_desc');
@@ -166,6 +167,7 @@ Class News extends MY_Controller{
 				$description = $this->input->post('intro');
 				$content = $this->input->post('content');
 				$image_name = $this->input->post('image_name');
+				$image_name = str_replace(base_url('upload/public/'),'',$image_name);
 				$site_title = $this->input->post('site_title');
 				$meta_key = $this->input->post('meta_key');
 				$meta_desc = $this->input->post('meta_desc');

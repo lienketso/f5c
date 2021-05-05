@@ -75,6 +75,18 @@
                             </div>
                         </div>
                     </div>
+                    <div style="float: left; padding-right: 15px;">
+                        <div class="control-group">
+                            <div class="controls">
+                                <select style="font-size: 12px" name="model" id="" class="form-control" data-rel="chosen">
+                                    <option value="">--Xuất sứ--</option>
+                                    <?php foreach($listCountries as $row): ?>
+                                    <option <?= ($xuatxu&&$xuatxu==$row->name) ? 'selected' : '' ?> value="<?= $row->name; ?>" ><?= $row->name; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
                     <div style="float: left;">
                         <button type="submit" class="btn btn-info">Tìm</button>

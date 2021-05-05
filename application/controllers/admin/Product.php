@@ -36,6 +36,7 @@ Class Product extends MY_Controller{
 		$vat = $this->input->get('vat');
 		$admin_edit = $this->input->get('admin_edit');
 		$admin_add = $this->input->get('admin_add');
+		$model = $this->input->get('model');
 		if($name){
 			$input['like'] = array('name', $name);
 		}
@@ -47,6 +48,9 @@ Class Product extends MY_Controller{
 		}
 		if($admin_add){
 			$input['where'] += ['admin_update'=>$admin_add];
+		}
+		if($model){
+			$input['where'] += ['model'=>$model];
 		}
 		if($vat!='' && $vat>0){
 			$input['where'] += ['vat>='=>1];
@@ -94,6 +98,7 @@ Class Product extends MY_Controller{
 		$this->data['category_id'] = $category_id;
 		$this->data['admin_edit'] = $admin_edit;
 		$this->data['admin_add'] = $admin_add;
+		$this->data['xuatxu'] = $model;
 
 		//lấy danh sách sản phẩm
 		$list = $this->product_model->get_list($input);
@@ -106,6 +111,11 @@ Class Product extends MY_Controller{
 		$this->load->model('admin_model');
 		$listUser = $this->admin_model->get_list();
 		$this->data['listUser'] = $listUser;
+
+		$this->load->model('countries_model');
+		$co['order'] = ['name','asc'];
+		$listCountries = $this->countries_model->get_list($co);
+		$this->data['listCountries'] = $listCountries;
 
 		$message = $this->session->flashdata('message');
 		$this->data['message'] = $message;
@@ -249,6 +259,20 @@ Class Product extends MY_Controller{
 				}else{
 					$products = '';
 				}
+				$option_name = $this->input->post('option_name[]');
+				$option_value= $this->input->post('option_value[]');
+				$option_products = array();
+				if(is_array($option_name) && is_array($option_value))
+				{
+					foreach ($option_name as $k => $v)
+					{
+						if(isset($v) && $v != '' && (isset($option_value[$k]) && $option_value[$k]!= ''))
+						{
+							$option_products[$v] =  $option_value[$k];
+						}
+					}
+				}
+				$options = serialize($option_products);
 				//seo tags
 				$tags = $this->input->post('tags');
 				if($tags==''){
@@ -286,6 +310,7 @@ Class Product extends MY_Controller{
 					'alt_image' => $alt_image,
 					'sale'=>$sale,
 					'products'=>$products,
+					'options'=>$options,
 					'admin_update'=>$user_update->username,
 					'created'=>now()
 				);
@@ -374,7 +399,7 @@ Class Product extends MY_Controller{
 			redirect(admin_url('product'));
 		}
 		
-	
+
 		$this->data['info'] = $info;
 
 		if($this->input->post()){
@@ -425,6 +450,20 @@ Class Product extends MY_Controller{
 				}else{
 					$products = '';
 				}
+				$option_name = $this->input->post('option_name[]');
+				$option_value= $this->input->post('option_value[]');
+				$option_products = array();
+				if(is_array($option_name) && is_array($option_value))
+				{
+					foreach ($option_name as $k => $v)
+					{
+						if(isset($v) && $v != '' && (isset($option_value[$k]) && $option_value[$k]!= ''))
+						{
+							$option_products[$v] =  $option_value[$k];
+						}
+					}
+				}
+				$options = serialize($option_products);
 				$user_edit = $this->session->userdata('userlogin');
 				$data = array(
 					'name'=> $name,
@@ -451,6 +490,7 @@ Class Product extends MY_Controller{
 					'alt_image' => $alt_image,
 					'sale'=>$sale,
 					'products'=>$products,
+					'options'=>$options,
 					'admin_edit'=>$user_edit->username,
 					'last_update'=> now()
 				);
@@ -473,7 +513,7 @@ Class Product extends MY_Controller{
 				// 		];
 				// 		$this->file_model->create($idata);
 				// 	}
-					
+
 				// }
 
 				// tạo nội dung thông báo
@@ -551,42 +591,42 @@ Class Product extends MY_Controller{
     	$this->product_model->deleteOne($id);
     }
 
-	function update_price(){
-	$id=	$this->input->post('id');
-	$price = $this->input->post('price');
-	$vat =  $this->input->post('vat');
-	$user = $this->session->userdata('userlogin');
-	if(empty($vat )){$vat=0;}
-	$data = array(
-		'admin_edit'=> $user->username,
-		'price'=>$price,
-		'last_update'=> now()
-	);
-	$this->product_model->update($id,$data);
-	die;
-	}
-	function update_vat(){
-	$id=	$this->input->post('id');
-	$vat =  $this->input->post('vat');
-	$user = $this->session->userdata('userlogin');
-	$data = array(
-		'admin_edit'=> $user->username,
-		'vat'=>$vat,
-		'last_update'=> now()
-	);
-	$this->product_model->update($id,$data);
-	die;
-	}
-	function update_sort(){
-	$id=	$this->input->post('id');
-	$sort =  $this->input->post('sort');
-	$user = $this->session->userdata('userlogin');
-	$data = array(
-		'admin_update'=> $user->username,
-		'sort_order'=>$sort,
-		'last_update'=> now()
-	);
-	$this->product_model->update($id,$data);
-	die;
-	}
+    function update_price(){
+    	$id=	$this->input->post('id');
+    	$price = $this->input->post('price');
+    	$vat =  $this->input->post('vat');
+    	$user = $this->session->userdata('userlogin');
+    	if(empty($vat )){$vat=0;}
+    	$data = array(
+    		'admin_edit'=> $user->username,
+    		'price'=>$price,
+    		'last_update'=> now()
+    	);
+    	$this->product_model->update($id,$data);
+    	die;
+    }
+    function update_vat(){
+    	$id=	$this->input->post('id');
+    	$vat =  $this->input->post('vat');
+    	$user = $this->session->userdata('userlogin');
+    	$data = array(
+    		'admin_edit'=> $user->username,
+    		'vat'=>$vat,
+    		'last_update'=> now()
+    	);
+    	$this->product_model->update($id,$data);
+    	die;
+    }
+    function update_sort(){
+    	$id=	$this->input->post('id');
+    	$sort =  $this->input->post('sort');
+    	$user = $this->session->userdata('userlogin');
+    	$data = array(
+    		'admin_update'=> $user->username,
+    		'sort_order'=>$sort,
+    		'last_update'=> now()
+    	);
+    	$this->product_model->update($id,$data);
+    	die;
+    }
 }//end class

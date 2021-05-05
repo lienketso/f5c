@@ -285,7 +285,7 @@ function menuSlug(Title) {
         })
         .done(function(res){
           let html = res;
-          $('#slectPK').html(res);
+          $('#slectPK').append(res);
         })
         .always(function(resp) {
           setTimeout(() => {
@@ -516,5 +516,17 @@ function menuSlug(Title) {
         });
       }
     });
+
+    //add thuộc tính sản phẩm
+    var id = 1;
+    $('#add_thuoctinh').on('click',function(e){
+        id++;
+        $('#danhsach_tt').append('<div class="list_thuoctinh" id="thuoctinh_'+id+'"><div class="row"><div class="col-lg-5"><input type="text" class="form-control" name="option_name[]" placeholder="Tên thuộc tính"></div><div class="col-lg-5"><input type="text" class="form-control" name="option_value[]" placeholder="Giá trị"></div><div class="col-lg-2"><div class="xoa_tt"><a class="del_thuoc_tinh" id="'+id+'" href="javacript:void">Xóa</a></div></div></div></div>')
+    });
+    //remove thuộc tính sản phẩm
+    $(document).on('click', '.del_thuoc_tinh', function(){  
+     var button_id = $(this).attr("id");   
+     $('#thuoctinh_'+button_id+'').remove();  
+   });
 
   });//end document

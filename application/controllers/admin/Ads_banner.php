@@ -67,13 +67,14 @@ Class Ads_banner extends MY_Controller{
 			$this->form_validation->set_rules('image_name','Hình ảnh','required|min_length[2]');
 			if($this->form_validation->run()){
 				$ads_location_id = $this->input->post('ads_location_id');
-				$image_name = $this->input->post('image_name');;
+				$image_name = $this->input->post('image_name');
+				$image_name = str_replace(base_url('upload/public/'),'',$image_name);
 				$url = $this->input->post('url');
 				$sort_order = $this->input->post('sort_order');
 				//load thư viện uploads ảnh
 				$data = array(
 					'ads_location_id'=>$gid,
-					'image_name' => $image,
+					'image_name' => $image_name ,
 					'url'=>$url,
 					'sort_order'=>$sort_order,
 					'created' => now()
@@ -101,13 +102,14 @@ Class Ads_banner extends MY_Controller{
 			$this->form_validation->set_rules('image_name','Hình ảnh','required|min_length[2]');
 			if($this->form_validation->run()){
 				$ads_location_id = $this->input->post('ads_location_id');
-				$image_name = $this->input->post('image_name');;
+				$image_name = $this->input->post('image_name');
+				$image_name = str_replace(base_url('upload/public/'),'',$image_name);
 				$url = $this->input->post('url');
 				$sort_order = $this->input->post('sort_order');
 				//load thư viện uploads ảnh
 				$data = array(
 					'ads_location_id'=>$ads_location_id,
-					'image_name' => $image,
+					'image_name' => $image_name,
 					'url'=>$url,
 					'sort_order'=>$sort_order
 					);

@@ -35,32 +35,36 @@
           <div class="container">
           <div class="row " style="margin-bottom:20px;margin-top:10px;">               
                <div class="col-md-6">
-                <span>Chấp nhận thanh toán</span>       
+                <span>Chấp nhận thanh toán</span>   
+                <img src="<?php echo public_url('site/img/cash.svg') ?>"  title="Thanh toán bằng tiền mặt" alt="Tiền mặt">    
+                <img src="<?php echo public_url('site/img/internet-banking.svg') ?>"  title="Thanh toán bằng Internet Banking (Thẻ ATM nội địa)" alt="Internet Banking">
+                <img src="<?php echo public_url('site/img/mastercard.svg') ?>"  title="Thanh toán bằng thẻ Master Card" alt="Master Card">
                  <img src="<?php echo public_url('site/img/visa.svg')?>" title="Thanh toán bằng thẻ Visa" alt="Visa">
-                 <img src="<?php echo public_url('site/img/mastercard.svg') ?>"  title="Thanh toán bằng thẻ Master Card" alt="Master Card">
-                 <img src="<?php echo public_url('site/img/internet-banking.svg') ?>"  title="Thanh toán bằng Internet Banking (Thẻ ATM nội địa)" alt="Internet Banking">
-                 <img src="<?php echo public_url('site/img/cash.svg') ?>"  title="Thanh toán bằng tiền mặt" alt="Tiền mặt">
+                 
+                 
+                 
                </div>              
            </div>
               <div class="row">
                   <div class="col-md-3">
-                      <h4>TRỤ SỞ HÀ NỘI</h4>
+                      <h4>TRỤ SỞ HÀ NỘI <a class="map_a" data-toggle="modal" href='#modal-hn'>( Map )</a></h4>
                       <P>560 Trường Chinh, Đống Đa, Hà Nội</P>
-                      <P style="font-weight:500">Hotline: 0932168866 | Email: info@f5pro.vn</P>
-                      <P style="font-weight:500"> Tel: +84-24-35640558 | Fax : +84-24-35640730</P>
+                      <P style="font-weight:500">Hotline: <a href="tel:0932168866">0932168866</a> | Email: info@f5pro.vn</P>
+                      <P style="font-weight:500"> Tel: <a href="tel:02435640558">+84-24-35640558</a> | Fax : +84-24-35640730</P>
                       <br>
                   </div>
                   <div class="col-md-3">
-                      <h4>CHI NHÁNH HỒ CHÍ MINH</h4>
+                      <h4>CHI NHÁNH HỒ CHÍ MINH <a class="map_a" data-toggle="modal" href='#modal-hcm'>( Map )</a></h4>
                       <P> 248 Hoàng Hoa Thám, P.12, Q.Tân Bình, TP.HCM</P>
-                      <P style="font-weight:500"> Hotline: 0975236688 | Email: sale@f5pro.vn</P>
+                      <P style="font-weight:500"> Hotline: <a href="tel:0975236688">0975236688</a> | Email: sale@f5pro.vn</P>
+                      <P style="font-weight:500"> Tel: <a href="tel:02838132181">+84-28-38132181</a> </P>
                       <br>
                   </div>
                   <div class="col-md-3">
-                      <h4> CHI NHÁNH ĐÀ NẴNG</h4>
+                      <h4> CHI NHÁNH ĐÀ NẴNG <a class="map_a" data-toggle="modal" href='#modal-dn'>( Map )</a></h4>
                       <P> 12 Nguyễn Hữu Thọ, Q.Hải Châu, Đà Nẵng </P>
-                      <P style="font-weight:500"> Hotline: 0935666443 | Email: saledn@f5pro.vn </P>
-                      <P style="font-weight:500"> Tel: +84-236-3889982 | Fax : +84-236-3889983</P>
+                      <P style="font-weight:500"> Hotline: <a href="tel:0935666443">0935666443</a> | Email: saledn@f5pro.vn </P>
+                      <P style="font-weight:500"> Tel: <a href="tel:02363889982">+84-236-3889982</a> | Fax : +84-236-3889983</P>
                       <br>
                   </div>
                   <div class="col-md-3">
@@ -75,18 +79,19 @@
               <div class="row">
                
 
-               <div class="col-md-12 text-center">
-                <div class="hitstat">
+               <div class="col-md-12 text-center" style="position: relative;">
+              <div class="hitstat">
                 <div id="histats_counter"></div>
               </div>
-               <a href="http://online.gov.vn/Home/WebDetails/19131" rel="noopener nofollow" target="_blank" title="THÔNG TIN WEBSITE THƯƠNG MẠI ĐIỆN TỬ">
-                     <img  src="<?php echo public_url('site/img/bo-cong-thuong.png') ?>" alt="Bộ công thương">
-                 </a>
+               
                      <a>
                      <img src="<?php echo public_url('site/img/comodo_secure_seal.png') ?>" alt="Comodo SSL">
                  </a>
                      <a rel="nofollow noopener" href="https://www.dmca.com/Protection/Status.aspx?ID=46f106a7-1500-40eb-b5ba-5bb88b641e9f" target="_blank">
                      <img  src="<?php echo public_url('site/img/dmca_logo.png')?>" alt="DMCA.com Protection">
+                 </a>
+                 <a href="http://online.gov.vn/Home/WebDetails/19131" rel="noopener nofollow" target="_blank" title="THÔNG TIN WEBSITE THƯƠNG MẠI ĐIỆN TỬ">
+                     <img  src="<?php echo public_url('site/img/bo-cong-thuong.png') ?>" alt="Bộ công thương">
                  </a>
                </div>
            </div>
@@ -106,12 +111,68 @@
       </div>
 
   </div>
+
+
+    <div class="modal fade" id="modal-hn">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14899.033161564332!2d105.82320500000002!3d21.002324!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac869d91e2b5%3A0xbdd34180517bb5c7!2zNTYwIFRyxrDhu51uZyBDaGluaCwgS2jGsMahbmcgVGjGsOG7o25nLCDEkOG7kW5nIMSQYSwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2sin!4v1620108393653!5m2!1svi!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-hcm">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.035965335774!2d106.64598221526047!3d10.808557361554243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752945a3f566b3%3A0x44dfcd2d30cf2066!2zQ8O0bmcgdHkgY-G7lSBwaOG6p24gY8O0bmcgbmdo4buHIEY1!5e0!3m2!1svi!2sus!4v1620108983113!5m2!1svi!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+ 
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-dn">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d30674.09174445507!2d108.208872!3d16.051916!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219b991d0f475%3A0x50d7c6be98ce1608!2zMTIgTmd1eeG7hW4gSOG7r3UgVGjhu40sIEjDsmEgVGh14bqtbiBOYW0sIEjhuqNpIENow6J1LCDEkMOgIE7hurVuZyA1NTAwMDAsIFZp4buHdCBOYW0!5e0!3m2!1svi!2sus!4v1620108874879!5m2!1svi!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    
+      </div>
+    </div>
+  </div>
   <!-- 
 <div id="phan-hoi-nhanh"></div>
 -->
 
   <style>
   @media(min-width: 768px){
+    .modal-dialog{
+      top: 18%;
+    }
+    .modal-header{
+      border: 0 !important
+    }
+    .modal-body iframe{
+      width: 100%;
+    }
+    .map_a{
+      color: blue !important;
+      font-size: 14px;
+    }
     .hitstat{
       position: absolute;
       left: 145px;

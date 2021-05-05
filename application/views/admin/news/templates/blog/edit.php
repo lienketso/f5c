@@ -94,7 +94,7 @@
 </span>
 </div>
 <div class="col-xs-12">
-	<img src="<?= $info->image_name; ?>" id="imgreview" style="width: 100%; padding-top: 10px">
+	<img src="<?= url_tam($info->image_name); ?>" id="imgreview" style="width: 100%; padding-top: 10px">
 </div>
 </div>
 </div>

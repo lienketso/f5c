@@ -132,3 +132,22 @@ ul.cat-con-con li{
 .table thead th, .jsgrid .jsgrid-table thead th{
 	font-size: 12px !important;
 }
+.list_thuoctinh{
+	padding-bottom: 10px;
+}
+.xoa_tt{
+	position: relative;
+}
+.xoa_tt .del_thuoc_tinh{
+	color: red;
+	font-weight: bold;
+	position: absolute;
+	top: 10px;
+}
+.add_thuoctinh{
+	padding: 10px;
+	border: 1px solid #ccc;
+}
+.add_thuoctinh:hover{
+	color: green;
+}

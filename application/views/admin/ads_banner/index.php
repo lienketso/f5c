@@ -38,7 +38,7 @@
 <tr class="row_<?php echo $row->id; ?>">
 <td><input type="checkbox" id="filter_id" name="id[]" value="<?php echo $row->id ?>"></td>
 <td><?= $this->ads_location_model->getLocation($row->ads_location_id); ?></td>
-<td><img src="<?= product_link($row->image_name); ?>" style="width: 50px"></td>
+<td><img src="<?= $row->image_name; ?>" style="width: 50px"></td>
 <td><?= $row->url; ?></td>
 
 <td class="center">
