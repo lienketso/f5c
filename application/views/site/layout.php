@@ -234,7 +234,7 @@
             e.preventDefault();
             let _this = $(e.currentTarget);
             let uid = _this.attr('data-uid');
-            $('.parem-ul ')
+            $('.parem-ul').removeClass('boauto');
             $('#' + uid).addClass('boauto');
         });
 
