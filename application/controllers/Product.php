@@ -245,15 +245,21 @@ Class Product extends MY_Controller{
 		$this->load->view('site/layout',$this->data);
 	}
 	function detail(){
+
 		$this->load->model('manufac_model');
 		$this->load->model('file_model');
 		$id = $this->uri->rsegment(3);
 		$info = $this->product_model->get_info($id);
 		$this->data['info'] = $info;
 		//cập nhật lượt xem sản phẩm
-		$datas = array();
+		$sessionKey = 'post_' . $id;
+    	$sessionView = $this->session->userdata($sessionKey);
+    	if (!$sessionView) { // nếu chưa có session
+        $this->session->set_userdata($sessionKey,1);
+        $datas = array();
 		$datas['count_view'] = $info->count_view + 1;
 		$this->product_model->update($info->id,$datas);
+    	}
 		//sản phẩm liên quan
 		//get catemeta
 		$categoryName = $this->category_model->get_info($info->cat_id);
@@ -295,9 +301,12 @@ Class Product extends MY_Controller{
 		$lstComment = $this->comment_model->getComment($id);
 		$this->data['lstComment'] = $lstComment;
 		$this->data['listRelate'] = $listRelate;
+
+  		
 		$this->data['temp'] = "site/product/detail";
 		$this->load->view("site/layout", $this->data);
 	}
+
 	//tìm kiếm theo tên sản phẩm
 	function search(){
 		$key = $this->input->get('key');

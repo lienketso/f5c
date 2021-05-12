@@ -160,6 +160,14 @@
 							<?php $this->countries_model->optionCountries(0); ?>
 						</select>
 					</div>
+					<div class="form-group">
+                        <label for="">Tình trạng</label>
+                        <select name="status" class="form-control">
+                            <option value="1" <?= (set_value('status')==1) ? 'selected' : '' ?>>Còn hàng</option>
+                            <option value="2" <?= (set_value('status')==2) ? 'selected' : '' ?>>Sản phẩm chưa có sẵn</option>
+                            <option value="0" <?= (set_value('status')==0) ? 'selected' : '' ?>>Hết hàng</option>
+                        </select>
+                    </div>
 
 					<div class="form-group">
 						<label>Hình ảnh</label>

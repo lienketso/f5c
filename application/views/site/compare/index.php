@@ -6,7 +6,11 @@
         </ul>
     </div>
 </div>
-
+<style type="text/css">
+    .ts_kythuat table{
+        width: 100% !important;
+    }
+</style>
 <section class="current-cat-pro">
     <div class="container">
         <div class="row">
@@ -24,7 +28,7 @@
                         <h4><a href="<?= product_url(slug($p->name),$p->id) ?>"><?= $p->name; ?></a></h4>
                         <p><span class="price_com"><?= ($p->price==0) ? 'Liên hệ' : number_format($p->price). '₫'; ?>
                             </span></p>
-                        <div class="ts_kythuat">
+                        <!-- <div class="ts_kythuat">
                             <?php 
                     $input['where'] = ['product_id'=>$p->id];
                     $input['order'] = ['option_id','asc'];
@@ -49,6 +53,9 @@
                                 </li>
                                 <?php endforeach; ?>
                             </ul>
+                        </div> -->
+                        <div class="ts_kythuat">
+                            <?= $p->options_cat; ?>
                         </div>
                         <div class="btn_comp"><a class="compare_cart" id="<?= $p->id; ?>" data-id="<?= $p->id; ?>"
                                 data-href="<?= base_url('cart/addmulti/'); ?>">Mua sản phẩm</a>

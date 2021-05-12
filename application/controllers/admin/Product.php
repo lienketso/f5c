@@ -242,6 +242,7 @@ Class Product extends MY_Controller{
 				$meta_key = $this->input->post('meta_key');	
 				$meta_desc = $this->input->post('meta_desc');	
 				$alt_image = $this->input->post('alt_image');
+				$status = $this->input->post('status');
 				$sale = $this->input->post('sale');
 
 				//load thư viện uploads ảnh
@@ -312,6 +313,7 @@ Class Product extends MY_Controller{
 					'products'=>$products,
 					'options'=>$options,
 					'admin_update'=>$user_update->username,
+					'status'=>$status,
 					'created'=>now()
 				);
 				$product = $this->product_model->create($data);
@@ -403,7 +405,7 @@ Class Product extends MY_Controller{
 		$this->data['info'] = $info;
 
 		if($this->input->post()){
-			$this->form_validation->set_rules('name','Tên sản phẩm','required|min_length[4]|callback_check_title');
+			$this->form_validation->set_rules('name','Tên sản phẩm','required|min_length[4]');
 			$this->form_validation->set_rules('cat_id','Danh mục','required');
 			if($this->form_validation->run()){
 				//tiến hành thêm vào csdl		
@@ -442,6 +444,7 @@ Class Product extends MY_Controller{
 				$meta_key = $this->input->post('meta_key');	
 				$meta_desc = $this->input->post('meta_desc');	
 				$alt_image = $this->input->post('alt_image');
+				$status = $this->input->post('status');
 				$sale = $this->input->post('sale');
 				$image_list = $this->input->post('image_list');
 				$products = $this->input->post('products[]');
@@ -492,6 +495,7 @@ Class Product extends MY_Controller{
 					'products'=>$products,
 					'options'=>$options,
 					'admin_edit'=>$user_edit->username,
+					'status'=>$status,
 					'last_update'=> now()
 				);
 				$this->product_model->update($id,$data);
