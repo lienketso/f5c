@@ -53,6 +53,59 @@ function showdatefull($date){
 function showdate_vn($date){
   return date_format(new DateTime($date),'d/m/Y');
 }
+
+  /**
+   * Tao chữ vào ảnh
+   */
+  function add_watermark($path_img, $settings = array(), $path_copyright="")
+  {
+      $CI =& get_instance();
+      $wm_font_size = 16; // Watermark height (font size) contains 16% of image 
+      $config = array();
+      $config['image_library']  = 'gd2';
+      $config['source_image']   = $path_img;
+  
+      if($path_copyright != '')
+      {
+          $config['wm_type'] = 'overlay';
+          $config['wm_overlay_path'] = $path_copyright;
+          $config['wm_vrt_alignment'] = 'middle';
+          $config['wm_hor_alignment'] = 'center';
+          $config['wm_padding'] = '0';
+          $config['wm_opacity'] = '50';
+      }
+      else
+      {
+          $config['wm_type'] = 'text';
+          $config['wm_vrt_alignment'] = 'bottom';
+          $config['wm_hor_alignment'] = 'left';
+          $config['wm_padding'] = '0';
+          $config['wm_hor_offset']    = '0';
+          $config['wm_vrt_offset']    = '8';
+          $config['wm_text']          = 'f5c.vn';
+          $config['wm_font_size']     = '40';
+          $config['wm_font_color']    = '#fff';
+          $config['wm_opacity']    = '100';
+      }
+      if(!empty($settings))
+      {
+          foreach($settings as $k=>$v)
+          {
+              $config[$k] = $v;
+          }
+      }
+     
+  
+      //print_r($config);
+      $obj = 'image_lib_'.random_string('unique');
+      $CI->load->library('image_lib', $config, $obj);
+      if ($CI->$obj->watermark())
+      {
+          return TRUE;
+      }
+      return FALSE;
+  }
+
 function yes_no($v){
   if($v==0){
    echo "<option value='1'>Hiển thị</option>";

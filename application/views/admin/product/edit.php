@@ -235,7 +235,10 @@
                     </div>
                     <div class="form-group">
                         <label>Hình ảnh</label>
-                        <div class="input-group col-xs-12">
+                        <div class="btn_multi_upload">
+                            <input type="file" name="image_name">
+                        </div>
+                        <!-- <div class="input-group col-xs-12">
                             <input type="text" name="image_name" value="<?= $info->image_name; ?>" id="xFilePath"
                                 class="form-control file-upload-info" placeholder="Upload Image">
                             <span class="input-group-append">
@@ -244,6 +247,9 @@
                             </span>
                         </div>
                         <div class="col-xs-12">
+                            <img src="<?= product_link($info->image_name); ?>" id="imgreview" style="width: 30%; padding-top: 10px">
+                        </div> -->
+                         <div class="col-xs-12">
                             <img src="<?= product_link($info->image_name); ?>" id="imgreview" style="width: 30%; padding-top: 10px">
                         </div>
                     </div>

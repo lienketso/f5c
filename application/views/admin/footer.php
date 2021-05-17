@@ -54,9 +54,9 @@ $('.makeMeRichTextarea').each( function () {
    var editor = CKEDITOR.replace( this.id, {
     filebrowserBrowseUrl: nvcms_url+'/ckfinder/ckfinder.html',
     filebrowserImageBrowseUrl: nvcms_url+'/ckfinder/ckfinder.html?Type=Images',
-    filebrowserUploadUrl: domain_url+'/upload.php',
+    filebrowserUploadUrl: '<?= base_url('upload/upload_ckeditor') ?>',
     filebrowserUploadMethod  : 'form',
-    filebrowserImageUploadUrl: domain_url+'/upload.php',
+    filebrowserImageUploadUrl: '<?= base_url('upload/upload_ckeditor') ?>',
     filebrowserWindowWidth : '1000',
     filebrowserWindowHeight: '700'
 });

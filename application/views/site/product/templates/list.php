@@ -38,7 +38,7 @@
     </div>
 </section>
 
-<?php if(!empty($listChild)): ?>
+<?php if(!empty($listChild) && count($listChild>0)): ?>
 <?php foreach($listChild as $c): ?>
 <?php 
     $cba['where'] = ['parent_id'=>$c->id];
@@ -241,6 +241,7 @@
     </div>
 </section>
 <?php endif; ?>
+
 <script type="text/javascript">
 $(document).ready(function() {
     $('.show_more_loc').click(function() {

@@ -163,15 +163,18 @@
 					<div class="form-group">
                         <label for="">Tình trạng</label>
                         <select name="status" class="form-control">
-                            <option value="1" <?= (set_value('status')==1) ? 'selected' : '' ?>>Còn hàng</option>
-                            <option value="2" <?= (set_value('status')==2) ? 'selected' : '' ?>>Sản phẩm chưa có sẵn</option>
-                            <option value="0" <?= (set_value('status')==0) ? 'selected' : '' ?>>Hết hàng</option>
+                            <option value="1" selected>Còn hàng</option>
+                            <option value="2" >Sản phẩm chưa có sẵn</option>
+                            <option value="0" >Hết hàng</option>
                         </select>
                     </div>
 
 					<div class="form-group">
 						<label>Hình ảnh</label>
-						<div class="input-group col-xs-12">
+						<div class="btn_multi_upload">
+                            <input type="file" name="image_name">
+                        </div>
+						<!-- <div class="input-group col-xs-12">
 							<input type="text" name="image_name" value="<?= set_value('image_name'); ?>" id="xFilePath" class="form-control file-upload-info" placeholder="Upload Image">
 							<span class="input-group-append">
 								<button class="file-upload-browse btn btn-primary" id="" onclick="browseServer()" type="button">Chọn ảnh</button>
@@ -179,7 +182,7 @@
 						</div>
 						<div class="col-xs-12">
 							<img src="" id="imgreview" style="width: 100%; padding-top: 10px">
-						</div>
+						</div> -->
 					</div>
 					<div class="form-group">
 						<label for="">Tiêu đề thẻ Alt</label>

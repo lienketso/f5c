@@ -1,6 +1,6 @@
 <?php
 function url_tam($url=''){
-    return 'https://f5c.vn/upload/public/'.$url;
+    return base_url('upload/public/').$url;
 }
 function url_sosanh($url='',$id){
     return base_url('so-sanh-'.$url.'/'.$id.'.html');

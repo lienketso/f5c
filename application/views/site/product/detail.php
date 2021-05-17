@@ -116,7 +116,7 @@
                                     <?php if($info->warranty!='' || $info->warranty!=0): ?>
                                     <li>Bảo hành : <span><?= $info->warranty; ?> tháng</span></li>
                                     <?php endif; ?>
-                                    <li>Trạng thái : <span>Còn hàng</span></li>
+                                    <li>Trạng thái : <span><?php if($info->status==1): ?> Còn hàng <?php endif ?><?php if($info->status==2): ?> Sản phẩm chưa có sẵn, liên hệ đặt hàng <?php endif ?> <?php if($info->status==0): ?> Hết hàng <?php endif ?></span></li>
                                     <?php if($info->show_vat==1): ?>
                                     <li>VAT :
                                         <span><?= ($info->vat==0) ? 'Đã bao gồm 10% VAT' : 'Chưa bao gồm VAT' ?></span>

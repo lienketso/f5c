@@ -99,7 +99,6 @@ Class Product extends MY_Controller{
 		$this->data['admin_edit'] = $admin_edit;
 		$this->data['admin_add'] = $admin_add;
 		$this->data['xuatxu'] = $model;
-
 		//lấy danh sách sản phẩm
 		$list = $this->product_model->get_list($input);
 		$this->data['list'] = $list;	
@@ -237,22 +236,32 @@ Class Product extends MY_Controller{
 				$feature = $this->input->post('feature');
 				$tieubieu = $this->input->post('tieubieu');
 				$image_name = $this->input->post('image_name');	
-				$image_name = str_replace(base_url('upload/public/'),'',$image_name);
+	
 				$site_title = $this->input->post('site_title');	
 				$meta_key = $this->input->post('meta_key');	
 				$meta_desc = $this->input->post('meta_desc');	
 				$alt_image = $this->input->post('alt_image');
 				$status = $this->input->post('status');
 				$sale = $this->input->post('sale');
-
 				//load thư viện uploads ảnh
 				$this->load->library('upload_library');
 				$image_list = $this->input->post('image_list');
 				//uploads nhiều ảnh kèm theo
-				$upload_path = 'upload/public/media';
+				// $upload_path = 'upload/public/media';
+				//uploads 
+				$url_date = date('Y').'/'.date('m').'/'.date('d');
+				$upload_path = 'upload/public/media/'.$url_date;
+				$upload_data = $this->upload_library->upload($upload_path, 'image_name');
+				if(isset($upload_data['file_name'])){
+					$image_name_in = 'media/'.$url_date.'/'.$upload_data['file_name'];
+				}
+				//thêm chữ vào ảnh
+				add_watermark($upload_path.'/'.$upload_data['file_name'],[],'');
+				//uploads nhiều ảnh kèm theo
 				$image_list = array();
 				$image_list = $this->upload_library->upload_file($upload_path, 'image_list');
-				
+
+
 				//phụ kiện kèm theo
 				$products = $this->input->post('products[]');
 				if($products){
@@ -290,7 +299,7 @@ Class Product extends MY_Controller{
 					'name'=> $name,
 					'friendly_url' => $slug,
 					'cat_id'=>$cat_id,
-					'image_name' => $image_name,
+					'image_name' => $image_name_in,
 					'manufac_id'=>$manufac_id,
 					'model'=>$model,
 					'price'=>$price,
@@ -324,10 +333,12 @@ Class Product extends MY_Controller{
 						$data_2 = [
 							'table_id'=>$product_id,
 							'table'=>'product-images',
-							'file_name'=>'media/'.$img,
+							'file_name'=>'media/'.$url_date.'/'.$img,
 							'created'=> now()
 						];
 						$this->file_model->create($data_2);
+						//thêm chữ vào ảnh
+						add_watermark($upload_path.'/'.$img,[],'');
 					}
 				}
 				//end postmeta insert
@@ -346,7 +357,12 @@ Class Product extends MY_Controller{
 		$this->load->model('file_model');
 		$productid = $this->input->post('productid');
 		$countfiles = count($_FILES['files']['name']);
-		$upload_location = "upload/public/media/";
+		$url_date = date('Y').'/'.date('m').'/'.date('d');
+		$upload_location = "upload/public/media/".$url_date;
+		if (!is_dir($upload_location))
+    		{
+        		mkdir($upload_location, 0777, true);
+    		}
 		$files_arr = array();
 		// Loop all files
 		for($index = 0;$index < $countfiles;$index++){
@@ -356,14 +372,15 @@ Class Product extends MY_Controller{
 				$ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 				$valid_ext = array("png","jpeg","jpg");
 				if(in_array($ext, $valid_ext)){
-					$path = $upload_location.$newfilename;
+					$path = $upload_location.'/'.$newfilename;
 					if(move_uploaded_file($_FILES['files']['tmp_name'][$index],$path)){
+						add_watermark($path,array(),'');
 						$files_arr[] = $newfilename;
 					}
 				}
 				//insert to file table
 				$data = [
-					'file_name'=>'media/'.$newfilename,
+					'file_name'=>'media/'.$url_date.'/'.$newfilename,
 					'orig_name'=>$filename,
 					'table'=>'product',
 					'table_id'=>$productid,
@@ -401,7 +418,7 @@ Class Product extends MY_Controller{
 			redirect(admin_url('product'));
 		}
 		
-
+	
 		$this->data['info'] = $info;
 
 		if($this->input->post()){
@@ -437,8 +454,17 @@ Class Product extends MY_Controller{
 				$hide = $this->input->post('hide');
 				$feature = $this->input->post('feature');
 				$tieubieu = $this->input->post('tieubieu');
-				$image_name = $this->input->post('image_name');	
-				$image_name = str_replace(base_url('upload/public/'),'',$image_name);
+				//load thư viện uploads ảnh
+				$this->load->library('upload_library');
+				//uploads 
+				$url_date = date('Y').'/'.date('m').'/'.date('d');
+				$upload_path = 'upload/public/'.$url_date;
+				$upload_data = $this->upload_library->upload($upload_path, 'image_name');
+				if(isset($upload_data['file_name'])){
+					$image_name_in = $url_date.'/'.$upload_data['file_name'];
+				}
+				//thêm chữ vào ảnh
+				add_watermark($upload_path.'/'.$upload_data['file_name'],[],'');
 
 				$site_title = $this->input->post('site_title');	
 				$meta_key = $this->input->post('meta_key');	
@@ -498,6 +524,9 @@ Class Product extends MY_Controller{
 					'status'=>$status,
 					'last_update'=> now()
 				);
+				if(!empty($image_name_in)){
+					$data['image_name'] = $image_name_in;
+				}
 				$this->product_model->update($id,$data);
 				
 				// $im['where'] = ['table_id'=>$id];
@@ -517,7 +546,7 @@ Class Product extends MY_Controller{
 				// 		];
 				// 		$this->file_model->create($idata);
 				// 	}
-
+					
 				// }
 
 				// tạo nội dung thông báo
@@ -595,42 +624,42 @@ Class Product extends MY_Controller{
     	$this->product_model->deleteOne($id);
     }
 
-    function update_price(){
-    	$id=	$this->input->post('id');
-    	$price = $this->input->post('price');
-    	$vat =  $this->input->post('vat');
-    	$user = $this->session->userdata('userlogin');
-    	if(empty($vat )){$vat=0;}
-    	$data = array(
-    		'admin_edit'=> $user->username,
-    		'price'=>$price,
-    		'last_update'=> now()
-    	);
-    	$this->product_model->update($id,$data);
-    	die;
-    }
-    function update_vat(){
-    	$id=	$this->input->post('id');
-    	$vat =  $this->input->post('vat');
-    	$user = $this->session->userdata('userlogin');
-    	$data = array(
-    		'admin_edit'=> $user->username,
-    		'vat'=>$vat,
-    		'last_update'=> now()
-    	);
-    	$this->product_model->update($id,$data);
-    	die;
-    }
-    function update_sort(){
-    	$id=	$this->input->post('id');
-    	$sort =  $this->input->post('sort');
-    	$user = $this->session->userdata('userlogin');
-    	$data = array(
-    		'admin_update'=> $user->username,
-    		'sort_order'=>$sort,
-    		'last_update'=> now()
-    	);
-    	$this->product_model->update($id,$data);
-    	die;
-    }
+	function update_price(){
+	$id=	$this->input->post('id');
+	$price = $this->input->post('price');
+	$vat =  $this->input->post('vat');
+	$user = $this->session->userdata('userlogin');
+	if(empty($vat )){$vat=0;}
+	$data = array(
+		'admin_edit'=> $user->username,
+		'price'=>$price,
+		'last_update'=> now()
+	);
+	$this->product_model->update($id,$data);
+	die;
+	}
+	function update_vat(){
+	$id=	$this->input->post('id');
+	$vat =  $this->input->post('vat');
+	$user = $this->session->userdata('userlogin');
+	$data = array(
+		'admin_edit'=> $user->username,
+		'vat'=>$vat,
+		'last_update'=> now()
+	);
+	$this->product_model->update($id,$data);
+	die;
+	}
+	function update_sort(){
+	$id=	$this->input->post('id');
+	$sort =  $this->input->post('sort');
+	$user = $this->session->userdata('userlogin');
+	$data = array(
+		'admin_update'=> $user->username,
+		'sort_order'=>$sort,
+		'last_update'=> now()
+	);
+	$this->product_model->update($id,$data);
+	die;
+	}
 }//end class
